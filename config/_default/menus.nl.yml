@@ -1,0 +1,77 @@
+# -- Site Navigation --
+main:
+  - name: "Home"
+    pageRef: "/"
+    weight: 10
+
+  - name: "Showcases"
+    pageRef: "/showcases"
+    weight: 20
+
+  - name: "Diensten"
+    pageRef: "diensten"
+    weight: 30
+
+  - parent: "Diensten"
+    name: "Websites"
+    pageRef: "/diensten/websites"
+    weight: 10
+
+  - parent: "Diensten"
+    name: "Hosting"
+    pageRef: "/diensten/hosting"
+    weight: 20
+
+  - parent: "Diensten"
+    name: "Search engine optimalisatie"
+    pageRef: "/diensten/zoek-machine-optimalisatie"
+    weight: 30
+
+  - name: "Over mij"
+    pageRef: "over-mij"
+    weight: 40
+
+  - name: "Contact"
+    pageRef: "/contact"
+    weight: 50
+
+# -- Footer services links --
+
+service:
+  - name: "Websites"
+    pageRef: "/diensten/websites"
+    weight: 10
+
+  - name: "Hosting"
+    pageRef: "/diensten/hosting"
+    weight: 20
+
+  - name: "Search Engine Optimalizatie"
+    pageRef: "/diensten/search-engine-optimalizatie"
+    weight: 30
+
+# -- Footer site links --
+
+site:
+  - name: "Home"
+    pageRef: "/"
+    weight: 10
+
+  - name: "Over mij"
+    pageRef: "/over-mij"
+    weight: 20
+
+  - name: "Showcases"
+    pageRef: "/showcases"
+    weight: 30
+
+# -- Footer navigation --
+
+footer:
+  - name: "Algemene voorwaarden"
+    pageRef: "/algemene-voorwaarden"
+    weight: 10
+  
+  - name: "Privacy"
+    pageRef: "/privacy"
+    weight: 20

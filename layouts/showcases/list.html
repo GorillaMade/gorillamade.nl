@@ -1,0 +1,29 @@
+{{ define "main" }}
+{{ partial "components/breadcrumb.html" . }}
+<section class="[ showcases ] [] [ region ]">
+    <h1 class="section-title">{{ .Params.heading }}</h1>
+    <ul class="showcases__list grid" role="list" data-max-col-count="2">
+        {{ $pages := where .Pages "Type" "showcases" }}
+        {{ $paginator := .Paginate $pages 4 }}
+        {{ range $paginator.Pages }}
+        <li>
+            <div class="showcase-card flow">
+                <figure class="showcase-card__image" style="background: {{ .Params.images.full.background }};">
+                    <img width="650" height="650" src="{{ .Params.images.thumbnail }}" alt="{{ .LinkTitle }}">
+                </figure>
+                <div class="showcase-card__content">
+                    <h3 class="showcase-card__title">{{ .LinkTitle }}</h3>
+                    <div>
+                        <small>{{ delimit .Params.tags ", " }}</small>
+                    </div>
+                    <a href="{{ .RelPermalink }}" class="read-more">{{ i18n "view_showcase" }} <ion-icon size="small" name="arrow-forward-outline"></ion-icon></a>
+                </div>
+            </div>
+        </li>
+        {{ end }}
+    </ul>
+
+    <!-- pagination -->
+    {{ partial "components/pagination.html" . }}
+</section>
+{{ end }}

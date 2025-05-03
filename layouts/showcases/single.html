@@ -1,0 +1,32 @@
+{{ define "main" }}
+{{ partial "components/breadcrumb.html" . }}
+<section class="[ showcase ] [ flow ] [ region ]">
+    <h1 class="section-title">{{ .Title }}</h1>
+    <div class="showcase__image" style="background: {{ .Params.images.full.background }};">
+        <img src="{{ .Params.images.full.src }}" width="1280" height="525.71" alt="">
+    </div>
+    <ul class="grid" role="list" data-max-col-count="3">
+        <li>
+            <span class="fs-300 fw-medium">Klant</span> <br>
+            {{ .Params.client }}
+        </li>
+        <li>
+            <span class="fs-300 fw-medium">Tags</span>
+            {{ with .Params.tags }}
+            <ul class="tags cluster" role="list">
+                {{ range . }}
+                <li><a class="tag" href="{{ "tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+                {{ end }}
+            </ul>
+            {{ end }}
+        </li>
+        <li>
+            <span class="fs-300 fw-medium">Link</span> <br>
+            <a href="{{ .Params.project_url }}" class="button">Bezoek website</a>
+        </li>
+    </ul>
+</section>
+<article class="[ article ] [] [ region ]">
+    {{ .Content }}
+</article>
+{{ end }}

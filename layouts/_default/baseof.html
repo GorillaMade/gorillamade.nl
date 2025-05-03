@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<head>
+  {{ partial "shared/head.html" . }}
+</head>
+<body class="page">
+  {{ partial "shared/header.html" . }}
+  <main class="full-width">
+    {{ block "main" . }}{{ end }}
+  </main>
+  {{ partial "shared/footer.html" . }}
+</body>
+</html>

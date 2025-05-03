@@ -1,0 +1,4 @@
+# Hugo versie en extended configuratie
+hugoVersion:
+  extended: true
+  min: "0.145.0"

@@ -1,0 +1,205 @@
+@use "colors" as *;
+
+// -----------------------------------------------------------------------------
+// Theme settings
+// -----------------------------------------------------------------------------
+
+$active-theme: $light;
+$enable-media-prefers-dark-mode: false;
+
+// Branding
+$brand-logo-height: 5ex;
+$brand-logo-width: auto;
+
+$brand-foreground: var(--neutral-800);
+
+// Anchor/Link
+$link-foreground: var(--neutral-800);
+$link-foreground-hover: var(--primary-500);
+
+// Globals
+$global-border-radius: var(--radius-xs);
+
+
+$input-select-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgb(136, 145, 164)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
+
+// -----------------------------------------------------------------------------
+// Page layout - page layout structure
+// -----------------------------------------------------------------------------
+
+$page-padding-inline: 5dvw;
+
+$page-main-max-width: 1280px;
+$page-expand-max-width: 1356px;
+$page-wide-max-width: 1440px;
+
+//
+// With Aside - Content with an aside next to it
+// 
+
+$with-aside-content-width: 50ch;
+$with-aside-aside-width: 430px;
+$with-aside-gap: var(--space-s-l);
+
+
+
+// -----------------------------------------------------------------------------
+// Body - Sets up the defaults for the body
+// -----------------------------------------------------------------------------
+
+$body-foreground: var(--neutral-700);
+$body-background: var(--color-background);
+$body-font-family: var(--ff-sans);
+$body-font-size: var(--fs-400);
+$body-font-weight: var(--fw-regular);
+$body-line-height: 1.618;
+
+
+
+// -----------------------------------------------------------------------------
+// Site Navigation
+// -----------------------------------------------------------------------------
+
+$site-header-background: transparent;
+$site-header-block-padding: var(--space-xs);
+
+
+$nav-background: var(--color-background);
+
+$nav-link-padding: var(--space-2xs) var(--space-s);
+$nav-link-border-radius: #{$global-border-radius};
+
+$nav-link-foreground: var(--neutral-500);
+$nav-link-foreground-hover: var(--neutral-900);
+$nav-link-foreground-active: var(--neutral-50);
+
+$nav-link-background: transparent;
+$nav-link-background-hover: var(--neutral-50);
+$nav-link-background-active: var(--neutral-900);
+
+// Dropdown
+$nav-dropdown-background: var(--color-background);
+$nav-dropdown-box-shadow: var(--shadow-xs);
+
+
+
+// -----------------------------------------------------------------------------
+// Hamburger
+// -----------------------------------------------------------------------------
+
+$hamburger-bar-color: var(--neutral-800);
+$hamburger-bar-width: 36px;
+$hamburger-bar-height: 6px;
+$hamburger-bar-gap: 4px;
+
+$hamburger-background: transparent;
+$hamburger-padding: var(--space-2xs);
+$hamburger-animation-timing: 200ms ease-in-out;
+$hamburger-border: none;
+$hamburger-border-radius: $global-border-radius;
+
+
+
+// -----------------------------------------------------------------------------
+// Wrapper
+// -----------------------------------------------------------------------------
+
+$wrapper-max-width: $page-main-max-width;
+$wrapper-padding-inline: $page-padding-inline;
+
+
+
+// -----------------------------------------------------------------------------
+// With aside - Content with an aside next to it
+// -----------------------------------------------------------------------------
+
+$with-aside-content-width: 50ch;
+$with-aside-aside-width: 400px;
+$with-aside-gap: clamp(1rem, 6dvw, 3rem);
+
+
+
+// -----------------------------------------------------------------------------
+// Full width split screen
+// -----------------------------------------------------------------------------
+
+$full-width-split-screen-padding-inline: $page-padding-inline;
+
+$full-width-split-screen-max-width: $page-main-max-width;
+$full-width-split-screen-content-padding: clamp(1rem, 6dvw, 3rem);
+
+
+
+// -----------------------------------------------------------------------------
+// Button
+// -----------------------------------------------------------------------------
+
+// Font
+$button-font-family: var(--ff-sans);
+$button-font-size: var(--fs-400);
+$button-font-weight: var(--fw-medium);
+$button-line-height: 1;
+$button-text-transform: none;
+$button-letter-spacing: 0.05ch;
+
+// Border
+$button-border-width: 2px;
+$button-border-style: solid;
+$button-border-color: var(--_button-background);
+$button-border-radius: $global-border-radius;
+
+// Misc
+$button-padding: var(--space-xs) var(--space-s);
+$button-gap: .5rem;
+$button-transition: all 0.2s ease;
+
+// Color(s)
+$button-foreground: var(--neutral-800);
+$button-foreground-hover: var(--neutral-50);
+
+$button-background: var(--neutral-200);
+$button-background-hover: var(--neutral-950);
+
+$button-primary-foreground: var(--primary-950);
+$button-primary-foreground-hover: var(--neutral-50);
+
+$button-primary-background: var(--primary-400);
+$button-primary-background-hover: var(--neutral-950);
+
+$button-accent-foreground: var(--accent-900);
+$button-accent-foreground-hover: var(--accent-950);
+
+$button-accent-background: var(--accent-400);
+$button-accent-background-hover: var(--accent-500);
+
+
+
+// -----------------------------------------------------------------------------
+// Input
+// -----------------------------------------------------------------------------
+
+$input-foreground: var(--neutral-800);
+$input-background: inherit;
+
+$input-padding: var(--space-2xs) var(--space-xs);
+
+
+
+// -----------------------------------------------------------------------------
+// Card
+// -----------------------------------------------------------------------------
+
+$card-foreground: inherit;
+$card-background: var(--color-background);
+
+$card-padding: var(--space-s);
+
+$card-border-radius: $global-border-radius;
+$card-box-shadow: var(--shadow-xs);
+
+
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------

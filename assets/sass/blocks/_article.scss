@@ -1,0 +1,45 @@
+.article,
+.full-bleed {
+    --_article-gap: var(--article-gap, 5dvw);
+    --_article-full: minmax(var(--_article-gap), 1fr);
+    --_article-content: 60ch;
+    --_article-popout: minmax(0, 2rem);
+    --_article-feature: minmax(0, 5rem);
+
+    /* Calculation - Do not touch */
+    --_article-content-calc: min(var(--_article-content), 100% - (var(--_article-gap) * 2));
+
+    display: grid;
+    grid-template-columns:
+        [full-start] var(--_article-full)
+        [feature-start] var(--_article-feature)
+        [popout-start] var(--_article-popout)
+        [content-start] var(--_article-content-calc) [content-end]
+        var(--_article-popout) [popout-end]
+        var(--_article-feature) [feature-end]
+        var(--_article-full) [full-end];
+}
+
+
+.article,
+.full-bleed {
+    & > *:not(.full, .feature, .popout) {
+        grid-column: content;
+    }
+
+    .popout {
+        grid-column: popout;
+    }
+
+    .feature {
+        grid-column: feature;
+    }
+
+    .full {
+        grid-column: full;
+    }
+
+    .full-bleed {
+        grid-column: full;
+    }
+}

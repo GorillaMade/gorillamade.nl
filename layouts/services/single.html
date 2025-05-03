@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{ partial "components/breadcrumb.html" . }}
+<div class="with-aside">
+    <div class="region">
+        {{ .Content }}
+    </div>
+    <aside class="region">
+        <div class="widget flow">
+            <p class="cta-text">{{ i18n "services.cta" }}</p>
+            <div class="cluster">
+                <a href="/contact" class="button" data-button-ghost>{{ i18n "free_advice" }}</a>
+                <a href="/contact" class="button" data-button-variant="primary">{{ i18n "start_project" }}</a>
+            </div>
+        </div>
+    </aside>
+</div>
+{{ end }}

@@ -1,0 +1,16 @@
+# -- Taal: Nederlands --
+nl:
+  languageName: "Nederlands"
+  languageCode: "nl"
+  LanguageDirection: "ltr"
+  weight: 1
+  contentDir: "content/nl"
+
+
+# -- Taal: English --
+en:
+  languageName: "English"
+  weight: 2
+  LanguageDirection: "ltr"
+  languageCode: "en"
+  contentDir: "content/en"

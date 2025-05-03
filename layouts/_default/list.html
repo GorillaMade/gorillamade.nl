@@ -1,0 +1,11 @@
+{{ define "main" }}
+{{ partial "components/breadcrumb.html" . }}
+<section class="[] [] [ region ]">
+  <h1 class="section-title">{{ .Title }}</h1>
+  {{ .Content }}
+  {{ range .Pages }}
+    <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+    {{ .Summary | plainify }}
+  {{ end }}
+</section>
+{{ end }}

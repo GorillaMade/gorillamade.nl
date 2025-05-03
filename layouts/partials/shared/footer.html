@@ -1,0 +1,31 @@
+<footer class="[ site-footer ] [ full-width ] [ region ]">
+    <div class="wrapper">
+        <p>© {{ now.Year }} {{ .Site.Title }}. Alle rechten voorbehouden.</p>
+    </div>
+</footer>
+
+<!-- Scripts -->
+
+<!-- ✨ HTMX error handling + form reset
+{{ if eq .Page.RelPermalink "/contact/" }}
+<script>
+    document.body.addEventListener('htmx:responseError', function (event) {
+        const responseText = event.detail.xhr.responseText;
+        const target = document.querySelector('#form-response');
+        if (target && responseText) {
+            target.innerHTML = responseText;
+        }
+    });
+
+    document.body.addEventListener('htmx:afterRequest', function (event) {
+        if (event.detail.xhr.status >= 200 && event.detail.xhr.status < 300) {
+            document.querySelector('form')?.reset();
+        }
+    });
+</script>
+{{ end }}
+-->
+
+<!-- Ion Icons -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

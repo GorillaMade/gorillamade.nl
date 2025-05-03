@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ partial "components/breadcrumb.html" . }}
+<article class="article flow region">
+  <h1 class="section-title">{{ .Title }}</h1>
+
+  {{ if .Params.date }}
+  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+  {{ $dateHuman := .Date | time.Format ":date_long" }}
+  <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+  {{ end }}
+
+  {{ .Content }}
+  {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+</article>
+{{ end }}

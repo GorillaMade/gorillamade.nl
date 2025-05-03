@@ -1,0 +1,71 @@
+@use "../abstracts" as *;
+
+:root {
+    // Font families
+    @each $prop, $value in $font-families {
+        --ff-#{$prop}: #{$value};
+    }
+
+    // Font sizes
+    @each $prop, $value in $font-sizes {
+        --fs-#{$prop}: #{$value};
+    }
+
+    // Font weights
+    @each $prop, $value in $font-weights {
+        --fw-#{$prop}: #{$value};
+    }
+
+
+
+    // Spaces - margin and padding sizes
+    @each $prop, $value in $spaces {
+        --space-#{$prop}: #{$value};
+    }
+
+    // Screen/wrapper sizes
+    @each $prop, $value in $breakpoints {
+        --screen-#{$prop}: #{$value};
+    }
+
+
+
+    // Radius
+    @each $prop, $value in $radius {
+        --radius-#{$prop}: #{$value};
+    }
+
+    // Shadows
+    @each $prop, $value in $shadows {
+        --shadow-#{$prop}: #{$value};
+    }
+
+    // Layers
+    @each $prop, $value in $layers {
+        --layer-#{$prop}: #{$value};
+    }
+
+    // Blurs
+    @each $prop, $value in $blurs {
+        --blur-#{$prop}: #{$value};
+    }
+
+
+    // Color(s) default theme
+    @each $color, $shade-map in $active-theme {
+        @each $shade, $value in $shade-map {
+            --#{$color}-#{$shade}: #{$value};
+        }
+    }
+
+    // Color(s) theme dark mode
+    @if ($enable-media-prefers-dark-mode) {
+        @media (prefers-color-scheme: dark) {
+            @each $color, $shade-map in $dark {
+                @each $shade, $value in $shade-map {
+                    --#{$color}-#{$shade}: #{$value};
+                }
+            }
+        }
+    }
+}

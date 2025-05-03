@@ -1,0 +1,67 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+<title>
+    {{ if .IsHome }}
+    {{ .Site.Title }}
+    {{ else }}
+    {{ printf "%s | %s" .Title .Site.Title }}
+    {{ end }}
+</title>
+
+<!-- Meta Description -->
+<meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ with .Params.metas.description }}{{ . }}{{ else }}{{ .Site.Params.metas.description }}{{ end }}{{ end }}">
+
+<!-- Meta Keywords -->
+<meta name="keywords" content="{{ with .Params.keywords }}{{ . }}{{ else }}{{ with .Params.metas.keywords }}{{ . }}{{ else }}{{ .Site.Params.metas.keywords }}{{ end }}{{ end }}">
+
+<!-- Robots Meta Tag -->
+<meta name="robots" content="{{ .Params.robots | default " index, follow" }}">
+
+<!-- Canonical Link -->
+<link rel="canonical" href="{{ .Permalink }}">
+
+<!-- Sitemap link -->
+<link rel="sitemap" type="application/xml" href="{{ " sitemap.xml" | absURL }}">
+
+<!-- Open Graph (Facebook / LinkedIn / etc.) -->
+<meta property="og:title" content="{{ .Title }}">
+<meta property="og:description"
+    content="{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Site.Params.meta.description }}{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="website">
+<meta property="og:image"
+    content="{{ with .Params.image }}{{ . | absURL }}{{ else }}{{ .Site.Params.meta.image | default " /media/logo.webp"
+    | absURL }}{{ end }}">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ .Title }}">
+<meta name="twitter:description"
+    content="{{ if .Params.description }}{{ .Params.description }}{{ else }}{{ .Site.Params.meta.description }}{{ end }}">
+<meta name="twitter:image"
+    content="{{ with .Params.image }}{{ . | absURL }}{{ else }}{{ .Site.Params.meta.image | default " /media/logo.webp"
+    | absURL }}{{ end }}">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="{{ " favicon.svg" | absURL }}">
+<link rel="alternate icon" href="{{ " favicon.ico" | absURL }}">
+
+<!-- Apple Touch Icon -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ " apple-touch-icon.png" | absURL }}">
+
+<!-- Other Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="{{ " favicon-32x32.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ " favicon-16x16.png" | absURL }}">
+
+<!-- Web Manifest -->
+<link rel="manifest" href="{{ " site.webmanifest" | absURL }}">
+
+<!-- Theme CSS and Javascript -->
+{{ partialCached "shared/head/css.html" . }}
+{{ partialCached "shared/head/js.html" . }}
+
+<!-- Alpine.js -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+{{ partial "seo/localbusiness.html" . }}

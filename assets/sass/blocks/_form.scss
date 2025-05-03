@@ -1,0 +1,45 @@
+@use "../abstracts" as *;
+
+// -----------------------------------------------------------------------------
+// Label
+// -----------------------------------------------------------------------------
+
+label {
+    font-weight: var(--fw-medium);
+}
+
+// -----------------------------------------------------------------------------
+// Input, Select, Textarea
+// -----------------------------------------------------------------------------
+
+input,
+select,
+textarea {
+    --_input-foreground: var(--input-foreground, #{$input-foreground});
+    --_input-background: var(--input-background, #{$input-background});
+
+    --_input-padding: var(--input-padding, #{$input-padding});
+    --_input-border-radius: var(--input-border-radius, #{$global-border-radius});
+
+    appearance: none;
+    background: var(--_input-background);
+    color: var(--_input-foreground);
+    width: 100%;
+    border: 1px solid var(--neutral-300);
+    border-radius: var(--_input-border-radius);
+    padding: var(--_input-padding);
+
+    &::placeholder {
+        color: var(--neutral-400);
+    }
+}
+
+
+
+select {
+    --select-icon: #{$input-select-icon};
+    background-image: var(--select-icon);
+    background-position: center right .75rem;
+    background-size: 1rem auto;
+    background-repeat: no-repeat;
+}

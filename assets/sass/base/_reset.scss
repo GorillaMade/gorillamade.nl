@@ -1,0 +1,132 @@
+@use "../abstracts" as *;
+
+// -----------------------------------------------------------------------------
+// Reset
+// -----------------------------------------------------------------------------
+
+* {
+    &,
+    &::before,
+    &::after {
+        box-sizing: border-box;
+    }
+}
+
+html {
+    text-size-adjust: none;
+    hanging-punctuation: first last;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+
+    @media (prefers-reduce-motion: no-preference) {
+    }
+}
+
+/* Set core body defaults */
+body {
+    margin: 0;
+    min-height: 100dvh;
+}
+
+/* Remove default margin in favour of better control in authored CSS */
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin-block-end: 0;
+}
+
+/* Set shorter line heights on headings and interactive elements */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+    line-height: 1.1;
+}
+
+/* Balance text wrapping on headings */
+h1,
+h2,
+h3 {
+    max-width: 25ch;
+    text-wrap: balance;
+}
+
+p,
+li,
+blockquote:not([class]) {
+    max-width: 65ch;
+}
+
+/* Blockquote styles */
+blockquote:not([class]) {
+    font-family: var(--ff-serif);
+    font-size: var(--fs-400);
+
+    p:last-of-type {
+        font-family: var(--ff-sans);
+        font-size: var(--fs-300);
+        font-weight: var(--fw-regular);
+    }
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role="list"],
+ol[role="list"],
+ul[role="navigation"],
+ol[role="navigation"] {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Form reset
+// -----------------------------------------------------------------------------
+
+input,
+button,
+textarea,
+select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+textarea:not([rows]) {
+    min-height: 10em;
+}
+
+// -----------------------------------------------------------------------------
+// Image reset
+// -----------------------------------------------------------------------------
+
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+svg {
+    height: 2ex;
+    width: auto;
+    flex: none;
+}
+
+/* Accessibility enhancements */
+:focus {
+    outline: inherit;
+    outline-offset: 0.3ch;
+}
+
+/* Anything that has been anchored to should have extra scroll margin */
+:target {
+    scroll-margin-block: 5ex;
+}

@@ -1,0 +1,29 @@
+# -- Date format -- 
+
+dateFormat: "26 Februari 2006"
+
+
+# -- Bedrijfs informatie --
+
+business:
+  name: "GorillaMade"
+  logo: "https://www.gorillamade.nl/media/gm-logo.png"
+  url: "https://www.gorillamade.nl"
+  phone: "+31-6-13897425"
+  email: "hallo@gorillamade.nl"
+  priceRange: "€€"
+
+  address:
+    street: "Ooftbouwstraat 16"
+    city: "Tilburg"
+    postalCode: "5022 EC"
+    country: "NL"
+
+  geo:
+    lat: 51.541029591719656
+    lng: 5.091036569202518
+
+  social:
+    - "https://www.facebook.com/GorillaMade"
+    - "https://www.instagram.com/GorillaMade"
+    - "https://linkedin.com/company/GorillaMade"

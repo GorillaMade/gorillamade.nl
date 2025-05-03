@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Diensten on GorillaMade</title>
+    <link>http://localhost:1313/diensten/</link>
+    <description>Recent content in Diensten on GorillaMade</description>
+    <generator>Hugo</generator>
+    <language>nl</language>
+    <atom:link href="http://localhost:1313/diensten/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Websites</title>
+      <link>http://localhost:1313/diensten/websites/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/diensten/websites/</guid>
+      <description>&lt;h1 class=&#34;section-title&#34; id=&#34;jouw-website-supersnel-en-sterk-gebouwd&#34;&gt;Jouw Website, Supersnel en Sterk Gebouwd&lt;/h1&gt;&#xA;&lt;p&gt;Ik ben jouw persoonlijke web-gorilla die krachtige, supersnelle websites bouwt. Geen trage, logge websites hier – ik creëer slanke, gespierde online platforms met moderne statische technologie. Dat betekent: een website die direct klaarstaat voor bezoekers, zonder frustrerende laadtijden. Mijn websites zijn niet alleen sterk en snel, maar ook slim gebouwd: onderhoudsvriendelijk, veilig tegen digitale bandieten, en perfect geoptimaliseerd voor Google. En ja, ze doen het fantastisch op alle schermen – van enorme desktops tot de kleinste smartphones.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Hosting</title>
+      <link>http://localhost:1313/diensten/hosting/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/diensten/hosting/</guid>
+      <description>&lt;h1 class=&#34;section-title&#34; id=&#34;jouw-website-betrouwbare-online&#34;&gt;Jouw Website betrouwbare online&lt;/h1&gt;&#xA;&lt;p&gt;Alles wat je nodig hebt om je website snel en veilig online te zetten: een betrouwbare hostingomgeving, je eigen domeinnaam en professionele e-mailadressen.&lt;/p&gt;&#xA;&lt;h2 id=&#34;wat-doe-ik-voor-jou&#34;&gt;Wat doe ik voor jou?&lt;/h2&gt;&#xA;&lt;p&gt;Ik zorg ervoor dat alles goed geregeld is: van het registreren van je domeinnaam tot het instellen van je e-mailadressen. Je krijgt toegang tot een gebruiksvriendelijk controlepaneel (cPanel) en kunt altijd rekenen op betrouwbare support. Geen gedoe, alles is voor je geregeld.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Zoek Machine Optimalisatie</title>
+      <link>http://localhost:1313/diensten/zoek-machine-optimalisatie/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/diensten/zoek-machine-optimalisatie/</guid>
+      <description>&lt;h1 class=&#34;section-title&#34; id=&#34;zoek-machine-optimalisatie-seo--zorg-dat-je-gezien-wordt&#34;&gt;Zoek machine optimalisatie (SEO) – Zorg dat je gezien wordt&lt;/h1&gt;&#xA;&lt;p&gt;Een mooie website is slechts het begin. Het echte werk begint als mensen je kunnen vinden. SEO is de sleutel tot een hogere positie in zoekmachines en meer zichtbaarheid voor jouw bedrijf. Met de juiste technische optimalisatie zorg je ervoor dat jouw website niet alleen mooi is, maar ook goed presteert in zoekresultaten.&lt;/p&gt;&#xA;&lt;h2 id=&#34;wat-doet-gorillamade-voor-jou&#34;&gt;Wat doet GorillaMade voor jou?&lt;/h2&gt;&#xA;&lt;p&gt;Bij GorillaMade zorg ik ervoor dat jouw website optimaal presteert in zoekmachines. Van het implementeren van de juiste &lt;strong&gt;meta-tags&lt;/strong&gt; tot het verbeteren van de &lt;strong&gt;laadsnelheid&lt;/strong&gt; en het &lt;strong&gt;structureren van de inhoud&lt;/strong&gt;: ik leg de technische basis die nodig is om beter gevonden te worden.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

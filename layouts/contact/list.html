@@ -1,0 +1,51 @@
+{{ define "main" }}
+{{ partial "components/breadcrumb.html" . }}
+<section class="[ contact ] [ full-width ] [ region ]">
+    <div class="grid" data-max-col-count="2">
+        <div class="flow">
+            {{ .Content }}
+        </div>
+        <div class="card">
+            <form
+                hx-post="/send-mail.php"
+                hx-target="#form-response"
+                hx-swap="innerHTML"
+                hx-on="htmx:afterSwap: resetForm()"
+                class="flow">
+                <input type="text" name="honeypot_field" style="display:none">
+                <input type="hidden" name="_subject" value="Contactformulier">
+    
+                <div class="field-group">
+                    <label for="name">Naam</label>
+                    <input id="name" type="text" name="name" required>
+                </div>
+                <div class="field-group">
+                    <label for="tel">Telefoonnummer</label>
+                    <input id="tel" type="text" name="tel" required>
+                </div>
+                <div class="field-group">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" name="email" required>
+                </div>
+    
+                <div class="field-group">
+                    <label for="subject">Reden voor contact:</label>
+                    <select name="Onderwerp" id="subject">
+                        <option value="">--Selecteer een optie--</option>
+                        <option value="Een vraag">Stel een vraag</option>
+                        <option value="start een project">Start een project</option>
+                    </select>
+                </div>
+    
+                <div class="field-group">
+                    <label for="message">Bericht</label>
+                    <textarea name="message" id="message" rows="5" cols="50" required></textarea>
+                </div>
+                <button class="button" data-button-variant="primary" type="submit">{{ i18n "send" }}</button>
+            </form>
+            <!-- Hier verschijnen foutmeldingen -->
+            <div id="form-response"></div>
+        </div>
+    </div>
+</section>
+{{ end }}

@@ -1,0 +1,36 @@
+<nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol class="breadcrumb__list" role="list">
+        <li class="breadcrumb__item">
+            <a href="/" class="breadcrumb__link">Home</a>
+        </li>
+        {{- $segments := split .RelPermalink "/" -}}
+        {{- $path := "/" -}}
+        {{- $lastIndex := sub (len $segments) 2 -}}
+        {{- range $i, $segment := $segments -}}
+            {{- if and (ne $segment "") (lt $i (len $segments)) -}}
+                {{- $isLast := eq $i $lastIndex -}}
+                {{- $cleanSegment := replace $segment ".html" "" -}}
+                {{- $path = printf "%s%s/" $path $cleanSegment -}}
+                <li class="breadcrumb__item">
+                    {{ if $isLast }}
+                        <span class="breadcrumb__current">
+                            {{ if eq $cleanSegment "404" }}
+                                {{ i18n "error404.title" }}
+                            {{ else }}
+                                {{ humanize $cleanSegment }}
+                            {{ end }}
+                        </span>
+                    {{ else }}
+                        <a href="{{ $path | relURL }}" class="breadcrumb__link">
+                            {{ if eq $cleanSegment "404" }}
+                                {{ i18n "error404.title" }}
+                            {{ else }}
+                                {{ humanize $cleanSegment }}
+                            {{ end }}
+                        </a>
+                    {{ end }}
+                </li>
+            {{- end -}}
+        {{- end -}}
+    </ol>
+</nav>

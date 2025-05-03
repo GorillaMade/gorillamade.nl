@@ -1,0 +1,20 @@
+@use "../abstracts" as *;
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+
+body {
+    color: var(--body-foreground, #{$body-foreground});
+    background: var(--body-background, #{$body-background});
+    font-family: var(--body-font-family, #{$body-font-family});
+    font-size: var(--body-font-size, #{$body-font-size});
+    font-weight: var(--body-font-weight, #{$body-font-weight});
+    line-height: var(--body-line-height, #{$body-line-height});
+}
+
+
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
