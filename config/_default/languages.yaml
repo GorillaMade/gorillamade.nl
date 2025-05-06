@@ -5,7 +5,7 @@ nl:
   languageCode: "nl"
   LanguageDirection: "ltr"
   weight: 1
-  contentDir: "content"
+  contentDir: "content/nl"
   dateFormat: "26 Februari 2006"
 
 # -- Taal: English --
