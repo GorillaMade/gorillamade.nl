@@ -5,15 +5,15 @@ nl:
   languageCode: "nl"
   LanguageDirection: "ltr"
   weight: 1
-  contentDir: "content/nl"
+  contentDir: "content"
   dateFormat: "26 Februari 2006"
 
 # -- Taal: English --
-en:
-  baseURL: "https://gorillamade.nl/en/"
-  languageName: "English"
-  languageCode: "en"
-  LanguageDirection: "ltr"
-  weight: 2
-  contentDir: "content/en"
-  dateFormat: "Februari 26 2006"
+# en:
+#   baseURL: "https://gorillamade.nl/en/"
+#   languageName: "English"
+#   languageCode: "en"
+#   LanguageDirection: "ltr"
+#   weight: 2
+#   contentDir: "content/en"
+#   dateFormat: "Februari 26 2006"

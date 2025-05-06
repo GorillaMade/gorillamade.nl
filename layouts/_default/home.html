@@ -1,17 +1,14 @@
 {{ define "main" }}
-{{ $lang := site.Language.Lang }}
-{{ $home := index site.Data $lang "home" }}
-
-{{ with $home.hero }}
+{{ with .Site.Data.home.hero }}
     {{ partial "blocks/hero.html" . }}
 {{ end }}
-{{ with $home.showcases }}
+{{ with .Site.Data.home.showcases }}
     {{ partial "blocks/showcases.html" . }}
 {{ end }}
-{{ with $home.services }}
+{{ with .Site.Data.home.services }}
     {{ partial "blocks/services.html" . }}
 {{ end }}
-{{ with $home.about }}
+{{ with .Site.Data.home.about }}
     {{ partial "blocks/about.html" . }}
 {{ end }}
 {{ end }}

@@ -1,6 +1,6 @@
 ---
 title: "Homepage"
-description: "Pagina beschrijving"
+description: "Page description of: Homepage"
 keywords:
   - "web design Tilburg"
   - "websites Tilburg"
@@ -12,3 +12,7 @@ keywords:
   - "SEO-optimized websites Tilburg"
   - "web design Brabant"
 ---
+
+# Hello world
+
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Truth, dignity, repelling time, pain, arrogance, exceptions, and visible mischief!
