@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head><script src="/en/livereload.js?mindelay=10&amp;v=2&amp;port=1314&amp;path=en/livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+<title>
+    
+    About Me | GorillaMade
+    
+</title>
+
+
+<meta name="description" content="about me">
+
+
+<meta name="keywords" content="">
+
+
+<meta name="robots" content=" index, follow">
+
+
+<link rel="canonical" href="http://localhost:1314/en/about-me/">
+
+
+<link rel="sitemap" type="application/xml" href="http://localhost:1314/en/%20sitemap.xml">
+
+
+<meta property="og:title" content="About Me">
+<meta property="og:description"
+    content="about me">
+<meta property="og:url" content="http://localhost:1314/en/about-me/">
+<meta property="og:type" content="website">
+<meta property="og:image"
+    content="http://localhost:1314/en/%20/media/logo.webp">
+
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About Me">
+<meta name="twitter:description"
+    content="about me">
+<meta name="twitter:image"
+    content="http://localhost:1314/en/%20/media/logo.webp">
+
+
+<link rel="icon" type="image/svg+xml" href="http://localhost:1314/en/%20favicon.svg">
+<link rel="alternate icon" href="http://localhost:1314/en/%20favicon.ico">
+
+
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1314/en/%20apple-touch-icon.png">
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1314/en/%20favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1314/en/%20favicon-16x16.png">
+
+
+<link rel="manifest" href="http://localhost:1314/en/%20site.webmanifest">
+
+
+
+  
+  
+    
+      <link rel="stylesheet" href="http://localhost:1314/en/css/main.css">
+    
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "GorillaMade",
+  "image": "https:\/\/www.gorillamade.nl\/media\/gm-logo.png",
+  "@id": "https:\/\/www.gorillamade.nl",
+  "url": "https:\/\/www.gorillamade.nl",
+  "telephone": "\u002b31-6-13897425",
+  "email": "hallo@gorillamade.nl",
+  "priceRange": "€€",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Ooftbouwstraat 16",
+    "addressLocality": "Tilburg",
+    "postalCode": "5022 EC",
+    "addressCountry": ""
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude":  51.541029591719656 ,
+    "longitude":  5.091036569202518 
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "09:00",
+      "closes": "17:00"
+    }
+  ],
+  "sameAs": [
+    
+      "https:\/\/www.facebook.com\/GorillaMade"
+    
+      ,"https:\/\/www.instagram.com\/GorillaMade"
+    
+      ,"https:\/\/linkedin.com\/company\/GorillaMade"
+    
+  ]
+}
+</script>
+
+
+
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</head>
+<body class="page">
+  <header class="site-header">
+    <div class="site-header__inner" x-data="{ menuOpen: false }">
+        <a href="http://localhost:1314/en/" class="brand">
+            <svg class="brand__logo brand__logo--outlined" style="isolation:isolate" viewBox="0 0 40 41">
+                <path class="head" d=" M 20.003 38.227 C 13.093 38.227 4.48 32.435 4.007 25.575 C 3.971 25.056 4.073 24.233 4.234 23.739 C 7.708 13.069 8.764 1.773 20.003 1.773 C 31.242 1.773 32.452 13.742 35.785 23.741 C 35.95 24.234 36.039 25.055 35.984 25.572 C 35.142 33.51 26.913 38.227 20.003 38.227 Z "></path>
+                <path class="face" d=" M 20.013 38.225 C 10.924 38.225 10.263 32.017 10.263 29.753 C 10.263 27.489 12.953 23.367 12.953 23.367 C 12.953 23.367 8.512 17.787 10.801 15.498 C 12.554 13.745 16.411 17.515 20.003 17.515 C 20.02 17.515 20.037 17.515 20.054 17.515 L 20.079 17.515 C 20.088 17.515 20.096 17.515 20.105 17.515 C 23.697 17.515 27.554 13.745 29.307 15.498 C 31.596 17.787 27.155 23.367 27.155 23.367 C 27.155 23.367 29.845 27.489 29.845 29.753 C 29.845 32.017 29.184 38.225 20.095 38.225 L 20.054 38.225 L 20.013 38.225 Z "></path>
+            </svg>
+            <span class="brand__name">Gorilla<span>Made</span></span>
+        </a>
+        <button
+            class="hamburger"
+            @click="menuOpen = !menuOpen"
+            x-bind:aria-expanded="menuOpen"
+            aria-controls="site-nav"
+            x-bind:aria-label="menuOpen ? 'Menu sluiten' : 'Menu openen'"
+            x-bind:class="{ 'open': menuOpen }"
+        >
+            <span class="bar bar--1"></span>
+            <span class="bar bar--2"></span>
+            <span class="bar bar--3"></span>
+        </button>
+        
+  <nav class="nav" x-bind:class="{ 'open': menuOpen }">
+    <ul class="nav__list" role="list">
+    
+  <li class="nav__item">
+    <a class="nav__link" href="http://localhost:1314/en/">Home</a>
+  </li>
+  
+    
+  <li class="nav__item">
+    <a class="nav__link" href="http://localhost:1314/en/showcases/">Showcases</a>
+  </li>
+  
+    
+  <li class="nav__item has-dropdown" x-data="{ dropdownOpen: false, dropdownId: 'dropdown-' + Math.random().toString(36).substring(2, 8) }">
+    <div class="dropdown-wrapper" >
+      <a href="http://localhost:1314/en/services/">Services</a>
+      <button
+        class="dropdown__toggle"
+        :aria-controls="dropdownId"
+        @click="dropdownOpen = !dropdownOpen"
+        x-bind:class="{'open' : dropdownOpen}"
+        x-bind:aria-label="dropdownOpen ? 'Dropdown sluiten' : 'Dropdown  openen'"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16" height="28" image-rendering="optimizeQuality" clip-rule="evenodd" viewBox="0 0 512 298.04">
+          <path
+            d="M12.08 70.78c-16.17-16.24-16.09-42.54.15-58.7 16.25-16.17 42.54-16.09 58.71.15L256 197.76 441.06 12.23c16.17-16.24 42.46-16.32 58.71-.15 16.24 16.16 16.32 42.46.15 58.7L285.27 285.96c-16.24 16.17-42.54 16.09-58.7-.15L12.08 70.78z" />
+        </svg>
+      </button>
+    </div>
+    <ul
+      class="nav__dropdown"
+      role="list"
+      x-bind:class="{ 'open': dropdownOpen }"
+    >
+    
+  <li class="nav__item">
+    <a class="nav__link">Websites</a>
+  </li>
+  
+    
+  <li class="nav__item">
+    <a class="nav__link">Hosting</a>
+  </li>
+  
+    
+  <li class="nav__item">
+    <a class="nav__link" href="http://localhost:1314/en/services/search-engine-optimalisation/">Zoek Machine Optimalizatie</a>
+  </li>
+  
+    </ul>
+  </li>
+  
+    
+  <li class="nav__item">
+    <a class="nav__link" aria-current="page" class="active" href="http://localhost:1314/en/about-me/">About me</a>
+  </li>
+  
+    
+  <li class="nav__item">
+    <a class="nav__link" href="http://localhost:1314/en/contact/">Contact</a>
+  </li>
+  
+    </ul>
+  </nav>
+    </div>
+</header>
+  <main class="full-width">
+    
+<nav aria-label="breadcrumb" class="breadcrumb">
+    <ol>
+        
+        <li>
+            <a href="http://localhost:1314/en/"></a>
+        </li>
+        
+        <li class="active">
+        <a aria-current="page" href="http://localhost:1314/en/about-me/">About Me</a>
+        </li>
+    </ol>
+</nav>
+<article class="[ about ] [ full-width ] [ region ]">
+    <h1 id="about-me">About Me</h1>
+<p>My passion for websites began when I worked as a support assistant at a web hosting company. What started as curiosity about the technology behind websites quickly grew into a true passion. In 2008, I built my first website, and in 2025, I founded Made by Monkeys: my own company where I help local entrepreneurs become strong and independent online.</p>
+<p>I build fast, secure, and easy-to-maintain websites using modern technologies such as Hugo, htmx, and Alpine.js. No standard templates or heavy systems, but custom solutions that are easy to manage and will last for years. You provide the content, and I take care of the technology, smart SEO optimizations, and a website that truly helps your business move forward.</p>
+
+</article>
+
+  </main>
+  <footer class="[ site-footer ] [ full-width ] [ region ]">
+    <div class="wrapper">
+        <p>© 2025 GorillaMade. Alle rechten voorbehouden.</p>
+    </div>
+</footer>
+
+
+
+
+
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

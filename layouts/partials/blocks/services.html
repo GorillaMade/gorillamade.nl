@@ -1,0 +1,16 @@
+{{ if .enable }}
+<section class="[ services ] [ full-width ] [ region ]">
+  <span class="tagline">{{ .tagline }}</span>
+  <h2 class="section-title">{{ .heading }}</h2>
+  <ul class="grid" role="list" data-max-col-count="2">
+    {{ range where (where site.RegularPages "Type" "services") "Params.featured" true }}
+        <li class="service flow">
+          <h3>{{ .Title }}</h3>
+          <p>{{ .Content | plainify | truncate 130 }}</p>
+          <a href="{{ .RelPermalink }}" class="button" data-button-ghost>{{ i18n "more_info" }}</a>
+        </li>
+    {{ end }}
+
+  </ul>
+</section>
+{{ end }}

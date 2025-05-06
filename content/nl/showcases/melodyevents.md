@@ -1,30 +1,29 @@
 ---
-title: 'Melody events'
+title: "Melody events"
 date: 2025-01-15T09:00:00-07:00
-description: "Een nieuwe, professionele website voor Melody Events, ter vervanging van hun verouderde website."
+description: "A new, professional website for Melody Events, replacing their outdated website."
 weight: 3
 featured: true
+type: "showcases"
 
 tags:
-  - Design
-  - Hosting
-  - CMS
+  - "Design"
+  - "Hosting"
+  - "CMS"
 
 categories:
-  - showcase
+  - "showcase"
 
 images:
   thumbnail: "/media/showcases/melody-events/melodyevents-thumb.png"
-  full: 
-    src: "/media/showcases/melody-events/melodyevents-full.png"
-    background: "#eeedd3"
+  full: "/media/showcases/melody-events/melodyevents-full.png"
+  background: "#eeedd3"
 
 client: "Melody Events"
-
 project_url: "https://melodyevents.nl/"
 
 intro: |
-    Melody Events organiseert bruiloften, bijeenkomsten en bedrijfsevents met oog voor detail en gevoel voor sfeer. Van het terras in de openlucht tot stijlvolle binnenruimtes – elk evenement wordt zorgvuldig afgestemd op de wensen van de klant.
+  Melody Events organizes weddings, gatherings, and corporate events with attention to detail and a sense of atmosphere. From outdoor terraces to stylish indoor spaces – every event is carefully tailored to the client's wishes.
 ---
 
 ## Over dit project  

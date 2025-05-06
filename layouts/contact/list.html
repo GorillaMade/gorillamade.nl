@@ -16,24 +16,24 @@
                 <input type="hidden" name="_subject" value="Contactformulier">
     
                 <div class="field-group">
-                    <label for="name">Naam</label>
+                    <label for="name">{{ i18n "form_name" }}</label>
                     <input id="name" type="text" name="name" required>
                 </div>
                 <div class="field-group">
-                    <label for="tel">Telefoonnummer</label>
+                    <label for="tel">{{ i18n "form_phone" }}</label>
                     <input id="tel" type="text" name="tel" required>
                 </div>
                 <div class="field-group">
-                    <label for="email">Email</label>
+                    <label for="email">{{ i18n "form_mail" }}</label>
                     <input id="email" type="email" name="email" required>
                 </div>
     
                 <div class="field-group">
-                    <label for="subject">Reden voor contact:</label>
+                    <label for="subject">{{ i18n "form_subject.title" }}</label>
                     <select name="Onderwerp" id="subject">
-                        <option value="">--Selecteer een optie--</option>
-                        <option value="Een vraag">Stel een vraag</option>
-                        <option value="start een project">Start een project</option>
+                        <option value="">{{ i18n "form_subject.default" }}</option>
+                        <option value="Een vraag">{{ i18n "form_subject.options.ask_question" }}</option>
+                        <option value="start een project">{{ i18n "form_subject.options.start_project" }}</option>
                     </select>
                 </div>
     

@@ -106,8 +106,9 @@ h3 {
 .tagline {
     color: var(--neutral-700);
     font-size: var(--fs-200);
+    font-weight: var(--fw-bold);
     text-transform: uppercase;
-    letter-spacing: .03ch;
+    letter-spacing: .15ch;
 }
 
 .section-title {
@@ -145,20 +146,6 @@ h3 {
 //
 // Block: Showcase card
 //
-
-.showcase {
-    --region-space: 1.5vmax;
-    &__image {
-        margin-block: var(--space-m);
-        padding: 0;
-
-        img {
-            width: 100%;
-            height: auto;
-            object-fit: contain;
-        }
-    }
-}
 
 .showcase-card {
     max-width: 100%;
@@ -245,6 +232,39 @@ h3 {
                 transform: translateY(0);
                 opacity: 1;
             }
+        }
+    }
+}
+
+
+
+//
+// Block: Services
+//
+
+.services {
+    .grid {
+        --grid-gap: 2em;
+    }
+}
+
+
+
+
+// -----------------------------------------------------------------------------
+// Page: Showcases
+// -----------------------------------------------------------------------------
+
+.showcase {
+    --region-space: 1.5vmax;
+    &__image {
+        margin-block: var(--space-m);
+        padding: 0;
+
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
         }
     }
 }

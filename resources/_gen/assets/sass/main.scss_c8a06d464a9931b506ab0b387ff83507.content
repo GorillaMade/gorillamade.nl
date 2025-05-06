@@ -640,7 +640,7 @@ body {
 }
 
 .flow > * + * {
-  padding-block: var(--flow-space, 1rem);
+  margin-block-start: var(--flow-space, 1em);
 }
 
 .fs-200 {
@@ -714,7 +714,7 @@ body {
 .grid {
   --_grid-max-col-count: var(--grid-max-col-count, attr(data-max-col-count type(<number>), 3));
   --_grid-min-col-size: var(--grid-min-col-size, 20rem);
-  --_grid-gap: var(--grid-gap, 2rem);
+  --_grid-gap: var(--grid-gap, 1em);
   /* Calculations, do not touch */
   --_grid-col-size-calc: calc(
       (100% - var(--_grid-gap) * var(--_grid-max-col-count)) /
@@ -796,34 +796,27 @@ body {
   grid-column: full;
 }
 
-.breadcrumb {
-  padding: var(--space-xs) 0;
+.breadcrumb ol {
+  padding-left: 0;
 }
-.breadcrumb__list {
-  display: flex;
-  flex-wrap: wrap;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+
+.breadcrumb li {
+  display: inline;
 }
-.breadcrumb__item {
+
+.breadcrumb li:not(:last-child)::after {
+  content: "»";
+}
+
+.breadcrumb li a {
   font-size: var(--fs-300);
-}
-.breadcrumb__item::after {
-  content: "/";
-  padding: 0 0.5rem;
-}
-.breadcrumb__item:last-child::after {
-  content: none;
-}
-.breadcrumb__link {
   text-decoration: none;
-  color: var(--color-primary);
+  color: inherit;
 }
-.breadcrumb__link:hover {
-  text-decoration: underline;
+.breadcrumb li a:hover:not([aria-current=page]) {
+  color: var(--primary-500);
 }
-.breadcrumb__current {
+.breadcrumb li a[aria-current=page] {
   font-weight: bold;
   color: var(--neutral-500);
   cursor: default;
@@ -1257,8 +1250,9 @@ h3 {
 .tagline {
   color: var(--neutral-700);
   font-size: var(--fs-200);
+  font-weight: var(--fw-bold);
   text-transform: uppercase;
-  letter-spacing: 0.03ch;
+  letter-spacing: 0.15ch;
 }
 
 .section-title {
@@ -1278,19 +1272,6 @@ h3 {
 }
 .hero__inner p {
   margin-block: 0 var(--space-xs);
-}
-
-.showcase {
-  --region-space: 1.5vmax;
-}
-.showcase__image {
-  margin-block: var(--space-m);
-  padding: 0;
-}
-.showcase__image img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
 }
 
 .showcase-card {
@@ -1368,6 +1349,23 @@ h3 {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.services .grid {
+  --grid-gap: 2em;
+}
+
+.showcase {
+  --region-space: 1.5vmax;
+}
+.showcase__image {
+  margin-block: var(--space-m);
+  padding: 0;
+}
+.showcase__image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 /*# sourceMappingURL=main.css.map */

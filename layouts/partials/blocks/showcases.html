@@ -1,24 +1,34 @@
 {{ if .enable }}
 <section class="[ showcases ] [ full-width {{ .class }} ] [ region ]">
-    <span class="tagline">{{ .tagline }}</span>
-    <h2 class="section-title">{{ .heading }}</h2>
-    <ul class="grid" role="list" data-max-col-count="3">
-        {{ range where (where site.RegularPages "Type" "showcases") "Params.featured" true }}
+  <span class="tagline">{{ .tagline }}</span>
+  <h2 class="section-title">{{ .heading }}</h2>
+  <ul class="grid" role="list" data-max-col-count="3">
+
+    {{ $showcases := where site.RegularPages "Type" "showcases" }}
+    {{ $featured := first 6 (where $showcases "Params.featured" true) }}
+    {{ $seen := dict }}
+
+    {{ range $featured }}
+      {{ if not (index $seen .Permalink) }}
+        {{ $seen = merge $seen (dict .Permalink true) }}
         <li class="showcase-card flow">
-            <figure class="showcase-card__image" style="background: {{ .Params.images.full.background }};">
-                <img loading="lazy" width="650" height="650" src="{{ .Params.images.thumbnail }}"
-                alt="{{ .LinkTitle }}">
-            </figure>
-            <div class="showcase-card__content">
-                <h3 class="showcase-card__title">{{ .LinkTitle }}</h3>
-                <div>
-                    <small>{{ delimit .Params.tags ", " }}</small>
-                </div>
-                <a href="{{ .RelPermalink }}" class="read-more">{{ i18n "view_showcase" }} <ion-icon
-                        name="arrow-forward-outline"></ion-icon></a>
+          <figure class="showcase-card__image" style="background: {{ .Params.images.background }};">
+            <img loading="lazy" width="650" height="650" src="{{ .Params.images.thumbnail }}"
+              alt="{{ .LinkTitle }}">
+          </figure>
+          <div class="showcase-card__content">
+            <h3 class="showcase-card__title">{{ .LinkTitle }}</h3>
+            <div>
+              <small>{{ delimit .Params.tags ", " }}</small>
             </div>
+            <a href="{{ .RelPermalink }}" class="read-more">{{ i18n "view_showcase" }}
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </a>
+          </div>
         </li>
-        {{ end}}
-    </ul>
+      {{ end }}
+    {{ end }}
+
+  </ul>
 </section>
 {{ end }}

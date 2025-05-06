@@ -1,8 +1,17 @@
 {{ define "main" }}
-{{ with .Site.Data.home.hero }}
+{{ $lang := site.Language.Lang }}
+{{ $home := index site.Data $lang "home" }}
+
+{{ with $home.hero }}
     {{ partial "blocks/hero.html" . }}
 {{ end }}
-{{ with .Site.Data.home.showcases }}
+{{ with $home.showcases }}
     {{ partial "blocks/showcases.html" . }}
+{{ end }}
+{{ with $home.services }}
+    {{ partial "blocks/services.html" . }}
+{{ end }}
+{{ with $home.about }}
+    {{ partial "blocks/about.html" . }}
 {{ end }}
 {{ end }}

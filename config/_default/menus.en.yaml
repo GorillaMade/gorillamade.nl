@@ -1,0 +1,61 @@
+# -- Site Navigation --
+main:
+  - name: "Home"
+    pageRef: "/"
+    weight: 10
+  - name: "Showcases"
+    pageRef: "showcases"
+    weight: 20
+  - name: "Services"
+    pageRef: "services"
+    weight: 30
+  - parent: "Services"
+    name: "Websites"
+    pageRef: "services/websites"
+    weight: 1
+  - parent: "Services"
+    name: "Hosting"
+    pageRef: "services/hosting"
+    weight: 2
+  - parent: "Services"
+    name: "Zoek Machine Optimalizatie"
+    pageRef: "services/search-engine-optimalisation"
+    weight: 3
+  - name: "About me"
+    pageRef: "about-me"
+    weight: 40
+  - name: "Contact"
+    pageRef: "contact"
+    weight: 50
+
+# -- Footer Navigations --
+
+service:
+  - name: "Websites"
+    pageRef: "services/websites"
+    weight: 10
+  - name: "Hosting"
+    pageRef: "services/hosting"
+    weight: 20
+  - name: "Zoek Machine Optimalizatie"
+    pageRef: "services/zoek-machine-optimalisatie"
+    weight: 30
+
+site:
+  - name: "Home"
+    pageRef: "/"
+    weight: 10
+  - name: "About me"
+    pageRef: "about-me"
+    weight: 20
+  - name: "Showcases"
+    pageRef: "showcases"
+    weight: 30
+
+footer:
+  - name: "Terms and Conditions"
+    pageRef: "/terms-conditions"
+    weight: 10
+  - name: "Privacy"
+    pageRef: "/privacy"
+    weight: 20

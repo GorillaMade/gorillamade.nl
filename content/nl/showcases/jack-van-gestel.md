@@ -1,30 +1,29 @@
 ---
 title: "Jack van Gestel"
 date: 2025-01-15T09:00:00-07:00
-description: "Website ontwikkeld voor Jack van Gestel, een Nederlandstalige zanger. Een moderne, gebruiksvriendelijke site om zijn muziek, optredens en nieuws professioneel te presenteren."
+description: "Website developed for Jack van Gestel, a Dutch-speaking singer. A modern, user-friendly site to professionally present his music, performances, and news."
 weight: 5
 featured: false
+type: "showcases"
 
 tags:
-  - Websites
-  - Hosting
-  - CMS
+  - "Websites"
+  - "Hosting"
+  - "CMS"
 
 categories:
-  - showcase
+  - "showcase"
 
 images:
   thumbnail: "/media/showcases/jack-van-gestel/jackvangestel-thumb.png"
-  full:
-    src: "/media/showcases/jack-van-gestel/jackvangestel-full.png"
-    background: "#f97e4e"
+  full: "/media/showcases/jack-van-gestel/jackvangestel-full.png"
+  background: "#f97e4e"
 
 client: "Jack van Gestel"
-
 project_url: "https://jackvangestel.nl/"
 
 intro: |
-    Jack van Gestel is een Nederlandstalige zanger die zijn passie voor muziek graag deelt met een breed publiek. Om zijn optredens, muziek en nieuws professioneel te presenteren, hebben wij samen gewerkt aan de ontwikkeling van zijn allereerste website.
+  Jack van Gestel is a Dutch-speaking singer who loves to share his passion for music with a wide audience. To professionally present his performances, music, and news, we worked together on developing his very first website.
 ---
 
 ## Over dit project

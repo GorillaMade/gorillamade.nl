@@ -1,30 +1,29 @@
 ---
 title: "Wijkraad Koningshaven"
 date: 2025-01-15T09:00:00-07:00
-description: "Een professionele, gebruiksvriendelijke website voor Stichting Wijkraad Koningshaven, om hun online aanwezigheid te verbeteren en actiever te maken voor de wijkbewoners."
+description: "A professional, user-friendly website for Stichting Wijkraad Koningshaven to improve and make their online presence more active for local residents."
 weight: 4
 featured: true
+type: "showcases"
 
 tags:
-  - Design
-  - Hosting
-  - CMS
+  - "Design"
+  - "Hosting"
+  - "CMS"
 
 categories:
-  - showcase
+  - "showcase"
 
 images:
   thumbnail: "/media/showcases/wijkraad-koningshaven/wijkraadkoningshaven-thumb.png"
-  full: 
-    src: "/media/showcases/wijkraad-koningshaven/wijkraadkoningshaven-full.png"
-    background: "#eff6ff"
+  full: "/media/showcases/wijkraad-koningshaven/wijkraadkoningshaven-full.png"
+  background: "#eff6ff"
 
 client: "Bestuur Stichting Wijkraad Koningshaven"
-
 project_url: "https://wijkraadkoningshaven.nl/"
 
 intro: |
-    Stichting Wijkraad Koningshaven zet zich sinds 1995 in voor de leefbaarheid in de Tilburgse wijken Broekhoven 1, Fatima en Hoogvenne. Vanuit het wijkcentrum aan de Kruisvaardersstraat worden activiteiten en initiatieven voor én door de buurt ondersteund.
+  Stichting Wijkraad Koningshaven has been committed to the livability of the Tilburg neighborhoods Broekhoven 1, Fatima, and Hoogvenne since 1995. From the neighborhood center on Kruisvaardersstraat, they support activities and initiatives for and by the neighborhood.
 ---
 
 ## Over dit project  

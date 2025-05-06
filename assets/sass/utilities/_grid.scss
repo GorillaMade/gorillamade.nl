@@ -5,7 +5,7 @@
 .grid {
     --_grid-max-col-count: var(--grid-max-col-count, attr(data-max-col-count type(<number>), 3));
     --_grid-min-col-size: var(--grid-min-col-size, 20rem);
-    --_grid-gap: var(--grid-gap, 2rem);
+    --_grid-gap: var(--grid-gap, 1em);
 
     /* Calculations, do not touch */
     --_grid-col-size-calc: calc(

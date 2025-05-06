@@ -1,14 +1,14 @@
 {{ define "main" }}
 {{ partial "components/breadcrumb.html" . }}
-<section class="[ showcases ] [] [ region ]">
+<section class="[ showcases ] [ full-width ] [ region ]">
     <h1 class="section-title">{{ .Params.heading }}</h1>
-    <ul class="showcases__list grid" role="list" data-max-col-count="2">
-        {{ $pages := where .Pages "Type" "showcases" }}
-        {{ $paginator := .Paginate $pages 4 }}
+    {{ $pages := where .Pages "Type" "showcases" }}
+    {{ $paginator := .Paginate $pages 4 }}
+    <ul class="grid" role="list" data-max-col-count="2">
         {{ range $paginator.Pages }}
         <li>
             <div class="showcase-card flow">
-                <figure class="showcase-card__image" style="background: {{ .Params.images.full.background }};">
+                <figure class="showcase-card__image" style="background: {{ .Params.images.background }};">
                     <img width="650" height="650" src="{{ .Params.images.thumbnail }}" alt="{{ .LinkTitle }}">
                 </figure>
                 <div class="showcase-card__content">

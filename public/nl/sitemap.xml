@@ -2,42 +2,71 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/showcases/polklusbedrijf/</loc>
+    <loc>http://localhost:1313/showcases/pol-klusbedrijf/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1314/en/showcases/pol-klusbedrijf/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="nl"
+                href="http://localhost:1313/showcases/pol-klusbedrijf/"
+                />
   </url><url>
-    <loc>http://localhost:1313/showcases/klessensbouw/</loc>
+    <loc>http://localhost:1313/showcases/klessens-bouw/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/showcases/melodyevents/</loc>
+    <loc>http://localhost:1313/showcases/melody-events/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1314/en/showcases/melody-events/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="nl"
+                href="http://localhost:1313/showcases/melody-events/"
+                />
   </url><url>
     <loc>http://localhost:1313/showcases/wijkraad-koningshaven/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/showcases/jack-van-gestel/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/diensten/websites/</loc>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/diensten/hosting/</loc>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/diensten/zoek-machine-optimalisatie/</loc>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/categories/"
+                href="http://localhost:1314/en/categories/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -48,18 +77,41 @@
     <loc>http://localhost:1313/tags/cms/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1314/en/tags/cms/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="nl"
+                href="http://localhost:1313/tags/cms/"
+                />
   </url><url>
     <loc>http://localhost:1313/tags/design/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1314/en/tags/design/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="nl"
+                href="http://localhost:1313/tags/design/"
+                />
   </url><url>
     <loc>http://localhost:1313/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/"
+                href="http://localhost:1314/en/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -70,18 +122,56 @@
     <loc>http://localhost:1313/tags/hosting/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1314/en/tags/hosting/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="nl"
+                href="http://localhost:1313/tags/hosting/"
+                />
   </url><url>
     <loc>http://localhost:1313/categories/showcase/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1314/en/categories/showcase/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="nl"
+                href="http://localhost:1313/categories/showcase/"
+                />
+  </url><url>
+    <loc>http://localhost:1313/showcases/</loc>
+    <lastmod>2025-01-15T09:00:00-07:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1314/en/showcases/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="nl"
+                href="http://localhost:1313/showcases/"
+                />
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="http://localhost:1313/en/tags/"
+                href="http://localhost:1314/en/tags/"
                 />
     <xhtml:link
                 rel="alternate"
@@ -92,18 +182,38 @@
     <loc>http://localhost:1313/tags/websites/</loc>
     <lastmod>2025-01-15T09:00:00-07:00</lastmod>
     <changefreq>monthly</changefreq>
-  </url><url>
-    <loc>http://localhost:1313/showcases/</loc>
-    <lastmod>2023-01-01T08:30:00-07:00</lastmod>
-    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1314/en/tags/websites/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="nl"
+                href="http://localhost:1313/tags/websites/"
+                />
   </url><url>
     <loc>http://localhost:1313/contact/</loc>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://localhost:1314/en/contact/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="nl"
+                href="http://localhost:1313/contact/"
+                />
   </url><url>
     <loc>http://localhost:1313/diensten/</loc>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/over-mij/</loc>
     <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

@@ -4,27 +4,27 @@ date: 2025-01-15T09:00:00-07:00
 description: "Een op maat gemaakte website voor Polklusbedrijf, inclusief een flexibel content management systeem (CMS) dat meegroeit met hun onderneming."
 weight: 1
 featured: true
+type: "showcases"
 
 tags:
-  - Websites
-  - Hosting
-  - CMS
+  - "Websites"
+  - "Hosting"
+  - "CMS"
 
 categories:
-  - showcase
+  - "showcase"
 
 images:
   thumbnail: "/media/showcases/polklusbedrijf/polklusbedrijf-thumb.png"
-  full: 
-    src: "/media/showcases/polklusbedrijf/polklusbedrijf-full.png"
-    background: "#f78a40"
+  full: "/media/showcases/polklusbedrijf/polklusbedrijf-full.png"
+  background: "#f78a40"
 
 client: "Ricardo Pol"
-
 project_url: "https://polklusbedrijf.nl/"
 
 intro: |
-    Pol Klusbedrijf uit Waalwijk wordt gerund door Ricardo Pol, een allround vakman met ruim 15 jaar ervaring. Zijn specialisaties liggen bij timmer- en schilderwerk, maar hij is breed inzetbaar voor klussen in en rond het huis.
+  Pol Klusbedrijf uit Waalwijk wordt gerund door Ricardo Pol, een allround vakman met ruim 15 jaar ervaring. 
+  Zijn specialisaties liggen bij timmer- en schilderwerk, maar hij is breed inzetbaar voor klussen in en rond het huis.
 ---
 
 ## Over dit project  

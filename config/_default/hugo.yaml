@@ -1,0 +1,39 @@
+# -- Site Configuration --
+baseURL: "https://gorillamade.nl/"
+title: "GorillaMade"
+# theme: "gm"
+
+defaultContentLanguage: "nl"
+defaultContentLanguageInSubdir: false
+
+enableRobotsTXT: true
+canonifyURLs: true
+
+summaryLength: 120
+enableEmoji: true
+
+permalinks:
+  showcases: "/showcases/:slug/"
+
+pagination:
+    pagerSize: 10
+
+sitemap:
+  changefreq: "monthly"
+  priority: 0.5
+
+rss:
+  title: "GorillaMade - RSS Feed"
+  link: "/rss.xml"
+
+# -- Site Analytics --
+analytics:
+  google:
+    # id: "G-XXXXXXXXXX"
+
+  umami:
+    # websiteid: "ABC12345"
+    # domain: "gorillamade.nl"
+    # dataDomains: "gorillamade.nl"
+    # scriptName: ""
+    # enableTrackEvent: false

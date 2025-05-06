@@ -1,5 +1,6 @@
 ---
 title: "Contact"
+layout: "contact/list"
 ---
 
 # Slinger langs voor een praatje { class="section-title" }

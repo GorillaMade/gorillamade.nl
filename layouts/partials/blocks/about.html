@@ -1,0 +1,10 @@
+{{ if .enable }}
+<section class="[ aboutus ] [ full full-width-split-screen ] []">
+    <div class="flow region bg-neutral-50">
+        <span class="tagline">{{ .tagline }}</span>
+        <h2 class="section-title">{{ .heading }}</h2>
+        <p>{{ .body | markdownify }}</p>
+    </div>
+    <img src="{{ .image }}" alt="">
+</section>
+{{ end }}

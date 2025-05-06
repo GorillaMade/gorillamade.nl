@@ -1,30 +1,29 @@
 ---
-title: 'Klessens bouw'
+title: "Klessens bouw"
 date: 2025-01-15T09:00:00-07:00
-description: "Een moderne, gebruiksvriendelijke website voor Klessens Bouw, inclusief op maat gemaakt CMS."
+description: "A modern, user-friendly website for Klessens Bouw, including a custom CMS."
 weight: 2
 featured: false
+type: "showcases"
 
 tags:
-  - Design
-  - Hosting
-  - CMS
+  - "Design"
+  - "Hosting"
+  - "CMS"
 
 categories:
-  - showcase
+  - "showcase"
 
 images:
   thumbnail: "/media/showcases/klessens-bouw/klessensbouw-thumb.png"
-  full:
-    src: "/media/showcases/klessens-bouw/klessensbouw-full.png"
-    background: "#fde047"
+  full: "/media/showcases/klessens-bouw/klessensbouw-full.png"
+  background: "#fde047"
 
 client: "Dorus Klessens"
-
 project_url: "https://klessensbouw.nl/"
 
 intro: |
-    Klessens Bouw is actief sinds 2007 en richt zich op renovatie, (ver)bouw, stucwerk en klussen voor zowel particulieren als bedrijven. Van sloop tot afwerking – altijd met oog voor detail en de wensen van de klant.
+  Klessens Bouw has been active since 2007, specializing in renovation, construction, plastering, and general work for both individuals and businesses. From demolition to finishing touches – always with attention to detail and the client's wishes.
 ---
 
 ## Over dit project

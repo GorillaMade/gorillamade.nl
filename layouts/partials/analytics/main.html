@@ -1,0 +1,6 @@
+{{ with site.Params.Analytics.google.id }}
+{{ partial "analytics/ga.html" }}
+{{ end }}
+{{ with site.Params.Analytics.umami.websiteid }}
+{{ partial "analytics/umami.html" }}
+{{ end }}

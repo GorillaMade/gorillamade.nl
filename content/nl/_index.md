@@ -1,18 +1,18 @@
 ---
-title: Homepage
-description: "Pagina beschrijving van: Homepage"
+title: "Homepage"
+description: "Page description of: Homepage"
 keywords:
-  - webdesign Tilburg
-  - websites Tilburg
-  - lokale bedrijven Tilburg
-  - professionele websites Tilburg
-  - webdesign voor bedrijven Tilburg
-  - websites op maat Tilburg
-  - websites voor kleine bedrijven Tilburg
-  - SEO-geoptimaliseerde websites Tilburg
-  - webdesign Brabant
+  - "web design Tilburg"
+  - "websites Tilburg"
+  - "local businesses Tilburg"
+  - "professional websites Tilburg"
+  - "web design for businesses Tilburg"
+  - "custom websites Tilburg"
+  - "websites for small businesses Tilburg"
+  - "SEO-optimized websites Tilburg"
+  - "web design Brabant"
 ---
 
 # Hello world
 
-Lorem ipsum, dolor sit amet consectetur adipisicing elit. Veritatis amet dignissimos repellat tempore doloribus ullam voluptatibus dolor excepturi praesentium odit!
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Truth, dignity, repelling time, pain, arrogance, exceptions, and visible mischief!

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Design on GorillaMade</title>
+    <link>http://localhost:1314/en/tags/design/</link>
+    <description>Recent content in Design on GorillaMade</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Wed, 15 Jan 2025 09:00:00 -0700</lastBuildDate>
+    <atom:link href="http://localhost:1314/en/tags/design/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Melody events</title>
+      <link>http://localhost:1314/en/showcases/melody-events/</link>
+      <pubDate>Wed, 15 Jan 2025 09:00:00 -0700</pubDate>
+      <guid>http://localhost:1314/en/showcases/melody-events/</guid>
+      <description>&lt;h2 id=&#34;about-this-project&#34;&gt;About this project&lt;/h2&gt;&#xA;&lt;p&gt;Melody Events had an outdated website and wanted a new, professional online presence to effectively showcase their services. We provided them with a modern and user-friendly website that aligns with their brand and is easy to manage.&lt;/p&gt;&#xA;&lt;h2 id=&#34;our-role&#34;&gt;Our role&lt;/h2&gt;&#xA;&lt;p&gt;I took full responsibility for the design and development of the new website. This included creating a professional look and ensuring a user-friendly experience, allowing Melody Events to confidently manage their online presence.&lt;/p&gt;&#xA;&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Modern and professional design that matches the image of Melody Events&lt;/li&gt;&#xA;&lt;li&gt;User-friendly interface that&amp;rsquo;s easy to manage&lt;/li&gt;&#xA;&lt;li&gt;Responsive website that performs well on both desktop and mobile devices&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;result&#34;&gt;Result&lt;/h2&gt;&#xA;&lt;p&gt;A modern and professional website that helps Melody Events present their business online while making content management simple.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
