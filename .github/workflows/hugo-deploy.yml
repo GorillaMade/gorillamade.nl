@@ -1,0 +1,57 @@
+name: Deploy Hugo site to cPanel
+
+on:
+  push:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+# Default shell is bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      HUGO_VERSION: 0.145.0
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🛠️ Installeer Hugo Extended
+        run: |
+          wget -O ${{ runner.temp }}/hugo.deb https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_linux-amd64.deb \
+          && sudo dpkg -i ${{ runner.temp }}/hugo.deb
+
+      - name: 📦 Installeer Dart Sass
+        run: sudo snap install dart-sass
+
+      - name: ⚙️ Bouw de Hugo site
+        env:
+          HUGO_ENVIRONMENT: production
+        run: hugo --minify
+
+      - name: 🚀 Deploy naar cPanel via rsync
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          CPANEL_USER: ${{ secrets.CPANEL_USER }}
+          CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
+          CPANEL_POORT: "4000"
+          DEPLOY_PATH: "/home/${{ secrets.CPANEL_USER }}/public_html/"
+        run: |
+          # Configureer SSH key
+          mkdir -p ~/.ssh
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/github_deploy_key
+          chmod 600 ~/.ssh/github_deploy_key
+          ssh-keyscan -p 4000 -H $CPANEL_HOST >> ~/.ssh/known_hosts
+
+          # Test verbinding met SSH
+          ssh -p $CPANEL_POORT -v $CPANEL_USER@$CPANEL_HOST "echo ✅ Verbonden!"
+
+          # Synchroniseer bestanden met rsync
+          rsync -avz --delete --exclude-from=".rsync-exclude" -e "ssh -p $CPANEL_POORT" public/ $CPANEL_USER@$CPANEL_HOST:$DEPLOY_PATH
+
+          echo "✅ Deployment voltooid!"
