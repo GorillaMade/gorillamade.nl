@@ -9,6 +9,9 @@
 *.log.*
 *.sig
 
+.env
+.vscode
+
 pkg/
 src/
 public/
