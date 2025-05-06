@@ -1,4 +1,0 @@
-name: "GorillaMade"
-domain: "gorillamade.nl"
-type: "static"
-build: "hugo"
