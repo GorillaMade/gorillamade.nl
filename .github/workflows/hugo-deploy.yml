@@ -44,8 +44,8 @@ jobs:
         run: |
           # Configureer SSH key
           mkdir -p ~/.ssh
-          echo "$SSH_PRIVATE_KEY" > ~/.ssh/github_deploy_key
-          chmod 600 ~/.ssh/github_deploy_key
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
           ssh-keyscan -p 4000 -H $CPANEL_HOST >> ~/.ssh/known_hosts
 
           # Test verbinding met SSH
