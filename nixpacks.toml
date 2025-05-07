@@ -1,0 +1,5 @@
+[phases.build]
+cmds = ["hugo --minify"]
+
+[start]
+cmd = "hugo server --bind 0.0.0.0 --port $PORT"
