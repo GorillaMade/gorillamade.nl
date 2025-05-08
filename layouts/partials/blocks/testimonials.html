@@ -1,5 +1,5 @@
 {{ if .enable }}
-<section class="[ testimonials ] [ full-width ] [ region bg-neutral-50 ]">
+<section class="[ testimonials ] [ full-width ] [ region {{ .background }} ]">
     <span class="tagline">{{ .tagline }}</span>
     <h2 class="section-title">{{ .heading }}</h2>
     <ul class="grid" role="list" data-max-col-count="3">
@@ -11,10 +11,7 @@
                     </blockquote>
                     <div class="flex-group">
                         <img class="testimonial__image" width="48" height="48" src="{{ .avatar }}" alt="">
-                        <div>
-                            <h4>{{ .name }}</h4>
-                            <span class="fs-300">{{ .website }}</span>
-                        </div>
+                        <span class="testimonial__title fs-300 fw-bold color-neutral-800">{{ .name }}</span>
                     </div>
                 </div>
             </li>

@@ -116,6 +116,7 @@ h3 {
     font-weight: var(--fw-bold);
     text-transform: uppercase;
     letter-spacing: .15ch;
+    margin-block-end: var(--space-xs);
 }
 
 .section-title {
@@ -262,16 +263,12 @@ h3 {
 //
 
 .testimonial {
-    blockquote {
-        font-style: italic;
         border-radius: var(--radius-s);
         box-shadow: var(--shadow-xs);
         background: white;
         position: relative;
         display: block;
-        max-width: 100%;
-        width: 100%;
-        padding: var(--space-l);
+        padding: var(--space-m);
         margin: 0;
 
         &:before,
@@ -294,21 +291,28 @@ h3 {
             right: 10px;
             bottom: -0.5em;
         }
+
+    blockquote {
+        margin-block-start: var(--space-l);
+        font-style: italic;
+        display: block;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
     }
 
     .flex-group {
+        margin-block-start: var(--space-2xs);
         align-items: center;
-        padding-inline: var(--space-s);
     }
 
-    footer {
-        h5 {
-            margin: var(--space-3xs);
-        }
+    &__title {
+        margin-block: 0;
     }
 
     &__image {
         border-radius: var(--radius-full);
+        border: 2px solid white;
     }
 }
 
@@ -319,10 +323,10 @@ h3 {
 // Page: Showcases
 // -----------------------------------------------------------------------------
 
-.showcase {
-    --region-space: 1.5vmax;
-    &__image {
-        margin-block: var(--space-m);
+.showcase__info {
+    --region-space: 1.65vmax;
+    &--image {
+        margin-block-start: var(--space-m);
         padding: 0;
 
         img {
