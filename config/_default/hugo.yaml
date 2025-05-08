@@ -32,8 +32,5 @@ analytics:
     # id: "G-XXXXXXXXXX"
 
   umami:
-    # websiteid: "ABC12345"
-    # domain: "gorillamade.nl"
-    # dataDomains: "gorillamade.nl"
-    # scriptName: ""
-    # enableTrackEvent: false
+    enable: true
+    website_id: "94bc3519-7ad0-4a66-924e-f7d3f99a26fa"

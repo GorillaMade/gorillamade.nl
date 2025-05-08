@@ -57,12 +57,14 @@
 <!-- Web Manifest -->
 <link rel="manifest" href="{{ "site.webmanifest" | absURL }}">
 
+<!-- Local Business data -->
+{{ partial "shared/head/localbusiness.html" . }}
+
 <!-- Theme CSS and Javascript -->
 {{ partialCached "shared/head/css.html" . }}
 {{ partialCached "shared/head/js.html" . }}
 
-{{ partial "seo/localbusiness.html" . }}
-
+<!-- Analytics -->
 {{ partial "analytics/main.html" . }}
 
 <!-- Alpine.js -->

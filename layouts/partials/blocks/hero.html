@@ -4,7 +4,7 @@
         <span class="tagline">{{ .tagline }}</span>
         <h1>{{ .heading }}</h1>
         <p>{{ .body | markdownify }}</p>
-        <a href="" class="button" data-button-ghost>Lees verder</a>
+        <a href="{{ .button.url | absURL}}" class="button" data-button-ghost>{{ .button.text }}</a>
     </div>
 </section>
 {{ end }}

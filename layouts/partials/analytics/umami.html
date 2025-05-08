@@ -1,16 +1,16 @@
 {{ if isset site.Params.Analytics.umami "domain" }}
 <script data-id="umami-script" async
-        src="https://{{ site.Params.Analytics.umami.domain }}/{{ with site.Params.Analytics.umami.scriptName }}{{ . }}{{ else }}script.js{{ end }}"
+        src="https://{{ .Params.domain }}/{{ with .Params.scriptName }}{{ . }}{{ else }}script.js{{ end }}"
         data-website-id="{{ site.Params.Analytics.umami.websiteid }}"
         {{ with site.Params.Analytics.umami.dataDomains }}data-domains="{{ . }}"{{ end }}>
 </script>
 {{ else }}
 <script data-id="umami-script" async src="https://analytics.umami.is/script.js"
-        data-website-id="{{ site.Params.Analytics.umami.websiteid }}">
+        data-website-id="{{ .Params.website_id }}">
 </script>
 {{ end }}
 
-{{ if .Site.Params.Analytics.umami.enableTrackEvent | default true }}
+{{ if site.Params.Analytics.umami.enableTrackEvent | default true }}
 <script type="text/javascript">
     document.querySelector('script[data-id="umami-script"]')
         .addEventListener('load', function () {

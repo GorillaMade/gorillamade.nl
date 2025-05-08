@@ -1,16 +1,28 @@
 ---
 title: "Homepage"
-description: "Page description of: Homepage"
+description: "GorillaMade helpt ambitieuze ondernemers, lokale bedrijven en professionals om online te groeien. Wij bieden op maat gemaakte websites, SEO-diensten en onderhoudspakketten voor blijvend succes – zonder gedoe."
 keywords:
-  - "web design Tilburg"
-  - "websites Tilburg"
-  - "local businesses Tilburg"
-  - "professional websites Tilburg"
-  - "web design for businesses Tilburg"
-  - "custom websites Tilburg"
-  - "websites for small businesses Tilburg"
-  - "SEO-optimized websites Tilburg"
-  - "web design Brabant"
+  - websites op maat
+  - webdesign voor ondernemers
+  - lokale SEO voor bedrijven
+  - SEO diensten
+  - website onderhoud pakketten
+  - hosting en domeinnaam
+  - websites voor professionals
+  - website voor coaches
+  - websites voor consultants
+  - website voor advocaten
+  - start-up websites
+  - betaalbare websites
+  - SEO optimalisatie
+  - websites zonder gedoe
+  - online zichtbaarheid verbeteren
+  - digitale marketing voor kleine bedrijven
+  - website met CMS
+  - klanten aantrekken online
+  - professionele websites
+  - website voor dienstverleners
+  - websites voor kleine bedrijven
 
 
 # -- Block: Hero --
@@ -18,7 +30,10 @@ hero:
   enable: true
   tagline: "GorillaMade"
   heading: "Online zichtbaarheid zonder gebrul."
-  body: "Voor ondernemers die een website willen die écht werkt – snel, onderhoudsvrij en klaar voor groei."
+  body: "Voor ondernemers die een website willen die écht werkt – snel, onderhouden en klaar voor groei."
+  button:
+    text: "Bekijk mijn werk"
+    url: "/showcases"
 
 # -- Block: Showcase --
 showcases:
