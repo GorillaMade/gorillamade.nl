@@ -18,3 +18,15 @@ body {
 // -----------------------------------------------------------------------------
 //
 // -----------------------------------------------------------------------------
+
+a:not([class]) {
+    --_link-foreground: var(--link-foreground, #{$link-foreground});
+    --_link-foreground-hover: var(--link-foreground-hover, #{$link-foreground-hover});
+
+    text-decoration: none;
+    color: var(--_link-foreground);
+
+    &:hover {
+        color: var(--_link-foreground-hover);
+    }
+}

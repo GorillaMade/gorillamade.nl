@@ -14,7 +14,7 @@ $brand-logo-width: auto;
 $brand-foreground: var(--neutral-800);
 
 // Anchor/Link
-$link-foreground: var(--neutral-800);
+$link-foreground: var(--neutral-900);
 $link-foreground-hover: var(--primary-500);
 
 // Globals
@@ -48,7 +48,7 @@ $with-aside-gap: var(--space-s-l);
 // Body - Sets up the defaults for the body
 // -----------------------------------------------------------------------------
 
-$body-foreground: var(--neutral-700);
+$body-foreground: var(--neutral-600);
 $body-background: var(--color-background);
 $body-font-family: var(--ff-sans);
 $body-font-size: var(--fs-400);
@@ -116,7 +116,7 @@ $wrapper-padding-inline: $page-padding-inline;
 
 $with-aside-content-width: 50ch;
 $with-aside-aside-width: 400px;
-$with-aside-gap: clamp(1rem, 6dvw, 3rem);
+$with-aside-gap: clamp(1em, 6dvw, 3em);
 
 
 

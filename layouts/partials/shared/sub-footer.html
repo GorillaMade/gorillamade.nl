@@ -1,0 +1,47 @@
+<div class="[ sub-footer ] [ full-width ] [ region ]">
+    <div class="grid" data-max-col-count="4">
+        <div class="flow span-2">
+            <h3 class="fs-400">Over GorillaMade</h3>
+            <p>Jouw partner voor alles web: van handgemaakte websites tot techniek en SEO, volledig afgestemd op jouw
+                bedrijf.</p>
+
+            <nav>
+                <ul class="cluster" role="list">
+                    {{ with .Site.Params.nostr }}
+                    <li>
+                        {{- $link := .link -}}
+                        {{ if strings.HasPrefix $link "nostr:" }}
+                        <a href="{{ .link | safeURL }}" aria-label="link naar Nostr"><ion-icon src="{{ .icon | relURL }}" size="large" name="logo-nostr"></ion-icon><span class="visually-hidden">Nostr</span></a>
+                        {{ end }}
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+
+        </div>
+        <div class="flow span-1">
+            <h3 class="fs-400">Quick links</h3>
+            <nav>
+                <ul role="list">
+                    {{ range .Site.Menus.site }}
+                    <li>
+                        <a href="{{ .PageRef }}">{{ .Name }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+        <div class="flow span-1">
+            <h3 class="fs-400">Directe links</h3>
+            <nav>
+                <ul role="list">
+                    {{ range .Site.Menus.service }}
+                    <li>
+                        <a href="{{ .PageRef }}">{{ .Name }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

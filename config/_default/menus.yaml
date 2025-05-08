@@ -4,41 +4,41 @@ main:
     pageRef: "/"
     weight: 10
   - name: "Showcases"
-    pageRef: "showcases"
+    pageRef: "/showcases"
     weight: 20
   - name: "Diensten"
-    pageRef: "diensten"
+    pageRef: "/diensten"
     weight: 30
   - parent: "Diensten"
     name: "Websites"
-    pageRef: "diensten/websites"
+    pageRef: "/diensten/websites"
     weight: 1
   - parent: "Diensten"
     name: "Hosting"
-    pageRef: "diensten/hosting"
+    pageRef: "/diensten/hosting"
     weight: 2
   - parent: "Diensten"
     name: "Zoek Machine Optimalizatie"
-    pageRef: "diensten/zoek-machine-optimalisatie"
+    pageRef: "/diensten/zoek-machine-optimalisatie"
     weight: 3
   - name: "Over mij"
-    pageRef: "over-mij"
+    pageRef: "/over-mij"
     weight: 40
   - name: "Contact"
-    pageRef: "contact"
+    pageRef: "/contact"
     weight: 50
 
 # -- Footer Navigations --
 
 service:
   - name: "Websites"
-    pageRef: "diensten/websites"
+    pageRef: "/diensten/websites"
     weight: 10
   - name: "Hosting"
-    pageRef: "diensten/hosting"
+    pageRef: "/diensten/hosting"
     weight: 20
   - name: "Zoek Machine Optimalizatie"
-    pageRef: "diensten/zoek-machine-optimalisatie"
+    pageRef: "/diensten/zoek-machine-optimalisatie"
     weight: 30
 
 site:
@@ -46,10 +46,10 @@ site:
     pageRef: "/"
     weight: 10
   - name: "Over mij"
-    pageRef: "over-mij"
+    pageRef: "/over-mij"
     weight: 20
   - name: "Showcases"
-    pageRef: "showcases"
+    pageRef: "/showcases"
     weight: 30
 
 footer:

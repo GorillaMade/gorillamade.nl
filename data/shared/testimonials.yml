@@ -1,0 +1,29 @@
+- name: "Stichting Wijkraad Koningshaven"
+  website: "wijkraadkoningshaven.nl"
+  avatar: "/media/stichting-wijkraad-koningshaven-logo.png"
+  quote: |
+    Onze nieuwe website geeft een frisse uitstraling en is veel toegankelijker voor de wijkbewoners. We zijn erg tevreden over het resultaat!
+
+- name: "Ricardo Pol"
+  website: "polklusbedrijf.nl"
+  avatar: "https://polklusbedrijf.nl/img/about-img.webp"
+  quote: |
+    De samenwerking verliep soepel en professioneel. Ik ben erg blij met mijn nieuwe website!
+
+- name: "Melody events"
+  website: "melodyevents.nl"
+  avatar: "/media/mark.jpg"
+  quote: |
+    Onze nieuwe website straalt echt professionaliteit uit. Bedankt voor de geweldige service!
+
+- name: "Dorus Klessens"
+  website: "klessensbouw.nl"
+  avatar: "https://www.klessensbouw.nl/images/kbt-dorus.webp"
+  quote: |
+    De website past precies bij mijn bedrijf: duidelijk, betrouwbaar en professioneel. Heel blij met de samenwerking en het eindresultaat!
+
+- name: "Jack van Gestel"
+  website: "jackvangestel.nl"
+  avatar: "https://www.jackvangestel.nl/media/img_0712.jpeg"
+  quote: |
+    Alles verliep vlot en prettig. Mijn nieuwe site maakt het makkelijk voor fans om me te boeken en mijn optredens te volgen.

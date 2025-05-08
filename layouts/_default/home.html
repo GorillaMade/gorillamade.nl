@@ -1,14 +1,17 @@
 {{ define "main" }}
-{{ with .Site.Data.home.hero }}
+{{ with .Params.hero }}
     {{ partial "blocks/hero.html" . }}
 {{ end }}
-{{ with .Site.Data.home.showcases }}
+{{ with .Params.showcases }}
     {{ partial "blocks/showcases.html" . }}
 {{ end }}
-{{ with .Site.Data.home.services }}
+{{ with .Params.services }}
     {{ partial "blocks/services.html" . }}
 {{ end }}
-{{ with .Site.Data.home.about }}
+{{ with .Params.about }}
     {{ partial "blocks/about.html" . }}
+{{ end }}
+{{ with .Params.testimonials }}
+  {{ partial "blocks/testimonials.html" . }}
 {{ end }}
 {{ end }}

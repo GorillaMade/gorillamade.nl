@@ -11,7 +11,7 @@ faq:
       Ja, wij bieden technische SEO aan voor de websites die we bouwen. Dit omvat onder andere het optimaliseren van laadtijden, het verbeteren van de gebruikerservaring, en het zorgen voor SEO-vriendelijke structuur.
 ---
 
-# Zoek machine optimalisatie (SEO) – Zorg dat je gezien wordt { class="section-title" }
+# Zorg dat je gezien wordt { class="section-title" }
 
 Een mooie website is slechts het begin. Het echte werk begint als mensen je kunnen vinden. SEO is de sleutel tot een hogere positie in zoekmachines en meer zichtbaarheid voor jouw bedrijf. Met de juiste technische optimalisatie zorg je ervoor dat jouw website niet alleen mooi is, maar ook goed presteert in zoekresultaten.
 

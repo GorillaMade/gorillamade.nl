@@ -1,11 +1,11 @@
 # -- Taal: Nederlands --
 nl:
-  baseURL: "https://gorillamade.nl/"
+  # baseURL: "https://gorillamade.nl/"
   languageName: "Nederlands"
   languageCode: "nl"
   LanguageDirection: "ltr"
   weight: 1
-  contentDir: "content"
+  contentDir: "content/"
   dateFormat: "26 Februari 2006"
 
 # -- Taal: English --

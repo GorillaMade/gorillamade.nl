@@ -20,3 +20,9 @@ business:
     - "https://www.facebook.com/GorillaMade"
     - "https://www.instagram.com/GorillaMade"
     - "https://linkedin.com/company/GorillaMade"
+
+
+nostr:
+  icon: "/media/nostr-icon.svg"
+  npub: "npub1s4eztsvantqp72jh2ygzk8t4q9gwva8xkqdj83kha9dupyk23kwqmlya7j"
+  link: "nostr:npub1s4eztsvantqp72jh2ygzk8t4q9gwva8xkqdj83kha9dupyk23kwqmlya7j"

@@ -1,6 +1,12 @@
 {{ define "main" }}
 {{ partial "components/breadcrumb.html" . }}
-<article class="[ about ] [ full-width ] [ region ]">
-    {{ .Content }}
+<article class="[ about ] [ full full-width-split-screen ] [ ]">
+    <div class="flow region">
+        {{ .Content }}
+    </div>
+    <img src="{{ .Params.image }}" alt="{{ .Title }}">
 </article>
+{{ with .Params.testimonials }}
+  {{ partial "blocks/testimonials.html" . }}
+{{ end }}
 {{ end }}
