@@ -1,22 +1,24 @@
-<div class="[ sub-footer ] [ full-width ] [ region ]">
+<div class="[ sub-footer ] [ full-width ] [ region bg-neutral-50 ]">
     <div class="grid" data-max-col-count="4">
         <div class="flow span-2">
             <h3 class="fs-400">Over GorillaMade</h3>
             <p>Jouw partner voor alles web: van handgemaakte websites tot techniek en SEO, volledig afgestemd op jouw
                 bedrijf.</p>
 
-            <nav>
-                <ul class="cluster" role="list">
-                    {{ with .Site.Params.nostr }}
-                    <li>
-                        {{- $link := .link -}}
-                        {{ if strings.HasPrefix $link "nostr:" }}
-                        <a href="{{ .link | safeURL }}" aria-label="link naar Nostr"><ion-icon src="{{ .icon | relURL }}" size="large" name="logo-nostr"></ion-icon><span class="visually-hidden">Nostr</span></a>
+                <nav>
+                    <ul class="cluster" role="list">
+                        {{ range .Site.Params.socials }}
+                        <li>
+                            {{- $link := .link -}}
+                            {{ if strings.HasPrefix $link "nostr:" }}
+                            <a href="{{ .link | safeURL }}" aria-label="link naar {{ .name }}"><ion-icon src="{{ .icon | relURL }}" size="large" name="logo-{{ .name }}"></ion-icon><span class="visually-hidden">{{ .platform }}</span></a>
+                            {{ else }}
+                            <a href="{{ .link }}"><ion-icon size="large" name="logo-{{ .name }}"></ion-icon></a>
+                            {{ end }}
+                        </li>
                         {{ end }}
-                    </li>
-                    {{ end }}
-                </ul>
-            </nav>
+                    </ul>
+                </nav>
 
         </div>
         <div class="flow span-1">
