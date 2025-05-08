@@ -59,4 +59,7 @@ error404:
   title:
     other: "Pagina niet gevonden"
   message:
-    other: "Deze pagina kon niet worden gevonden."
+    other: "Oeps! De pagina die je zoekt bestaat niet (meer), of je hebt je misschien vergist in het adres."
+
+go_home:
+  other: "Ga naar de homepage"
