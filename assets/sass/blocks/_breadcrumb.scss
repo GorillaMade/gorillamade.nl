@@ -41,11 +41,14 @@
 
 
 .breadcrumb ol {
-    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
+    padding: 0;
 }
 
 .breadcrumb li {
-    display: inline;
+    list-style: none;
 }
 
 .breadcrumb li:not(:last-child)::after {
@@ -56,14 +59,15 @@
     font-size: var(--fs-300);
     text-decoration: none;
     color: inherit;
+    padding: var(--space-2xs);
 
-    &:hover:not([aria-current="page"]) {
+    &:hover:not([aria-current]) {
         color: var(--primary-500)
     }
 
     &[aria-current="page"] {
         font-weight: bold;
-        color: var(--neutral-500);
+        color: var(--neutral-700);
         cursor: default;
     }
 }

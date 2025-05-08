@@ -869,11 +869,14 @@ a:not([class]):hover {
 }
 
 .breadcrumb ol {
-  padding-left: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  padding: 0;
 }
 
 .breadcrumb li {
-  display: inline;
+  list-style: none;
 }
 
 .breadcrumb li:not(:last-child)::after {
@@ -884,13 +887,14 @@ a:not([class]):hover {
   font-size: var(--fs-300);
   text-decoration: none;
   color: inherit;
+  padding: var(--space-2xs);
 }
-.breadcrumb li a:hover:not([aria-current=page]) {
+.breadcrumb li a:hover:not([aria-current]) {
   color: var(--primary-500);
 }
 .breadcrumb li a[aria-current=page] {
   font-weight: bold;
-  color: var(--neutral-500);
+  color: var(--neutral-700);
   cursor: default;
 }
 
