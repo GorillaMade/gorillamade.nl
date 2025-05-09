@@ -28,9 +28,8 @@ keywords:
 # -- Block: Hero --
 hero:
   enable: true
-  tagline: "GorillaMade"
-  heading: "Online zichtbaarheid zonder gebrul."
-  body: "Voor ondernemers die een website willen die écht werkt – snel, onderhouden en klaar voor groei."
+  heading: "GorillaMade – Krachtige creaties, recht uit de jungle."
+  body: "In de jungle overleef je niet zonder focus, samenwerking en lef – precies hoe wij werken."
   button:
     text: "Bekijk mijn werk"
     url: "/showcases"

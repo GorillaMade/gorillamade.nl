@@ -27,10 +27,12 @@ rss:
   link: "/rss.xml"
 
 # -- Site Analytics --
-analytics:
-  google:
-    # id: "G-XXXXXXXXXX"
+params:
+  analytics:
+    google:
+      enable: false
+      id: "G-XXXXXXXXX"
 
-  umami:
-    enable: true
-    website_id: "94bc3519-7ad0-4a66-924e-f7d3f99a26fa"
+    umami:
+      enable: true
+      website_id: "94bc3519-7ad0-4a66-924e-f7d3f99a26fa"
