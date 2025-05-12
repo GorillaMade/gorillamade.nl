@@ -2,3 +2,5 @@
 .well-known
 .env
 form-handler.php
+
+fonts/
