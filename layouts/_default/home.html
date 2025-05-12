@@ -1,17 +1,19 @@
 {{ define "main" }}
-{{ with .Params.hero }}
-    {{ partial "blocks/hero.html" . }}
-{{ end }}
-{{ with .Params.showcases }}
-    {{ partial "blocks/showcases.html" . }}
-{{ end }}
-{{ with .Params.services }}
-    {{ partial "blocks/services.html" . }}
-{{ end }}
-{{ with .Params.about }}
-    {{ partial "blocks/about.html" . }}
-{{ end }}
-{{ with .Params.testimonials }}
-  {{ partial "blocks/testimonials.html" . }}
-{{ end }}
+    {{ partial "block/hero.html" . }}
+    {{ partial "block/showcases.html" . }}
+    <section class="[ text-region ] [ bg-neutral-100 ] [ region ]">
+        <div class="wrapper wrapper--small flow fade-in" style="text-align: center;">
+            {{ .Content }}
+        </div>
+    </section>
+    {{ with .Params.benefits }}
+        {{ partial "block/benefits.html" . }}
+    {{ end }}
+    {{ with .Params.features }}
+        {{ partial "block/features.html" . }}
+    {{ end }}
+    {{ with .Params.testimonial }}
+        {{ partial "block/testimonials.html" . }}
+    {{ end }}
+    
 {{ end }}

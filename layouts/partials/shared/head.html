@@ -58,14 +58,14 @@
 <link rel="manifest" href="{{ "site.webmanifest" | absURL }}">
 
 <!-- Local Business data -->
-{{ partial "shared/head/localbusiness.html" . }}
+{{/*  {{ partial "shared/head/localbusiness.html" . }}  */}}
 
 <!-- Theme CSS and Javascript -->
 {{ partialCached "shared/head/css.html" . }}
 {{ partialCached "shared/head/js.html" . }}
 
 <!-- Analytics -->
-{{ partial "shared/head/analytics.html" . }}
+{{/*  {{ partial "shared/head/analytics.html" . }}  */}}
 
 <!-- HTMX -->
 <script src="/js/htmx.min.js"></script>

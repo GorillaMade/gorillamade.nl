@@ -1,11 +1,10 @@
 {{ define "main" }}
-{{ partial "components/breadcrumb.html" . }}
-<section class="[ page-not-found ] [ full-width ] [ region flow ]">
-    <h1 class="page-not-found__404">404</h1>
-    <h2 class="page-not-found__title">{{ i18n "error404.title" }}</h2>
-    <p>{{ i18n "error404.message" }}</p>
-    <span>
+<section class="[ error404 ] [] [ region ]">
+    <div class="wrapper flow" style="text-align: center;">
+        <span class="error404__number">404</span>
+        <h1 class="error404__title">{{ i18n "error404.title" }}</h1>
+        <p>{{ i18n "error404.message" }}</p>
         <a href="/" class="button">{{ i18n "go_home" }}</a>
-    </span>
+    </div>
 </section>
 {{ end }}

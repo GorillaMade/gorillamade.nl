@@ -1,6 +1,13 @@
 @use "../abstracts" as *;
 
 :root {
+    // --color-primary:      #1C1C1E; // Gorilla Black
+    // --color-secondary:    #3A3F47; // Steel Gray
+    // --color-background:   #F7F7F8; // Ash White
+    // --color-highlight:    #FFD042; // Banana Yellow
+    // --color-success:       #00A86B; // Jungle Green
+    // --color-danger:       #FF3B30; // Blood Orange
+
     // Font families
     @each $prop, $value in $font-families {
         --ff-#{$prop}: #{$value};
@@ -16,19 +23,10 @@
         --fw-#{$prop}: #{$value};
     }
 
-
-
-    // Spaces - margin and padding sizes
+    // Spaces
     @each $prop, $value in $spaces {
         --space-#{$prop}: #{$value};
     }
-
-    // Screen/wrapper sizes
-    @each $prop, $value in $breakpoints {
-        --screen-#{$prop}: #{$value};
-    }
-
-
 
     // Radius
     @each $prop, $value in $radius {
@@ -50,17 +48,27 @@
         --blur-#{$prop}: #{$value};
     }
 
-
-    // Color(s) default theme
+    // ✨ Default color theme (via $active-theme)
     @each $color, $shade-map in $active-theme {
         @each $shade, $value in $shade-map {
             --#{$color}-#{$shade}: #{$value};
         }
     }
+}
 
-    // Color(s) theme dark mode
-    @if ($enable-media-prefers-dark-mode) {
-        @media (prefers-color-scheme: dark) {
+// Color(s) via data-theme attribute
+html[data-theme="dark"] {
+    @each $color, $shade-map in $dark {
+        @each $shade, $value in $shade-map {
+            --#{$color}-#{$shade}: #{$value};
+        }
+    }
+}
+
+// 🌓 Fallback: match system preference if no localStorage is used
+@if ($enable-media-prefers-dark-mode) {
+    @media (prefers-color-scheme: dark) {
+        :root {
             @each $color, $shade-map in $dark {
                 @each $shade, $value in $shade-map {
                     --#{$color}-#{$shade}: #{$value};

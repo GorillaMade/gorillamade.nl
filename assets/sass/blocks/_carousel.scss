@@ -1,0 +1,46 @@
+.carousel {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-color: var(--neutral-500) var(--neutral-900);
+    scrollbar-width: thin;
+
+    &__track {
+        display: flex;
+        gap: var(--gap, var(--space-m));
+        padding: var(--carousel-track-padding, 1rem);
+    }
+
+
+    &__item {
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        border-radius: var(--radius-m);
+
+        width: var(--carousel-item-size, calc(100% - 2rem)); /* Je kunt dit aanpassen om meer items per view te tonen */
+        max-width: var(--carousel-item-max-size, 30rem); /* Max breedte per item */
+    }
+}
+
+//
+// Webkit adjustsments
+//
+
+.carousel {
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    &::-webkit-scrollbar {
+        height: 16px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--neutral-500);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--neutral-900);
+        border-radius: 4px;
+    }
+}

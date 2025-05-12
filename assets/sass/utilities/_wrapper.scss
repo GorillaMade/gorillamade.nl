@@ -1,22 +1,21 @@
-@use "../abstracts" as *;
-
-// -----------------------------------------------------------------------------
-// Wrapper - also known as a container
-// -----------------------------------------------------------------------------
-
-// .wrapper {
-//     --_wrapper-max-width: var(--wrapper-max-width, #{$wrapper-max-width});
-//     --_wrapper-padding-inline: var(--wrapper-padding-inline, #{$wrapper-padding-inline});
+.wrapper {
+    --_wrapper-max-width: var(--wrapper-max-width, 97.875rem);
+    --_wrapper-padding-inline: var(--wrapper-padding-inline, 5dvw);
     
-//     width: min(var(--_wrapper-max-width), (100% - (var(--_wrapper-padding-inline) * 2)));
-//     margin-inline: auto;
-// }
+    max-width: min(var(--_wrapper-max-width), (100% - (var(--_wrapper-padding-inline) * 2)));
+    margin-inline: auto;
+}
 
+// -
+//
+// -
 
 .wrapper {
-    --_wrapper-max-width: var(--wrapper-max-width, #{$wrapper-max-width});
-    --_wrapper-padding-inline: var(--wrapper-padding-inline, #{$wrapper-padding-inline});
-    
-    max-inline-size: min(var(--_wrapper-max-width), (100% - (var(--_wrapper-padding-inline) * 2)));
-    margin-inline: auto;
+    &--small {
+        --wrapper-max-width: 52rem;
+    }
+
+    &--wide {
+        --wrapper-max-width: 70rem;
+    }
 }

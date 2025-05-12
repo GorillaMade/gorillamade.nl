@@ -1,31 +1,86 @@
-<footer class="[ site-footer ] [ full-width ] [ region ]">
-    <div class="wrapper">
-        <p>© {{ now.Year }} {{ .Site.Title }}. Alle rechten voorbehouden.</p>
+<section class="[ sub-footer ] [] [ region ]">
+    <div class="sub-footer__inner wrapper">
+
+        <!-- -->
+        <div class="sub-footer__col span2 flow">
+            <h3 class="fs-300">Gorilla<span class="fw-light">Made</span> <small>in het kort</small></h3>
+            <p>Jouw partner voor alles web: van handgemaakte websites tot hosting en SEO, volledig afgestemd op jouw
+                bedrijf.</p>
+        </div>
+
+        <!-- -->
+        <div class="sub-footer__col flow">
+            <h3 class="fs-200">Quick links</h3>
+            <nav>
+                <ul class="sub-footer__list" role="list">
+                    {{ range .Site.Menus.site }}
+                    <li>
+                        <a href="{{ .PageRef }}">{{ .Name }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+
+        <!-- -->
+        <div class="sub-footer__col flow">
+            <h3 class="fs-200">Directe links</h3>
+            <nav>
+                <ul class="sub-footer__list" role="list">
+                    {{ range .Site.Menus.service }}
+                    <li>
+                        <a href="{{ .PageRef }}">{{ .Name }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+
+        <!-- -->
+        <div class="sub-footer__col flow">
+            <h3 class="fs-200">Socials</h3>
+            <nav>
+                <ul class="sub-footer__list cluster" role="list">
+                    {{ range .Site.Params.socials }}
+                    <li>
+                        {{- $link := .link -}}
+                        {{ if strings.HasPrefix $link "nostr:" }}
+                        <a href="{{ .link | safeURL }}" aria-label="link naar {{ .name }}"><ion-icon
+                                src="{{ .icon | relURL }}" size="large" name="logo-{{ .name }}"></ion-icon><span
+                                class="visually-hidden">{{ .platform }}</span></a>
+                        {{ else }}
+                        <a href="{{ .link }}"><ion-icon size="large" name="logo-{{ .name }}"></ion-icon></a>
+                        {{ end }}
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</section>
+<footer class="site-footer region">
+    <div class="site-footer__inner wrapper">
+        <small>{{ i18n "footer.copyright" (dict "Year" (now.Year) "SiteName" .Site.Title) }}</small>
+
+        <nav>
+            <ul role="list" class="cluster">
+                {{ range .Site.Menus.footer }}
+                <li>
+                    <a href="{{ .PageRef }}">{{ .Name }}</a>
+                </li>
+                {{ end }}
+            </ul>
+        </nav>
     </div>
 </footer>
 
-<!-- Scripts -->
 
-<!-- ✨ HTMX error handling + form reset
-{{ if eq .Page.RelPermalink "/contact/" }}
-<script>
-    document.body.addEventListener('htmx:responseError', function (event) {
-        const responseText = event.detail.xhr.responseText;
-        const target = document.querySelector('#form-response');
-        if (target && responseText) {
-            target.innerHTML = responseText;
-        }
-    });
+<!-- scripts -->
 
-    document.body.addEventListener('htmx:afterRequest', function (event) {
-        if (event.detail.xhr.status >= 200 && event.detail.xhr.status < 300) {
-            document.querySelector('form')?.reset();
-        }
-    });
-</script>
-{{ end }}
--->
 
-<!-- Ion Icons -->
+<!-- ionicon -->
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+

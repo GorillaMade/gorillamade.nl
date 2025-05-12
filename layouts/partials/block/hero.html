@@ -1,0 +1,10 @@
+<section class="[ hero-region ] [] [ region ]">
+    <div class="wrapper flow">
+        <h1 class="hero-region__heading">{{- .Params.hero.title -}}</h1>
+        <p>{{- .Params.hero.text | markdownify -}}</p>
+        <div class="flow">
+            <a href="{{ .Params.hero.button.first.href }}" class="button" data-button-ghost>{{ .Params.hero.button.first.text }}</a>
+            <a href="{{ .Params.hero.button.second.href }}" class="button" data-button-variant="accent">{{ .Params.hero.button.second.text }}</a>
+        </div>
+    </div>
+</section>

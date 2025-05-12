@@ -1,0 +1,28 @@
+<section id="showcases" class="[ showcase-region ] [ color-neutral-50 bg-neutral-900 ] [ region ]">
+    <div class="wrapper fade-in">
+
+        <h2 class="block__heading">{{ .Params.showcases.heading }}</h2>
+
+        <div class="carousel">
+            <div class="carousel__track">
+
+            {{ range where (where site.RegularPages "Type" "showcases") "Params.featured" true }}
+            <div class="carousel__item">
+                <div class="showcase-card" style="background: {{ .Params.images.background }};">
+                    <div class="showcase-card__content flow">
+                        <h3 class="showcase-card__title">{{ .LinkTitle }}</h3>
+                        <p>{{ .Params.client.company }}</p>
+                        <a href="{{ .RelPermalink }}" class="showcase-card__link">{{ i18n "view_showcase" }} <ion-icon name="arrow-forward-outline"></ion-icon> <span class="visually-hidden">Bekijk de showcase voor {{ .LinkTitle }}</span></a>
+                    </div>
+                    <figure class="showcase-card__image">
+                        <img loading="lazy" width="650" height="650" src="{{ .Params.images.thumbnail }}"
+                        alt="{{ .LinkTitle }}">
+                    </figure>
+                </div>
+            </div>
+            {{ end }}
+            
+            </div>
+        </div>
+    </div>
+</section>

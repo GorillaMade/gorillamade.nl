@@ -1,0 +1,29 @@
+@use "../abstracts" as *;
+
+::selection {
+    color: var(--selection-foreground, black);
+    background: var(--selection-background, var(--accent-500));
+}
+
+// -----------------------------------------------------------------------------
+// Global: Body settings
+// -----------------------------------------------------------------------------
+
+body {
+    color: var(--body-foreground, #{$body-foreground});
+    background: var(--body-background, #{$body-background});
+    font-family: var(--body-font-family, #{$body-font-family});
+    font-size: var(--body-font-size, #{$body-font-size});
+    font-weight: var(--body-font-weight, #{$body-font-weight});
+    line-height: var(--body-line-height, #{$body-line-height});
+}
+
+
+
+// -----------------------------------------------------------------------------
+// Global: Anchor settings
+// -----------------------------------------------------------------------------
+
+a:not([class]) {
+    color: var(--link-foreground, #{$link-foreground});
+}

@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="{{ site.Language.Lang }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
 <head>
-  {{ partial "shared/head.html" . }}
+    {{ partial "shared/head.html" . }}
 </head>
-<body class="page">
-  {{ partial "shared/header.html" . }}
-  <main class="full-width">
+<body>
+    {{ partial "shared/header.html" . }}
+    <main id="main-content" tabindex="-1">
     {{ block "main" . }}{{ end }}
-  </main>
-  {{ partial "shared/sub-footer.html" . }}
-  {{ partial "shared/footer.html" . }}
+    </main>
+    {{ partial "shared/footer.html" . }}
 </body>
 </html>

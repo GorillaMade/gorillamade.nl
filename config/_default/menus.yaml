@@ -18,7 +18,7 @@ main:
     pageRef: "/diensten/hosting"
     weight: 2
   - parent: "Diensten"
-    name: "Zoek Machine Optimalizatie"
+    name: "S.E.O."
     pageRef: "/diensten/zoek-machine-optimalisatie"
     weight: 3
   - name: "Over mij"

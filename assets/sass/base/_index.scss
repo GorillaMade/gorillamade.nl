@@ -1,3 +1,4 @@
-@use "reset";
-@use "root";
-@use "globals";
+@forward "reset";
+@forward "root";
+@forward "fonts";
+@forward "global";

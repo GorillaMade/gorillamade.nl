@@ -1,0 +1,34 @@
+<form class="flow" hx-post="/send" hx-target="#form-response" hx-swap="innerHTML" hx-on="htmx:afterSwap: resetForm()">
+    <input type="text" name="honeypot_field" style="display:none">
+    <input type="hidden" name="_subject" value="Contactformulier">
+
+    <div class="field-group">
+        <label for="name">{{ i18n "form_name" }}</label>
+        <input id="name" type="text" name="name" required>
+    </div>
+    <div class="field-group">
+        <label for="tel">{{ i18n "form_phone" }}</label>
+        <input id="tel" type="text" name="tel" required>
+    </div>
+    <div class="field-group">
+        <label for="email">{{ i18n "form_mail" }}</label>
+        <input id="email" type="email" name="email" required>
+    </div>
+
+    <div class="field-group">
+        <label for="subject">{{ i18n "form_subject.title" }}</label>
+        <select name="Onderwerp" id="subject">
+            <option value="">{{ i18n "form_subject.default" }}</option>
+            <option value="Een vraag">{{ i18n "form_subject.options.ask_question" }}</option>
+            <option value="start een project">{{ i18n "form_subject.options.start_project" }}</option>
+        </select>
+    </div>
+
+    <div class="field-group">
+        <label for="message">Bericht</label>
+        <textarea name="message" id="message" rows="5" cols="50" required></textarea>
+    </div>
+    <button class="button" data-button-variant="primary" type="submit">{{ i18n "send" }}</button>
+</form>
+<!-- Hier verschijnen foutmeldingen -->
+<div id="form-response"></div>

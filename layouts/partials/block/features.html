@@ -1,0 +1,16 @@
+<section class="[ service-region ] [ ] [ region ]">
+    <div class="wrapper flow fade-in-left">
+
+        <h2 class="service-region__heading">{{ .heading }}</h2>
+        <div class="grid" data-layout="halves">
+            {{ range where (where site.RegularPages "Type" "services") "Params.featured" true }}
+            <div class="feature__col flow">
+                <h3 class="fs-300">{{ .Title }}</h3>
+                <p>{{ .Summary | plainify | truncate 150 }}</p>
+                <a href="{{ .RelPermalink }}" class="button">Meer informatie</a>
+            </div>
+            {{ end }}
+        </div>
+
+    </div>
+</section>

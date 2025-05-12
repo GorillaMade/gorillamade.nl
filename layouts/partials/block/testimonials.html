@@ -1,0 +1,21 @@
+<section class="[ testimonial-region ] [ bg-neutral-100 ] [ region ]">
+    <div class="wrapper fade-in">
+        <h2 class="block__heading">Klanten die het digitale oerwoud met ons trotseerden</h2>
+        <div class="carousel">
+            <div class="carousel__track">
+                {{ $lang := site.Language.Lang }}
+                {{ range index site.Data $lang "testimonials" }}
+                    <div class="carousel__item">
+                        <blockquote class="quote flow">
+                            <q>{{ .quote }}</q>
+                            <footer class="cluster">
+                                <span>{{ .name }}</span>
+                                <small>{{ .company }}</small>
+                            </footer>
+                        </blockquote>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>

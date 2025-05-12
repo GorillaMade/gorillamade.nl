@@ -1,12 +1,9 @@
-// -----------------------------------------------------------------------------
-// COLOR: LIST
-// -----------------------------------------------------------------------------
+//
+//
+//
 
-/* White */
-$-clr-white: oklch(100% 0 0);
-
-/* Black */
-$-clr-black: oklch(0% 0 0);
+$-clr-white: white;
+$-clr-black: black;
 
 /* Slate */
 $-clr-slate-50: oklch(98.42% 0.0034 247.86);
@@ -294,16 +291,16 @@ $-clr-rose-800: oklch(45.46% 0.1713 13.7);
 $-clr-rose-900: oklch(41.03% 0.1502 10.27);
 $-clr-rose-950: oklch(27.08% 0.1009 12.09);
 
-
-
 // -----------------------------------------------------------------------------
-// COLOR: THEME
+//
 // -----------------------------------------------------------------------------
 
-// Theme: Light
 $light: (
     "color": (
-        "background": $-clr-white,
+        "foreground": $-clr-gray-900,       // Donkerste tekstkleur (Steel Gray)
+        "background": $-clr-neutral-50,     // Lichtste achtergrondkleur (Ash White)
+        "success": $-clr-green-600,         // Jungle Green (dichtste match)
+        "danger": $-clr-red-600,           // Blood Orange
     ),
     "neutral": (
         "50": $-clr-neutral-50,
@@ -316,9 +313,22 @@ $light: (
         "700": $-clr-neutral-700,
         "800": $-clr-neutral-800,
         "900": $-clr-neutral-900,
-        "950": $-clr-neutral-950,
+        "950": $-clr-neutral-950
     ),
     "primary": (
+        "50": $-clr-gray-50,
+        "100": $-clr-gray-100,
+        "200": $-clr-gray-200,
+        "300": $-clr-gray-300,
+        "400": $-clr-gray-400,
+        "500": $-clr-gray-500,
+        "600": $-clr-gray-600,
+        "700": $-clr-gray-700,
+        "800": $-clr-gray-800,
+        "900": $-clr-gray-900,
+        "950": $-clr-gray-950
+    ),
+    "accent": (
         "50": $-clr-yellow-50,
         "100": $-clr-yellow-100,
         "200": $-clr-yellow-200,
@@ -329,19 +339,56 @@ $light: (
         "700": $-clr-yellow-700,
         "800": $-clr-yellow-800,
         "900": $-clr-yellow-900,
-        "950": $-clr-yellow-950,
+        "950": $-clr-yellow-950
+    ),
+);
+
+
+
+$dark: (
+    "color": (
+        "foreground": $-clr-neutral-50,        // Lichtste tekstkleur (voor donkere achtergrond)
+        "background": $-clr-neutral-900,       // Donkerste achtergrondkleur
+        "success": $-clr-green-600,            // Jungle Green
+        "danger": $-clr-red-600                // Blood Orange
+    ),
+    "neutral": (
+        "50": $-clr-neutral-950,
+        "100": $-clr-neutral-900,
+        "200": $-clr-neutral-800,
+        "300": $-clr-neutral-700,
+        "400": $-clr-neutral-600,
+        "500": $-clr-neutral-500,
+        "600": $-clr-neutral-400,
+        "700": $-clr-neutral-300,
+        "800": $-clr-neutral-200,
+        "900": $-clr-neutral-100,
+        "950": $-clr-neutral-50
+    ),
+    "primary": (
+        "50": $-clr-gray-950,
+        "100": $-clr-gray-900,
+        "200": $-clr-gray-800,
+        "300": $-clr-gray-700,
+        "400": $-clr-gray-600,
+        "500": $-clr-gray-500,
+        "600": $-clr-gray-400,
+        "700": $-clr-gray-300,
+        "800": $-clr-gray-200,
+        "900": $-clr-gray-100,
+        "950": $-clr-gray-50
     ),
     "accent": (
-        "50": $-clr-teal-50,
-        "100": $-clr-teal-100,
-        "200": $-clr-teal-200,
-        "300": $-clr-teal-300,
-        "400": $-clr-teal-400,
-        "500": $-clr-teal-500,
-        "600": $-clr-teal-600,
-        "700": $-clr-teal-700,
-        "800": $-clr-teal-800,
-        "900": $-clr-teal-900,
-        "950": $-clr-teal-950,
-    ),
+        "50": $-clr-yellow-950,
+        "100": $-clr-yellow-900,
+        "200": $-clr-yellow-800,
+        "300": $-clr-yellow-700,
+        "400": $-clr-yellow-600,
+        "500": $-clr-yellow-500,
+        "600": $-clr-yellow-400,
+        "700": $-clr-yellow-300,
+        "800": $-clr-yellow-200,
+        "900": $-clr-yellow-100,
+        "950": $-clr-yellow-50
+    )
 );

@@ -1,32 +1,38 @@
 {{ define "main" }}
-{{ partial "components/breadcrumb.html" . }}
-<section class="[ showcase__info ] [ flow ] [ region ]">
-    <h1 class="section-title">{{ .Title }}</h1>
-    <div class="showcase__info--image" style="background: {{ .Params.images.background }};">
-        <img src="{{ .Params.images.full }}" width="1280" height="525.71" alt="">
+{{ partial "breadcrumb.html" . }}
+<section class="showcase region">
+    <div class="wrapper">
+        <h1 class="block__title">{{ .Title }}</h1>
+        <div class="showcase__info sidebar fade-in">
+            <figure class="showcase__info--image" style="background: {{ .Params.images.background }};">
+                <img src="{{ .Params.images.full }}" width="1280" height="525.71" alt="">
+            </figure>
+            <aside class="flow">
+                <div class="flow">
+                    <h4 class="showcase__info--title">{{ i18n "client" }}</h4>
+                    <div class="flow">
+                        <p>{{ .Params.client.company }}</p>
+                    </div>
+                </div>
+                <div class="flow">
+                    <h4 class="showcase__info--title">{{ i18n "tags" }}</h4>
+                    {{ with .Params.tags }}
+                    <ul class="tags cluster" role="list">
+                        {{ range . }}
+                        <li><a class="tag" href="{{ "tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+                        {{ end }}
+                    </ul>
+                    {{ end }}
+                </div>
+                <div class="flow">
+                    <h4 class="showcase__info--title">{{ i18n "result" }}</h4>
+                    <a href="{{ .Params.project_url }}" class="button">Bezoek website</a>
+                </div>
+            </aside>
+        </div>
     </div>
-    <ul class="grid" role="list" data-max-col-count="3">
-        <li>
-            <h4 class="color-neutral-900">Klant</h4>
-            {{ .Params.client }}
-        </li>
-        <li>
-            <h4 class="color-neutral-900">Tags</h4>
-            {{ with .Params.tags }}
-            <ul class="tags cluster" role="list">
-                {{ range . }}
-                <li><a class="tag" href="{{ "tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-                {{ end }}
-            </ul>
-            {{ end }}
-        </li>
-        <li>
-            <h4 class="color-neutral-900">Link</h4>
-            <a href="{{ .Params.project_url }}" class="button">Bezoek website</a>
-        </li>
-    </ul>
 </section>
-<article class="[ article ] [ full ] [ region ]">
+<article class="showcase__content content flow region">
     {{ .Content }}
 </article>
 {{ end }}
