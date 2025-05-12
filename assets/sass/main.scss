@@ -175,10 +175,15 @@ h4, h5, h6 {
         }
 
         #{ $self }__link {
+            color: inherit;
             display: inline-flex;
             align-items: center;
             text-decoration: none;
             padding-block: var(--space-xs);
+
+            &:hover {
+                color: black;
+            }
         }
     }
 
@@ -498,7 +503,7 @@ h4, h5, h6 {
 @keyframes fadeInLeft {
     from {
         opacity: 0;
-        transform: translateX(-15dvw);
+        transform: translateX(-100px);
     }
     to {
         opacity: 1;
