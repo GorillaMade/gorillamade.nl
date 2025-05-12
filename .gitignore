@@ -9,6 +9,7 @@
 *.log.*
 *.sig
 
+.htaccess
 .env
 .vscode
 
@@ -16,3 +17,5 @@ pkg/
 src/
 public/
 resources/
+
+form-handler.php

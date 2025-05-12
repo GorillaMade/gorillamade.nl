@@ -26,7 +26,6 @@ Options -Indexes
 # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
 # .htaccess in public/
-RedirectMatch ^/$ /nl/
 
 # Cache control for static assets
 <IfModule mod_expires.c>
