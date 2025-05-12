@@ -4,7 +4,7 @@ title: 'GorillaMade'
 
 
 defaultContentLanguage: nl
-defaultContentLanguageInSubdir: true
+defaultContentLanguageInSubdir: false
 
 enableRobotsTXT: true
 canonifyURLs: true
