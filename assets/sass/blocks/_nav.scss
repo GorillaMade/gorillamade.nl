@@ -11,6 +11,7 @@
     &__list {
         gap: var(--space-3xs);
         padding: 0;
+        margin: 0;
     }
 
     &__item {
@@ -154,7 +155,7 @@
 // Nav Responsive
 // -----------------------------------------------------------------------------
 
-@media (min-width: 901px) {
+@media (width > 1035px) {
     .nav {
         &,
         &__list {
