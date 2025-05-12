@@ -1,5 +1,5 @@
 nl:
-  baseURL: "https://gorillamade.nl/"
+  baseURL: "https://gorillamade.nl/nl/"
   languageName: "Nederlands"
   languageCode: "nl"
   LanguageDirection: "ltr"
