@@ -525,14 +525,15 @@ h6 {
 //
 //
 
-.error404 {
+.error404-region {
     &__number {
+        color: var(--neutral-950);
         font-size: var(--fs-900);
         font-weight: var(--fw-extrabold);
     }
 
     &__title {
-        margin-block-start: var(--space-s-l);
+        margin-block: 0 var(--space-s-l);
     }
 
     .wrapper {
