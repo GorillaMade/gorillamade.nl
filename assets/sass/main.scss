@@ -367,7 +367,9 @@ h6 {
                 flex-direction: column;
                 border-top: 1px solid var(--quote-line-color);
                 border-bottom: 1px solid var(--quote-line-color);
-                padding-block: var(--space-xl-2xl);
+                padding: var(--space-xl-2xl) var(--space-s-m);
+                margin: 0;
+                margin-inline-end: var(--space-s-l);
 
                 p {
                     font-style: italic;
