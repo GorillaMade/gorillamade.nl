@@ -28,7 +28,7 @@
 
 .carousel {
     &::-webkit-scrollbar {
-        block-size: var(--space-xs);
+        block-size: var(--space-2xs);
     }
 
     &::-webkit-scrollbar-button {
@@ -36,12 +36,12 @@
     }
 
     &::-webkit-scrollbar-track {
-        background: var(--scrollbar-track-color);
+        background: var(--scroll-bar-track-color);
         border-radius: 0;
     }
 
     &::-webkit-scrollbar-thumb {
-        background: var(--scrollbar-thumb-color);
+        background: var(--scroll-bar-thumb-color);
         border-radius: 0;
     }
 }
