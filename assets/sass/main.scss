@@ -13,6 +13,9 @@
 h1,
 h2,
 h3 {
+    --_heading-foreground: var(--heading-foreground, var(--neutral-950));
+
+    color: var(--_heading-foreground);
     font-family: "Montserrat", sans-serif;
     font-size: var(--heading-font-size, inherit);
     font-weight: var(--heading-font-weight, var(--fw-bold));
@@ -90,6 +93,7 @@ h6 {
 
 .block {
     &__heading {
+        --heading-foreground: var(--neutral-900);
         margin-block-start: 0;
 
         &--short {
@@ -163,12 +167,21 @@ h6 {
 //
 
 .showcase-card {
+    --_showcase-foreground: var(--showcase-foreground);
+    --_showcase-background: var(--showcase-background);
+
     $self: &;
-    color: white;
+    color: var(--_showcase-foreground);
+    background: var(--showcase-background);
     display: block;
     position: relative;
     overflow: clip;
     border-radius: var(--radius-l);
+
+    &__heading {
+        --heading-foreground: var(--_showcase-foreground);
+        font-size: var(--fs-300);
+    }
 
     &__content {
         padding-block-start: var(--space-s-l);
@@ -179,15 +192,11 @@ h6 {
         }
 
         #{ $self }__link {
-            color: inherit;
+            color: var(--_showcase-foreground);
             display: inline-flex;
             align-items: center;
             text-decoration: none;
             padding-block: var(--space-xs);
-
-            &:hover {
-                color: black;
-            }
         }
     }
 
@@ -234,6 +243,8 @@ h6 {
         --sidebar-target-width: 26rem;
         background: var(--neutral-100);
         margin-block-start: var(--space-s-l);
+        border-radius: var(--radius-xl);
+        overflow: clip;
 
         &--title {
             color: var(--neutral-500);
@@ -584,4 +595,11 @@ h6 {
         opacity: 1;
         transform: translateX(0);
     }
+}
+
+
+
+
+.invert_effect {
+    filter: invert(100%);
 }

@@ -3,7 +3,7 @@
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     scrollbar-color: var(--neutral-500) var(--neutral-900);
-    scrollbar-width: thin;
+    scrollbar-width: auto;
 
     &__track {
         display: flex;

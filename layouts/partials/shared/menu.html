@@ -49,7 +49,7 @@ Renders a menu for the given menu ID.
     </button>
 
   </div>
-  <ul class="nav__dropdown" role="menu" :id="dropdownId" x-bind:class="{ 'open': dropdownOpen }"
+  <ul class="nav__dropdown" role="list" :id="dropdownId" x-bind:class="{ 'open': dropdownOpen }"
     :aria-hidden="(!dropdownOpen).toString()">
     {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
   </ul>

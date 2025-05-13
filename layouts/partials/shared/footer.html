@@ -3,13 +3,13 @@
 
         <!-- -->
         <div class="sub-footer__col span2 flow">
-            <h3 class="fs-300">Gorilla<span class="fw-light">Made</span> <small>in het kort</small></h3>
+            <h3 class="fs-300 color-neutral-900">Gorilla<span class="fw-light">Made</span> <small>in het kort</small></h3>
             <p>Jouw digitale partner – van krachtige websites tot hosting en SEO, alles wat je nodig hebt om te heersen in je online jungle.</p>
         </div>
 
         <!-- -->
         <div class="sub-footer__col flow">
-            <h3 class="fs-200">Quick links</h3>
+            <h3 class="fs-200 color-neutral-900">Quick links</h3>
             <nav>
                 <ul class="sub-footer__list" role="list">
                     {{ range .Site.Menus.site }}
@@ -23,7 +23,7 @@
 
         <!-- -->
         <div class="sub-footer__col flow">
-            <h3 class="fs-200">Directe links</h3>
+            <h3 class="fs-200 color-neutral-900">Directe links</h3>
             <nav>
                 <ul class="sub-footer__list" role="list">
                     {{ range .Site.Menus.service }}
@@ -37,18 +37,19 @@
 
         <!-- -->
         <div class="sub-footer__col flow">
-            <h3 class="fs-200">Socials</h3>
+            <h3 class="fs-200 color-neutral-900">Socials</h3>
             <nav>
                 <ul class="sub-footer__list cluster" role="list">
                     {{ range .Site.Params.socials }}
                     <li>
                         {{- $link := .link -}}
                         {{ if strings.HasPrefix $link "nostr:" }}
-                        <a href="{{ .link | safeURL }}" aria-label="link naar {{ .name }}"><span
-                            class="visually-hidden">Link naar {{ .platform }}</span><ion-icon
-                                src="{{ .icon | relURL }}" size="large" name="logo-{{ .name }}"></ion-icon></a>
+                        <a href="{{ .link | safeURL }}" aria-label="link naar {{ .name }}"><ion-icon
+                                src="{{ .icon | relURL }}" size="large" name="logo-{{ .name }}"></ion-icon><span
+                                class="visually-hidden">{{ .platform }}</span></a>
                         {{ else }}
-                        <a href="{{ .link }}"><ion-icon size="large" name="logo-{{ .name }}"></ion-icon></a>
+                        <a href="{{ .link }}" aria-label="link naar {{ .name }}"><ion-icon size="large" name="logo-{{ .name }}"></ion-icon><span
+                            class="visually-hidden">{{ .platform }}</span></a>
                         {{ end }}
                     </li>
                     {{ end }}

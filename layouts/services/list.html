@@ -2,7 +2,7 @@
 {{ partial "breadcrumb.html" . }}
 <section class="[ services ] [] [ region ]">
     <div class="wrapper">
-        <h1 class="block__heading">{{ .Title }}</h1>
+        <h1 class="block__heading">{{ .Params.heading }}</h1>
 
         <div class="grid" data-layout="halves">
             {{ range .Pages }}

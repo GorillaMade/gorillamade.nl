@@ -9,11 +9,9 @@
     {{ with .Params.benefits }}
         {{ partial "block/benefits.html" . }}
     {{ end }}
-    {{ with .Params.features }}
-        {{ partial "block/features.html" . }}
+    {{ with .Params.services }}
+        {{ partial "block/services.html" . }}
     {{ end }}
-    {{ with .Params.testimonial }}
-        {{ partial "block/testimonials.html" . }}
-    {{ end }}
+    {{ partial "block/testimonials.html" . }}
     {{ partial "block/call-to-action.html" . }}
 {{ end }}

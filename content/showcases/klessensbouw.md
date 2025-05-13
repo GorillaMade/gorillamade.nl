@@ -17,6 +17,7 @@ categories:
 images:
   thumbnail: "/media/showcases/klessens-bouw/klessensbouw-thumb.webp"
   full: "/media/showcases/klessens-bouw/klessensbouw-full.png"
+  foreground: "black"
   background: "#fde047"
 
 client:

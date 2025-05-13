@@ -4,6 +4,7 @@
 @each $color, $shade-map in $active-theme {
     @each $shade, $value in $shade-map {
         .color-#{$color}-#{$shade} {
+            --heading-foreground: #{$value};
             color: #{$value};
         }
 

@@ -1,6 +1,7 @@
 ---
 title: Diensten
+description: "Diensten pagina beschrijving"
 type: "services"
----
 
-Text voor onze diensten
+heading: "Mijn specialiteiten als jouw digitale gorilla"
+---

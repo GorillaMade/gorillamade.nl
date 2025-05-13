@@ -17,6 +17,7 @@ categories:
 images:
   thumbnail: "/media/showcases/melody-events/melodyevents-thumb.webp"
   full: "/media/showcases/melody-events/melodyevents-full.png"
+  foreground: "black"
   background: "#eab308"
 
 client:

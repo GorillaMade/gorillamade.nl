@@ -17,6 +17,7 @@ categories:
 images:
   thumbnail: "/media/showcases/jack-van-gestel/jackvangestel-thumb.webp"
   full: "/media/showcases/jack-van-gestel/jackvangestel-full.png"
+  foreground: "white"
   background: "#f97e4e"
 
 client:

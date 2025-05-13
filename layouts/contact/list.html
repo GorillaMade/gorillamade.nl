@@ -2,15 +2,15 @@
 {{ partial "breadcrumb.html" . }}
 <section class="[ contact-region ] [] [ region ]">
     <div class="wrapper flow">
-        {{- .Content -}}
+        <h1 class="block__heading">{{ .Title }}</h1>
+        <p class="fs-300">Niet aarzelen – brul mij een bericht!</p>
+        <p>{{- .Content -}}</p>
         <div class="switcher flow">
             <div class="card flow">
-                <h2 class="block__heading fs-300">Contact form</h2>
                 {{ partial "form/contact.html" . }}
             </div>
             <div class="flow">
-                <h4>Contact informatie</h4>
-        
+
                 <address>
                     {{ site.Params.business.address.street }} <br>
                     {{ site.Params.business.address.postalCode }} {{ site.Params.business.address.city }} <br>
@@ -20,9 +20,9 @@
                 <div>
                     <code>hallo@gorillamade.nl</code>
                 </div>
-                <h4>Follow me</h4>
+                <h4>Socials</h4>
                 <nav>
-                    <ul class="sub-footer__list cluster" role="list">
+                    <ul class="cluster" role="list">
                         {{ range .Site.Params.socials }}
                         <li>
                             {{- $link := .link -}}
@@ -31,7 +31,8 @@
                                     src="{{ .icon | relURL }}" size="large" name="logo-{{ .name }}"></ion-icon><span
                                     class="visually-hidden">{{ .platform }}</span></a>
                             {{ else }}
-                            <a href="{{ .link }}"><ion-icon size="large" name="logo-{{ .name }}"></ion-icon></a>
+                            <a href="{{ .link }}" aria-label="link naar {{ .name }}"><ion-icon size="large" name="logo-{{ .name }}"></ion-icon><span
+                                class="visually-hidden">{{ .platform }}</span></a>
                             {{ end }}
                         </li>
                         {{ end }}

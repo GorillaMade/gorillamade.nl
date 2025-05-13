@@ -26,6 +26,7 @@ body {
 
 a:not([class]) {
     color: var(--link-foreground, #{$link-foreground});
+    transition: color 300ms ease-in-out;
 
     &:hover {
         --link-foreground: var(--accent-600);

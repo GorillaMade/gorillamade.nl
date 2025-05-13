@@ -8,9 +8,9 @@
             {{ $paginator := .Paginate $pages 6 }}
             {{ range $paginator.Pages }}
             <li class="showcase-list__col fade-in">
-                <div class="showcase-card" style="background: {{ .Params.images.background }};">
+                <div class="showcase-card" style="--showcase-background: {{ .Params.images.background }}; --showcase-foreground: {{ .Params.images.foreground }};">
                     <div class="showcase-card__content flow">
-                        <h3 class="showcase-card__title">{{ .LinkTitle }}</h3>
+                        <h3 class="showcase-card__heading">{{ .LinkTitle }}</h3>
                         <p>{{ .Params.client.company }}</p>
                         <a href="{{ .RelPermalink }}" class="showcase-card__link">{{ i18n "view_showcase" }} <ion-icon name="arrow-forward-outline"></ion-icon></a>
                     </div>

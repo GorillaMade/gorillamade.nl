@@ -17,6 +17,7 @@ categories:
 images:
   thumbnail: "/media/showcases/wijkraad-koningshaven/wijkraadkoningshaven-thumb.webp"
   full: "/media/showcases/wijkraad-koningshaven/wijkraadkoningshaven-full.png"
+  foreground: "white"
   background: "#1e40af"
 
 client:

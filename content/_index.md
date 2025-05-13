@@ -21,11 +21,9 @@ showcases:
 benefits:
   heading: "Van banaan tot byte – jij zit goed"
 
-features:
+services:
   heading: "Mijn specialiteiten als jouw digitale gorilla"
 
-testimonial:
-  heading: "Wat klanten vinden"
 ---
 
 ## Digitale dominantie begint hier

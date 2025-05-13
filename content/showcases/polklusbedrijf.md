@@ -17,6 +17,7 @@ categories:
 images:
   thumbnail: "/media/showcases/polklusbedrijf/polklusbedrijf-thumb.webp"
   full: "/media/showcases/polklusbedrijf/polklusbedrijf-full.png"
+  foreground: "black"
   background: "#f78a40"
 
 client:
