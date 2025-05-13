@@ -44,9 +44,9 @@
                     <li>
                         {{- $link := .link -}}
                         {{ if strings.HasPrefix $link "nostr:" }}
-                        <a href="{{ .link | safeURL }}" aria-label="link naar {{ .name }}"><ion-icon
-                                src="{{ .icon | relURL }}" size="large" name="logo-{{ .name }}"></ion-icon><span
-                                class="visually-hidden">{{ .platform }}</span></a>
+                        <a href="{{ .link | safeURL }}" aria-label="link naar {{ .name }}"><span
+                            class="visually-hidden">Link naar {{ .platform }}</span><ion-icon
+                                src="{{ .icon | relURL }}" size="large" name="logo-{{ .name }}"></ion-icon></a>
                         {{ else }}
                         <a href="{{ .link }}"><ion-icon size="large" name="logo-{{ .name }}"></ion-icon></a>
                         {{ end }}
