@@ -63,6 +63,14 @@ form_subject:
 send:
   other: "Verzend"
 
+# -- Call to action --
+
+call_to_action:
+  title: 
+    other: "Klaar voor een zichtbare, snelle website?"
+  text:
+    other: "Laten we samen jouw online positie versterken — één solide website, zonder ruis."
+
 # -- 404 error --
 error404:
   title:

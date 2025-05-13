@@ -23,6 +23,7 @@ client:
   company: "Wijkraad Koningshaven"
   name: "Bestuur"
   function: "Team"
+  quote: "Onze nieuwe website geeft een frisse uitstraling en is veel toegankelijker voor de wijkbewoners. We zijn erg tevreden over het resultaat!"
 
 project_url: "https://wijkraadkoningshaven.nl/"
 

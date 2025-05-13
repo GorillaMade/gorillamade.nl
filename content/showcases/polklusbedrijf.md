@@ -23,12 +23,12 @@ client:
   company: "Pol Klusbedrijf"
   name: "Ricardo Pol"
   function: "Eigenaar"
+  quote: "De samenwerking verliep soepel en professioneel. Ik ben erg blij met mijn nieuwe website!"
 
 project_url: "https://polklusbedrijf.nl/"
 
 intro: |
-  Pol Klusbedrijf uit Waalwijk wordt gerund door Ricardo Pol, een allround vakman met ruim 15 jaar ervaring. 
-  Zijn specialisaties liggen bij timmer- en schilderwerk, maar hij is breed inzetbaar voor klussen in en rond het huis.
+  Pol Klusbedrijf uit Waalwijk wordt gerund door Ricardo Pol, een allround vakman met ruim 15 jaar ervaring.
 ---
 
 ## Over dit project  

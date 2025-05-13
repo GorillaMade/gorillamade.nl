@@ -4,10 +4,10 @@
         <h2 class="service-region__heading">{{ .heading }}</h2>
         <div class="grid" data-layout="halves">
             {{ range where (where site.RegularPages "Type" "services") "Params.featured" true }}
-            <div class="feature__col flow">
-                <h3 class="fs-300">{{ .Title }}</h3>
+            <div class="service-region__item flow">
+                <h3 class="service-region__item--title">{{ .Title }}</h3>
                 <p>{{ .Summary | plainify | truncate 150 }}</p>
-                <a href="{{ .RelPermalink }}" class="button">Meer informatie</a>
+                <a href="{{ .RelPermalink }}" class="button" data-button-ghost>Meer informatie</a>
             </div>
             {{ end }}
         </div>

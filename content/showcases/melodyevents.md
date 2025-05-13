@@ -23,6 +23,7 @@ client:
   company: "Melody Events"
   name: "Kamile Uzgle"
   function: "Eigenaar"
+  quote: "Onze nieuwe website straalt echt professionaliteit uit. Bedankt voor de geweldige service!"
 
 project_url: "https://melodyevents.nl/"
 

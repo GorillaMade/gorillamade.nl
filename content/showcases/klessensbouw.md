@@ -23,6 +23,7 @@ client:
   company: "Klessens bouw"
   name: "Dorus Klessens"
   function: "Eigenaar"
+  quote: "De website past precies bij mijn bedrijf: duidelijk, betrouwbaar en professioneel. Heel blij met de samenwerking en het eindresultaat!"
 
 project_url: "https://klessensbouw.nl/"
 

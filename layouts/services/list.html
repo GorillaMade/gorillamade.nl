@@ -1,18 +1,19 @@
 {{ define "main" }}
 {{ partial "breadcrumb.html" . }}
-<section class="[ services-region ] [] [ region ]">
+<section class="[ services ] [] [ region ]">
     <div class="wrapper">
         <h1 class="block__heading">{{ .Title }}</h1>
 
         <div class="grid" data-layout="halves">
             {{ range .Pages }}
-                <div class="service-region__item flow">
-                    <h2 class="fs-300">{{ .LinkTitle }}</h2>
+                <div class="services__item flow">
+                    <h2 class="services__item--title">{{ .LinkTitle }}</h2>
                     <p>{{ .Summary | plainify | truncate 150 }}</p>
                     <a href="{{ .RelPermalink }}" class="button" data-button-ghost>{{ i18n "more_info" }}</a>
                 </div>
             {{ end }}
         </div>
     </div>
-</section>    
+</section>   
+{{ partial "block/call-to-action.html" . }} 
 {{ end }}

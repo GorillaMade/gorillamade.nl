@@ -3,17 +3,20 @@
         <h2 class="block__heading">Klanten die het digitale oerwoud met ons trotseerden</h2>
         <div class="carousel">
             <div class="carousel__track">
-                {{ $lang := site.Language.Lang }}
-                {{ range index site.Data $lang "testimonials" }}
-                    <div class="carousel__item">
-                        <blockquote class="quote flow">
-                            <q>{{ .quote }}</q>
-                            <footer class="cluster">
-                                <span>{{ .name }}</span>
-                                <small>{{ .company }}</small>
-                            </footer>
-                        </blockquote>
-                    </div>
+                {{ range site.Pages }}
+                    {{ if eq .Type "showcases" }}
+                        {{ if .Params.client.quote }}
+                            <div class="carousel__item">
+                                <blockquote class="flow">
+                                    <p>{{ .Params.client.quote }}</p>
+                                    <footer class="cluster">
+                                        <span>{{ .Params.client.name }}</span>
+                                        <small>{{ .Params.client.function }}, {{ .Params.client.company }}</small>
+                                    </footer>
+                                </blockquote>
+                            </div>
+                        {{ end }}
+                    {{ end }}
                 {{ end }}
             </div>
         </div>

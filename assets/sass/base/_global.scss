@@ -26,4 +26,9 @@ body {
 
 a:not([class]) {
     color: var(--link-foreground, #{$link-foreground});
+
+    &:hover {
+        --link-foreground: var(--accent-600);
+        text-decoration: none;
+    }
 }
