@@ -1,5 +1,5 @@
 ---
-title: "GorillaMade - Sterke & Snel Ladende Websites"
+title: "Homepage"
 description: "Krachtige, razendsnelle websites die scoren in Google. Geen technisch gedoe. Hosting, SEO en webdesign geregeld door jouw digitale gorilla: GorillaMade."
 
 meta:
