@@ -43,6 +43,30 @@ h6 {
 }
 
 
+::-webkit-scrollbar {
+    block-size: var(--space-s);
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--neutral-500);
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--neutral-900);
+    border-radius: 0;
+}
+
+
+main {
+    overflow-x: clip;
+}
+
+
 
 // -----------------------------------------------------------------------------
 // Brand Styles
@@ -157,7 +181,8 @@ h6 {
 
 .showcase-region {
     .carousel {
-        padding-block: var(--space-s-l);
+        --scrollbar-track-color: var(--neutral-800);
+        --scrollbar-thumb-color: var(--neutral-600);
     }
 }
 
@@ -364,10 +389,11 @@ h6 {
 
 .testimonial-region {
     .carousel {
-        scrollbar-color: var(--neutral-500) var(--neutral-50);
+        --scrollbar-track-color: var(--neutral-300);
+        --scrollbar-thumb-color: var(--neutral-500);
 
         &__item {
-            --carousel-item-size: 95%;
+            --carousel-item-size: calc(100% - var(--space-2xl));
             --carousel-item-max-size: auto;
 
             blockquote {
@@ -494,6 +520,40 @@ h6 {
 // -----------------------------------------------------------------------------
 // Misc - Still need to order this
 // -----------------------------------------------------------------------------
+
+//
+//
+//
+
+@include mq(lg) {
+    .breakout {
+        width: calc(50% + 50vw);
+        width: calc(50% + 50cqw);
+    }
+    
+    .overflow {
+        overflow-x: auto;
+        padding-inline-end: var(--space-m);
+
+        &::-webkit-scrollbar {
+            block-size: var(--space-2xs);
+        }
+        
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
+        
+        &::-webkit-scrollbar-track {
+            background: var(--scrollbar-track-color, var(--neutral-700));
+            border-radius: 0;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb-color, var(--neutral-300));
+            border-radius: 0;
+        }
+    }
+}
 
 
 //

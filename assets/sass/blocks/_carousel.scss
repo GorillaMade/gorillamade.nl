@@ -1,14 +1,14 @@
 .carousel {
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
-    scrollbar-color: var(--neutral-500) var(--neutral-900);
-    scrollbar-width: auto;
+    scroll-snap-type: x mandatory;
+    padding-block-end: var(--space-m);
+    
 
     &__track {
         display: flex;
         gap: var(--gap, var(--space-m));
-        padding: var(--carousel-track-padding, 1rem);
+        padding-block-end: var(--carousel-track-padding, var(--space-s-l));
     }
 
 
@@ -18,7 +18,7 @@
         border-radius: var(--radius-m);
 
         width: var(--carousel-item-size, calc(100% - 2rem)); /* Je kunt dit aanpassen om meer items per view te tonen */
-        max-width: var(--carousel-item-max-size, 30rem); /* Max breedte per item */
+        max-width: var(--carousel-item-max-size, 33rem); /* Max breedte per item */
     }
 }
 
@@ -27,20 +27,21 @@
 //
 
 .carousel {
+    &::-webkit-scrollbar {
+        block-size: var(--space-xs);
+    }
+
     &::-webkit-scrollbar-button {
         display: none;
     }
 
-    &::-webkit-scrollbar {
-        height: 16px;
-    }
-
     &::-webkit-scrollbar-track {
-        background: var(--neutral-500);
+        background: var(--scrollbar-track-color);
+        border-radius: 0;
     }
 
     &::-webkit-scrollbar-thumb {
-        background: var(--neutral-900);
-        border-radius: 4px;
+        background: var(--scrollbar-thumb-color);
+        border-radius: 0;
     }
 }
