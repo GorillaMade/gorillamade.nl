@@ -2,11 +2,11 @@
 <meta name="viewport" content="width=device-width">
 
 <title>
-    {{ if .IsHome }}
-    {{ .Site.Title }}
-    {{ else }}
+{{ if .Params.metas.title }}
+    {{ printf "%s | %s" .Params.metas.Title .Site.Title }}
+{{ else }}
     {{ printf "%s | %s" .Title .Site.Title }}
-    {{ end }}
+{{ end }}
 </title>
 
 <!-- Meta Description -->

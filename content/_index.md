@@ -1,6 +1,20 @@
 ---
 title: "Homepage"
-description: "Pagina beschrijving"
+description: "Krachtige, razendsnelle websites die scoren in Google. Geen technisch gedoe. Hosting, SEO en webdesign geregeld door jouw digitale gorilla: GorillaMade."
+
+metas:
+  title: "Sterke & Snel Ladende Websites | GorillaMade Webdesign"
+  description: "Krachtige, razendsnelle websites die scoren in Google. Geen technisch gedoe. Hosting, SEO en webdesign geregeld door jouw digitale gorilla: GorillaMade."
+  keywords:
+    - webdesign Tilburg
+    - snelle website laten maken
+    - veilige website
+    - SEO specialist
+    - statische websites
+    - digitale gorilla
+    - website laten bouwen zzp / mkb
+    - website beheer uitbesteden
+    - vindbare website
 
 hero:
   title: "Gewoon een goede website, zonder gebrul!"
