@@ -43,25 +43,6 @@ h6 {
 }
 
 
-::-webkit-scrollbar {
-    block-size: var(--space-s);
-}
-
-::-webkit-scrollbar-button {
-    display: none;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--neutral-500);
-    border-radius: 0;
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--neutral-900);
-    border-radius: 0;
-}
-
-
 main {
     overflow-x: clip;
 }
@@ -392,20 +373,26 @@ main {
         --scroll-bar-track-color: var(--neutral-300);
         --scroll-bar-thumb-color: var(--neutral-500);
 
+        margin-block-start: var(--space-s-m);
+
         &__item {
-            --carousel-item-size: calc(100% - var(--space-2xl));
+            
+            --carousel-item-size: calc(100% - var(--space-xl-2xl));
             --carousel-item-max-size: auto;
 
+            --quote-line-color: var(--neutral-500);
+
+            border-top: 1px solid var(--quote-line-color);
+            border-bottom: 1px solid var(--quote-line-color);
+            border-radius: 0;
+
             blockquote {
-                --quote-line-color: var(--neutral-500);
                 display: flex;
                 justify-content: space-between;
                 flex-direction: column;
-                border-top: 1px solid var(--quote-line-color);
-                border-bottom: 1px solid var(--quote-line-color);
-                padding: var(--space-xl-2xl) var(--space-s-m);
+                
+                padding-block: var(--space-s-m);
                 margin: 0;
-                margin-inline-end: var(--space-s-l);
 
                 p {
                     font-style: italic;

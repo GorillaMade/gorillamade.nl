@@ -28,7 +28,7 @@
 
 .carousel {
     &::-webkit-scrollbar {
-        block-size: var(--space-2xs);
+        block-size: var(--scroll-bar-size);
     }
 
     &::-webkit-scrollbar-button {
