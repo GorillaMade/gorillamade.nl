@@ -1,6 +1,10 @@
 ---
 title: "Hosting"
-description: "Hosting description"
+description: "Ervaar razendsnelle, veilige hosting en professionele websitebeheer bij GorillaMade. Jij focust op je business, ik zorg voor een stabiele, beschermde online omgeving waar jouw site floreert."
+
+meta:
+  title: "Jouw website krachtig en veilig in de digitale jungle | GorillaMade"
+
 type: "services"
 featured: true
 weight: 20
@@ -23,7 +27,7 @@ faq:
         Ja, je bent niet gebonden aan onze hosting. Omdat je website volledig statisch is, kun je deze desgewenst eenvoudig verhuizen naar een andere partij.
 ---
 
-# Jouw Website, Krachtig en Beschermd in Mijn Digitale Jungle { class="section-title" }
+# Jouw website, krachtig en veilig in mijn digitale jungle { class="section-title" }
 
 Een plek waar jouw website zich veilig voelt, razendsnel beweegt en altijd zichtbaar is – dat is wat je krijgt in mijn gorilla-versterkte hostingomgeving. Denk aan een stevige tak hoog in de boom, ver weg van digitale roofdieren.
 

@@ -1,6 +1,10 @@
 ---
 title: "Websites"
-description: "Dit is de diensten pagina van: Websites"
+description: "Ontdek websites die kracht, snelheid en slimme SEO combineren. GorillaMade bouwt robuuste, razendsnelle sites die meer bezoekers, vertrouwen en klanten opleveren — zonder technische zorgen."
+
+meta:
+  title: "Websites gebouwd als een gorilla: sterk, snel en slim | GorillaMade"
+
 type: "services"
 featured: true
 weight: 10

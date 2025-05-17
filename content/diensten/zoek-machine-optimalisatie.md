@@ -1,6 +1,10 @@
 ---
 title: "Zoek Machine Optimalisatie"
-description: ""
+description: "Laat je website groeien in de online jungle met GorillaMade. Technische SEO die je site sneller, beter en vindbaarder maakt – zonder ingewikkeld jargon of valse beloftes."
+
+meta:
+  title: "Zorg dat je gevonden wordt met slimme SEO | GorillaMade"
+
 type: "services"
 featured: true
 weight: 30
