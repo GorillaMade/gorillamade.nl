@@ -3,8 +3,8 @@ baseURL: 'https://gorillamade.nl/'
 title: 'GorillaMade'
 
 # -- Taalinstellingen --
-defaultContentLanguage: nl
-defaultContentLanguageInSubdir: false
+# defaultContentLanguage: nl
+# defaultContentLanguageInSubdir: false
 
 # -- Robots.txt en URL canonisatie --
 enableRobotsTXT: true

@@ -10,7 +10,7 @@ featured: true
 weight: 10
 ---
 
-# Jouw Website – Gebouwd als een Gorilla: Sterk, Snel en Slim { class="block__heading" }
+# Jouw website – gebouwd als een gorilla: sterk, snel en slim { class="block__heading" }
 
 Ik ben jouw persoonlijke digitale gorilla – gebouwd voor kracht, snelheid en resultaat. Geen trage, logge websites hier. Ik ontwikkel gespierde, bliksemsnelle platforms op moderne, statische technologie. Het resultaat? Een website die direct klaarstaat om te presteren – zonder gehijg, zonder laadtijden.
 
