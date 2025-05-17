@@ -1,0 +1,29 @@
+<!-- partials/schemas/breadcrumb.html -->
+{{ if not .IsHome }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ .Site.BaseURL }}"
+    }{{ if .Parent }}{{ if not .Parent.IsHome }},
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ .Parent.Title }}",
+      "item": "{{ .Parent.Permalink }}"
+    }{{ end }}{{ end }},
+    {
+      "@type": "ListItem",
+      "position": {{ if .Parent }}{{ if not .Parent.IsHome }}3{{ else }}2{{ end }}{{ else }}2{{ end }},
+      "name": "{{ .Title }}",
+      "item": "{{ .Permalink }}"
+    }
+  ]
+}
+</script>
+{{ end }}

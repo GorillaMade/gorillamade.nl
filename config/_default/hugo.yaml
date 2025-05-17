@@ -1,10 +1,11 @@
 # -- Site configuratie --
 baseURL: 'https://gorillamade.nl/'
 title: 'GorillaMade'
+theme: starterkit
 
 # -- Taalinstellingen --
-# defaultContentLanguage: nl
-# defaultContentLanguageInSubdir: false
+defaultContentLanguage: "nl"
+defaultContentLanguageInSubdir: false
 
 # -- Robots.txt en URL canonisatie --
 enableRobotsTXT: true

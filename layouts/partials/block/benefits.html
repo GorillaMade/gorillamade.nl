@@ -5,7 +5,7 @@
             <div class="content flow">
                 {{ $lang := site.Language.Lang }}
                 {{ $benefits := index site.Data $lang "benefits" }}
-                {{ range $benefits }}
+                {{ range site.Data.benefits }}
                 <div class="benefits-region__item flow fade-in">
                     <h3 class="fs-400"><ion-icon name="{{ .icon }}"></ion-icon> {{ .title }}</h3>
                     <small><em>{{ .subtitle }}</em></small>

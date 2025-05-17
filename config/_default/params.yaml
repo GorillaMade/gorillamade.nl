@@ -1,23 +1,29 @@
-# -- Schema.org --
-schema:
-  localbusiness:
-    name: "GorillaMade"
-    url: "https://www.gorillamade.nl"
-    logo: "/media/gorillamade-opengraph-image.webp"
-    phone: "06123456778"
-    email: "hallo@gorillamade.nl"
-    street: "Ooftbouwstraat 16"
-    city: "Tilburg"
-    postalCode: "5022 EC"
-    country: "NL"
-    openingHours: "Mo-Fr 09:00-17:00"
-    priceRange: "€€"
-    description: "Digitale strategie en webdesign voor merken die impact willen maken."
-    # geo:
-    #   lat: 51.541029591719656
-    #   lng: 5.091036569202518
+schema_type: "HomeAndConstructionBusiness"
 
+# -- Basis informatie --
+location: "Tilburg"
+tagline: "Gewoon een goede website, zonder gebrul!"
+description: "Krachtige, razendsnelle websites die scoren in Google. Geen technisch gedoe. Hosting, SEO en webdesign geregeld door jouw digitale gorilla: GorillaMade."
 
+# -- Contact gegevens --
+phone: "0613897425"
+street_address: "Ooftbouwstraat 16"
+city: "Tilburg"
+postal_code: "5022 EC"
+country: "NL"
+area_served: "Tilburg en omgeving"
+email: "hallo@gorillamade.nl"
+
+# -- Geolocatie --
+# latitude: 51.6816
+# longitude: 5.0676
+
+# -- Afbeeldingen --
+logo: "/media/logo.png"
+og_image: "/media/og-image.png"
+site_logo: "/media/polklusbedrijf-logo.png"
+
+# -- Social media profiles --
 socials:
   - name: "nostr"
     icon: "/media/nostr-icon.svg"
@@ -30,3 +36,30 @@ socials:
   - name: "whatsapp"
     icon: ""
     link: "https://wa.me/0613897425?text=Ik%20ben%20geintresseerd%20in%20een%20website"
+
+# -- Prijsrange (€, €€, €€€, €€€€) --
+price_range: "€€"
+
+# Google Tag Manager ID (optioneel)
+# gtm_id: "GTM-XXXX"
+
+# umami Website ID
+umami_id: ""
+
+# -- Openingstijden --
+opening_hours:
+  - day: "Maandag"
+    opens: "09:00"
+    closes: "17:00"
+  - day: "Dinsdag"
+    opens: "09:00"
+    closes: "17:00"
+  - day: "Woensdag"
+    opens: "09:00"
+    closes: "17:00"
+  - day: "Donderdag"
+    opens: "09:00"
+    closes: "17:00"
+  - day: "Vrijdag"
+    opens: "09:00"
+    closes: "17:00"

@@ -1,0 +1,48 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "{{ .Site.Params.schema_type | default "LocalBusiness" }}",
+  "name": "{{ .Site.Title }}",
+  "image": "{{ .Site.Params.logo | absURL }}",
+  "url": "{{ .Site.BaseURL | absURL }}",
+  "@id": "{{ .Site.BaseURL | absURL }}#localbusiness",
+  "telephone": "{{ .Site.Params.phone }}",
+  "email": "{{ .Site.Params.email }}",
+  "priceRange": "{{ .Site.Params.price_range | default "€€" }}",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ .Site.Params.street_address }}",
+    "addressLocality": "{{ .Site.Params.city }}",
+    "postalCode": "{{ .Site.Params.postal_code }}",
+    "addressCountry": "{{ .Site.Params.country | default "NL" }}"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": {{ .Site.Params.latitude }},
+    "longitude": {{ .Site.Params.longitude }}
+  },
+  "areaServed": {
+    "@type": "Place",
+    "name": "{{ .Site.Params.area_served }}"
+  },
+  "openingHoursSpecification": [
+    {{ range $index, $element := .Site.Params.opening_hours }}
+      {{ if $index }},{{ end }}
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "{{ $element.day }}",
+        "opens": "{{ $element.opens }}",
+        "closes": "{{ $element.closes }}"
+      }
+    {{ end }}
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "email": "{{ .Site.Params.email }}",
+    "telephone": "{{ .Site.Params.phone }}",
+    "areaServed": "{{ .Site.Params.area_served }}",
+    "availableLanguage": ["{{ .Site.LanguageCode | default "nl" }}"]
+  }
+}
+</script>
