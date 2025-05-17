@@ -1,0 +1,30 @@
+@forward "globals";
+@forward "compositions";
+@forward "utilities";
+@forward "blocks";
+
+
+//
+//
+//
+
+h1, h2, h3 {
+    color: var(--heading-foreground, var(--neutral-900));
+    font-family: "Montserrat", sans-serif;
+    font-size: var(--heading-font-size, inherit);
+    font-weight: var(--heading-font-weight, var(--fw-bold));
+    line-height: 1.2;
+    margin-block-start: 0;
+}
+
+h1 {
+    --heading-font-size: var(--fs-700);
+}
+
+h2 {
+    --heading-font-size: var(--fs-600);
+}
+
+h3 {
+    --heading-font-size: var(--fs-500);
+}

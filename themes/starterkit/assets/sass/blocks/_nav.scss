@@ -1,0 +1,156 @@
+@use "../abstracts" as *;
+
+.nav {
+    $self: &;
+    display: none;
+    width: 100%;
+    order: 3;
+
+    &__list {
+        margin: 0;
+        padding: 0;
+
+        #{$self}__item {
+            position: relative;
+            width: 100%;
+
+            #{$self}__link,
+            .dropdown-wrapper {
+                --_nav-link-foreground: var(--nav-link-foreground, #{$nav-link-foreground});
+                --_nav-link-foreground-hover: var(--nav-link-foreground-hover, #{$nav-link-foreground-hover});
+                --_nav-link-foreground-active: var(--nav-link-foreground-active, #{$nav-link-foreground-active});
+
+                --_nav-link-background: var(--nav-link-background, #{$nav-link-background});
+                --_nav-link-background-hover: var(--nav-link-background-hover, #{$nav-link-background-hover});
+                --_nav-link-background-active: var(--nav-link-background-active, #{$nav-link-background-active});
+
+                --_nav-link-font-size: var(--nav-link-font-size, inherit);
+                --_nav-link-font-weight: var(--nav-link-font-weight, inherit);
+
+                --_nav-link-padding: var(--nav-link-padding, #{$nav-link-padding});
+                --_nav-link-border-radius: var(--nav-link-border-radius, #{$nav-link-border-radius});
+
+                display: flex;
+                background: var(--_nav-link-background);
+                color: var(--_nav-link-foreground);
+                padding: var(--_nav-link-padding);
+                border-radius: var(--_nav-link-border-radius);
+                font-size: var(--_nav-link-font-size);
+                font-weight: var(--_nav-link-font-weight);
+                text-decoration: none;
+
+                &:is(:hover, :focus-visible) {
+
+                    &,
+                    &:not([aria-current="page"], [aria-current="true"]) {
+                        --nav-link-foreground: var(--_nav-link-foreground-hover);
+                        --nav-link-background: var(--_nav-link-background-hover);
+                    }
+                }
+
+                &[aria-current="page"],
+                &[aria-current="true"] {
+                    --nav-link-foreground: var(--_nav-link-foreground-active);
+                    --nav-link-background: var(--_nav-link-background-active);
+                    --nav-link-font-weight: var(--fw-medium);
+                }
+            }
+        }
+    }
+}
+
+
+//
+//
+//
+
+.dropdown-wrapper {
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+
+    a {
+        --_nav-link-foreground: var(--nav-link-foreground, #{$nav-link-foreground});
+        --_nav-link-foreground-hover: var(--nav-link-foreground-hover, #{$nav-link-foreground-hover});
+        --_nav-link-foreground-active: var(--nav-link-foreground-active, #{$nav-link-foreground-active});
+
+        flex: 1;
+        color: var(--_nav-link-foreground);
+        text-decoration: none;
+    }
+
+    &__toggle {
+        appearance: none;
+        background: transparent;
+        border: none;
+        display: inline-flex;
+        padding: 0;
+
+        svg {
+            --_nav-link-foreground: var(--nav-link-foreground, #{$nav-link-foreground});
+            --_nav-link-foreground-hover: var(--nav-link-foreground-hover, #{$nav-link-foreground-hover});
+            --_nav-link-foreground-active: var(--nav-link-foreground-active, #{$nav-link-foreground-active});
+
+            fill: var(--dropdown-toggle-color, #{$nav-link-foreground});
+            transition: rotate 300ms ease-in-out;
+        }
+
+        &.open svg {
+            rotate: 180deg;
+        }
+    }
+
+
+
+    &:hover .dropdown-wrapper__toggle svg {
+        --dropdown-toggle-color: #{$nav-link-foreground-hover};
+    }
+
+
+    &[aria-current="page"] .dropdown-wrapper__toggle svg,
+    &[aria-current="true"] .dropdown-wrapper__toggle svg {
+        --dropdown-toggle-color: #{$nav-link-foreground-active};
+    }
+}
+
+
+.nav__dropdown {
+    background: $nav-dropdown-background;
+    display: none;
+    padding: var(--nav-dropdown-padding);
+    border: 1px solid var(--neutral-100);
+    box-shadow: $nav-dropdown-box-shadow;
+}
+
+
+
+.nav.open,
+.nav__dropdown.open {
+    display: block;
+}
+
+
+
+@media (width > 679px) {
+    .nav {
+        &,
+        &__list {
+            display: flex;
+        }
+
+        &,
+        &__item,
+        .dropdown-wrapper {
+            width: auto;
+        }
+
+        &__dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 180px;
+            max-width: fit-content;
+            z-index: 10;
+        }
+    }
+}

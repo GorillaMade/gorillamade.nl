@@ -1,0 +1,15 @@
+# Configuratie voor zoekmachine crawlers
+# ------------------------------------------------------------------------------
+
+User-agent: *
+Allow: /
+
+# Blokkeer specifieke mappen indien nodig
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap locatie
+Sitemap: https://gorillamade.nl/sitemap.xml
+
+# Crawl-delay directieven (optioneel, kan helpen bij serverbelasting)
+# Crawl-delay: 10

@@ -1,5 +1,5 @@
 ---
-title: "Proffesionele website met groei potentie"
+title: "Professionele website met groeipotentie"
 date: 2025-01-15T09:00:00-07:00
 description: "A modern, user-friendly website for Klessens Bouw, including a custom CMS."
 weight: 2

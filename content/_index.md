@@ -42,4 +42,4 @@ services:
 
 ## Digitale dominantie begint hier
 
-Websites die snel, veilig en zorgeloos draaien – inclusief hosting, e-mail en domeinnaam. Geen gedoe met techniek want Die neem ik voor mijn rekening. Zo weet jij zeker dat alles werkt en kun jij je focussen op jouw bedrijf.
+Websites die snel, veilig en zorgeloos draaien – inclusief hosting, e-mail en domeinnaam. Geen gedoe met techniek want **die** neem ik voor mijn rekening. Zo weet jij zeker dat alles werkt en kun jij je focussen op jouw bedrijf.

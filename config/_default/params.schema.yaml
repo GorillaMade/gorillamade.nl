@@ -16,17 +16,3 @@ schema:
     # geo:
     #   lat: 51.541029591719656
     #   lng: 5.091036569202518
-
-
-socials:
-  - name: "nostr"
-    icon: "/media/nostr-icon.svg"
-    link: "nostr:npub1s4eztsvantqp72jh2ygzk8t4q9gwva8xkqdj83kha9dupyk23kwqmlya7j"
-
-  - name: "github"
-    icon: ""
-    link: "https://github.com/GorillaMade"
-
-  - name: "whatsapp"
-    icon: ""
-    link: "https://wa.me/0613897425?text=Ik%20ben%20geintresseerd%20in%20een%20website"

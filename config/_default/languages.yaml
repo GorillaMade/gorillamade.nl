@@ -1,0 +1,26 @@
+nl:
+  baseURL: "https://gorillamade.nl"
+  languageName: "Nederlands"
+  languageCode: nl
+  LanguageDirection: "ltr"
+  weight: 0
+  contentDir: "/content"
+  dateFormat: "26 Februari 2006"
+  
+  permalinks:
+    services: "diensten/:slug/"
+    showcases: "showcases/:slug/"
+
+
+# en:
+#   baseURL: "https://gorillamade.nl/en/"
+#   languageName: "English"
+#   languageCode: "en"
+#   LanguageDirection: "ltr"
+#   weight: 2
+#   contentDir: "content/en"
+#   dateFormat: "26 Februari 2006"
+
+#   permalinks:
+#   services: "services/:slug/"
+#   showcases: "showcases/:slug/"

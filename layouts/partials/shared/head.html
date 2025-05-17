@@ -30,23 +30,11 @@
 <!-- Sitemap link -->
 <link rel="sitemap" type="application/xml" href='{{ "sitemap.xml" | absURL }}'>
 
-<!-- Open Graph (Facebook / LinkedIn / etc.) -->
-<meta property="og:title" content="{{ if .Params.meta.title }}{{ .Params.meta.title }}{{ else }}{{ .Title }}{{ end }}">
-<meta property="og:description"
-    content="{{ if .Params.meta.description }}{{ .Params.meta.description }}{{ else if .Description }}{{ .Description }}{{ end }}">
-<meta property="og:site_name" content="{{ .Site.Title }}">
-<meta property="og:url" content="{{ .Permalink }}">
-<meta property="og:type" content="website">
-<meta property="og:image"
-    content="{{ with .Params.image }}{{ . | absURL }}{{ else }}{{ .Site.Params.meta.image | default "/media/gorillamade-opengraph-image.webp"
-    | absURL }}{{ end }}">
+{{/* Open Graph (voor Facebook, LinkedIn, etc.) */}}
+{{ template "_internal/opengraph.html" . }}
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:description" content="{{ if .Params.meta.description }}{{ .Params.meta.description }}{{ else if .Description }}{{ .Description }}{{ end }}">
-<meta name="twitter:image"
-    content="{{ with .Params.image }}{{ . | absURL }}{{ else }}{{ .Site.Params.meta.image | default "/media/gorillamade-opengraph-image.webp"
-    | absURL }}{{ end }}">
+{{/* Twitter Cards */}}
+{{ template "_internal/twitter_cards.html" . }}
 
 <!-- Favicon -->
 <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | absURL }}">
@@ -62,7 +50,7 @@
 <!-- Web Manifest -->
 <link rel="manifest" href="{{ "site.webmanifest" | absURL }}">
 
-<!-- -->
+<!-- Preloads -->
 <link rel="preload" href="/fonts/Montserrat-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.woff2" as="font" type="font/woff2" crossorigin>
 
@@ -77,5 +65,5 @@
 {{ partialCached "shared/head/js.html" . }}
 
 <!-- Structured Data & Analytics -->
-{{/*  {{ partial "shared/head/localbusiness.html" . }}  */}}
+{{ partial "shared/head/localbusiness.html" . }}
 {{/*  {{ partial "shared/head/analytics.html" . }}  */}}

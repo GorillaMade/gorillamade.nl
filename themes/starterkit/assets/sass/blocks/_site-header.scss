@@ -1,0 +1,11 @@
+.site-header {
+    background: var(--site-header-bg-color, var(--neutral-50));
+    padding-block: var(--site-header-padding-block, var(--space-s));
+
+    &__inner {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

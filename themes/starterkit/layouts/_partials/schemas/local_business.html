@@ -1,0 +1,36 @@
+<!-- partials/schemas/local_business.html -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "{{ .Site.Title }}",
+    "image": "{{ .Site.Params.logo | absURL }}",
+    "url": "{{ .Site.BaseURL }}",
+    "@id": "{{ .Site.BaseURL }}#localbusiness",
+    "telephone": "{{ .Site.Params.phone }}",
+    "priceRange": "{{ .Site.Params.price_range | default "€€" }}",
+    "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "{{ .Site.Params.street_address }}",
+    "addressLocality": "{{ .Site.Params.city }}",
+    "postalCode": "{{ .Site.Params.postal_code }}",
+    "addressCountry": "{{ .Site.Params.country | default "NL" }}"
+    },
+    "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": {{ .Site.Params.latitude }},
+    "longitude": {{ .Site.Params.longitude }}
+    },
+    "openingHoursSpecification": [
+    {{ range $index, $element := .Site.Params.opening_hours }}
+        {{ if $index }},{{ end }}
+        {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "{{ $element.day }}",
+        "opens": "{{ $element.opens }}",
+        "closes": "{{ $element.closes }}"
+        }
+    {{ end }}
+    ]
+}
+</script>

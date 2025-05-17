@@ -1,0 +1,13 @@
+.reel {
+    display: grid;
+    gap: var(--reel-gap, 1rem);
+    grid-auto-flow: column;
+    grid-auto-columns: var(--reel-item-size, 50%);
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-padding: var(--reel-gap);
+
+    & > * {
+        scroll-snap-align: start;
+    }
+}

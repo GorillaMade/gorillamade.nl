@@ -1,0 +1,12 @@
+{{ define "main" }}
+  {{ partial "blocks/hero.html" . }}
+  <section class="[] [] [ region ]">
+    <div class="wrapper">
+      {{ .Content }}
+      {{ range site.RegularPages }}
+        <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+        {{ .Summary }}
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

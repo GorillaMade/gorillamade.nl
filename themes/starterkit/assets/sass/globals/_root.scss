@@ -1,0 +1,55 @@
+@use "../abstracts" as *;
+
+:root {
+    // Font-families
+    @each $prop, $value in $font-families {
+        --ff-#{$prop}: #{$value};
+    }
+
+    // Font-sizes
+    @each $prop, $value in $font-sizes {
+        --fs-#{$prop}: #{$value};
+    }
+
+    // Font-weights
+    @each $prop, $value in $font-weights {
+        --fw-#{$prop}: #{$value};
+    }
+
+
+    // Spaces
+    @each $prop, $value in $spaces {
+        --space-#{$prop}: #{$value};
+    }
+
+
+    // Default color theme (via $active-theme)
+    @each $color, $shade-map in $active-theme {
+        @each $shade, $value in $shade-map {
+            --#{$color}-#{$shade}: #{$value};
+        }
+    }
+}
+
+
+// Color(s) via data-theme attribute
+html[data-theme="dark"] {
+    @each $color, $shade-map in $dark {
+        @each $shade, $value in $shade-map {
+            --#{$color}-#{$shade}: #{$value};
+        }
+    }
+}
+
+// 🌓 Fallback: match system preference if no localStorage is used
+@if ($enable-media-prefers-dark-mode) {
+    @media (prefers-color-scheme: dark) {
+        :root {
+            @each $color, $shade-map in $dark {
+                @each $shade, $value in $shade-map {
+                    --#{$color}-#{$shade}: #{$value};
+                }
+            }
+        }
+    }
+}

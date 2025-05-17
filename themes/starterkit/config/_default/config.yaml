@@ -1,9 +1,9 @@
 # -- Site configuratie --
-baseURL: 'https://gorillamade.nl/'
-title: 'GorillaMade'
+baseURL: "https://example.nl/"
+title: "BedrijfsNaam"
 
 # -- Taalinstellingen --
-defaultContentLanguage: nl
+defaultContentLanguage: "nl"
 defaultContentLanguageInSubdir: false
 
 # -- Robots.txt en URL canonisatie --

@@ -1,0 +1,50 @@
+# -- Basis informatie --
+location: "Tilburg"
+tagline: "Jouw bedrijfsslogan"
+description: "Uitgebreide beschrijving van je bedrijf met lokale zoekwoorden"
+
+# -- Contact gegevens --
+phone: "+31612345678"
+street_address: "Voorbeeld straat 123"
+city: "Tilburg"
+postal_code: "1234 AA"
+country: "NL"
+area_served: "Tilburg en omgeving"
+
+# -- Geolocatie --
+latitude: 52.3676
+longitude: 4.9041
+
+# -- Afbeeldingen --
+logo: "/media/logo.png"
+og_image: "/media/og-image.png"
+
+# -- Social media profiles --
+social_profiles:
+  - "https://facebook.com/jouwbedrijf"
+  - "https://instagram.com/jouwbedrijf"
+  - "https://linkedin.com/company/jouwbedrijf"
+
+# -- Prijsrange (€, €€, €€€, €€€€) --
+price_range: "€€€"
+
+# Google Tag Manager ID (optioneel)
+# gtm_id: "GTM-XXXX"
+
+# -- Openingstijden --
+opening_hours:
+  - day: "Maandag"
+    opens: "09:00"
+    closes: "17:00"
+  - day: "Dinsdag"
+    opens: "09:00"
+    closes: "17:00"
+  - day: "Woensdag"
+    opens: "09:00"
+    closes: "17:00"
+  - day: "Donderdag"
+    opens: "09:00"
+    closes: "17:00"
+  - day: "Vrijdag"
+    opens: "09:00"
+    closes: "17:00"
