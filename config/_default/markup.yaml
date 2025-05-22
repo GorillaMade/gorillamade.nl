@@ -1,8 +1,0 @@
-# -- Goldmark configutation -- 
-goldmark:
-  renderer:
-    unsafe: true
-  parser:
-    wrapStandAloneImageWithinParagraph: false
-    attribute:
-      block: true

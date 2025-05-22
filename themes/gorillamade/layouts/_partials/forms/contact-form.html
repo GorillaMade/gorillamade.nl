@@ -1,0 +1,87 @@
+<div x-data="{ terugbel: false }" class="form-card flow">
+  <form 
+    id="contact-form"
+    class="flow"
+    hx-post="/send" 
+    hx-target="#form-response" 
+    hx-swap="innerHTML"
+    onsubmit="return validateContactForm(this)"
+  >
+    <h2>Contactformulier</h2>
+
+    <input type="text" name="naam" placeholder="Uw naam" />
+    <input type="email" name="email" placeholder="Uw e-mailadres" />
+    <textarea name="bericht" rows="4" placeholder="Uw bericht"></textarea>
+
+    <label class="flex-group">
+      <input type="checkbox" x-model="terugbel" />
+      Ik wil graag teruggebeld worden
+    </label>
+
+    <div class="flow" x-show="terugbel" x-transition>
+      <input type="tel" name="telefoon" placeholder="Telefoonnummer" :required="terugbel" />
+      <input type="date" name="dag" placeholder="Voorkeursdag" />
+      <div class="terugbellen">
+        <input type="time" name="tijd_van" />
+        <span>tot</span>
+        <input type="time" name="tijd_tot" />
+      </div>
+    </div>
+
+    <input type="hidden" name="_form" value="contact" />
+    <input type="hidden" name="_subject" value="Contactformulier website" />
+
+    <div>
+        <button type="submit" class="button" data-button-variant="accent">Verzend</button>
+    </div>
+  </form>
+
+  <div id="form-response"></div>
+</div>
+
+<script>
+  function resetForm() {
+    const form = document.getElementById('contact-form');
+    form.reset();
+    document.querySelector('[x-data]').__x.$data.terugbel = false;
+  }
+
+  function showError(message) {
+    const responseDiv = document.getElementById('form-response');
+    responseDiv.innerHTML = `<div class="form-error">${message}</div>`;
+    responseDiv.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function clearError() {
+    document.getElementById('form-response').innerHTML = '';
+  }
+
+  function validateContactForm(form) {
+    clearError();
+
+    const naam = form.querySelector('[name="naam"]');
+    const email = form.querySelector('[name="email"]');
+    const terugbel = form.querySelector('[type="checkbox"]').checked;
+    const telefoon = form.querySelector('[name="telefoon"]');
+
+    if (!naam.value.trim()) {
+      showError("Vul uw naam in.");
+      naam.focus();
+      return false;
+    }
+
+    if (!email.value.trim() || !email.validity.valid) {
+      showError("Voer een geldig e-mailadres in.");
+      email.focus();
+      return false;
+    }
+
+    if (terugbel && !telefoon.value.trim()) {
+      showError("Vul uw telefoonnummer in.");
+      telefoon.focus();
+      return false;
+    }
+
+    return true;
+  }
+</script>

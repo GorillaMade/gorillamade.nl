@@ -1,0 +1,20 @@
+{{ define "main" }}
+{{ partial "components/breadcrumb.html" . }}
+<section class="[ about ] [] [ region ]">
+    <div class="wrapper">
+        <div class="switcher">
+
+            <div class="flow">
+                {{ .Content }}
+            </div>
+
+            <figure class="about__image">
+                <img src="/media/timothy.webp" alt="Foto van Timothy de persoon achter GorillaMade">
+            </figure>
+
+        </div>
+    </div>
+</section>
+{{ partial "blocks/testimonials.html" . }}
+{{ partial "blocks/call-to-action.html" . }}
+{{ end }}

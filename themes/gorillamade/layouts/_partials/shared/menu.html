@@ -1,0 +1,63 @@
+{{- /*
+Renders a menu for the given menu ID.
+
+@context {page} page The current page.
+@context {string} menuID The menu ID.
+
+@example: {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+*/}}
+
+{{- $page := .page }}
+{{- $menuID := .menuID }}
+
+{{- with index site.Menus $menuID }}
+<nav class="nav" x-bind:class="{ 'open': menuOpen }">
+  <ul class="nav__list" role="list">
+    {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+  </ul>
+</nav>
+{{- end }}
+
+{{- define "partials/inline/menu/walk.html" }}
+{{- $page := .page }}
+{{- range .menuEntries }}
+{{- $attrs := dict "href" .URL }}
+{{- if $page.IsMenuCurrent .Menu . }}
+{{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") }}
+{{- else if $page.HasMenuCurrent .Menu .}}
+{{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") }}
+{{- end }}
+{{- $name := .Name }}
+{{- with .Identifier }}
+{{- with T . }}
+{{- $name = . }}
+{{- end }}
+{{- end }}
+{{ with .Children }}
+<li class="nav__item has-dropdown"
+  x-data="{ dropdownOpen: false, dropdownId: 'dropdown-' + Math.random().toString(36).substring(2, 8) }">
+  <div class="dropdown-wrapper" {{ with index $attrs "aria-current" }} aria-current="{{ . }}" {{ end }}>
+    <a {{- range $k, $v :=$attrs }} {{- with $v }} {{- printf " %s=%q" $k $v | safeHTMLAttr }} {{- end }} {{- end -}}>{{
+      $name }}</a>
+    <button class="dropdown-wrapper__toggle" :aria-controls="dropdownId" @click="dropdownOpen = !dropdownOpen"
+      :class="{ 'open': dropdownOpen }" :aria-label="dropdownOpen ? 'Dropdown sluiten' : 'Dropdown openen'"
+      :aria-expanded="dropdownOpen.toString()">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 512 298.04">
+        <path
+          d="M12.08 70.78c-16.17-16.24-16.09-42.54.15-58.7 16.25-16.17 42.54-16.09 58.71.15L256 197.76 441.06 12.23c16.17-16.24 42.46-16.32 58.71-.15 16.24 16.16 16.32 42.46.15 58.7L285.27 285.96c-16.24 16.17-42.54 16.09-58.7-.15L12.08 70.78z" />
+      </svg>
+    </button>
+
+  </div>
+  <ul class="nav__dropdown" role="list" :id="dropdownId" x-bind:class="{ 'open': dropdownOpen }"
+    :aria-hidden="(!dropdownOpen).toString()">
+    {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+  </ul>
+</li>
+{{ else }}
+<li class="nav__item">
+  <a {{ if .Params.button }}class="nav__button"{{ else }}class="nav__link"{{ end }} {{- range $k, $v :=$attrs }} {{- with $v }} {{- printf " %s=%q" $k $v | safeHTMLAttr }} {{- end }} {{- end -}}>{{ $name }}</a>
+</li>
+{{ end }}
+{{- end }}
+{{- end }}

@@ -1,0 +1,22 @@
+# -- Site configuratie --
+baseURL: "https://gorillamade.nl/"
+title: "GorillaMade"
+theme: "gorillamade"
+
+# -- Taalinstellingen --
+defaultContentLanguage: "nl"
+defaultContentLanguageInSubdir: false
+
+# -- Robots.txt en URL canonisatie --
+enableRobotsTXT: true
+canonifyURLs: true
+
+# -- Samenvatting en emoji ondersteuning --
+summaryLength: 70
+enableEmoji: true
+
+# -- Sitemap configuratie --
+sitemap:
+  changefreq: "monthly"
+  priority: 0.5
+  filename: "sitemap.xml"

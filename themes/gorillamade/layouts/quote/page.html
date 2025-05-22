@@ -1,0 +1,10 @@
+{{ define "main" }}
+{{ partial "components/breadcrumb.html" . }}
+<section class="[ offerte ] [] [ region ]">
+    <div class="wrapper wrapper--small" x-data="offerteForm()">
+
+        {{ partial "forms/quote-form.html" . }}
+
+    </div>
+</section>
+{{ end }}

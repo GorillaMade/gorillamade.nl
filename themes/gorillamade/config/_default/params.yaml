@@ -1,7 +1,3 @@
-# -- Bedrijfs gegevens --
-company_name: "GorillaMade"
-tagline: "Goede websites, zonder gebrul"
-
 # -- schema type --
 schema_type: "LocalBusiness"
 
@@ -9,7 +5,6 @@ schema_type: "LocalBusiness"
 location: "Tilburg"
 
 # -- Contact gegevens --
-email: "hallo@gorillamade.nl"
 phone: "0613897425"
 street_address: "Ooftbouwstraat 16"
 city: "Tilburg"

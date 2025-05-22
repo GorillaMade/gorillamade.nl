@@ -1,4 +1,3 @@
-# -- Site Navigation --
 main:
   - name: "Home"
     pageRef: "/"
@@ -18,7 +17,7 @@ main:
     pageRef: "/diensten/hosting"
     weight: 2
   - parent: "Diensten"
-    name: "S.E.O."
+    name: "Zoekmachine optimalisatie"
     pageRef: "/diensten/zoek-machine-optimalisatie"
     weight: 3
   - name: "Over mij"
@@ -27,21 +26,24 @@ main:
   - name: "Contact"
     pageRef: "/contact"
     weight: 50
+  - name: "Start nu"
+    pageRef: "/offerte"
+    weight: 90
+    params:
+      button: true
 
-# -- Footer Navigations --
-
-service:
+services:
   - name: "Websites"
     pageRef: "/diensten/websites"
     weight: 10
   - name: "Hosting"
     pageRef: "/diensten/hosting"
     weight: 20
-  - name: "Zoek Machine Optimalizatie"
+  - name: "Zoek machine optimalisatie"
     pageRef: "/diensten/zoek-machine-optimalisatie"
     weight: 30
 
-site:
+internals:
   - name: "Home"
     pageRef: "/"
     weight: 10
@@ -59,3 +61,5 @@ footer:
   - name: "Privacy"
     pageRef: "/privacy"
     weight: 20
+
+

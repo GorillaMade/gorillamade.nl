@@ -1,0 +1,175 @@
+<div class="form-card flow" 
+     x-data="{
+         step: 1,
+         form: {
+             naam: '',
+             email: '',
+             telefoon: '',
+             diensten: [],
+             omschrijving: '',
+             einddatum: '',
+             budget: ''
+         }
+     }">
+
+    <form class="flow space-y-6" 
+          hx-post="/verzend-offerte" 
+          hx-target="#form-response" 
+          hx-swap="innerHTML" 
+          id="offerte-form"
+          onsubmit="return validateForm();">
+
+        <!-- Stap-indicator -->
+        <div class="flex-group flex-group--spaced">
+            <template x-for="s in 3" :key="s">
+                <div :class="step >= s ? 'color-accent-500 fw-bold' : ''">Stap <span x-text="s"></span></div>
+            </template>
+        </div>
+
+        <!-- Stap 1: Contact -->
+        <div class="flow" x-show="step === 1" x-transition>
+            <h2>Contactgegevens</h2>
+            <input type="text" name="naam" placeholder="Naam" x-model="form.naam" required />
+            <input type="email" name="email" placeholder="E-mail" x-model="form.email" required />
+            <input type="tel" name="telefoon" placeholder="Telefoonnummer" x-model="form.telefoon" required />
+            <button type="button" class="button" data-button-variant="accent"
+                @click="if (validateStap1()) step++">Volgende</button>
+        </div>
+
+        <!-- Stap 2: Diensten & Budget -->
+        <div class="flow" x-show="step === 2" x-transition>
+            <h2>Diensten & Budget</h2>
+
+            <div class="field-group">
+                <label>Selecteer de gewenste diensten:</label>
+                <div class="flow">
+                    <label class="flex-group">
+                        <input type="checkbox" value="Websites" x-model="form.diensten" />
+                        Websites
+                    </label>
+                    <label class="flex-group">
+                        <input type="checkbox" value="Hosting" x-model="form.diensten" />
+                        Hosting
+                    </label>
+                    <label class="flex-group">
+                        <input type="checkbox" value="SEO" x-model="form.diensten" />
+                        SEO
+                    </label>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label for="budget">Budgetindicatie:</label>
+                <select name="budget" x-model="form.budget" required>
+                    <option value="">-- Kies een budget --</option>
+                    <option value="<1000">Minder dan €1000</option>
+                    <option value="1000-2000">€1000 - €2000</option>
+                    <option value="2000-3000">€2000 - €3000</option>
+                    <option value="3000+">Meer dan €3000</option>
+                </select>
+            </div>
+
+            <textarea name="omschrijving" rows="4" placeholder="Beschrijf je wensen of vragen" x-model="form.omschrijving" required></textarea>
+
+            <div class="field-group">
+                <label for="einddatum">Gewenste opleverdatum:</label>
+                <input type="date" name="einddatum" x-model="form.einddatum" required />
+            </div>
+
+            <div class="flex-group flex-group--spaced">
+                <button type="button" class="button" @click="step--">← Terug</button>
+                <button type="button" class="button" data-button-variant="accent"
+                    @click="if (validateStap2()) step++">Volgende</button>
+            </div>
+        </div>
+
+        <!-- Stap 3: Bevestiging -->
+        <div class="flow" x-show="step === 3" x-transition>
+            <h2>Bevestiging</h2>
+            <p>Controleer je gegevens:</p>
+
+            <div class="form-group flow">
+                <p><strong>Naam:</strong> <span x-text="form.naam"></span></p>
+                <p><strong>Email:</strong> <span x-text="form.email"></span></p>
+                <p><strong>Telefoon:</strong> <span x-text="form.telefoon"></span></p>
+                <p><strong>Diensten:</strong> <span x-text="form.diensten.join(', ')"></span></p>
+                <p><strong>Budget:</strong> <span x-text="form.budget"></span></p>
+                <p><strong>Omschrijving:</strong> <span x-text="form.omschrijving"></span></p>
+                <p><strong>Gewenste einddatum:</strong> <span x-text="form.einddatum"></span></p>
+            </div>
+
+            <input type="hidden" name="_form" value="offerte" />
+            <input type="hidden" name="_subject" value="Offerteaanvraag: Dienstverlening" />
+
+            <div class="flex-group flex-group--spaced">
+                <button type="button" class="button" @click="step--">← Terug</button>
+                <button type="submit" class="button" data-button-variant="accent">Verzend aanvraag</button>
+            </div>
+        </div>
+    </form>
+
+    <div id="form-response" class="mt-4"></div>
+</div>
+
+<script>
+    function showError(message) {
+        const responseDiv = document.getElementById('form-response');
+        responseDiv.innerHTML = `<div class="form-error" style="color: red; font-weight: bold;">${message}</div>`;
+        responseDiv.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function clearError() {
+        document.getElementById('form-response').innerHTML = '';
+    }
+
+    function validateStap1() {
+        clearError();
+        const naam = document.querySelector('[name="naam"]');
+        const email = document.querySelector('[name="email"]');
+        const tel = document.querySelector('[name="telefoon"]');
+
+        if (!naam.value.trim()) {
+            showError("Vul je naam in.");
+            naam.focus();
+            return false;
+        }
+
+        if (!email.value.trim() || !email.validity.valid) {
+            showError("Voer een geldig e-mailadres in.");
+            email.focus();
+            return false;
+        }
+
+        if (!tel.value.trim()) {
+            showError("Vul je telefoonnummer in.");
+            tel.focus();
+            return false;
+        }
+
+        return true;
+    }
+
+    function validateStap2() {
+        clearError();
+        const diensten = document.querySelectorAll('[type="checkbox"][x-model="form.diensten"]:checked');
+        const budget = document.querySelector('[name="budget"]');
+
+        if (diensten.length === 0) {
+            showError("Selecteer ten minste één dienst.");
+            return false;
+        }
+
+        if (!budget.value) {
+            showError("Kies een budgetindicatie.");
+            budget.focus();
+            return false;
+        }
+
+        return true;
+    }
+
+    function validateForm() {
+        clearError();
+        return validateStap1() && validateStap2();
+    }
+</script>

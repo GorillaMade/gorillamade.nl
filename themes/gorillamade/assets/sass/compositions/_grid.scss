@@ -1,0 +1,18 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-placement, auto-fill), minmax(min(var(--grid-min-item-size, 16rem), 100%), 1fr));
+    gap: var(--grid-gap, var(--space-s-l));
+}
+
+
+.grid {
+    &[data-layout='halves'] {
+    --grid-placement: auto-fit;
+    --grid-min-item-size: clamp(16rem, 50dvw, 32rem);
+  }
+
+  &[data-layout='thirds'] {
+    --grid-placement: auto-fit;
+    --grid-min-item-size: clamp(16rem, 33%, 26rem);
+  }
+}

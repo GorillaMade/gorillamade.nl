@@ -1,0 +1,10 @@
+<section class="[ hero-region ] [] [ region ]">
+    <div class="wrapper flow">
+        <h1 class="hero-region__heading">{{ .Params.block_hero.heading }}</h1>
+        <p>{{ .Params.block_hero.body | markdownify }}</p>
+        <div class="flex-group">
+            <a href="{{ .Params.block_hero.button.url }}" class="button" data-button-variant="primary">{{ .Params.block_hero.button.text }}</a>
+            <a href="{{ .Params.block_hero.button.url }}" class="button" data-button-variant="accent">{{ .Params.block_hero.button.text }}</a>
+        </div>
+    </div>
+</section>

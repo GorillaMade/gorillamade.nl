@@ -1,0 +1,26 @@
+<section class="[ testimonial-region ] [ bg-neutral-100 ] [ region ]">
+    <div class="wrapper fade-in">
+        <h2 class="block__heading">Klanten die het digitale oerwoud met ons trotseerden</h2>
+        <div class="breakout">
+            <div class="carousel overflow">
+                <div class="carousel__track">
+                    {{ range site.Pages }}
+                        {{ if eq .Type "showcase" }}
+                            {{ if .Params.client.quote }}
+                                <div class="carousel__item">
+                                    <blockquote class="flow">
+                                        <p>{{ .Params.client.quote }}</p>
+                                        <footer class="cluster">
+                                            <span>{{ .Params.client.name }}</span>
+                                            <small class="color-neutral-600">{{ .Params.client.function }}, {{ .Params.client.company }}</small>
+                                        </footer>
+                                    </blockquote>
+                                </div>
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

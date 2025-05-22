@@ -1,0 +1,120 @@
+<section class="[ sub-footer ] [] [ region ]">
+    <div class="sub-footer__inner wrapper">
+
+        <!-- -->
+        <div class="sub-footer__col span2 flow">
+            <h3 class="fs-300 color-neutral-900">Gorilla<span class="fw-light">Made</span> <small>in het kort</small>
+            </h3>
+            <p>Jouw digitale partner – van krachtige websites tot hosting en zoekmachine optimalisatie, alles wat je nodig hebt om te heersen
+                in je online jungle.</p>
+            <nav>
+                <ul class="sub-footer__list cluster" role="list">
+                    {{ range .Site.Params.social_profiles }}
+                    <li>
+                        {{- $link := .link -}}
+                        {{ if strings.HasPrefix $link "nostr:" }}
+                        <a href="{{ .link | safeURL }}" aria-label="link naar {{ .name }}"><ion-icon
+                                src="{{ .icon | relURL }}" size="large" name="logo-{{ .name }}"></ion-icon><span
+                                class="visually-hidden">{{ .platform }}</span></a>
+                        {{ else }}
+                        <a href="{{ .link }}" aria-label="link naar {{ .name }}"><ion-icon size="large"
+                                name="logo-{{ .name }}"></ion-icon><span class="visually-hidden">{{ .platform
+                                }}</span></a>
+                        {{ end }}
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+
+        <!-- -->
+        <div class="sub-footer__col flow">
+            <h3 class="fs-200 color-neutral-900">Quick links</h3>
+            <nav>
+                <ul class="sub-footer__list" role="list">
+                    {{ range .Site.Menus.internals }}
+                    <li>
+                        <a href="{{ .PageRef }}">{{ .Name }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+
+        <!-- -->
+        <div class="sub-footer__col flow">
+            <h3 class="fs-200 color-neutral-900">Directe links</h3>
+            <nav>
+                <ul class="sub-footer__list" role="list">
+                    {{ range .Site.Menus.services }}
+                    <li>
+                        <a href="{{ .PageRef }}">{{ .Name }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</section>
+<footer class="[ site-footer ] [] [ region ]">
+    <div class="site-footer__inner wrapper flex-group flex-group--spaced">
+        <small>
+            {{ i18n "footer.copyright" (dict "Year" (now.Year) "SiteName" .Site.Title) }}
+        </small>
+        <nav>
+            <ul role="list" class="cluster">
+                {{ range .Site.Menus.footer }}
+                <li>
+                    <a href="{{ .PageRef }}">{{ .Name }}</a>
+                </li>
+                {{ end }}
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<script>
+    function stickyMenu() {
+        return {
+            lastScroll: window.pageYOffset,
+            showFixed: false,
+            hideMenu: false,
+            init() {
+                window.addEventListener('scroll', () => {
+                    const current = window.pageYOffset;
+
+                    // Naar beneden scrollen
+                    if (current > this.lastScroll && current > 100) {
+                        this.hideMenu = true;
+                        this.showFixed = true;
+                    }
+                    // Naar boven scrollen
+                    else if (current < this.lastScroll && current > 100) {
+                        this.hideMenu = false;
+                        this.showFixed = true;
+                    }
+                    // Bovenaan de pagina
+                    else if (current <= 100) {
+                        this.hideMenu = false;
+                        this.showFixed = false;
+                    }
+
+                    this.lastScroll = current;
+                });
+
+                this.$nextTick(() => {
+                    const headerHeight = this.$refs.header.offsetHeight;
+                    this.$refs.spacer.style.height = headerHeight + 'px';
+                });
+            }
+        }
+    }
+</script>
+
+
+
+<!-- ionicon -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

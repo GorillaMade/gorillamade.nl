@@ -1,0 +1,75 @@
+.card {
+    --_card-border-radius: var(--card-border-radius, var(--radius-m));
+
+    border-radius: var(--_card-border-radius);
+    box-shadow: var(--shadow-xs);
+
+    &__content {
+        padding: var(--space-m);
+    }
+}
+
+
+// -----------------------------------------------------------------------------
+// Exceptions
+// -----------------------------------------------------------------------------
+
+//
+// Showcase card styles
+//
+
+.showcase-card {
+    --_showcase-foreground: var(--showcase-foreground);
+    --_showcase-background: var(--showcase-background);
+
+    $self: &;
+    color: var(--_showcase-foreground);
+    background: var(--showcase-background);
+    display: block;
+    position: relative;
+    overflow: clip;
+    border-radius: var(--radius-l);
+
+    &__heading {
+        --heading-foreground: var(--_showcase-foreground);
+        font-size: var(--fs-300);
+    }
+
+    &__content {
+        padding-block-start: var(--space-s-l);
+        padding-inline: var(--space-m);
+
+        #{ $self }__title {
+            font-size: var(--fs-300);
+        }
+
+        #{ $self }__link {
+            color: var(--_showcase-foreground);
+            display: inline-flex;
+            align-items: center;
+            text-decoration: none;
+            padding-block: var(--space-xs);
+        }
+    }
+
+
+    &__image {
+        &:is(figure) {
+            margin: 0;
+            padding: 0;
+        }
+
+        display: flex;
+        justify-content: center;
+        align-content: flex-end;
+
+
+
+        img {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 1;
+            object-fit: contain;
+        }
+    }
+}

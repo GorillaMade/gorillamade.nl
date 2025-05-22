@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ partial "components/breadcrumb.html" . }}
+<div class="[ sidebar ] [ wrapper ] [ region ]">
+    <article class="flow">
+        {{ .Content }}
+    </article>
+    <aside>
+        <div class="widget widget--sticky flow bg-neutral-100">
+            <p>Heb je hulp nodig bij je digitale avontuur? Deze gorilla staat paraat.</p>
+            <a href="/offerte" class="button" data-button-ghost>Start een project</a>
+            <a href="/contact" class="button" data-button-variant="accent">Contact</a>
+        </div>
+    </aside>
+</div>
+{{ end }}

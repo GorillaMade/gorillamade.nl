@@ -1,0 +1,94 @@
+# -- Globals --
+
+next:
+  other: "Volgende"
+
+previous:
+  other: "Vorige"
+
+read_more:
+  other: "Lees verder"
+
+more_info:
+  other: "Meer informatie"
+
+view_more:
+  other: "Bekijk meer"
+
+go_home:
+  other: "Terug naar home"
+
+start_project:
+  other: "Start een project"
+
+tags:
+  other: "Tags"
+
+category:
+  other: "Catagorie"
+
+
+
+# -- Showcase(s) --
+
+view_showcase:
+  other: "Bekijk case"
+
+client:
+  other: "Klant"
+
+view_result:
+  other: "Bekijk het resultaat"
+
+
+
+# -- Form naming --
+
+form_name:
+  other: "Naam"
+
+form_phone:
+  other: "Telefoonnummer"
+
+form_mail:
+  other: "email"
+
+form_subject:
+  title:
+    other: "Reden voor contact"
+  default:
+    other: "-- Selecteer een optie --"
+  options:
+    ask_question:
+      other: "Stel een vraag"
+    start_project:
+      other: "Start een project"
+
+send:
+  other: "Verzend"
+
+
+# -- 404 error --
+error404:
+  title:
+    other: "Pagina niet gevonden"
+  message:
+    other: "Oeps! De pagina die je zoekt bestaat niet (meer), of je hebt je misschien vergist in het adres."
+
+
+
+# -- Region: Call to action --
+block_cta:
+  heading:
+    other: "Klaar voor een zichtbare, snelle website?"
+  text:
+    other: "Laten we samen jouw online positie versterken — één solide website, zonder ruis."
+  button:
+    other: "Laten we praten"
+
+
+
+# -- Site footer copyright --
+footer:
+  copyright:
+    other: "© {{ .Year }} {{ .SiteName }}. Alle rechten voorbehouden."
