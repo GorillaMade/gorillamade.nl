@@ -11,8 +11,13 @@ block_hero:
   body: "Als jouw **digitale gorilla** help ik je te domineren in de online jungle. Samen bouwen we aan een **snelle**, **veilige** en **vindbare** website – volledig in jouw controle."
 
   button:
-    text: "Bekijk showcases"
-    url: "#showcases"
+    primary:
+      text: "Bekijk showcases"
+      url: "#showcases"
+
+    secondary:
+      text: "Start een project"
+      url: "/offerte"
 
 block_showcases:
   heading: "Digitale successen uit mijn jungle"

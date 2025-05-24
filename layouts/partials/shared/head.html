@@ -1,0 +1,95 @@
+<!-- Basis meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Titel en meta description met lokale zoekwoorden -->
+<title>
+  {{ if .IsHome }}
+  {{ .Site.Title }} - {{ .Site.Params.tagline }}
+  {{ else }}
+  {{ .Title }} | {{ .Site.Title }}
+  {{ end }}
+</title>
+<meta name="description"
+  content="{{ if .Description }}{{ .Description }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }} - {{ .Site.Params.location }}">
+
+<!-- Canonical URL -->
+<link rel="canonical" href="{{ if .Params.canonical }}{{ .Params.canonical }}{{else}}{{ .Permalink | absURL }}{{end}}">
+
+<!-- Alternatieve talen (indien van toepassing) -->
+{{ range .AllTranslations }}
+<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
+{{ end }}
+<link rel="alternate" hreflang="x-default" href="{{ .Site.BaseURL }}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:title"
+  content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.location }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+<meta property="og:description"
+  content="{{ if .Description }}{{ .Description }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }} - {{ .Site.Params.location }}">
+<meta property="og:image" content="{{ .Site.Params.og_image | absURL }}">
+<meta property="og:locale" content="{{ .Site.LanguageCode | default " nl_NL" }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title"
+  content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.location }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+<meta name="twitter:description"
+  content="{{ if .Description }}{{ .Description }}{{ else }}{{ if .IsPage }}{{ .Summary | plainify }}{{ else }}{{ .Site.Params.description }}{{ end }}{{ end }} - {{ .Site.Params.location }}">
+<meta name="twitter:image" content="{{ .Site.Params.og_image | absURL }}">
+
+<!-- Favicon voor dark theme -->
+<link rel="icon" type="image/svg+xml" href="{{ "favicon-dark.svg" | absURL }}" media="(prefers-color-scheme: dark)">
+
+<!-- Favicon voor light theme -->
+<link rel="icon" type="image/svg+xml" href="{{ "favicon-light.svg" | absURL }}" media="(prefers-color-scheme: light)">
+
+<!-- Fallback favicon voor browsers zonder theme-ondersteuning -->
+<link rel="shortcut icon" href="{{ "favicon.ico" | absURL }}">
+
+<!-- Apple Touch Icon -->
+<link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | absURL }}">
+
+<!-- Other Favicons -->
+<link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | absURL }}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | absURL }}">
+
+<!-- Web Manifest -->
+<link rel="manifest" href="{{ "site.webmanifest" | absURL }}">
+
+<!-- Robots instructies -->
+<meta name="robots" content="index, follow">
+
+<!-- Link naar sitemap -->
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
+
+<!-- Schema.org JSON-LD scripts -->
+{{- partial "schemas/all.html" . -}}
+
+<!-- HTMX -->
+<script defer src="/js/htmx.min.js"></script>
+
+<!-- Alpine.js -->
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+{{- partialCached "head/css.html" . -}}
+{{- partialCached "head/js.html" . -}}
+
+<!-- Google Tag Manager (indien nodig) -->
+{{- if .Site.Params.gtm_id -}}
+<script>(function (w, d, s, l, i) {
+    w[l] = w[l] || []; w[l].push({
+      'gtm.start':
+        new Date().getTime(), event: 'gtm.js'
+    }); var f = d.getElementsByTagName(s)[0],
+      j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+  })(window, document, 'script', 'dataLayer', '{{ .Site.Params.gtm_id }}');</script>
+{{- end -}}
+
+{{ if .Site.Params.umami_id }}
+<script defer src="https://cloud.umami.is/script.js" data-website-id="{{ .Site.Params.umami_id }}"></script>
+{{ end }}
