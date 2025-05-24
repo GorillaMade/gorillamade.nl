@@ -111,8 +111,37 @@
             }
         }
     }
-</script>
 
+    function resetForm() {
+        const offerteForm = document.getElementById('offerte-form');
+        if (offerteForm) {
+            offerteForm.reset(); // Reset standaard velden
+
+            // Zoek het Alpine component en reset alle x-data waarden
+            const alpineComponent = offerteForm.closest('[x-data]');
+            if (alpineComponent && alpineComponent.__x && alpineComponent.__x.$data) {
+                alpineComponent.__x.$data.step = 1;
+                alpineComponent.__x.$data.form = {
+                    naam: '',
+                    email: '',
+                    telefoon: '',
+                    diensten: [],
+                    omschrijving: '',
+                    einddatum: '',
+                    budget: ''
+                };
+            }
+        }
+    }
+
+    document.body.addEventListener('htmx:afterSwap', function (event) {
+        if (event.detail.target.id === "form-response") {
+            if (event.detail.xhr.responseText.includes('form-success')) {
+                resetForm();
+            }
+        }
+    });
+</script>
 
 
 <!-- ionicon -->
