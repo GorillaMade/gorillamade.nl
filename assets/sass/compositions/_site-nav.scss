@@ -61,11 +61,11 @@
     }
 
     &:is(:hover, :focus-visible):after {
-        --_nav-link-foreground: var(--nav-link-foreground-hover, #{$nav-link-foreground-hover});
+        --nav-link-foreground: var(--nav-link-foreground-hover, #{$nav-link-foreground-hover});
     }
 
     &.open:after {
-        --_nav-link-foreground: var(--nav-link-foreground-active, #{$nav-link-foreground-active});
+        --nav-link-foreground: var(--nav-link-foreground-active, #{$nav-link-foreground-active});
     }
 }
 
@@ -96,7 +96,7 @@
             align-items: center;
 
             ion-icon {
-                color: var(--nav-link-foreground);
+                color: var(--nav-link-foreground, #{$nav-link-foreground});
                 transition: all 300ms ease-in-out;
             }
         }
