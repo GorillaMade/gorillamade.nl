@@ -1,5 +1,5 @@
-baseURL: "https://example.org/"
-languageCode: "en-us"
+baseURL: "https://gorillamade.nl/"
+languageCode: "nl"
 title: "GorillaMade"
 
 taxonomies:
