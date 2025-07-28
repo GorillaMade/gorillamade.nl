@@ -49,17 +49,15 @@ h3 {
 // Anchor(s)
 // -----------------------------------------------------------------------------
 
-a:has(:not([class])) {
+a:not([class]) {
     --_link-foreground: var(--link-foreground, #{$link-foreground});
     --_link-foreground-hover: var(--link-foreground-hover, #{$link-foreground-hover});
 
-    --_link-text-decoration: var(--link-text-decoration, underlined);
-
     color: var(--_link-foreground);
     cursor: pointer;
-    text-decoration: var(--_link-text-decoration);
+    text-decoration: var(--link-text-decoration, none);
 
-    &:hover {
+    &:is(:hover, :focus-visible) {
         color: var(--_link-foreground-hover);
     }
 }

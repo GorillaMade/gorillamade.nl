@@ -21,12 +21,14 @@
             position: relative;
 
             a {
+                --_link-foreground: var(--link-foreground, #{$nav-link-foreground});
+                --_link-foreground-hover: var(--link-foreground-hover, #{$nav-link-foreground-hover});
                 display: block;
-                color: var(--nav-link-foreground, #{$nav-link-foreground});
+                color: var(--_link-foreground);
                 text-decoration: none;
 
                 &:is(:hover, :focus-visible) {
-                    --nav-link-foreground: var(--nav-link-foreground-hover, #{$nav-link-foreground-hover});
+                    color: var(--_link-foreground-hover);
                 }
                 
                 @media (max-width: 974px) {

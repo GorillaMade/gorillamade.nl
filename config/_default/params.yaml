@@ -1,7 +1,7 @@
 # -- Company --
 company_name: "GorillaMade"
-email: "info@mijndomein.nl"
-phone: "0612345678"
+email: "hallo@gorillamade.nl"
+phone: "0613897425"
 chat_with_us:
   - name: "nostr"
     icon: "/media/icon-nostr.svg"
@@ -16,8 +16,8 @@ chat_with_us:
     link: "https://wa.me/0613897425?text=Ik%20ben%20geintresseerd%20in%20je%20website%20diensten"
   
 # -- Address information --
-street_address: "Straatnaam 123"
-zipcode: "1234 AB"
+street_address: "Ooftbouwstraat 16"
+zipcode: "5022 EC"
 city: "Tilburg"
 
 # -- SocialMedia --
@@ -60,17 +60,17 @@ schema:
     context: "https://schema.org"
     type: "Organisation"
     name: "Jouw Bedrijfsnaam"
-    url: "https://www.jouwwebsite.nl"
-    logo: "https://www.jouwwebsite.nl/media/logo.png"
+    url: "https://www.gorillamade.nl"
+    logo: "https://www.gorillamade.nl/media/logo.png"
     description: "Korte beschrijving van je bedrijf of website."
     sameAs:
-      - "https://www.facebook.com/jouwbedrijf"
-      - "https://www.linkedin.com/company/jouwbedrijf"
+      - "https://primal.net/p/npub1s4eztsvantqp72jh2ygzk8t4q9gwva8xkqdj83kha9dupyk23kwqmlya7j"
+      - "https://www.linkedin.com/company/GorillaMade"
     address:
       type: "PostalAddress"
     contactPoint:
       type: "ContactPoint"
-      telephone: "+31-6-12345678"
+      telephone: "+31-6-13897425"
       contactType: "customer service"
       areaServed: "NL"
       availableLanguage: "Dutch"
@@ -79,11 +79,11 @@ schema:
     enabled: true
     context: "https://schema.org"
     type: "WebSite"
-    name: "Jouw Website Naam"
-    url: "https://www.jouwsite.nl"
+    name: "GorillaMade"
+    url: "https://www.gorillamade.nl"
     potentialAction:
       type: "SearchAction"
-      target: "https://www.jouwsite.nl/?s={search_term_string}"
+      target: "https://www.gorillamade.nl/?s={search_term_string}"
       queryInput: "required name=search_term_string"
 
   

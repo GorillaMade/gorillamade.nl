@@ -1,0 +1,24 @@
+{{ define "main" }}
+<section class="[ klanten ] [] [ region ]">
+    <div class="wrapper wrapper--small">
+        {{ partial "breadcrumb.html" . }}
+        <h1 class="page-title">{{ .Title }}</h1>
+        <p>{{ .Content | markdownify }}</p>
+    </div>
+    <div class="wrapper">
+        <ul class="grid" role="list">
+            {{ range site.Pages }}
+            {{ if eq .Type "showcases" }}
+            {{ if .Params.client.quote }}
+            <li>
+                <figure>
+                    <img src="{{ .Params.client.company_logo }}" alt="{{ .Params.client.company }}">
+                </figure>
+            </li>
+            {{ end }}
+            {{ end }}
+            {{ end }}
+        </ul>
+    </div>
+</section>
+{{ end }}
