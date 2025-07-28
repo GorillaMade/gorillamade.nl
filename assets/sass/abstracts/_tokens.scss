@@ -1,0 +1,92 @@
+@use "./colors" as *;
+
+// -----------------------------------------------------------------------------
+// 
+// -----------------------------------------------------------------------------
+
+$active-theme: $light;
+$enable-media-prefers-dark-mode: true;
+
+$global-border-radius: var(--radius-m);
+
+
+// -----------------------------------------------------------------------------
+// 
+// -----------------------------------------------------------------------------
+
+$body-foreground: var(--neutral-600);
+$body-background: var(--neutral-50);
+$body-font-family: var(--ff-sans);
+$body-font-size: var(--fs-step-0);
+$body-font-weight: var(--fw-regular);
+$body-line-height: 1.45;
+
+
+$heading-font-family: "Montserrat", sans-serif;
+$heading-font-size: inherit;
+$heading-font-weight: var(--fw-bold);
+$heading-line-height: 1.1;
+
+
+$link-foreground: var(--neutral-800);
+$link-foreground-hover: var(--primary-600);
+
+
+// -----------------------------------------------------------------------------
+// 
+// -----------------------------------------------------------------------------
+
+$nav-link-foreground: var(--neutral-500);
+$nav-link-foreground-hover: var(--neutral-700);
+$nav-link-foreground-active: var(--neutral-900);
+
+
+
+// -----------------------------------------------------------------------------
+// Hamburger
+// -----------------------------------------------------------------------------
+
+$hamburger-background: transparent;
+$hamburger-padding: var(--space-2xs);
+$hamburger-animation-timing: 200ms ease-in-out;
+$hamburger-border: none;
+$hamburger-border-radius: $global-border-radius;
+
+$hamburger-bar-color: var(--neutral-800);
+$hamburger-bar-width: 36px;
+$hamburger-bar-height: 6px;
+$hamburger-bar-gap: 4px;
+
+
+
+// -----------------------------------------------------------------------------
+// Button
+// -----------------------------------------------------------------------------
+
+$button-font-size: var(--fs-400);
+$button-font-weight: var(--fw-medium);
+
+$button-foreground: var(--neutral-700);
+$button-foreground-hover: var(--neutral-50);
+$button-background: var(--neutral-200);
+$button-background-hover: var(--neutral-950);
+
+$button-padding: .75rem 1.5rem;
+
+$button-border-width: 2px;
+$button-border-style: solid;
+$button-border-color: var(--button-border-color, transparent);
+$button-border-radius: var(--radius-m);
+
+
+
+// -----------------------------------------------------------------------------
+// 
+// -----------------------------------------------------------------------------
+
+$card-foreground: var(--neutral-900);
+$card-background: var(--neutral-50);
+
+$card-border-radius: var(--radius-l);
+
+$card-content-padding: var(--space-m);

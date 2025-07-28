@@ -1,71 +1,89 @@
-# -- Bedrijfs gegevens --
+# -- Company --
 company_name: "GorillaMade"
-tagline: "Goede websites, zonder gebrul"
+email: "info@mijndomein.nl"
+phone: "0612345678"
+chat_with_us:
+  - name: "nostr"
+    icon: "/media/icon-nostr.svg"
+    link: "nostr:npub1s4eztsvantqp72jh2ygzk8t4q9gwva8xkqdj83kha9dupyk23kwqmlya7j"
 
-# -- schema type --
-schema_type: "LocalBusiness"
-
-# -- Basis informatie --
-location: "Tilburg"
-
-# -- Contact gegevens --
-email: "hallo@gorillamade.nl"
-phone: "0613897425"
-street_address: "Ooftbouwstraat 16"
+  - name: "xmpp"
+    icon: "/media/icon-xmpp.svg"
+    link: "xmpp:gorillamade@jidme.nl"
+  
+  - name: "whatsapp"
+    icon: ""
+    link: "https://wa.me/0613897425?text=Ik%20ben%20geintresseerd%20in%20je%20website%20diensten"
+  
+# -- Address information --
+street_address: "Straatnaam 123"
+zipcode: "1234 AB"
 city: "Tilburg"
-postal_code: "5022EC"
-country: "NL"
-area_served: "Tilburg en omgeving"
-
-# -- Geolocatie --
-latitude: 52.3676
-longitude: 4.9041
-
-# -- Afbeeldingen --
-logo: "/media/logo.png"
-og_image: "/media/og-image.png"
-
-# -- Social media profiles --
-social_profiles:
-  - "https://facebook.com/jouwbedrijf"
-  - "https://instagram.com/jouwbedrijf"
-  - "https://linkedin.com/company/jouwbedrijf"
-
-# -- Prijsrange (€, €€, €€€, €€€€) --
-price_range: "€€€"
-
-# Google Tag Manager ID (optioneel)
-# gtm_id: "GTM-XXXX"
-
-# -- Openingstijden --
-opening_hours:
-  - day: "Maandag"
-    opens: "09:00"
-    closes: "17:00"
-  - day: "Dinsdag"
-    opens: "09:00"
-    closes: "17:00"
-  - day: "Woensdag"
-    opens: "09:00"
-    closes: "17:00"
-  - day: "Donderdag"
-    opens: "09:00"
-    closes: "17:00"
-  - day: "Vrijdag"
-    opens: "09:00"
-    closes: "17:00"
-
 
 # -- SocialMedia --
 social_profiles:
   - name: "nostr"
-    icon: "/media/nostr-icon.svg"
-    link: "nostr:npub1s4eztsvantqp72jh2ygzk8t4q9gwva8xkqdj83kha9dupyk23kwqmlya7j"
+    icon: "/media/icon-nostr.svg"
+    link: "https://primal.net/p/npub1s4eztsvantqp72jh2ygzk8t4q9gwva8xkqdj83kha9dupyk23kwqmlya7j"
+
+  - name: "linkedin"
+    icon: ""
+    link: "https://link.com/GorillaMade"
 
   - name: "github"
     icon: ""
     link: "https://github.com/GorillaMade"
 
-  - name: "whatsapp"
-    icon: ""
-    link: "https://wa.me/0613897425?text=Ik%20ben%20geintresseerd%20in%20een%20website"
+# -- Openingstijden --
+opening_hours:
+  - day: "Maandag"
+    opens: "09:00"
+    closes: "18:00"
+  - day: "Dinsdag"
+    opens: "09:00"
+    closes: "18:00"
+  - day: "Woensdag"
+    opens: "09:00"
+    closes: "18:00"
+  - day: "Donderdag"
+    opens: "09:00"
+    closes: "18:00"
+  - day: "Vrijdag"
+    opens: "09:00"
+    closes: "18:00"
+
+
+# -- Schema data --
+schema:
+  organisation:
+    enabled: true
+    context: "https://schema.org"
+    type: "Organisation"
+    name: "Jouw Bedrijfsnaam"
+    url: "https://www.jouwwebsite.nl"
+    logo: "https://www.jouwwebsite.nl/media/logo.png"
+    description: "Korte beschrijving van je bedrijf of website."
+    sameAs:
+      - "https://www.facebook.com/jouwbedrijf"
+      - "https://www.linkedin.com/company/jouwbedrijf"
+    address:
+      type: "PostalAddress"
+    contactPoint:
+      type: "ContactPoint"
+      telephone: "+31-6-12345678"
+      contactType: "customer service"
+      areaServed: "NL"
+      availableLanguage: "Dutch"
+
+  website:
+    enabled: true
+    context: "https://schema.org"
+    type: "WebSite"
+    name: "Jouw Website Naam"
+    url: "https://www.jouwsite.nl"
+    potentialAction:
+      type: "SearchAction"
+      target: "https://www.jouwsite.nl/?s={search_term_string}"
+      queryInput: "required name=search_term_string"
+
+  

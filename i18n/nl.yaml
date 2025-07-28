@@ -1,0 +1,28 @@
+# -- Globals --
+
+next:
+  other: "Volgende"
+
+previous:
+  other: "Vorige"
+
+read_more:
+  other: "Lees verder"
+
+more_info:
+  other: "Meer informatie"
+
+view_more:
+  other: "Bekijk meer"
+
+
+# -- Projects --
+
+view_case:
+  other: "Bekijk case"
+
+
+# -- Site footer copyright --
+footer:
+  copyright:
+    other: "© {{ .Year }} {{ .SiteName }}. Alle rechten voorbehouden."

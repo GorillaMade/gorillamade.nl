@@ -1,0 +1,23 @@
+{{ define "main" }}
+<section class="[ referenties ] [] [ region ]">
+    <div class="wrapper">
+        {{ partial "breadcrumb.html" . }}
+        <h1 class="page-title">{{ .Title }}</h1>
+        <ul class="grid" data-layout="halves" role="list">
+        {{ range site.Pages }}
+        {{ if eq .Type "showcases" }}
+        {{ if .Params.client.quote }}
+        <div class="card flow">
+            <p>{{ .Params.client.quote }}</p>
+            <footer class="flex-group">
+                <span class="fw-">{{ .Params.client.name }}</span>
+                <small class="color-neutral-600">{{ .Params.client.function }}, {{ .Params.client.company }}</small>
+            </footer>
+        </div>
+        {{ end }}
+        {{ end }}
+        {{ end }}
+    </ul>
+    </div>
+</section>
+{{ end }}

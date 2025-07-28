@@ -1,0 +1,69 @@
+@use "../abstracts" as *;
+
+// -----------------------------------------------------------------------------
+// Hamburger Icon + Button
+// -----------------------------------------------------------------------------
+
+.hamburger {
+    --_hamburger-background: var(--hamburger-background, transparent);
+    --_hamburger-padding: var(--hamburger-padding, var(--space-2xs));
+    --_hamburger-border: var(--hamburger-border, none);
+    --_hamburger-border-radius: var(--hamburger-border-radius, var(--radius-s));
+
+    --_hamburger-bar-color: var(--hamburger-bar-color, var(--neutral-800));
+    --_hamburger-bar-width: var(--hamburger-bar-width, 36px);
+    --_hamburger-bar-height: var(--hamburger-bar-height, 6px);
+    --_hamburger-bar-gap: var(--hamburger-bar-gap, 4px);
+    --_hamburger-animation-timing: var(--hamburger-animation-timing, 200ms ease-in-out);
+
+    --hamburger-height: calc(var(--_hamburger-bar-height) * 3 + var(--_hamburger-bar-gap) * 2);
+    --hamburger-x-width: calc(var(--hamburger-height) * 1.41421356237);
+
+    background: var(--_hamburger-background);
+    display: flex;
+    flex-direction: column;
+    gap: var(--_hamburger-bar-gap);
+    width: max-content;
+    padding: var(--_hamburger-padding);
+    border: var(--_hamburger-border);
+    border-radius: var(--_hamburger-border-radius);
+    cursor: pointer;
+
+    .bar {
+        transform-origin: left center;
+        width: var(--_hamburger-bar-width);
+        height: var(--_hamburger-bar-height);
+        background: var(--_hamburger-bar-color);
+        transition: opacity var(--_hamburger-animation-timing), width var(--_hamburger-animation-timing), translate var(--_hamburger-animation-timing), rotate var(--_hamburger-animation-timing);
+        border-radius: 9999px;
+    }
+}
+
+
+
+.hamburger.open {
+    .bar {
+        &--1 {
+            rotate: 45deg;
+            width: var(--hamburger-x-width);
+            translate: 0 calc(var(--_hamburger-bar-height) / -2);
+        }
+    
+        &--2 {
+            opacity: 0;
+            width: 0;
+        }
+    
+        &--3 {
+            rotate: -45deg;
+            width: var(--hamburger-x-width);
+            translate: 0 calc(var(--_hamburger-bar-height) / 2);
+        }
+    }
+}
+
+@media (width > 975px) {
+    .hamburger {
+        display: none;
+    }
+}

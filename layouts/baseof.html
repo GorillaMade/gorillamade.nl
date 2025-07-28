@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{ partial "shared/head.html" . }}
+</head>
+<body>
+    {{ partial "shared/site-header.html" . }}
+    {{ block "main" . }}{{ end }}
+    {{ partial "shared/site-footer.html" . }}
+</body>
+</html>

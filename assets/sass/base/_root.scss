@@ -1,0 +1,82 @@
+@use "../abstracts" as *;
+
+:root {
+    @each $font, $value in $font-families {
+        --ff-#{$font}: #{$value};
+    }
+
+    @each $size, $value in $font-sizes {
+        --fs-#{$size}: #{$value};
+    }
+
+    @each $weight, $value in $font-weights {
+        --fw-#{$weight}: #{$value};
+    }
+
+
+    // Spaces
+    @each $space, $value in $space-sizes {
+        --space-#{$space}: #{$value};
+    }
+
+    // Radius
+    @each $prop, $value in $radius {
+        --radius-#{$prop}: #{$value};
+    }
+
+
+    // Shadows
+    @each $prop, $value in $shadows {
+        --shadow-#{$prop}: #{$value};
+    }
+
+    // Blur
+    @each $prop, $value in $blurs {
+        --blur-#{$prop}: #{$value};
+    }
+
+
+    // Layers
+    @each $prop, $value in $layers {
+        --layer-#{$prop}: #{$value};
+    }
+
+    // Colors
+    @each $color, $shades in $active-theme {
+        @each $shade, $value in $shades {
+            --#{$color}-#{$shade}: #{$value};
+        }
+    }
+}
+
+@if $enable-media-prefers-dark-mode {
+    @media (prefers-color-scheme: dark) {
+        :root {
+            @each $color, $shade-map in $dark {
+                @each $shade, $value in $shade-map {
+                    --#{$color}-#{$shade}: #{$value};
+                }
+            }
+        }
+    }
+}
+
+
+// Color(s) via data-theme attribute
+html[data-theme='light'] {
+    @each $color, $shades in $light {
+        @each $shade, $value in $shades {
+            --#{$color}-#{$shade}: #{$value};
+        }
+    }
+}
+
+// Color(s) via data-theme attribute
+html[data-theme='dark'] {
+    @each $color, $shades in $dark {
+        @each $shade, $value in $shades {
+            --#{$color}-#{$shade}: #{$value};
+        }
+    }
+}
+

@@ -1,0 +1,7 @@
+{{ define "main" }}
+<article class="[ content ] [] [ region ]">
+    {{ partial "breadcrumb.html" . }}
+    <h1 class="page-title ">{{ .Title }}</h1>
+    {{ .Content }}
+</article>
+{{ end }}

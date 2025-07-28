@@ -1,11 +1,10 @@
-# -- Site configuratie --
-baseURL: "https://gorillamade.nl/"
+baseURL: "https://example.org/"
+languageCode: "en-us"
 title: "GorillaMade"
-theme: "gorillamade"
 
-# -- Taalinstellingen --
-defaultContentLanguage: "nl"
-defaultContentLanguageInSubdir: false
+taxonomies:
+  tag: "tags"
+  category: "categories"
 
 # -- Robots.txt en URL canonisatie --
 enableRobotsTXT: true
@@ -20,3 +19,12 @@ sitemap:
   changefreq: "monthly"
   priority: 0.5
   filename: "sitemap.xml"
+
+# -- Languages --
+
+defaultContentLanguage: nl
+# languages:
+#   nl:
+#     contentDir: content
+#     languageName: Nederlands
+#     weight: 1

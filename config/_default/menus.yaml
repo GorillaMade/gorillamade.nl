@@ -2,56 +2,59 @@ main:
   - name: "Home"
     pageRef: "/"
     weight: 10
+  - name: "Over mij"
+    pageRef: "/about"
+    weight: 20
+  - name: "Showcases"
+    pageRef: "/showcases"
+    weight: 30
+  - name: "Diensten"
+    pageRef: "/services"
+    weight: 40
+  - name: "Branding"
+    parent: "Diensten"
+    pageRef: "/services/branding"
+    weight: 10
+  - name: "Websites"
+    parent: "Diensten"
+    pageRef: "/services/websites"
+    weight: 20
+  - name: "Hosting"
+    parent: "Diensten"
+    pageRef: "/services/hosting"
+    weight: 30
+  - name: "Zoekmachine optimalisatie"
+    parent: "Diensten"
+    pageRef: "/services/zoekmachine-optimalisatie"
+    weight: 40
+  - name: "Content"
+    parent: "Diensten"
+    pageRef: "/services/content-management-system"
+    weight: 50
+  - name: "Contact"
+    pageRef: "/contact"
+    weight: 50
+
+subfooter_one:
+  - name: "Home"
+    pageRef: "/"
+    weight: 10
   - name: "Showcases"
     pageRef: "/showcases"
     weight: 20
   - name: "Diensten"
-    pageRef: "/diensten"
-    weight: 30
-  - parent: "Diensten"
-    name: "Websites"
-    pageRef: "/diensten/websites"
-    weight: 1
-  - parent: "Diensten"
-    name: "Hosting"
-    pageRef: "/diensten/hosting"
-    weight: 2
-  - parent: "Diensten"
-    name: "Zoekmachine optimalisatie"
-    pageRef: "/diensten/zoek-machine-optimalisatie"
-    weight: 3
-  - name: "Over mij"
-    pageRef: "/over-mij"
-    weight: 40
-  - name: "Contact"
-    pageRef: "/contact"
-    weight: 50
-  # - name: "Start nu"
-  #   pageRef: "/offerte"
-  #   weight: 90
-  #   params:
-  #     button: true
-
-services:
-  - name: "Websites"
-    pageRef: "/diensten/websites"
-    weight: 10
-  - name: "Hosting"
-    pageRef: "/diensten/hosting"
-    weight: 20
-  - name: "Zoek machine optimalisatie"
-    pageRef: "/diensten/zoek-machine-optimalisatie"
+    pageRef: "/services"
     weight: 30
 
-internals:
-  - name: "Home"
-    pageRef: "/"
-    weight: 10
+subfooter_two:
   - name: "Over mij"
-    pageRef: "/over-mij"
+    pageRef: "/about"
+    weight: 10
+  - name: "Mijn klanten"
+    pageRef: "/klanten"
     weight: 20
-  - name: "Showcases"
-    pageRef: "/showcases"
+  - name: "Referenties"
+    pageRef: "/referenties"
     weight: 30
 
 footer:
@@ -61,5 +64,3 @@ footer:
   - name: "Privacy"
     pageRef: "/privacy"
     weight: 20
-
-

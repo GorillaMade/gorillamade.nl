@@ -1,0 +1,29 @@
+{{ define "main" }}
+<section class="[] [] [ region ]">
+    <div class="wrapper sidebar">
+        <div class="main-content">
+            {{ partial "breadcrumb.html" . }}
+            {{ .Content }}
+        </div>
+        <aside>
+            <div class="widget flow">
+                <h4 class="cta-title">Heb je hulp nodig bij je digitale avontuur? Deze gorilla staat paraat.</h4>
+                <div class="flex-group">
+                    <a href="/contact" class="button" data-button-variant="primary">Vrijblijvend advies</a>
+                    <a href="/contact" class="button" data-button-ghost>Contact</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+</section>
+<section class="[ faq ] [ bg-neutral-100 ] [ region ]">
+    <div class="wrapper">
+        <h2>Veel gestelde vragen</h2>
+    </div>
+</section>
+<section class="[ faq ] [  ] [ region ]">
+    <div class="wrapper">
+        <h2>Section 3</h2>
+    </div>
+</section>
+{{ end }}

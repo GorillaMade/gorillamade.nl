@@ -1,0 +1,97 @@
+<div class="[ sub-footer ] [ bg-neutral-100 ] [ region ]">
+    <div class="sub-footer__inner wrapper">
+
+        <div class="footer-text">
+            <h4 class="fs-400 color-neutral-800">{{ site.Params.company_name }} in het kort</h4>
+            <p>Jouw digitale partner – van krachtige websites tot hosting en zoekmachine optimalisatie, alles wat je
+                nodig hebt om te heersen in je online jungle.</p>
+            <nav>
+                <ul class="social">
+                    {{ range .Site.Params.social_profiles }}
+                    <li data-tooltip="{{ .name }}">
+                        {{- $link := .link -}}
+                        {{ if or (strings.HasPrefix $link "nostr:") (strings.HasPrefix $link "xmpp:") }}
+                        <a href="{{ .link | safeURL }}" aria-label="{{ .name }}"><ion-icon src="{{ .icon | relURL }}"
+                                name="logo-{{ .name }}"></ion-icon><span class="visually-hidden">{{
+                                .platform }}</span></a>
+                        {{ else }}
+                        <a href="{{ .link }}" aria-label="{{ .name }}"><ion-icon {{ if .icon }}
+                                src="{{ .icon | relURL }}" {{ end }} name="logo-{{ .name }}"></ion-icon><span
+                                class="visually-hidden">{{ .platform
+                                }}</span></a>
+                        {{ end }}
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+
+        <div class="footer-services">
+            <h4 class="fs-400 color-neutral-800">Direct naar</h4>
+            <nav>
+                <ul class="sub-footer__list" role="list">
+                    {{ range .Site.Menus.subfooter_one }}
+                    <li>
+                        <a href="{{ .PageRef }}">{{ .Name }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+
+        <div class="footer-socials">
+            <h4 class="fs-400 color-neutral-800">GorillaMade Tilburg</h4>
+            <nav>
+                <ul class="sub-footer__list" role="list">
+                    {{ range .Site.Menus.subfooter_two }}
+                    <li>
+                        <a href="{{ .PageRef }}">{{ .Name }}</a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+</div>
+
+<footer class="[ site-footer ] [] [ region ]">
+    <div class="wrapper flex-group flex-group--between">
+        <p>{{ i18n "footer.copyright" (dict "Year" (now.Year) "SiteName" .Site.Title) }}</p>
+        <nav>
+            <ul role="list" class="cluster">
+                {{ range .Site.Menus.footer }}
+                <li>
+                    <a href="{{ .PageRef }}">{{ .Name }}</a>
+                </li>
+                {{ end }}
+            </ul>
+        </nav>
+    </div>
+</footer>
+
+
+<!-- Scripts -->
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<script>
+    var toggle = document.getElementById("theme-toggle");
+
+    var storedTheme = localStorage.getItem('theme') || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    if (storedTheme)
+        document.documentElement.setAttribute('data-theme', storedTheme)
+
+
+    toggle.onclick = function () {
+        var currentTheme = document.documentElement.getAttribute("data-theme");
+        var targetTheme = "light";
+
+        if (currentTheme === "light") {
+            targetTheme = "dark";
+        }
+
+        document.documentElement.setAttribute('data-theme', targetTheme)
+        localStorage.setItem('theme', targetTheme);
+    };
+</script>

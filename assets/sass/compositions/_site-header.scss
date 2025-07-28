@@ -1,0 +1,39 @@
+@use "../abstracts" as *;
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+
+.site-header {
+    padding-inline: 5dvw;
+    padding-block: var(--space-s);
+    background: var(--_site-header-background, #{$body-background});
+
+    &__inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-s-m);
+    }
+
+
+    &--sticky {
+        position: sticky;
+        top: 0;
+        z-index: var(--layer-top);
+        box-shadow: var(--shadow-xs);
+    }
+}
+
+
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+
+.site-header {
+
+    &__inner > :first-child {
+        flex: 1;
+    }
+}

@@ -1,0 +1,102 @@
+// -----------------------------------------------------------------------------
+// Socials
+// -----------------------------------------------------------------------------
+
+.social {
+    --_social-foreground: var(--social-foreground, var(--neutral-50));
+    --_social-background: var(--social-background, var(--neutral-950));
+
+    --_social-icon-foreground: var(--social-icon-foreground, var(--neutral-950));
+    --_social-icon-foreground-hover: var(--social-icon-foreground-hover, var(--neutral-50));
+    --_social-icon-background: var(--social-icon-background, var(--neutral-950));
+
+    --_social-flex-basis: var(--social-flex-basis, var(--space-xl));
+    --_social-tooltip-font-size: var(--social-tooltip-font-size, var(--fs-step--1));
+    --_social-icon-font-size: var(--social-icon-font-size, var(--fs-step-1));
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    list-style: none;
+    padding-inline: 0;
+
+    li {
+        position: relative;
+        flex-basis: var(--_social-flex-basis);
+
+        &::after {
+            position: absolute;
+            content: attr(data-tooltip);
+            inset: -45% auto auto 50%;
+            z-index: 1;
+            translate: -50%;
+            padding: var(--space-3xs) var(--space-2xs);
+            font-size: var(--_social-tooltip-font-size);
+            color: var(--_social-foreground);
+            background: var(--_social-background);
+            border-radius: var(--radius-s);
+            opacity: 0;
+            visibility: hidden;
+            transition: inset 0.4s cubic-bezier(0.47, 2, 0.41, 1.5), visibility 0.3s ease-in-out, opacity 0.2s ease-in-out;
+        }
+
+        &:has(a:hover, a:focus-visible)::after {
+            opacity: 1;
+            visibility: visible;
+            inset-block-start: -60%;
+        }
+    }
+
+
+    a {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 1;
+        color: var(--_social-icon-foreground);
+        border: 1px solid currentColor;
+        border-radius: var(--radius-full);
+        text-decoration: none;
+        outline: none;
+        overflow: hidden;
+        transition: color 300ms ease-in-out;
+
+        & > ion-icon {
+            position: relative;
+            z-index: 1;
+            font-size: var(--_social-icon-font-size);
+        }
+
+
+        &::after {
+            position: absolute;
+            content: '';
+            inset: 100% 0 0;
+            background: var(--_social-icon-background);
+            pointer-events: none;
+            transition: inset 300ms ease-in-out;
+        }
+
+
+        // hover state
+        &:hover {
+            color: var(--_social-icon-foreground-hover);
+
+            &::after {
+                inset-block-start: 0;
+            }
+        }
+    }
+}
+
+
+
+//
+//
+//
+
+.social {
+    &--centered {
+        justify-content: center;
+    }
+}

@@ -1,0 +1,31 @@
+{{ define "main" }}
+    {{ if .Params.isArticle }}
+    <article class="[ content ] [ flow ] [ region ]">
+            {{ if .Params.title_reversed }}
+                <div class="text--centered">
+                    {{ partial "breadcrumb.html" . }}
+                    <h1 class="page-title page-title--center">{{ .Title }}</h1>
+                </div>
+            {{ else }}
+                <h1 class="page-title page-title--center">{{ .Title }}</h1>
+                {{ partial "breadcrumb.html" . }}
+            {{ end }}
+            {{ .Content }}
+    </article>
+    {{ else }}
+    <div class="[ page ] [] [ region ]">
+        <div class="wrapper flow">
+            {{ if .Params.title_reversed }}
+                <div class="text--centered">
+                    {{ partial "breadcrumb.html" . }}
+                    <h1 class="page-title page-title--center">{{ .Title }}</h1>
+                </div>
+            {{ else }}
+                <h1 class="page-title page-title--center">{{ .Title }}</h1>
+                {{ partial "breadcrumb.html" . }}
+            {{ end }}
+            {{ .Content }}
+        </div>
+    </div> 
+    {{ end }}
+{{ end }}

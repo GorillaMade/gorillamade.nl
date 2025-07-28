@@ -1,0 +1,43 @@
+.carousel {
+    --_carousel-item-size: var(--carousel-item-size, clamp(20rem, 33dvw, 36rem));
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-block-start: var(--space-xs);
+
+    &__track {
+        display: flex;
+        gap: var(--carousel-track-gap, var(--space-m));
+        padding-block-end: var(--carousel-track-padding, var(--space-s-l));
+    }
+
+    &__item {
+        flex: 1 0 var(--_carousel-item-size);
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+    }
+}
+
+
+
+.carousel {
+    --_reel-scroll-bar-track-color: var(--reel-scroll-bar-track-color, var(--neutral-900));
+    --_reel-scroll-bar-thumb-color: var(--reel-scroll-bar-thumb-color, var(--primary-300));
+
+    &::-webkit-scrollbar {
+        block-size: var(--reel-scroll-bar-size);
+    }
+
+    &::-webkit-scrollbar-button {
+        display: none;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--_reel-scroll-bar-track-color);
+        border-radius: var(--radius-xs);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: var(--_reel-scroll-bar-thumb-color);
+        border-radius: var(--radius-xs);
+    }
+}

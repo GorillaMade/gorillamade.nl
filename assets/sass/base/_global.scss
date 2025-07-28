@@ -1,0 +1,93 @@
+@use "../abstracts" as *;
+
+
+// -----------------------------------------------------------------------------
+// Body
+// -----------------------------------------------------------------------------
+
+body {
+    container-type: inline-size;
+    background: #{$body-background};
+    color: #{$body-foreground};
+    font-family: #{$body-font-family};
+    font-size: #{$body-font-size};
+    font-weight: #{$body-font-weight};
+    line-height: #{$body-line-height};
+}
+
+
+// -----------------------------------------------------------------------------
+// Headings
+// -----------------------------------------------------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--_heading-foreground, inherit);
+}
+
+h1,
+h2,
+h3 {
+    --_heading-font-family: var(--heading-font-family, #{$heading-font-family});
+    --_heading-font-size: var(--heading-font-size, #{$heading-font-size});
+    --_heading-font-weight: var(--heading-font-weight, #{$heading-font-weight});
+    --_heading-line-height: var(--heading-line-height, #{$heading-line-height});
+
+    font-family: var(--_heading-font-family);
+    font-size: var(--_heading-font-size);
+    font-weight: var(--_heading-font-weight);
+    line-height: var(--_heading-line-height);
+}
+
+
+
+// -----------------------------------------------------------------------------
+// Anchor(s)
+// -----------------------------------------------------------------------------
+
+a:not([class]) {
+    --_link-foreground: var(--link-foreground, #{$link-foreground});
+    --_link-foreground-hover: var(--link-foreground-hover, #{$link-foreground-hover});
+
+    --_link-text-decoration: var(--link-text-decoration, underlined);
+
+    color: var(--_link-foreground);
+    cursor: pointer;
+    text-decoration: var(--_link-text-decoration);
+
+    &:hover {
+        color: var(--_link-foreground-hover);
+    }
+}
+
+
+// -----------------------------------------------------------------------------
+// input
+// -----------------------------------------------------------------------------
+
+input,
+textarea,
+select {
+    color: var(--neutral-500);
+    background: var(--neutral-50);
+    accent-color: var(--primary-500);
+    background: var(--neutral-50);
+    border: 1px solid var(--neutral-300);
+    border-radius: var(--radius-s);
+}
+
+input:not([type="checkbox"]),
+select,
+textarea {
+    width: 100%;
+    padding: var(--_input-padding, var(--space-xs));
+}
+
+input[type="checkbox"] {
+    width: var(--fs-step-0);
+    height: var(--fs-step-0);
+}

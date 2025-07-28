@@ -1,0 +1,36 @@
+{{ define "main" }}
+<section class="[ contact ] [] [ region ]">
+    <div class="wrapper">
+        <div class="switcher">
+            <div class="flow">
+                {{ partial "breadcrumb.html" . }}
+                {{ .Content }}
+                <br>
+                <nav>
+                    <ul class="social">
+                        {{ range .Site.Params.chat_with_us }}
+                        <li data-tooltip="{{ .name }}">
+                            {{- $link := .link -}}
+                            {{ if or (strings.HasPrefix $link "nostr:") (strings.HasPrefix $link "xmpp:") }}
+                            <a href="{{ .link | safeURL }}" aria-label="{{ .name }}"><ion-icon
+                                    src="{{ .icon | relURL }}" size="large" name="logo-{{ .name }}"></ion-icon><span
+                                    class="visually-hidden">{{
+                                    .platform }}</span></a>
+                            {{ else }}
+                            <a href="{{ .link }}" aria-label="{{ .name }}"><ion-icon size="large" {{ if .icon }}
+                                    src="{{ .icon | relURL }}" {{ end }} name="logo-{{ .name }}"></ion-icon><span
+                                    class="visually-hidden">{{ .platform
+                                    }}</span></a>
+                            {{ end }}
+                        </li>
+                        {{ end }}
+                    </ul>
+                </nav>
+            </div>
+            <div>
+                {{ partial "forms/contact-form.html" . }}
+            </div>
+        </div>
+    </div>
+</section>
+{{ end }}

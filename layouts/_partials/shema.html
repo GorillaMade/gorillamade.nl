@@ -1,0 +1,53 @@
+{{/* Organization Schema */}}
+{{ with .Site.Params.schema.organization }}
+  {{ if .enabled }}
+<script type="application/ld+json">
+{
+  "@context": "{{ .context }}",
+  "@type": "{{ .type }}",
+  "name": "{{ .name }}",
+  "url": "{{ .url }}",
+  "logo": "{{ .logo }}",
+  "description": "{{ .description }}",
+  "sameAs": [
+    {{- range $index, $value := .sameAs -}}
+      {{- if $index }}, {{ end }}"{{ $value }}"
+    {{- end -}}
+  ],
+  "address": {
+    "@type": "{{ .address.type }}",
+    "streetAddress": "{{ .address.streetAddress }}",
+    "addressLocality": "{{ .address.addressLocality }}",
+    "postalCode": "{{ .address.postalCode }}",
+    "addressCountry": "{{ .address.addressCountry }}"
+  },
+  "contactPoint": {
+    "@type": "{{ .contactPoint.type }}",
+    "telephone": "{{ .contactPoint.telephone }}",
+    "contactType": "{{ .contactPoint.contactType }}",
+    "areaServed": "{{ .contactPoint.areaServed }}",
+    "availableLanguage": "{{ .contactPoint.availableLanguage }}"
+  }
+}
+</script>
+  {{ end }}
+{{ end }}
+
+{{/* WebSite Schema */}}
+{{ with .Site.Params.schema.website }}
+  {{ if .enabled }}
+<script type="application/ld+json">
+{
+  "@context": "{{ .context }}",
+  "@type": "{{ .type }}",
+  "name": "{{ .name }}",
+  "url": "{{ .url }}",
+  "potentialAction": {
+    "@type": "{{ .potentialAction.type }}",
+    "target": "{{ .potentialAction.target }}",
+    "query-input": "{{ .potentialAction.queryInput }}"
+  }
+}
+</script>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,27 @@
+.breadcrumb {
+    width: fit-content;
+
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li {
+        font-size: var(--fs-step--1);
+
+        &:not(:last-child) {
+            &:after {
+                content: "/";
+                margin-inline: var(--space-2xs);
+            }
+        }
+    }
+}
+
+.text--centered nav.breadcrumb,
+.page-title--center + .breadcrumb {
+    margin-inline: auto;
+}

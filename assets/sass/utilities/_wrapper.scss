@@ -1,0 +1,23 @@
+.wrapper {
+    --_wrapper-max-width: var(--wrapper-max-width, 84rem);
+    --_wrapper-padding-inline: var(--wrapper-padding-inline, 5dvw);
+
+    width: min(var(--_wrapper-max-width), (100% - (var(--_wrapper-padding-inline) * 2)));
+    margin-inline: auto;
+}
+
+
+
+//
+//
+//
+
+.wrapper {
+    &--small {
+        --wrapper-max-width: 40rem;
+    }
+
+    &--wide {
+        --wrapper-max-width: 60rem;
+    }
+}

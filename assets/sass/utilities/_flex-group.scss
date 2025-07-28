@@ -1,0 +1,12 @@
+.flex-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: fit-content;
+    gap: var(--flex-group-gap, var(--space-s));
+
+    &--between {
+        width: auto;
+        justify-content: space-between;
+    }
+}

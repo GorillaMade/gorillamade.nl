@@ -1,0 +1,30 @@
+<nav class="breadcrumb" aria-label="breadcrumb">
+    <ul>
+        {{ $ancestors := .Ancestors.Reverse }}
+
+        {{ $hasHome := and (gt (len $ancestors) 0) (eq (index $ancestors 0).RelPermalink "/") }}
+
+        {{ if not $hasHome }}
+        <li>
+            <a href="/">Home</a>
+        </li>
+        {{ end }}
+
+        {{ range $ancestors }}
+        {{ if eq .RelPermalink "/" }}
+        <li>
+            <a href="/">{{ i18n "home" | default "Home" }}</a>
+        </li>
+        {{ else }}
+        <li>
+            <a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>
+        </li>
+        {{ end }}
+        {{ end }}
+
+        <!-- Actieve pagina (niet klikbaar) -->
+        <li class="active">
+            <span aria-current="page">{{ .LinkTitle }}</span>
+        </li>
+    </ul>
+</nav>

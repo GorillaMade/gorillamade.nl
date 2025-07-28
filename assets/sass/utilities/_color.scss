@@ -1,0 +1,50 @@
+@use "../abstracts" as *;
+
+// Color(s) default theme
+html[data-theme='light'] {
+    @each $color, $shade-map in $light {
+        @each $shade, $value in $shade-map {
+            .color-#{$color}-#{$shade} {
+                --heading-foreground: #{$value};
+                color: #{$value};
+            }
+
+            .bg-#{$color}-#{$shade} {
+                background: #{$value};
+            }
+        }
+    }
+}
+
+
+html[data-theme='dark'] {
+    @each $color, $shade-map in $dark {
+        @each $shade, $value in $shade-map {
+            .color-#{$color}-#{$shade} {
+                --heading-foreground: #{$value};
+                color: #{$value};
+            }
+
+            .bg-#{$color}-#{$shade} {
+                background: #{$value};
+            }
+        }
+    }
+}
+
+// Color(s) theme dark mode
+@if $enable-media-prefers-dark-mode {
+    @media (prefers-color-scheme: dark) {
+        @each $color, $shade-map in $dark {
+            @each $shade, $value in $shade-map {
+                .color-#{$color}-#{$shade} {
+                    color: #{$value};
+                }
+
+                .bg-#{$color}-#{$shade} {
+                    background: #{$value};
+                }
+            }
+        }
+    }
+}

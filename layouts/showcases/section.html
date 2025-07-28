@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section class="[ showcases ] [] [ region ]">
+    <div class="wrapper flow">
+        {{ partial "breadcrumb.html" . }}
+        <h1 class="page-title">{{ .Title }}</h1>
+
+        <ul class="grid" role="list" data-layout="thirds">
+            {{ $pages := where .Pages "Type" "showcases" }}
+            {{ $paginator := .Paginate $pages 6 }}
+            {{ range $paginator.Pages }}
+            <li>
+                {{ .Render "card" }}
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+</section>
+{{ end }}

@@ -1,0 +1,175 @@
+@use "../abstracts" as *;
+
+// -----------------------------------------------------------------------------
+// Site Navigation Core
+// -----------------------------------------------------------------------------
+
+.site-nav {
+    --_nav-width: var(--nav-width, 100%);
+
+    display: none;
+    width: var(--_nav-width);
+
+    &__list {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        width: var(--_nav-width);
+        gap: var(--space-s);
+
+        li {
+            position: relative;
+
+            a {
+                display: block;
+                color: var(--nav-link-foreground, #{$nav-link-foreground});
+                text-decoration: none;
+                
+                @media (max-width: 974px) {
+                    padding-block: .75rem;
+                }
+            }
+        }
+    }
+}
+
+
+.site-nav > .site-nav__list > li > a,
+.site-nav > .site-nav__list > li.has-submenu > span.link--wrapped {
+
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 0.05rem;
+        background-color: var(--nav-link-foreground, #{$nav-link-foreground});
+        transform: scaleX(0);
+        transition: transform 0.15s ease-in-out;
+    }
+
+    &:is(:hover, :focus-visible):after,
+    &.open:after,
+    &[aria-current="page"]:after {
+        transform: scaleX(1) translateY(0);
+        opacity: 1;
+    }
+
+    &:is(:hover, :focus-visible):after {
+        --_nav-link-foreground: var(--nav-link-foreground-hover, #{$nav-link-foreground-hover});
+    }
+
+    &.open:after {
+        --_nav-link-foreground: var(--nav-link-foreground-active, #{$nav-link-foreground-active});
+    }
+}
+
+
+.site-nav a[aria-current="page"],
+.site-nav span.link--wrapped[aria-current="page"] a {
+    color: var(--nav-link-foreground-active, #{$nav-link-foreground-active});
+}
+
+// -----------------------------------------------------------------------------
+// Site Navigation Submenu
+// -----------------------------------------------------------------------------
+
+.site-nav__list > li.has-submenu {
+
+
+
+    span.link--wrapped {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        button {
+            all: unset;
+            margin-inline-start: .25rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            ion-icon {
+                color: inherit;
+                transition: all 300ms ease-in-out;
+            }
+        }
+    }
+
+    & > ul.submenu {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        background: var(--neutral-100);
+        border-radius: var(--radius-xs);
+        box-shadow: var(--shadow-xs);
+        width: var(--_nav-width);
+
+        a {
+            padding: var(--space-2xs) var(--space-s);
+
+            &:hover {
+                background: var(--neutral-200);
+            }
+
+            &[aria-current="page"] {
+                color: var(--neutral-50);
+                background: var(--neutral-800);
+            }
+        }
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Site Navigation States
+// -----------------------------------------------------------------------------
+
+.site-nav.open {
+    display: block;
+}
+
+.site-nav__list>li.has-submenu.open {
+
+    button ion-icon {
+        rotate: 180deg;
+    }
+
+    & > ul.submenu {
+        display: flex;
+        flex-basis: 1;
+        flex-direction: column;
+    }
+}
+
+// -----------------------------------------------------------------------------
+// Site Navigation Core
+// -----------------------------------------------------------------------------
+
+@media (min-width: 975px) {
+    .site-nav {
+        --nav-width: auto;
+
+        display: flex;
+        width: var(--_nav-width);
+
+        &__list {
+            display: flex;
+            width: var(--_nav-width);
+        }
+    }
+
+    .site-nav__list>li.has-submenu>ul.submenu {
+        position: absolute;
+        left: 50%;
+        top: 105%;
+        transform: translateX(-50%);
+        min-width: 180px;
+        width: fit-content;
+
+        a {
+            padding-block: var(--space-3xs);
+        }
+    }
+}

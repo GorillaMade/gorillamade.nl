@@ -1,0 +1,73 @@
+// -----------------------------------------------------------------------------
+// Fonts
+// -----------------------------------------------------------------------------
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('/fonts/Montserrat-VariableFont_wght.woff2') format('woff2-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nunito Sans';
+    src: url('/fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.woff2') format('woff2-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+$-ff-sans: 'Nunito Sans', sans-serif;
+$-ff-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+$-ff-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+$font-families: (
+    "sans": $-ff-sans,
+    "serif": $-ff-serif,
+    "mono": $-ff-mono,
+);
+
+// -----------------------------------------------------------------------------
+// Typescale
+// -----------------------------------------------------------------------------
+
+// $font-sizes: (
+// "200": clamp(0.6252rem, 0.7516rem + -0.158vw, 0.72rem),
+// "300": clamp(0.884rem, 0.9053rem + -0.0266vw, 0.9rem),
+// "400": clamp(1.125rem, 1.0833rem + 0.2083vw, 1.25rem),
+// "500": clamp(1.4063rem, 1.2858rem + 0.6021vw, 1.7675rem),
+// "600": clamp(1.7578rem, 1.5107rem + 1.2357vw, 2.4992rem),
+// "700": clamp(2.1973rem, 1.7517rem + 2.2278vw, 3.5339rem),
+// "800": clamp(2.7466rem, 1.9964rem + 3.7507vw, 4.997rem),
+// "900": clamp(3.4332rem, 2.2224rem + 6.0542vw, 7.0657rem),
+// );
+
+$font-sizes: (
+    "step--2": clamp(0.64rem, 0.6203rem + 0.0986vw, 0.7035rem),
+    "step--1": clamp(0.8rem, 0.7572rem + 0.214vw, 0.9377rem),
+    "step-0": clamp(1rem, 0.9223rem + 0.3883vw, 1.25rem),
+    "step-1": clamp(1.25rem, 1.1207rem + 0.6466vw, 1.6663rem),
+    "step-2": clamp(1.5625rem, 1.3579rem + 1.0231vw, 2.2211rem),
+    "step-3": clamp(1.9531rem, 1.6401rem + 1.5652vw, 2.9607rem),
+    "step-4": clamp(2.4414rem, 1.9738rem + 2.3383vw, 3.9467rem),
+    "step-5": clamp(3.0518rem, 2.3654rem + 3.4317vw, 5.2609rem),
+);
+
+
+
+//
+//
+//
+
+$font-weights: (
+    "thin": 100,
+    "extralight": 200,
+    "light": 300,
+    "regular": 400,
+    "medium": 500,
+    "semibold": 600,
+    "bold": 700,
+    "extrabold": 800,
+    "black": 900,
+);

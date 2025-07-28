@@ -1,0 +1,124 @@
+@use "../abstracts" as *;
+
+// -----------------------------------------------------------------------------
+// Button
+// -----------------------------------------------------------------------------
+
+button:has(.button) {
+    all: unset;
+}
+
+.button {
+    --_button-foreground: var(--button-foreground, #{$button-foreground});
+    --_button-foreground-hover: var(--button-foreground-hover, #{$button-foreground-hover});
+    --_button-background: var(--button-background, #{$button-background});
+    --_button-background-hover: var(--button-background-hover, #{$button-background-hover});
+
+    --_button-font-size: var(--button-font-size, #{$button-font-size});
+    --_button-font-weight: var(--button-font-weight, #{$button-font-weight});
+
+    --_button-padding: var(--button-padding, #{$button-padding});
+    --_button-border-width: var(--button-border-width, #{$button-border-width});
+    --_button-border-style: var(--button-border-style, #{$button-border-style});
+    --_button-border-color: var(--button-border-color, #{$button-border-color});
+    --_button-border-radius: var(--button-border-radius, #{$button-border-radius});
+
+    display: inline-flex;
+    color: var(--_button-foreground);
+    background: var(--_button-background);
+    font-size: var(--_button-font-size);
+    font-weight: var(--_button-font-weight);
+    border: var(--_button-border-width) var(--_button-border-style) var(--_button-border-color);
+    padding: var(--_button-padding);
+    text-decoration: none;
+    border-radius: var(--_button-border-radius);
+    transition: all 150ms ease-in-out, scale 300ms ease-in-out;
+    cursor: pointer;
+
+    &:hover,
+    &[data-button-variant]:hover {
+        color: var(--_button-foreground-hover);
+        background: var(--_button-background-hover);
+        scale: 1.025;
+    }
+
+    &:active {
+        scale: 1;
+    }
+}
+
+
+
+// -----------------------------------------------------------------------------
+// Link
+// -----------------------------------------------------------------------------
+
+.button--link {
+    color: var(--link-foreground, inherit);
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding-block: var(--space-s);
+    gap: .5rem;
+    text-decoration: none;
+    transition: gap 300ms ease-in-out;
+
+    &:hover {
+        color: var(--link-foreground-hover, inherit);
+        gap: 1rem;
+    }
+}
+
+
+
+// -----------------------------------------------------------------------------
+// Button variants
+// -----------------------------------------------------------------------------
+
+.button {
+    &[data-button-variant="primary"] {
+        --button-foreground: var(--primary-900);
+        --button-background: var(--primary-500);
+    }
+
+    &[data-button-variant="accent"] {
+        --button-foreground: var(--accent-900);
+        --button-background: var(--accent-500);
+    }
+}
+
+
+.button[data-button-variant] {
+    --button-border-color: var(--_button-background);
+
+    color: var(--_button-foreground);
+    background: var(--_button-background);
+    
+    &:hover {
+        --button-border-color: var(--_button-background-hover);
+
+        color: var(--_button-foreground-hover);
+        background: var(--_button-background-hover);
+    }
+}
+
+
+// -----------------------------------------------------------------------------
+// Button ghost
+// -----------------------------------------------------------------------------
+
+.button[data-button-ghost=""] {
+    --button-border-color: currentColor;
+
+    background: transparent;
+
+    &:hover {
+        --button-border-color: var(--_button-background-hover);
+        color: var(--_button-foreground-hover);
+        background: var(--_button-background-hover);
+    }
+
+    &:is([data-button-variant]) {
+        --button-foreground: var(--_button-background);
+    }
+}

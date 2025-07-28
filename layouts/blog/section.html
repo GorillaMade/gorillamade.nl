@@ -1,0 +1,29 @@
+{{ define "main" }}
+<div class="[ sidebar ] [] [ region ]">
+    <div class="wrapper">
+        <main>
+            {{ range where .Site.RegularPages "Section" "blog" }}
+            <article>
+                <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+                <p>{{ .Date.Format "02 Jan 2006" }}</p>
+                <p>{{ .Params.description }}</p>
+            </article>
+            {{ end }}
+        </main>
+        <aside>
+            <div class="widget">
+                <h3 class="widget__title">Categorieën</h3>
+                <ul class="widget__list">
+                    {{ range $name, $taxonomy := site.Taxonomies.categories }}
+                    <li class="widget__item">
+                        <a href="{{ " /categories/" | relURL }}{{ $name | urlize }}" class="widget__link">
+                            {{ $name }} ({{ len $taxonomy }})
+                        </a>
+                    </li>
+                    {{ end }}
+                </ul>
+            </div>
+        </aside>
+    </div>
+</div>
+{{ end }}

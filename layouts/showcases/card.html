@@ -1,0 +1,10 @@
+<div class="card" style="--card-foreground: {{ .Params.images.foreground }}; --heading-color: {{ .Params.images.foreground }}; --card-background: {{ .Params.images.background }};">
+    <div class="card__content flow">
+        <h3 class="block-title fs-600">{{ .LinkTitle }}</h3>
+        <a href="{{ .RelPermalink }}" class="button--link">{{ i18n "view_case" }} <ion-icon name="arrow-forward-outline"></ion-icon></a>
+    </div>
+    <figure class="card__image">
+        <img loading="lazy" width="650" height="650" src="{{ .Params.images.thumbnail }}"
+        alt="{{ .LinkTitle }}">
+    </figure>
+</div>

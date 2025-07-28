@@ -1,0 +1,29 @@
+//
+//
+//
+
+$space-sizes: (
+    "3xs": clamp(0.3125rem, 0.3125rem + 0vw, 0.3125rem),
+    "2xs": clamp(0.5625rem, 0.5417rem + 0.1042vw, 0.625rem),
+    "xs": clamp(0.875rem, 0.8542rem + 0.1042vw, 0.9375rem),
+    "s": clamp(1.125rem, 1.0833rem + 0.2083vw, 1.25rem),
+    "m": clamp(1.6875rem, 1.625rem + 0.3125vw, 1.875rem),
+    "l": clamp(2.25rem, 2.1667rem + 0.4167vw, 2.5rem),
+    "xl": clamp(3.375rem, 3.25rem + 0.625vw, 3.75rem),
+    "2xl": clamp(4.5rem, 4.3333rem + 0.8333vw, 5rem),
+    "3xl": clamp(6.75rem, 6.5rem + 1.25vw, 7.5rem),
+
+/* One-up pairs */
+    "3xs-2xs": clamp(0.3125rem, 0.2083rem + 0.5208vw, 0.625rem),
+    "2xs-xs": clamp(0.5625rem, 0.4375rem + 0.625vw, 0.9375rem),
+    "xs-s": clamp(0.875rem, 0.75rem + 0.625vw, 1.25rem),
+    "s-m": clamp(1.125rem, 0.875rem + 1.25vw, 1.875rem),
+    "m-l": clamp(1.6875rem, 1.4167rem + 1.3542vw, 2.5rem),
+    "l-xl": clamp(2.25rem, 1.75rem + 2.5vw, 3.75rem),
+    "xl-2xl": clamp(3.375rem, 2.8333rem + 2.7083vw, 5rem),
+    "2xl-3xl": clamp(4.5rem, 3.5rem + 5vw, 7.5rem),
+
+/* Custom pairs */
+    "s-l": clamp(1.125rem, 0.6667rem + 2.2917vw, 2.5rem),
+    "xl-3xl": clamp(3.375rem, 2rem + 6.875vw, 7.5rem),
+);
