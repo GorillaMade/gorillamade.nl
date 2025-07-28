@@ -1,7 +1,8 @@
 ---
 title: "Hosting"
 description: "Hosting description"
-weight: 20
+weight: 40
+type: services
 
 faq:
   - vraag: "Wat is inbegrepen bij de hostingdienst?"

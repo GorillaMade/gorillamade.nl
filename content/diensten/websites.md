@@ -2,6 +2,7 @@
 title: "Websites"
 description: "Websites description"
 weight: 10
+type: services
 
 faq:
   - vraag: "Hoe lang duurt het om een website te laten maken?"

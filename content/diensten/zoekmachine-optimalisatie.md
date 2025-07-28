@@ -1,6 +1,8 @@
 ---
 title: "Zoekmachine optimalisatie"
 description: "SEO description"
+weight: 20
+type: services
 
 faq:
   - vraag: "Wat voor SEO-diensten bied je aan?"

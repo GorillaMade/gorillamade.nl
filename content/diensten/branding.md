@@ -1,6 +1,8 @@
 ---
 title: "Branding"
 description: "Branding description"
+order: 50
+type: services
 ---
 
 # Een sterk merk dat blijft hangen {.page-title}

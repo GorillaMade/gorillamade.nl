@@ -1,6 +1,8 @@
 ---
 title: "Content Management System"
 description: "Content description"
+weight: 30
+type: services
 
 faq:
   - vraag: "Wat is een Content Management System (CMS)?"
