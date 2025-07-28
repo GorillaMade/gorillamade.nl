@@ -49,7 +49,7 @@ h3 {
 // Anchor(s)
 // -----------------------------------------------------------------------------
 
-a:not([class]) {
+a:has(:not([class])) {
     --_link-foreground: var(--link-foreground, #{$link-foreground});
     --_link-foreground-hover: var(--link-foreground-hover, #{$link-foreground-hover});
 

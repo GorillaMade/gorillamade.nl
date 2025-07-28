@@ -24,7 +24,7 @@ Renders a menu for the given menu ID.
     {{- if $hasChildren }}
     <li class="has-submenu">
       <span class="link--wrapped" {{ if $isActive }} aria-current="page" {{ end }} aria-expanded="false">
-        <a class="" href="{{ .URL }}">{{ $name }}</a>
+        <a class="site-nav__link" href="{{ .URL }}">{{ $name }}</a>
         <button aria-haspopup="true" aria-expanded="false" aria-controls="{{ $submenuID }}"
           aria-label="Toon submenu voor {{ $name }}" type="button">
           <ion-icon name="chevron-down-outline"></ion-icon>
@@ -37,7 +37,7 @@ Renders a menu for the given menu ID.
     </li>
     {{- else }}
     <li>
-      <a class="" href="{{ .URL }}" {{ if $isActive }} aria-current="page" {{ end }} aria-expanded="false">{{ $name }}</a>
+      <a class="site-nav__link" href="{{ .URL }}" {{ if $isActive }} aria-current="page" {{ end }} aria-expanded="false">{{ $name }}</a>
     </li>
     {{- end }}
   {{- end }}
