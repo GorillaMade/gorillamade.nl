@@ -22,6 +22,16 @@ view_case:
   other: "Bekijk case"
 
 
+# -- 404 error --
+error404:
+  title:
+    other: "Pagina niet gevonden"
+  message:
+    other: "Oeps! De pagina die je zoekt bestaat niet (meer), of je hebt je misschien vergist in het adres."
+  link:
+    other: "Terug naar hoofdpagina"
+
+
 # -- Site footer copyright --
 footer:
   copyright:

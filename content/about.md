@@ -1,9 +1,10 @@
 ---
-title: "Jouw Partner voor Sterke Websites"
+title: "Over GorillaMade"
 description: "About page description"
 type: about
 ---
 
+# Jouw Partner voor Sterke Websites{.page-title}
 
 Hallo! Ik ben Timothy, de persoon achter GorillaMade, een bedrijf dat sterke, betrouwbare websites bouwt. Net als een gorilla zorg ik ervoor dat elk project kracht en stabiliteit uitstraalt. Mijn passie voor webdevelopment en design drijft me aan om unieke, maatwerkoplossingen te creëren die echt bij jouw bedrijf passen.
 

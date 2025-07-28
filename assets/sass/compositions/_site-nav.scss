@@ -25,8 +25,8 @@
                 color: var(--nav-link-foreground, #{$nav-link-foreground});
                 text-decoration: none;
 
-                &:hover {
-                    --nav-link-foreground: #{$nav-link-foreground-hover};
+                &:is(:hover, :focus-visible) {
+                    --nav-link-foreground: var(--nav-link-foreground-hover, #{$nav-link-foreground-hover});
                 }
                 
                 @media (max-width: 974px) {
