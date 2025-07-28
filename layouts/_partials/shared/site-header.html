@@ -12,13 +12,13 @@
       </svg>
       <span class="brand__name">Gorilla<span>Made</span></span>
     </a>
-    <button class="hamburger">
+    <button class="hamburger" aria-label="toggle mobile menu">
       <span class="bar bar--1"></span>
       <span class="bar bar--2"></span>
       <span class="bar bar--3"></span>
     </button>
     {{ partial "shared/site-nav.html" (dict "menuID" "main" "page" .) }}
-    <button id="theme-toggle" class="theme-toggle--button">
+    <button id="theme-toggle" class="theme-toggle--button" aria-label="Switch theme color">
         <span class="theme-light"><ion-icon name="moon-outline"></ion-icon></span>
         <span class="theme-dark"><ion-icon name="sunny-outline"></ion-icon></span>
     </button>
