@@ -16,14 +16,15 @@
         </aside>
     </div>
 </section>
-<section class="[ faq ] [ bg-neutral-100 ] [ region ]">
-    <div class="wrapper">
-        <h2>Veel gestelde vragen</h2>
-    </div>
-</section>
-<section class="[ faq ] [  ] [ region ]">
-    <div class="wrapper">
-        <h2>Section 3</h2>
+<section class="[ faq-list ] [ bg-neutral-100 ] [ region ]">
+    <div class="wrapper wrapper--small flow fade-in">
+        <h2 class="block-title">Veel gestelde vragen</h2>
+        {{ range .Params.faq }}
+            <details class="faq flow">
+                <summary>{{ .vraag }}</summary>
+                <p>{{ .antwoord | markdownify }}</p>
+            </details>
+        {{ end }}
     </div>
 </section>
 {{ end }}

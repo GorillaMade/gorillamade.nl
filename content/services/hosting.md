@@ -2,6 +2,28 @@
 title: "Hosting"
 description: "Hosting description"
 weight: 20
+
+faq:
+  - vraag: "Wat is inbegrepen bij de hostingdienst?"
+    antwoord: |
+        Je krijgt een betrouwbare hostingomgeving met voldoende schijfruimte, dagelijkse backups, SSL-certificaat voor een veilige verbinding (https) en onbeperkt dataverkeer op ons serverplatform.
+
+  - vraag: "Waarom zou ik voor jouw hostingdienst kiezen?"
+    antwoord: |
+        De hostingdienst omvat serveronderhoud, regelmatige backups, automatische updates en support. Zo ben je verzekerd van een snelle, veilige en stabiele website zonder verrassingen.
+
+  - vraag: "Hoe snel reageer je bij hostingproblemen?"
+    antwoord: |
+        Bij acute problemen zoals downtime krijg je binnen 24 uur een oplossing. Voor kleinere vragen of advies binnen werkuren (maandag t/m vrijdag) meestal binnen één werkdag.
+
+  - vraag: "Wat gebeurt er als ik geen hosting meer wil?"
+    antwoord: |
+        Je kunt de hostingdienst opzeggen met een maand opzegtermijn. Daarna kun je desgewenst de website zelf verhuizen naar een andere host. Ik help daarbij graag.
+
+  - vraag: "Wie is eigenaar van de hostingomgeving?"
+    antwoord: |
+        Jij bent de eigenaar. De hosting is op jouw naam en gebaseerd op jouw domein. Bij beëindiging kan je de content en servergegevens meenemen en eventueel elders hergebruiken.
+
 ---
 
 # Hosting en domein {.page-title}

@@ -401,6 +401,23 @@ button#theme-toggle {
 
 
 
+//
+//
+//
+
+details.faq {
+    //padding-block: var(--space-3xs);
+
+    summary {
+        color: var(--neutral-900);
+        font-size: var(--fs-step-0);
+        font-weight: var(--fw-bold);
+    }
+}
+
+
+
+
 // -----------------------------------------------------------------------------
 // sitefooter
 // -----------------------------------------------------------------------------

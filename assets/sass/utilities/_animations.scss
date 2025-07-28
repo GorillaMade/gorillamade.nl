@@ -41,3 +41,14 @@
         transform: translateX(0);
     }
 }
+
+
+@media (prefers-reduced-motion: reduce) {
+    .fade-in,
+    .fade-in-left {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        scale: 1 !important;
+    }
+}
