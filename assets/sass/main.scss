@@ -57,9 +57,9 @@ h3 {
 
 //
 button#theme-toggle {
-    border: 1px dashed currentColor;
+    border: .075rem solid;
     background: transparent;
-    color: var(--neutral-950);
+    color: var(--neutral-600);
     padding: var(--space-xs);
     display: flex;
     border-radius: var(--radius-full);
@@ -83,8 +83,12 @@ button#theme-toggle {
 }
 
 @media (max-width: 975px) {
-    .theme-toggle--button {
+    .hamburger {
         order: 3;
+    }
+
+    .theme-toggle--button {
+        order: 2;
     }
 
     .site-nav {

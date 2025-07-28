@@ -24,6 +24,10 @@
                 display: block;
                 color: var(--nav-link-foreground, #{$nav-link-foreground});
                 text-decoration: none;
+
+                &:hover {
+                    --nav-link-foreground: #{$nav-link-foreground-hover};
+                }
                 
                 @media (max-width: 974px) {
                     padding-block: .75rem;
@@ -92,7 +96,7 @@
             align-items: center;
 
             ion-icon {
-                color: inherit;
+                color: var(--nav-link-foreground);
                 transition: all 300ms ease-in-out;
             }
         }
