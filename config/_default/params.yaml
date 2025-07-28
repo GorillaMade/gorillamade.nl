@@ -53,6 +53,11 @@ opening_hours:
     closes: "18:00"
 
 
+
+# -- OpenGraph information --
+og_image: "/media/gm-logo.jpg"
+
+
 # -- Schema data --
 schema:
   organisation:
@@ -61,7 +66,7 @@ schema:
     type: "Organisation"
     name: "Jouw Bedrijfsnaam"
     url: "https://www.gorillamade.nl"
-    logo: "https://www.gorillamade.nl/media/logo.png"
+    logo: "https://www.gorillamade.nl/media/gm-logo.jpg"
     description: "Korte beschrijving van je bedrijf of website."
     sameAs:
       - "https://primal.net/p/npub1s4eztsvantqp72jh2ygzk8t4q9gwva8xkqdj83kha9dupyk23kwqmlya7j"
