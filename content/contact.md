@@ -1,6 +1,6 @@
 ---
 title: "Contact"
-description: "Contact page description"
+description: "Vragen over een website, hosting of SEO? Stuur een bericht of plan een kennismaking. GorillaMade helpt je graag verder — snel en persoonlijk."
 type: contact
 ---
 

@@ -28,7 +28,7 @@ social_profiles:
 
   - name: "linkedin"
     icon: ""
-    link: "https://link.com/GorillaMade"
+    link: "https://www.linkedin.com/in/timothy-remst"
 
   - name: "github"
     icon: ""
@@ -55,7 +55,7 @@ opening_hours:
 
 
 # -- OpenGraph information --
-og_image: "/media/gm-logo.jpg"
+og_image: "/media/gm-banner.png"
 
 
 # -- Schema data --

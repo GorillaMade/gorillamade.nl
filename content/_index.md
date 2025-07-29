@@ -1,6 +1,6 @@
 ---
-title: "Homepage"
-description: "Home page description"
+title: "Sterke websites op maat voor online succes met GorillaMade"
+description: "Van ontwerp tot hosting, e-mail en vindbaarheid: ik regel alles voor je website. Eén aanspreekpunt, zonder gedoe. Wel zo makkelijk."
 
 block_hero:
   heading: "Gewoon een goede website, zonder gebrul!"
