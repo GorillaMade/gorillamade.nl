@@ -14,33 +14,36 @@ Renders a menu for the given menu ID.
 {{- end }}
 
 {{- define "_partials/inline/menu/walk.html" }}
-  {{- $page := .page }}
-  {{- range .menuEntries }}
-    {{- $hasChildren := .Children }}
-    {{- $isActive := or ($page.IsMenuCurrent .Menu .) ($page.HasMenuCurrent .Menu .) }}
-    {{- $name := .Name }}
-    {{- $submenuID := printf "submenu-%s" (.Identifier | default .Name | urlize) }}
+{{- $page := .page }}
+{{- range .menuEntries }}
+{{- $hasChildren := .Children }}
+{{- $isActive := or ($page.IsMenuCurrent .Menu .) ($page.HasMenuCurrent .Menu .) }}
+{{- $name := .Name }}
+{{- $submenuID := printf "submenu-%s" (.Identifier | default .Name | urlize) }}
 
-    {{- if $hasChildren }}
-    <li class="has-submenu">
-      <span class="link--wrapped" {{ if $isActive }} aria-current="page" {{ end }} aria-expanded="false">
-        <a class="site-nav__link" href="{{ .URL }}">{{ $name }}</a>
-        <button aria-haspopup="true" aria-expanded="false" aria-controls="{{ $submenuID }}"
-          aria-label="Toon submenu voor {{ $name }}" type="button">
-          <ion-icon name="chevron-down-outline"></ion-icon>
-        </button>
-      </span>
+{{- if $hasChildren }}
+<li class="has-submenu">
+  <span class="link--wrapped" {{ if $isActive }} aria-current="page" {{ end }} aria-expanded="false">
+    <a class="site-nav__link" href="{{ .URL }}">{{ $name }}</a>
+    <button aria-haspopup="true" aria-expanded="false" aria-controls="{{ $submenuID }}"
+      aria-label="Toon submenu voor {{ $name }}" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none">
+        <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </button>
+  </span>
 
-      <ul id="{{ $submenuID }}" class="submenu" hidden>
-        {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .Children) }}
-      </ul>
-    </li>
-    {{- else }}
-    <li>
-      <a class="site-nav__link" href="{{ .URL }}" {{ if $isActive }} aria-current="page" {{ end }} aria-expanded="false">{{ $name }}</a>
-    </li>
-    {{- end }}
-  {{- end }}
+  <ul id="{{ $submenuID }}" class="submenu" hidden>
+    {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .Children) }}
+  </ul>
+</li>
+{{- else }}
+<li>
+  <a class="site-nav__link" href="{{ .URL }}" {{ if $isActive }} aria-current="page" {{ end }} aria-expanded="false">{{
+    $name }}</a>
+</li>
+{{- end }}
+{{- end }}
 {{- end }}
 
 <script>

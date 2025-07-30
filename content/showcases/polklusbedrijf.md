@@ -23,6 +23,7 @@ client:
   company: "Pol Klusbedrijf"
   name: "Ricardo Pol"
   function: "Eigenaar"
+  branch: "Vakmanschap"
   quote: "De samenwerking verliep soepel en professioneel. Ik ben erg blij met mijn nieuwe website!"
 
 project_url: "https://polklusbedrijf.nl/"
