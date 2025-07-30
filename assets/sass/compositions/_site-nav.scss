@@ -98,6 +98,7 @@
             justify-content: center;
             align-items: center;
 
+            svg,
             ion-icon {
                 color: var(--nav-link-foreground, #{$nav-link-foreground});
                 transition: all 300ms ease-in-out;
@@ -138,7 +139,7 @@
 }
 
 .site-nav__list>li.has-submenu.open {
-
+    button svg,
     button ion-icon {
         rotate: 180deg;
     }
