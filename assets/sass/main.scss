@@ -171,6 +171,8 @@ button#theme-toggle {
 .hero {
     --region-space: 12.12vmax;
 
+    position: relative;
+
     &__inner {
         .block-title {
             font-size: var(--fs-step-5);
@@ -204,10 +206,11 @@ button#theme-toggle {
 
 
 .jungle-divider {
+    position: absolute;
+    bottom: 0;
     width: 100%;
     line-height: 0;
     position: relative;
-    margin-top: -1px;
 }
 
 
