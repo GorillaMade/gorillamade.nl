@@ -30,7 +30,7 @@
                 &:is(:hover, :focus-visible) {
                     color: var(--_link-foreground-hover);
                 }
-                
+
                 @media (max-width: 974px) {
                     padding-block: .75rem;
                 }
@@ -40,8 +40,8 @@
 }
 
 
-.site-nav > .site-nav__list > li > a,
-.site-nav > .site-nav__list > li.has-submenu > span.link--wrapped {
+.site-nav>.site-nav__list>li>a,
+.site-nav>.site-nav__list>li.has-submenu>span.link--wrapped {
 
     &:after {
         content: "";
@@ -81,7 +81,7 @@
 // Site Navigation Submenu
 // -----------------------------------------------------------------------------
 
-.site-nav__list > li.has-submenu {
+.site-nav__list>li.has-submenu {
 
 
 
@@ -106,25 +106,33 @@
         }
     }
 
-    & > ul.submenu {
+    &>ul.submenu {
         padding: 0;
         margin: 0;
         list-style: none;
-        background: var(--neutral-100);
+        background: var(--neutral-50);
         border-radius: var(--radius-xs);
-        box-shadow: var(--shadow-xs);
+        box-shadow: var(--shadow-s);
         width: var(--_nav-width);
 
-        a {
-            padding: var(--space-2xs) var(--space-s);
-
-            &:hover {
-                background: var(--neutral-200);
+        li {
+            &:not(:first-of-type) {
+                border-top: 1px solid var(--neutral-100);
             }
 
-            &[aria-current="page"] {
-                color: var(--neutral-50);
-                background: var(--neutral-800);
+
+            a {
+                padding: var(--space-2xs) var(--space-s);
+                display: block;
+
+                &:hover {
+                    background: var(--neutral-100);
+                }
+
+                &[aria-current="page"] {
+                    color: var(--neutral-50);
+                    background: var(--neutral-800);
+                }
             }
         }
     }
@@ -139,12 +147,13 @@
 }
 
 .site-nav__list>li.has-submenu.open {
+
     button svg,
     button ion-icon {
         rotate: 180deg;
     }
 
-    & > ul.submenu {
+    &>ul.submenu {
         display: flex;
         flex-basis: 1;
         flex-direction: column;

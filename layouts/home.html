@@ -69,7 +69,7 @@
                     {{ range .Params.block_benefits.list }}
                     <li class="fade-in">
                         <div class="flow">
-                            <h3><ion-icon name="{{ .icon }}" size="large"></ion-icon> {{ .title }}</h3>
+                            <h3 class="flex-group"><ion-icon name="{{ .icon }}" size="large"></ion-icon> {{ .title }}</h3>
                             <small class="color-neutral-500">{{ .description }}</small>
                             <p>{{ .body | markdownify }}</p>
                         </div>

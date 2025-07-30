@@ -23,11 +23,11 @@ main:
     parent: "Diensten"
     pageRef: "/diensten/hosting"
     weight: 30
-  - name: "Zoekmachine optimalisatie"
+  - name: "SEO"
     parent: "Diensten"
     pageRef: "/diensten/zoekmachine-optimalisatie"
     weight: 40
-  - name: "CMS"
+  - name: "Content"
     parent: "Diensten"
     pageRef: "/diensten/content-management-system"
     weight: 50

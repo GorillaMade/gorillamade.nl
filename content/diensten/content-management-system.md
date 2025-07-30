@@ -1,34 +1,43 @@
 ---
-title: "Content Management System"
+title: "Content"
 description: "Content description"
 weight: 30
 type: services
 
 faq:
-  - vraag: "Wat is een Content Management System (CMS)?"
+  - vraag: "Wat is een git-based CMS?"
     antwoord: |
-        Een CMS is een systeem waarmee je eenvoudig zelf de inhoud van je website kunt aanpassen – zoals teksten, afbeeldingen en pagina’s – zonder technische kennis.
+      Een git-based CMS slaat je website-inhoud op in versiebeheer (zoals Git). Het is veilig, snel en betrouwbaar. Je bewerkt de content via een eenvoudige online editor.
 
-  - vraag: "Wat voor CMS gebruik je?"
+  - vraag: "Kan ik mijn website zelf beheren met een git-based CMS?"
     antwoord: |
-        Ik werk met een git-based CMS. Dit betekent dat alle contentversies veilig worden opgeslagen in versiebeheer (zoals Git), wat zorgt voor snelheid, veiligheid en flexibiliteit. Je bewerkt de content via een gebruiksvriendelijke interface, meestal rechtstreeks in de browser.
+      Ja, het systeem is zo ingericht dat je makkelijk zelf teksten, afbeeldingen of pagina’s kunt aanpassen. Je hebt daar geen technische kennis voor nodig.
 
-  - vraag: "Kan ik zonder technische kennis met een git-based CMS werken?"
+  - vraag: "Wat als ik mijn content niet zelf wil beheren?"
     antwoord: |
-        Ja, absoluut. Het systeem is gebruiksvriendelijk opgezet, zodat je als niet-technische gebruiker gewoon via een visuele editor aanpassingen kunt doen. Ik zorg voor een duidelijke uitleg of handleiding.
+      Dan neem ik het voor je uit handen. Jij levert de inhoud of wensen aan, en ik zorg dat alles netjes wordt bijgewerkt in het CMS.
 
-  - vraag: "Wat zijn de voordelen van een git-based CMS?"
+  - vraag: "Wat is het voordeel van een git-based CMS ten opzichte van WordPress?"
     antwoord: |
-        Een git-based CMS is sneller, veiliger en beter te integreren in moderne webprojecten. Je hebt versiebeheer, volledige controle over je content en geen afhankelijkheid van een database of traditioneel beheerpaneel.
+      Een git-based CMS is sneller, veiliger en vereist minder onderhoud. Er is geen database nodig, en alle wijzigingen zijn automatisch versiebaar en terug te draaien.
 
-  - vraag: "Kan ik het CMS later uitbreiden of aanpassen?"
+  - vraag: "Kan ik het CMS later uitbreiden?"
     antwoord: |
-        Zeker. Git-based CMS’en zijn flexibel en goed schaalbaar. Of je nu extra pagina’s, talen of functies wilt toevoegen — alles is aanpasbaar binnen het bestaande systeem.
+      Ja, het systeem is flexibel. Je kunt eenvoudig uitbreiden met bijvoorbeeld een blog, extra pagina’s of meertaligheid, zonder de site opnieuw te bouwen.
 ---
 
 # Content beheren zonder gedoe {.page-title}
-Wil je zelf makkelijk teksten en foto’s aanpassen op je website? Met goed contentmanagement zorg ik dat jij de touwtjes in handen hebt. Geen gedoe met code of moeilijke systemen.
 
-Ik richt alles slim voor je in, zodat je snel dingen kunt aanpassen, of het nu gaat om een nieuwe actie, een blog of een foto. Zo blijft je website up-to-date en duidelijk voor je klanten.
+Wil je zelf makkelijk teksten en foto’s aanpassen op je website? Met een goed ingericht content management systeem (CMS) heb jij de touwtjes in handen. Geen gedoe met code of moeilijke systemen.
 
-Je hoeft geen techneut te zijn. Jij focust op je bedrijf, ik zorg dat het werkt.
+Ik richt alles slim voor je in, zodat je snel dingen kunt aanpassen — zoals een nieuwe actie, blog of afbeelding. Zo blijft je website actueel en duidelijk voor je klanten.
+
+Liever geen omkijken naar je content? Dan neem ik het voor je uit handen. Ik zorg voor updates, nieuwe pagina’s of aanpassingen wanneer jij dat nodig hebt.
+
+Of je het nu zelf doet of liever laat doen: jij focust op je bedrijf, ik zorg dat het werkt.
+
+## Geen tijd of zin om zelf te schrijven?
+
+Je weet wat je wilt zeggen, maar krijgt het niet goed op papier? Geen probleem. Ik help je met het schrijven of herschrijven van teksten die passen bij jouw bedrijf en doelgroep.
+
+Of het nu gaat om een homepage, een over-ons tekst of blog: ik zorg dat je boodschap helder en professioneel overkomt. Zo hoef jij je niet druk te maken over komma’s of zinsopbouw, ik regel het voor je.
