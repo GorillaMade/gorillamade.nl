@@ -222,18 +222,14 @@ button#theme-toggle {
     padding-block-start: 0;
 }
 
-.showcase__header {
-    figure {
-        margin: 0;
-        padding: 0;
-        border-radius: var(--radius-m);
-
-        img {
+.showcase__featured-image {
+    margin-block-start: var(--space-l-xl);
+    margin-inline: 0;
+    img {
             object-fit: cover;
             width: 100%;
             height: 100%;
         }
-    }
 }
 
 

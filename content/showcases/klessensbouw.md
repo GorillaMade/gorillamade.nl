@@ -39,7 +39,7 @@ Klessens Bouw had jarenlang zelf hun website gebouwd, maar wilde het nu uit hand
 
 Onze rol was het leveren van een nieuwe website, inclusief het ontwerp en de implementatie van een gebruiksvriendelijk CMS waarmee Klessens Bouw zelf eenvoudig content kan aanpassen zonder technische kennis.
 
-### Bijzonderheden
+#### Bijzonderheden
 
   * Op maat gemaakt CMS voor eenvoudig contentbeheer
   * Moderne en responsieve website die goed presteert op mobiele apparaten

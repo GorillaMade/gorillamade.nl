@@ -2,38 +2,31 @@
 <section class="[ showcase__header ] [] [ region ]">
     <div class="wrapper flow">
         <div class="flow text--centered">
-            <span>{{ .Params.Client.company }}</span>
             <h1 class="page-title">{{ .Title }}</h1>
             {{ partial "breadcrumb.html" . }}
         </div>
-        <div class="showcase__info">
-            <figure class="showcase__info--image" style="background: {{ .Params.images.background }};">
-                <img src="{{ .Params.images.full }}" width="1280" height="525.71" alt="">
-            </figure>
-            <div class="showcase__info--data">
-                <div class="flow">
-                    <h4 class="block-title color-neutral-950">Client:</h4>
-                    <p>{{ .Params.Client.company }}</p>
-                </div>
-                <div class="flow">
-                    <h4 class="block-title color-neutral-950">Tags:</h4>
-                    {{ with .Params.tags }}
-                    <ul class="tags" role="list">
-                        {{ range . }}
-                        <li><a class="tag" href="{{ " tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-                        {{ end }}
-                    </ul>
-                    {{ end }}
-                </div>
-                <div class="flow">
-                    <h4 class="block-title color-neutral-950">Link:</h4>
-                    <a class="button" href="{{ .Params.project_url }}" target="_blank">Bezoek de website</a>
-                </div>
-            </div>
-        </div>
     </div>
+    <figure class="showcase__featured-image" style="background: {{ .Params.images.background }};">
+        <img src="{{ .Params.images.full }}" width="1280" height="525.71" alt="">
+    </figure>
 </section>
 <article class="[ showcase ] [ content ] [ flow region ]">
+    <div class="showcase__info--data popout">
+        <div class="flow">
+            <h4 class="block-title color-neutral-950">Client:</h4>
+            <p>{{ .Params.Client.company }}</p>
+        </div>
+        <div class="flow">
+            <h4 class="block-title color-neutral-950">Diensten:</h4>
+            {{ with .Params.tags }}
+            <ul class="tags" role="list">
+                {{ range . }}
+                <li><a class="tag" href="{{ " tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+                {{ end }}
+            </ul>
+            {{ end }}
+        </div>
+    </div>
     {{ .Content }}
 </article>
 {{ end }}
