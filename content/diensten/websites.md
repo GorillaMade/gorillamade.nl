@@ -1,6 +1,7 @@
 ---
 title: "Websites"
-description: "Websites description"
+tagline: "Sterke en snelle websites op maat voor ondernemers"
+description: "GorillaMade bouwt snelle, veilige websites voor ondernemers in Tilburg en omgeving. Geen trage systemen, wel kwaliteit en gemak. Maatwerk dat werkt."
 weight: 10
 type: services
 
@@ -27,7 +28,9 @@ faq:
     antwoord: |
         Zeker. Na oplevering is er ruimte voor kleine aanpassingen binnen een korte testperiode. Daarnaast bied ik optioneel onderhoud of ondersteuning op uurbasis.
 ---
+
 # Websites die sterk en snel zijn {.page-title}
+
 Wil je een website die echt indruk maakt en past bij jouw bedrijf? Of je nu een kleine ondernemer bent of juist wilt groeien, ik maak sterke, betrouwbare en snelle websites speciaal voor ondernemers in Tilburg en omgeving.
 
 Ik bouw jouw website met slimme technieken, zodat hij direct laadt en veilig is. Geen zware, trage systemen, maar een krachtig en makkelijk te gebruiken platform. Je website werkt goed op computers, tablets en telefoons. Ook help ik je zodat je zelf makkelijk teksten en foto’s kunt aanpassen.

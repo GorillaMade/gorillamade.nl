@@ -7,7 +7,7 @@
   {{- if .IsHome -}}
   {{ .Site.Title }} - {{ .Site.Params.tagline }}
   {{- else -}}
-  {{ .Title }} | {{ .Site.Title }}
+  {{ .Params.tagline }} | {{ .Site.Title }}
   {{- end -}}
 </title>
 
@@ -27,7 +27,7 @@
 <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
 <meta property="og:url" content="{{ .Permalink }}">
 <meta property="og:title"
-  content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.tagline }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+  content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.tagline }}{{ else }}{{ .Params.tagline }} | {{ .Site.Title }}{{ end }}">
 <meta property="og:description" content="{{ if .Description }}{{ .Description }}{{ else if .Summary }}{{ .Summary }}{{ end }}">
 <meta property="og:image" content="{{ .Site.Params.og_image | absURL }}">
 <meta property="og:locale" content="{{ .Site.LanguageCode | default " nl_NL" }}">
@@ -36,7 +36,7 @@
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title"
-  content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.location }}{{ else }}{{ .Title }} | {{ .Site.Title }}{{ end }}">
+  content="{{ if .IsHome }}{{ .Site.Title }} - {{ .Site.Params.tagline }}{{ else }}{{ .Params.tagline }} | {{ .Site.Title }}{{ end }}">
 <meta name="twitter:description" content="{{ if .Description }}{{ .Description }}{{ else if .Summary }}{{ .Summary }}{{ end }}">
 <meta name="twitter:image" content="{{ .Site.Params.og_image | absURL }}">
 

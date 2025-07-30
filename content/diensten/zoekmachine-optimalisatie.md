@@ -1,6 +1,7 @@
 ---
 title: "Zoekmachine optimalisatie"
-description: "SEO description"
+tagline: "Beter vindbaar in Google met slimme SEO"
+description: "Meer bezoekers en klanten via Google? GorillaMade helpt met sterke SEO, slimme zoekwoorden en een snelle website die goed scoort in zoekmachines."
 weight: 20
 type: services
 

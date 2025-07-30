@@ -1,5 +1,6 @@
 ---
-title: "Over GorillaMade – Webdeveloper in Tilburg met Passie voor Sterke Websites"
+title: "Over mij"
+tagline: "Over GorillaMade een Webdeveloper in Tilburg met Passie voor Sterke Websites"
 description: "Ontdek het verhaal achter GorillaMade. Sterke websites op maat, gebouwd voor ondernemers die online willen groeien. Snel, veilig en zonder gedoe."
 type: about
 ---

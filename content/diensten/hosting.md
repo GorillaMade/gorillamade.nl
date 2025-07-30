@@ -1,6 +1,7 @@
 ---
 title: "Hosting"
-description: "Hosting description"
+tagline: "Snelle en veilige hosting met domein"
+description: "GorillaMade regelt hosting, e-mail en je .nl domein. Snel, veilig en zonder zorgen, zodat jij je kunt richten op je bedrijf. Persoonlijke support inbegrepen."
 weight: 40
 type: services
 

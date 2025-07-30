@@ -1,10 +1,10 @@
 ---
 title: "Contact"
-description: "Vragen over een website, hosting of SEO? Stuur een bericht of plan een kennismaking. GorillaMade helpt je graag verder — snel en persoonlijk."
+description: "Heb je vragen of wil je samenwerken? Neem contact op met GorillaMade voor persoonlijke service en professionele weboplossingen op maat."
 type: contact
 ---
 
 
-# Let's talk! {.page-title}
+# Laten we praten! {.page-title}
 
 Heb je een vraag of wil je weten wat GorillaMade voor jou kan betekenen? Ik bijt niet (tenzij je een banaan bent). Neem gerust contact met me op!
