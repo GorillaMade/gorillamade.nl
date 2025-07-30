@@ -17,13 +17,19 @@
     </div>
 </section>
 <section class="[ faq-list ] [ bg-neutral-100 ] [ region ]">
-    <div class="wrapper wrapper--small flow fade-in">
+    <div class="wrapper wrapper--wide">
         <h2 class="block-title">Veel gestelde vragen</h2>
         {{ range .Params.faq }}
-            <details class="faq flow">
-                <summary>{{ .vraag }}</summary>
-                <p>{{ .antwoord | markdownify }}</p>
-            </details>
+        <details class="accordion">
+            <summary>
+                {{ .vraag }}
+                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
+                    <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round"></path>
+                </svg>
+            </summary>
+            <p>{{ .antwoord | markdownify }}</p>
+        </details>
         {{ end }}
     </div>
 </section>

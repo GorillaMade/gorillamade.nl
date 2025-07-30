@@ -9,12 +9,14 @@ $enable-media-prefers-dark-mode: true;
 
 $global-border-radius: var(--radius-m);
 
+$input-select-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='hsl(var(--neutral-800) h s l / 100%)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+
 
 // -----------------------------------------------------------------------------
 // 
 // -----------------------------------------------------------------------------
 
-$body-foreground: var(--neutral-500);
+$body-foreground: var(--neutral-600);
 $body-background: var(--neutral-50);
 $body-font-family: var(--ff-sans);
 $body-font-size: var(--fs-step-0);

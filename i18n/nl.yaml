@@ -21,6 +21,9 @@ view_more:
 view_case:
   other: "Bekijk case"
 
+showcase_client:
+  other: "In opdracht van"
+
 
 # -- 404 error --
 error404:

@@ -1,0 +1,63 @@
+@use "../abstracts" as *;
+
+// -----------------------------------------------------------------------------
+//
+// -----------------------------------------------------------------------------
+
+details.accordion {
+    --_accordion-summary-foreground: var(--accordion-summary-foreground, inherit);
+
+    --_accordion-foreground: var(--accordion-foreground, var(--neutral-900));
+    --_accordion-background: var(--accordion-background, var(--neutral-200));
+    --_accordion-font-weight: var(--accordion-font-weight, var(--fw-bold));
+    --_accordion-padding: var(--accordion-padding, var(--space-2xs) var(--space-xs));
+
+    position: relative;
+    margin-bottom: 1px;
+
+    &> *:not([summary]) {
+        color: var(--_accordion-summary-foreground);
+    }
+
+    summary {
+        color: var(--accordion-foreground)!important;
+        background: var(--_accordion-background);
+        font-size: var(--fs-step-0);
+        font-weight: var(--_accordion-font-weight);
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        gap: var(--space-xs);
+        padding: var(--_accordion-padding);
+        border-radius: var(--radius-xs);
+
+        svg {
+            min-height: var(--fs-step-1);
+            min-width: var(--fs-step-1);
+            rotate: -90deg;
+            transition: rotate 3ms ease-in-out;
+        }
+
+        &:not([role]) {
+            color: var(--_accordion-summary-foreground);
+        }
+    }
+}
+
+details.accordion {
+    &[open] {
+
+        &>summary {
+            svg {
+                rotate: 0deg;
+            }
+        }
+
+        & > :last-child {
+            margin-bottom: var(--space-m);
+        }
+    }
+}
