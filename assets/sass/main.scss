@@ -225,11 +225,12 @@ button#theme-toggle {
 .showcase__featured-image {
     margin-block-start: var(--space-l-xl);
     margin-inline: 0;
+
     img {
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-        }
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+    }
 }
 
 
@@ -451,6 +452,14 @@ details.faq {
 
         a {
             --link-text-decoration: none;
+        }
+    }
+
+    &__list {
+        li a {
+            display: block;
+            padding-block: var(--space-3xs);
+            width: fit-content;
         }
     }
 }
