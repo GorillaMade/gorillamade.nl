@@ -2,7 +2,7 @@
 title: "Content"
 tagline: "Contentbeheer en webteksten op maat"
 description: "Beheer zelf je content of laat het aan mij over. GorillaMade regelt CMS, updates en webteksten die jouw bedrijf helder en professioneel neerzetten."
-weight: 30
+weight: 40
 type: services
 
 faq:

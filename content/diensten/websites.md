@@ -2,7 +2,7 @@
 title: "Websites"
 tagline: "Sterke en snelle websites op maat voor ondernemers"
 description: "GorillaMade bouwt snelle, veilige websites voor ondernemers in Tilburg en omgeving. Geen trage systemen, wel kwaliteit en gemak. Maatwerk dat werkt."
-weight: 10
+weight: 20
 type: services
 
 faq:

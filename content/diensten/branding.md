@@ -2,7 +2,7 @@
 title: "Branding"
 tagline: "Sterke branding die past bij jouw bedrijf"
 description: "Laat je bedrijf opvallen met een herkenbaar merk. GorillaMade helpt met logo, kleuren en stijl die passen bij jouw verhaal en website."
-order: 50
+weight: 10
 type: services
 
 faq:
