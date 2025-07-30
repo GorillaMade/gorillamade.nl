@@ -25,7 +25,7 @@ Renders a menu for the given menu ID.
 <li class="has-submenu">
   <span class="link--wrapped" {{ if $isActive }} aria-current="page" {{ end }} aria-expanded="false">
     <a class="site-nav__link" href="{{ .URL }}">{{ $name }}</a>
-    <button aria-haspopup="true" aria-expanded="false" aria-controls="{{ $submenuID }}"
+    <button aria-haspopup="true" aria-label="toggle menu" aria-expanded="false" aria-controls="{{ $submenuID }}"
       aria-label="Toon submenu voor {{ $name }}" type="button">
       <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none">
         <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
