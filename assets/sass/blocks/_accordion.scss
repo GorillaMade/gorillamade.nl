@@ -52,7 +52,7 @@ details.accordion {
 
         &>summary {
             svg {
-                rotate: 0deg;
+                rotate: (0deg);
                 transition: rotate 300ms ease-in-out;
             }
         }
