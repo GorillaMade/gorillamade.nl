@@ -1,5 +1,4 @@
 tagline: "Eén partner voor alles rond je website"
-location: "Tilburg"
 
 # -- Company --
 company_name: "GorillaMade"
@@ -67,7 +66,7 @@ schema:
     enabled: true
     context: "https://schema.org"
     type: "Organisation"
-    name: "Jouw Bedrijfsnaam"
+    name: "GorillaMade"
     url: "https://www.gorillamade.nl"
     logo: "https://www.gorillamade.nl/media/gm-logo.jpg"
     description: "Korte beschrijving van je bedrijf of website."

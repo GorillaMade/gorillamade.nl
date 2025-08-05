@@ -1,6 +1,21 @@
 @use "../abstracts" as *;
 
 // Color(s) default theme
+@each $color, $shade-map in $active-theme {
+    @each $shade, $value in $shade-map {
+        .color-#{$color}-#{$shade} {
+            --heading-foreground: #{$value};
+            color: #{$value};
+        }
+
+        .bg-#{$color}-#{$shade} {
+            background: #{$value};
+        }
+    }
+}
+
+
+// Color(s) Light theme
 html[data-theme='light'] {
     @each $color, $shade-map in $light {
         @each $shade, $value in $shade-map {
@@ -16,6 +31,8 @@ html[data-theme='light'] {
     }
 }
 
+
+// Color(s) Dark theme
 
 html[data-theme='dark'] {
     @each $color, $shade-map in $dark {

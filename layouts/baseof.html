@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ with .Site.Params.isoCode | default (.Site.LanguageCode | default " en") }}{{- . -}}{{ end }}">
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
 <head>
     {{ partial "shared/head.html" . }}
 </head>
