@@ -13,6 +13,7 @@
     --_social-flex-basis: var(--social-flex-basis, var(--space-xl));
     --_social-tooltip-font-size: var(--social-tooltip-font-size, var(--fs-step--1));
     --_social-icon-font-size: var(--social-icon-font-size, var(--fs-step-1));
+    
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-s);
@@ -80,7 +81,8 @@
 
         // hover state
         &:hover {
-            color: var(--_social-icon-foreground-hover);
+            --social-icon-foreground: var(--_social-icon-foreground-hover);
+            border-color: var(--_social-icon-background);
 
             &::after {
                 inset-block-start: 0;

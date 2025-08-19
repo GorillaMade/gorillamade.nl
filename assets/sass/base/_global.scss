@@ -78,14 +78,9 @@ select {
     border-radius: var(--radius-s);
 }
 
-input:not([type="checkbox"]),
+input:not([type="checkbox"], [type="radio"]),
 select,
 textarea {
     width: 100%;
     padding: var(--_input-padding, var(--space-xs));
-}
-
-input[type="checkbox"] {
-    width: var(--fs-step-0);
-    height: var(--fs-step-0);
 }

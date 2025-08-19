@@ -4,7 +4,9 @@ description: "Van ontwerp tot hosting, e-mail en vindbaarheid: ik regel alles vo
 
 block_hero:
   heading: "Gewoon een goede website, zonder gebrul!"
-  text: "Als jouw digitale gorilla help ik je te domineren in de online jungle. Samen bouwen we aan een snelle, veilige en vindbare website – volledig in jouw controle."
+  text: "Als jouw digitale gorilla help ik je te domineren in de online jungle. Samen bouwen we aan een snelle, veilige en vindbare website, volledig in jouw controle."
+  image: "mixkit-exploring-the-jungle-among-plants-and-palm-trees-32977-hd-ready.jpg"
+  video: "/media/videos/mixkit-exploring-the-jungle-among-plants-and-palm-trees-32977-hd-ready.mp4"
 
 
 block_benefits:

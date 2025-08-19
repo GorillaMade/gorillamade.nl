@@ -1,6 +1,6 @@
 {{/* Organization Schema */}}
 {{ with .Site.Params.schema.organization }}
-  {{ if .enabled }}
+{{ if .enabled }}
 <script type="application/ld+json">
 {
   "@context": "{{ .context }}",
@@ -30,12 +30,12 @@
   }
 }
 </script>
-  {{ end }}
+{{ end }}
 {{ end }}
 
 {{/* WebSite Schema */}}
 {{ with .Site.Params.schema.website }}
-  {{ if .enabled }}
+{{ if .enabled }}
 <script type="application/ld+json">
 {
   "@context": "{{ .context }}",
@@ -49,5 +49,5 @@
   }
 }
 </script>
-  {{ end }}
+{{ end }}
 {{ end }}

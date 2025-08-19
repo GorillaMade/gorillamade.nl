@@ -3,7 +3,7 @@
 
         <div class="footer-text">
             <h3 class="fs-step-1 color-neutral-800">{{ site.Params.company_name }} in het kort</h3>
-            <p>Jouw digitale partner – van krachtige websites tot hosting en zoekmachine optimalisatie, alles wat je
+            <p>Jouw digitale partner, van krachtige websites tot hosting en zoekmachine optimalisatie, alles wat je
                 nodig hebt om te heersen in je online jungle.</p>
             <nav>
                 <ul class="social">
@@ -11,14 +11,15 @@
                     <li data-tooltip="{{ .name }}">
                         {{- $link := .link -}}
                         {{ if or (strings.HasPrefix $link "nostr:") (strings.HasPrefix $link "xmpp:") }}
-                        <a href="{{ .link | safeURL }}" aria-label="{{ .name }}"><ion-icon src="{{ .icon | relURL }}"
-                                name="logo-{{ .name }}"></ion-icon><span class="visually-hidden">{{
-                                .platform }}</span></a>
+                        <a href="{{ .link | safeURL }}" aria-label="{{ .name }}">
+                            <ion-icon src="{{ .icon | relURL }}" name="logo-{{ .name }}"></ion-icon>
+                            <span class="visually-hidden">{{ .platform }}</span>
+                        </a>
                         {{ else }}
-                        <a href="{{ .link }}" aria-label="{{ .name }}"><ion-icon {{ if .icon }}
-                                src="{{ .icon | relURL }}" {{ end }} name="logo-{{ .name }}"></ion-icon><span
-                                class="visually-hidden">{{ .platform
-                                }}</span></a>
+                        <a href="{{ .link }}" aria-label="{{ .name }}">
+                            <ion-icon {{ if .icon }} src="{{ .icon | relURL }}" {{ end }} name="logo-{{ .name }}"></ion-icon>
+                            <span class="visually-hidden">{{ .platform }}</span>
+                        </a>
                         {{ end }}
                     </li>
                     {{ end }}

@@ -1,44 +1,8 @@
 {{ define "main" }}
-<section class="[ hero ] [] [ region ]">
-    <div class="[ hero__inner ] [ wrapper ] [ flow text--centered ]">
-        <h1 class="block-title">{{ .Params.block_hero.heading }}</h1>
-        <p>{{ .Params.block_hero.text }}</p>
-        <ul class="social social--centered">
-            {{ range .Site.Params.chat_with_us }}
-            <li data-tooltip="{{ .name }}">
-                {{- $link := .link -}}
-                {{ if or (strings.HasPrefix $link "nostr:") (strings.HasPrefix $link "xmpp:") }}
-                <a class="{{ .name }}" href="{{ .link | safeURL }}" aria-label="{{ .name }}"><ion-icon src="{{ .icon | relURL }}"
-                        name="logo-{{ .name }}"></ion-icon><span class="visually-hidden">{{
-                        .platform }}</span></a>
-                {{ else }}
-                <a href="{{ .link }}" aria-label="{{ .name }}"><ion-icon {{ if .icon }}
-                        src="{{ .icon | relURL }}" {{ end }} name="logo-{{ .name }}"></ion-icon><span
-                        class="visually-hidden">{{ .platform
-                        }}</span></a>
-                {{ end }}
-            </li>
-            {{ end }}
-        </ul>
-    </div>
-    <div class="jungle-divider" aria-hidden="true">
-        <svg
-            viewBox="0 0 1440 320"
-            preserveAspectRatio="none"
-            xmlns="http://www.w3.org/2000/svg"
-        >
-            <path
-                fill="var(--neutral-950)"
-                fill-opacity="1"
-                d="M0,288L60,272C120,256,240,224,360,197.3C480,171,600,149,720,154.7C840,160,960,192,1080,192C1200,192,1320,160,1380,144L1440,128V320H1380C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320H0Z"
-            >
-            </path>
-        </svg>
-    </div>
-</section>
-<section class="[ showcase-reel ] [ bg-neutral-950 ] [ region ]">
+{{ partial "blocks/hero.html" . }}
+<section class="[ showcase-reel ] [ bg-neutral-100 ] [ region ]">
     <div class="wrapper fade-in">
-        <h2 class="block-title color-neutral-50">Digitale successen uit mijn jungle</h2>
+        <h2 class="block-title">Digitale successen uit mijn jungle</h2>
         <div class="carousel breakout">
             <ul class="carousel__track" role="list">
                 {{ range where (where site.RegularPages "Type" "showcases") "Params.featured" true }}

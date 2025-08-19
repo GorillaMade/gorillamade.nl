@@ -1,0 +1,47 @@
+{{ $hero := .Params.block_hero }}
+{{ $video := $hero.video }}
+{{ $image := $hero.image }}
+
+<section class="[ hero ] [] [ region ]">
+    {{ if and $video $image }}
+    <div class="hero__bg">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" poster="{{ $image }}"
+            aria-hidden="true">
+            <source src="{{ $video }}" type="video/mp4">
+        </video>
+        <img src="{{ $image }}" alt="Hero achtergrond" loading="lazy" fetchpriority="high" style="display:none;">
+    </div>
+    {{ else if $video }}
+    <div class="hero__bg">
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+            <source src="{{ $video }}" type="video/mp4">
+        </video>
+    </div>
+    {{ else if $image }}
+    <div class="hero__bg">
+        <img src="{{ $image }}" alt="Hero achtergrond" loading="lazy" fetchpriority="high" style="display:none;">
+    </div>
+    {{ else }}
+    {{ end }}
+    <div class="hero__inner wrapper color-">
+        <h1 class="fs-step--1">{{ .Params.block_hero.tagline }}</h1>
+        <h2 class="block-title">{{ .Params.block_hero.heading }}</h2>
+        <p>{{ .Params.block_hero.text }}</p>
+        {{/*  <ul class="social social--centered">
+            {{ range .Site.Params.chat_with_us }}
+            <li data-tooltip="{{ .name }}">
+                {{- $link := .link -}}
+                {{ if or (strings.HasPrefix $link "nostr:") (strings.HasPrefix $link "xmpp:") }}
+                <a class="{{ .name }}" href="{{ .link | safeURL }}" aria-label="{{ .name }}"><ion-icon
+                        src="{{ .icon | relURL }}" name="logo-{{ .name }}"></ion-icon><span class="visually-hidden">{{
+                        .platform }}</span></a>
+                {{ else }}
+                <a href="{{ .link }}" aria-label="{{ .name }}"><ion-icon {{ if .icon }} src="{{ .icon | relURL }}" {{
+                        end }} name="logo-{{ .name }}"></ion-icon><span class="visually-hidden">{{ .platform
+                        }}</span></a>
+                {{ end }}
+            </li>
+            {{ end }}
+        </ul>  */}}
+    </div>
+</section>

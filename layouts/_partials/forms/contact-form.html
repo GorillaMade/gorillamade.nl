@@ -1,28 +1,51 @@
-<div x-data="{ terugbel: false }" class="form-card flow">
-  <form 
-    id="contact-form"
-    class="flow"
-    hx-post="/send"
-    hx-target="#form-response" 
-    hx-swap="innerHTML"
-    onsubmit="return validateContactForm(this)"
-  >
-    <input type="text" name="naam" placeholder="Uw naam" />
-    <input type="email" name="email" placeholder="Uw e-mailadres" />
-    <textarea name="bericht" rows="4" placeholder="Uw bericht"></textarea>
+<div x-data="{ 
+  terugbel: false,
+  dagen: ['Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag'],
+  geselecteerdeDagen: {}
+}" class="form-card flow">
+
+  <form id="contact-form" class="flow" hx-post="/send" hx-target="#form-response" hx-swap="innerHTML"
+    onsubmit="return validateContactForm(this)">
+    
+    <div class="grid">
+      <div class="field-group">
+        <label for="naam">Naam</label>
+        <input id="naam" type="text" name="naam" placeholder="Uw naam" />
+      </div>
+      <div class="field-group">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" name="email" placeholder="Uw e-mailadres" />
+      </div>
+    </div>
+
+    <div class="field-group">
+      <label for="bericht">Uw bericht</label>
+      <textarea id="bericht" name="bericht" rows="4" placeholder="Uw bericht"></textarea>
+    </div>
 
     <label class="flex-group">
-      <input type="checkbox" x-model="terugbel" />
-      Ik wil graag teruggebeld worden
+      <input type="checkbox" name="terugbel" x-model="terugbel" />
+      <span>Ik wil graag teruggebeld worden</span>
     </label>
 
     <div class="flow" x-show="terugbel" x-transition>
-      <input type="tel" name="telefoon" placeholder="Telefoonnummer" :required="terugbel" />
-      <input type="date" name="dag" placeholder="Voorkeursdag" />
-      <div class="terugbellen flex-group flex-group--between">
-        <input type="time" name="tijd_van" />
-        <span>tot</span>
-        <input type="time" name="tijd_tot" />
+      <div class="field-group">
+        <label for="tel">Telefoon nr.</label>
+        <input id="tel" type="tel" name="telefoon" placeholder="Telefoonnummer" :required="terugbel" />
+      </div>
+
+      <!-- Directe loop zonder template -->
+      <div class="field-group flow" x-for="dag in dagen" :key="dag">
+        <label class="flex-group">
+          <input type="checkbox" :value="dag" x-model="geselecteerdeDagen[dag]" />
+          <span x-text="dag"></span>
+        </label>
+
+        <div class="terugbellen flex-group flex-group--between" x-show="geselecteerdeDagen[dag]" x-transition>
+          <input type="time" :name="`tijd_van[${dag}]`" />
+          <span>tot</span>
+          <input type="time" :name="`tijd_tot[${dag}]`" />
+        </div>
       </div>
     </div>
 
@@ -30,7 +53,7 @@
     <input type="hidden" name="_subject" value="Contactformulier website" />
 
     <div>
-        <button type="submit" class="button" data-button-variant="primary">Verzend</button>
+      <button type="submit" class="button" data-button-variant="primary">Verzend</button>
     </div>
   </form>
 
@@ -38,12 +61,6 @@
 </div>
 
 <script>
-  function resetForm() {
-    const form = document.getElementById('contact-form');
-    form.reset();
-    document.querySelector('[x-data]').__x.$data.terugbel = false;
-  }
-
   function showError(message) {
     const responseDiv = document.getElementById('form-response');
     responseDiv.innerHTML = `<div class="form-error">${message}</div>`;
@@ -59,7 +76,7 @@
 
     const naam = form.querySelector('[name="naam"]');
     const email = form.querySelector('[name="email"]');
-    const terugbel = form.querySelector('[type="checkbox"]').checked;
+    const terugbel = form.querySelector('[name="terugbel"]').checked;
     const telefoon = form.querySelector('[name="telefoon"]');
 
     if (!naam.value.trim()) {

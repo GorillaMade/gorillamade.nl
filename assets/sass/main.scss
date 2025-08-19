@@ -172,10 +172,45 @@ button#theme-toggle {
 .hero {
     --region-space: 12.12vmax;
 
+    background: black;
     position: relative;
 
+
+    &__bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        z-index: 0;
+
+        .hero-video {
+            aspect-ratio: 16/9;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.45));
+            z-index: 1;
+            pointer-events: none;
+        }
+    }
+
     &__inner {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+
         .block-title {
+            color: white;
             font-size: var(--fs-step-5);
             font-weight: var(--fw-black);
         }
@@ -183,6 +218,11 @@ button#theme-toggle {
         p {
             max-width: 65ch;
             margin-inline: auto;
+        }
+
+        .social {
+            --social-icon-foreground: white;
+            --social-icon-foreground-hover: white;
         }
     }
 }
@@ -206,22 +246,12 @@ button#theme-toggle {
 }
 
 
-.jungle-divider {
-    position: absolute;
-    bottom: -1px;
-    width: 100%;
-    line-height: 0;
-}
-
-
 
 // -----------------------------------------------------------------------------
 // Page: Showcase
 // -----------------------------------------------------------------------------
 
-.benefits {
-
-}
+.benefits {}
 
 
 
@@ -229,7 +259,7 @@ button#theme-toggle {
 // Page: 
 // -----------------------------------------------------------------------------
 
-.block-title + details.accordion {
+.block-title+details.accordion {
     margin-block-start: var(--space-s-l);
 }
 
