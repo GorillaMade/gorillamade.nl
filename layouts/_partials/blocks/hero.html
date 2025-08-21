@@ -23,11 +23,11 @@
     </div>
     {{ else }}
     {{ end }}
-    <div class="hero__inner wrapper color-">
+    <div class="hero__inner wrapper color-neutral-50">
         <h1 class="fs-step--1">{{ .Params.block_hero.tagline }}</h1>
         <h2 class="block-title">{{ .Params.block_hero.heading }}</h2>
         <p>{{ .Params.block_hero.text }}</p>
-        {{/*  <ul class="social social--centered">
+        <ul class="social social--centered">
             {{ range .Site.Params.chat_with_us }}
             <li data-tooltip="{{ .name }}">
                 {{- $link := .link -}}
@@ -42,6 +42,6 @@
                 {{ end }}
             </li>
             {{ end }}
-        </ul>  */}}
+        </ul>
     </div>
 </section>

@@ -1,0 +1,7 @@
+@forward "../abstracts"
+
+@each $weight, $value in $font-weights {
+    .fw-#{$weight} {
+        font-weight: #{$value};
+    }
+}
