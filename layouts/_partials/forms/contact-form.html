@@ -29,24 +29,25 @@
     </label>
 
     <div class="flow" x-show="terugbel" x-transition>
-      <div class="field-group">
-        <label for="tel">Telefoon nr.</label>
-        <input id="tel" type="tel" name="telefoon" placeholder="Telefoonnummer" :required="terugbel" />
-      </div>
-
-      <!-- Directe loop zonder template -->
-      <div class="field-group flow" x-for="dag in dagen" :key="dag">
-        <label class="flex-group">
-          <input type="checkbox" :value="dag" x-model="geselecteerdeDagen[dag]" />
-          <span x-text="dag"></span>
-        </label>
-
-        <div class="terugbellen flex-group flex-group--between" x-show="geselecteerdeDagen[dag]" x-transition>
-          <input type="time" :name="`tijd_van[${dag}]`" />
-          <span>tot</span>
-          <input type="time" :name="`tijd_tot[${dag}]`" />
+        <div class="field-group">
+            <label for="tel">Telefoon nr.</label>
+            <input id="tel" type="tel" name="telefoon" placeholder="Telefoonnummer" :required="terugbel" />
         </div>
-      </div>
+
+        <template x-for="dag in dagen" :key="dag">
+            <div class="field-group flow">
+                <label class="flex-group">
+                    <input type="checkbox" :value="dag" x-model="geselecteerdeDagen[dag]" />
+                    <span x-text="dag"></span>
+                </label>
+
+                <div class="terugbellen flex-group flex-group--between" x-show="geselecteerdeDagen[dag]" x-transition>
+                    <input type="time" :name="`tijd_van[${dag}]`" />
+                    <span>tot</span>
+                    <input type="time" :name="`tijd_tot[${dag}]`" />
+                </div>
+            </div>
+        </template>
     </div>
 
     <input type="hidden" name="_form" value="contact" />
