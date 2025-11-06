@@ -21,7 +21,7 @@ images:
 
 client:
   company: "Melody Events"
-  name: "Kamile Uzgle"
+  name: "Ramazan Güzel"
   function: "Eigenaar"
   quote: "Onze nieuwe website straalt echt professionaliteit uit. Bedankt voor de geweldige service!"
 
