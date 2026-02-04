@@ -15,7 +15,7 @@ chat_with_us:
   
   - name: "whatsapp"
     icon: ""
-    link: "https://wa.me/0613897425?text=Ik%20ben%20geintresseerd%20in%20je%20website%20diensten"
+    link: "https://api.whatsapp.com/send/?phone=0613897425&text&type=phone_number&app_absent=0"
   
 # -- Address information --
 street_address: "Ooftbouwstraat 16"
