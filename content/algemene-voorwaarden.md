@@ -1,4 +1,3 @@
-```markdown
 ---
 title: "Algemene Voorwaarden"
 isArticle: true
@@ -277,4 +276,3 @@ In deze algemene voorwaarden wordt verstaan onder:
 **20.3** Indien een geschil niet in onderling overleg kan worden opgelost, wordt het geschil voorgelegd aan de volgens de Nederlandse wet bevoegde rechter.
 
 **20.4** Indien de opdrachtgever een consument is, worden diens dwingendrechtelijke wettelijke rechten door deze algemene voorwaarden niet beperkt.
-```
