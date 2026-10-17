@@ -1,0 +1,13 @@
+// -----------------------------------------------------------------------------
+// Sizes
+// -----------------------------------------------------------------------------
+// Foundation sizing values.
+// Defines reusable global size constraints without semantic meaning.
+// -----------------------------------------------------------------------------
+
+$container-sizes: (
+    small: 48rem,
+    medium: 64rem,
+    large: 80rem,
+    xlarge: 90rem,
+);

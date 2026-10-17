@@ -1,0 +1,121 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type TextTag = "p" | "span" | "div";
+
+type TextVariant =
+    | "inherit"
+    | "display"
+    | "h1"
+    | "h2"
+    | "h3"
+    | "h4"
+    | "h5"
+    | "h6"
+    | "large"
+    | "main"
+    | "small";
+
+interface Props extends HTMLAttributes<"p"> {
+    /** Set to false to skip rendering this component. */
+    render?: boolean;
+
+    /** HTML element used to render the text. */
+    tag?: TextTag;
+
+    /** Visual typography style. */
+    variant?: TextVariant;
+
+    /** Maximum line length in characters. */
+    maxWidth?: number;
+}
+
+const {
+    render = true,
+    tag: Tag = "p",
+    variant = "inherit",
+    maxWidth,
+    class: className,
+    ...rest
+} = Astro.props;
+---
+
+{render && (
+    <Tag
+        class:list={[
+            "text",
+            variant !== "inherit" && `text-style-${variant}`,
+            className,
+        ]}
+        style={maxWidth ? `--text-max-width: ${maxWidth}ch` : undefined}
+        {...rest}
+    >
+        <slot />
+    </Tag>
+)}
+
+<style lang="scss">
+    // -----------------------------------------------------------------------------
+    // Typography Styles
+    // -----------------------------------------------------------------------------
+    // Reusable typography styles shared by text and heading components.
+    // -----------------------------------------------------------------------------
+
+    .text {
+        color: var(--text-primary);
+        max-inline-size: var(--text-max-width, none);
+    }
+
+    .text-style-display,
+    .text-style-h1,
+    .text-style-h2,
+    .text-style-h3,
+    .text-style-h4,
+    .text-style-h5,
+    .text-style-h6 {
+        font-family: var(--font-heading);
+        font-weight: var(--fw-heading);
+        line-height: var(--lh-heading);
+        letter-spacing: var(--ls-heading);
+    }
+
+    .text-style-display {
+        font-size: var(--heading-display);
+    }
+
+    .text-style-h1 {
+        font-size: var(--heading-h1);
+    }
+
+    .text-style-h2 {
+        font-size: var(--heading-h2);
+    }
+
+    .text-style-h3 {
+        font-size: var(--heading-h3);
+    }
+
+    .text-style-h4 {
+        font-size: var(--heading-h4);
+    }
+
+    .text-style-h5 {
+        font-size: var(--heading-h5);
+    }
+
+    .text-style-h6 {
+        font-size: var(--heading-h6);
+    }
+
+    .text-style-large {
+        font-size: var(--text-large);
+    }
+
+    .text-style-main {
+        font-size: var(--text-base);
+    }
+
+    .text-style-small {
+        font-size: var(--text-small);
+    }
+</style>

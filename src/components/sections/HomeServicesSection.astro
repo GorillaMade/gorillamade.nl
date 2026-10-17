@@ -1,0 +1,111 @@
+---
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+import ServiceCard from '@/components/cards/ServiceCard.astro';
+import { getServices } from '@/lib/services';
+
+const services = await getServices({ featuredOnly: true });
+---
+
+<Section id="diensten" class="services-section" theme="light">
+    <ContentWrapper size="wide">
+        <div class="services-intro">
+            <div class="services-intro__heading">
+                <Eyebrow>MIJN DIENSTEN</Eyebrow>
+                <Heading tag="h2" variant="h1">
+                    WAT IK <span class="highlight">VOOR JE DOE.</span>
+                </Heading>
+            </div>
+            <div class="services-intro__aside">
+                <Paragraph>
+                    Van ontwerp en development tot hosting en onderhoud.
+                    Alles helder geregeld, met één aanspreekpunt.
+                </Paragraph>
+                <a class="services-intro__link" href="/diensten/">
+                    Ontdek alle diensten <span aria-hidden="true">↗</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="grid services-grid">
+            {services.map((service, index) => (
+                <ServiceCard
+                    href={`/diensten/${service.id}/`}
+                    title={service.data.title}
+                    summary={service.data.summary}
+                    tag={service.data.tag}
+                    icon={service.data.icon}
+                    index={index}
+                    total={services.length}
+                />
+            ))}
+        </div>
+    </ContentWrapper>
+</Section>
+
+<style lang="scss">
+    .services-intro {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: clamp(2rem, 5vw, 5rem);
+        margin-bottom: clamp(2.5rem, 5vw, 4.5rem);
+
+        &__heading { flex: 1 1 auto; min-width: 0; }
+        &__heading :global(h2) {
+            max-width: 14ch;
+            margin: 1.25rem 0 0;
+            line-height: 1.02;
+            letter-spacing: -.065em;
+        }
+        &__aside {
+            display: flex;
+            flex: 0 1 340px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding-bottom: .35rem;
+        }
+        &__aside :global(p) {
+            max-width: 34ch;
+            margin: 0;
+            color: var(--text-secondary);
+            line-height: 1.75;
+        }
+        &__link {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-primary);
+            font-size: .875rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color .2s ease;
+
+            span { font-size: 1.15rem; transition: transform .2s ease; }
+            &:hover { color: var(--text-brand); }
+            &:hover span { transform: translate(3px, -3px); }
+            &:focus-visible { outline: 2px solid var(--text-brand); outline-offset: 5px; }
+        }
+    }
+
+    .services-grid {
+        --grid-placement: auto-fit;
+        --grid-min-item-size: 19rem;
+        --grid-gap: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    @media (width < 700px) {
+        .services-intro { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+        .services-intro__aside { flex: none; width: 100%; gap: 1rem; }
+
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .services-intro__link, .services-intro__link span { transition: none; }
+        .services-intro__link:hover span { transform: none; }
+    }
+</style>

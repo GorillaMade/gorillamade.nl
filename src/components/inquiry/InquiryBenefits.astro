@@ -1,0 +1,66 @@
+---
+import Eyebrow from '../typography/Eyebrow.astro';
+import Heading from '../typography/Heading.astro';
+import Paragraph from '../typography/Paragraph.astro';
+
+interface Props {
+  eyebrow?:string;
+  title?:string;
+  items: {
+    title:string;
+    description:string
+  }[]
+}
+const {eyebrow='WAAROM GORILLAMADE',title='Persoonlijk. Helder. Doelgericht.',items}=Astro.props;
+---
+<aside class="inquiry-benefits flow">
+    <Eyebrow>{eyebrow}</Eyebrow>
+	<Heading tag="h2">{title}</Heading>
+	<ol>
+	{items.map((item,i)=>
+		<li>
+		    <span class="number">{String(i+1).padStart(2,'0')}</span>
+			<div class="flow">
+				<Heading variant="h3">{item.title}</Heading>
+				<Paragraph>{item.description}</Paragraph>
+			</div>
+		</li>
+	)}
+	</ol>
+</aside>
+<style lang="scss">
+.inquiry-benefits{
+    padding-block:clamp(2.5rem,5vw,4rem);
+    border-top:1px solid var(--border-default)}
+
+.eyebrow,.number{
+    font-size:.7rem;
+    letter-spacing:.14em;
+    font-weight:700;
+    color:var(--text-secondary)}
+
+h2 {
+    letter-spacing:-.055em;
+    max-width:14ch;
+}
+
+ol{
+    list-style:none;
+    margin:0;
+    margin-block-start: var(--space-s);
+    padding:0}
+
+li{
+    display:grid;
+    grid-template-columns:2rem 1fr;
+    gap:1rem;
+    padding:1.4rem 0;
+    border-top:1px solid var(--border-default)}
+
+@media(min-width:900px){
+    .inquiry-benefits{
+        border-top:0;
+        border-left:1px solid var(--border-default);
+        padding-left:clamp(2rem,4vw,4rem)}
+}
+</style>

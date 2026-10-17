@@ -1,0 +1,73 @@
+---
+interface Item {
+    value: string;
+    label: string;
+}
+
+interface Props {
+    items?: Item[];
+}
+
+const { items = [] } = Astro.props;
+---
+
+{items.length > 0 && (
+    <ol class="project-results" aria-label="Projectresultaten">
+        {items.map((item, index) => (
+            <li class="project-results__item">
+                <span class="project-results__number" aria-hidden="true">
+                    {String(index + 1).padStart(2, '0')}
+                </span>
+                <div class="project-results__content">
+                    <strong>{item.value}</strong>
+                    <span>{item.label}</span>
+                </div>
+            </li>
+        ))}
+    </ol>
+)}
+
+<style lang="scss">
+.project-results {
+    display: grid;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid var(--border-default);
+    list-style: none;
+}
+
+.project-results__item {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 1rem;
+    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+    border-bottom: 1px solid var(--border-default);
+}
+
+.project-results__number {
+    padding-top: 0.4rem;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+}
+
+.project-results__content {
+    display: grid;
+    gap: 0.5rem;
+    min-width: 0;
+
+    strong {
+        color: var(--text-primary);
+        font-size: clamp(1.75rem, 3vw, 3rem);
+        font-weight: 600;
+        line-height: 1.1;
+        letter-spacing: -0.05em;
+        overflow-wrap: anywhere;
+    }
+
+    span {
+        color: var(--text-secondary);
+        line-height: 1.65;
+    }
+}
+</style>

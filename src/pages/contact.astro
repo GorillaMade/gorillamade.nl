@@ -1,0 +1,133 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+import InquiryPageHeader from '@/components/inquiry/InquiryPageHeader.astro';
+import InquiryBenefits from '@/components/inquiry/InquiryBenefits.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+import ContactForm from '@/components/forms/ContactForm.astro';
+import Button from '@/components/Button.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+---
+<BaseLayout title="Contact | GorillaMade" description="Stel je vraag rechtstreeks aan GorillaMade of start een projectaanvraag.">
+	<Section theme="light" class="inquiry-page">
+		<ContentWrapper size="wide">
+		<InquiryPageHeader index="01" eyebrow="CONTACT">
+            <Heading tag="h1" variant="display">
+                GOEDE IDEEËN <span class="highlight">BEGINNEN HIER.</span>
+            </Heading>
+
+            <Paragraph>
+                Een vraag, een uitdaging of benieuwd naar de mogelijkheden?
+                Vertel me wat je bezighoudt. Je spreekt direct met de maker.
+            </Paragraph>
+		</InquiryPageHeader>
+			<div class="inquiry-layout">
+				<div class="main">
+					<div class="form-heading"><span>01 / STUUR EEN BERICHT</span>
+						<h2>Vertel me jouw verhaal.</h2>
+						<p>Geen ingewikkelde intake. Gewoon een goed gesprek als startpunt.</p>
+					</div>
+					<ContactForm />
+				</div>
+				<InquiryBenefits eyebrow="PERSOONLIJK CONTACT" title="Direct met de maker." items={[{title: 'Eén aanspreekpunt',description: 'Van eerste gesprek tot oplevering heb je direct contact met mij.'},{title: 'Eerlijk advies',description: 'We kijken naar wat jouw bedrijf écht nodig heeft.'},{title: 'Ook een offerte mogelijk',description: 'Beschrijf je project uitgebreid in de offertewizard.'}]} />
+			</div>
+			<div class="secondary-link"><span>02 / EEN CONCREET PROJECT?</span>
+			<Button variant="link" href="/offerte">Vraag een offerte aan ↗</Button>
+			</div>
+		</ContentWrapper>
+	</Section>
+	<CtaSection eyebrow="EERST INSPIRATIE?" title="BEKIJK WAT" accent="IK MAAK." description="Ontdek mijn werk en zie wat een sterke website voor een merk kan betekenen." buttonLabel="Bekijk de showcases ↗" buttonHref="/showcases" theme="dark" showBottom={false}/>
+</BaseLayout>
+<style lang="scss">
+.inquiry-page{
+}
+
+.inquiry-layout{
+    display:grid;
+    grid-template-columns:minmax(0,1.5fr) minmax(0,.8fr);
+    gap:clamp(3rem,6vw,7rem)}
+
+.main{
+    padding-block:clamp(2.5rem,5vw,4rem) 4rem;
+    min-width:0}
+
+.form-heading>span,.secondary-link>span{
+    font-size:.7rem;
+    letter-spacing:.14em;
+    font-weight:700;
+    color:var(--text-secondary)}
+
+.form-heading h2{
+    letter-spacing:-.06em;
+    line-height:1.05;
+    margin:1.5rem 0 1rem}
+
+.form-heading p,.send p{
+    color:var(--text-secondary);
+    line-height:1.6}
+
+.main :global(form){
+    display:grid;
+    gap:1.5rem;
+    margin-top:2.5rem}
+
+.two{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:1.5rem}
+
+.main :global(input),.main :global(select),.main :global(textarea){
+    max-width:100%;
+    width:100%}
+
+.privacy{
+    font-size:.85rem;
+    color:var(--text-secondary);
+    text-decoration:underline;
+    text-underline-offset:.2em}
+
+.send{
+    border-top:1px solid var(--border-default);
+    padding-top:2rem;
+    display:flex;
+    align-items:center;
+    gap:1.5rem;
+    flex-wrap:wrap}
+
+.send p{
+    max-width:24ch;
+    margin:0}
+
+.secondary-link{
+    border-top:1px solid var(--border-default);
+    padding:2rem 0 4rem;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:1rem}
+
+.secondary-link a{
+    font-size:clamp(1.2rem,2.5vw,2rem);
+    font-weight:700;
+    letter-spacing:-.04em}
+
+@media(max-width:899px){
+    .inquiry-layout{
+        grid-template-columns:1fr;
+        gap:0}
+
+    .main{
+        padding-bottom:2rem}
+}
+
+@media(max-width:580px){
+    .two{
+        grid-template-columns:1fr}
+
+    .secondary-link{
+        align-items:flex-start;
+        flex-direction:column}
+}
+</style>

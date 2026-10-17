@@ -1,0 +1,32 @@
+---
+interface Props {
+  label?:string;
+  class?:string;
+}
+
+const {
+  label='Doorlopende inhoud',
+  class:className
+} = Astro.props;
+---
+<div class:list={['marquee',className]} role="region" aria-label={label}>
+  <div class="marquee__track">
+    <slot />
+  </div>
+</div>
+<style lang="scss">
+.marquee {
+    overflow: hidden;
+    //border-block: 1px solid var(--border-default);
+    padding-block: var(--space-s);
+    background: var(--surface-page)
+}
+
+.marquee__track {
+    display: flex;
+    gap: var(--space-m);
+    width: max-content;
+    padding-inline: var(--gutter);
+    font-weight: var(--fw-strong)
+}
+</style>

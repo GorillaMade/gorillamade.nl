@@ -1,0 +1,603 @@
+
+---
+import { getCollection, render } from 'astro:content';
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+import BrowserFrame from '@/components/showcase/BrowserFrame.astro';
+import ProjectFacts from '@/components/showcase/ProjectFacts.astro';
+import ProjectResults from '@/components/showcase/ProjectResults.astro';
+import ProjectQuote from '@/components/showcase/ProjectQuote.astro';
+import ProjectGallery from '@/components/showcase/ProjectGallery.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+
+export async function getStaticPaths() {
+    const projects = await getCollection('showcases', ({ data }) => !data.draft);
+
+    return projects.map((entry) => ({
+        params: { slug: entry.id },
+        props: { entry }
+    }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const project = entry.data;
+
+const projects = (await getCollection('showcases', ({ data }) => !data.draft))
+    .sort((a, b) => a.data.title.localeCompare(b.data.title, 'nl'));
+
+const currentIndex = projects.findIndex((item) => item.id === entry.id);
+
+const nextProject = projects.length > 1
+    ? projects[(currentIndex + 1) % projects.length]
+    : null;
+---
+
+<BaseLayout
+    title={`${project.title} | GorillaMade`}
+    description={project.summary}
+>
+    <Section theme="light" space="medium" class="case-hero">
+        <ContentWrapper size="wide">
+            <div class="case-hero__meta">
+                <a href="/showcases/" class="case-back">
+                    ← Alle showcases
+                </a>
+
+                <span>{project.category} / {project.year}</span>
+            </div>
+
+            <header class="case-hero__intro">
+                <div class="case-hero__title">
+                    <Eyebrow>PROJECT / {project.client}</Eyebrow>
+
+                    <Heading tag="h1" variant="display">
+                        {project.title}
+                    </Heading>
+                </div>
+
+                <div class="case-hero__summary">
+                    <Paragraph>{project.summary}</Paragraph>
+                </div>
+            </header>
+
+            {project.cover && (
+                <div class="case-hero__visual">
+                    <BrowserFrame
+                        image={project.cover}
+                        title={project.title}
+                        href={project.url || `/showcases/${entry.id}/`}
+                        label="PROJECT PREVIEW"
+                        clickable={false}
+                    />
+                </div>
+            )}
+        </ContentWrapper>
+    </Section>
+
+    <Section theme="light" space="medium" class="case-story-section">
+        <ContentWrapper size="wide">
+            <div class="case-story-layout">
+                <aside class="case-sidebar" aria-label="Projectgegevens">
+                    <Eyebrow>PROJECTGEGEVENS</Eyebrow>
+
+                    <ProjectFacts
+                        client={project.client}
+                        services={project.services}
+                        year={project.year}
+                        url={project.url}
+                    />
+                </aside>
+
+                <article class="case-story">
+                    <div class="case-prose">
+                        <Content />
+                    </div>
+                </article>
+            </div>
+        </ContentWrapper>
+    </Section>
+
+    {project.results && project.results.length > 0 && (
+        <Section theme="light" space="medium" class="case-results-section">
+            <ContentWrapper size="wide">
+                <div class="case-split">
+                    <div class="case-split__intro">
+                        <Eyebrow>MEETBARE RESULTATEN</Eyebrow>
+
+                        <Heading tag="h2" variant="h2">
+                            HET VERSCHIL DAT WE
+                            <span class="highlight"> MAKEN.</span>
+                        </Heading>
+                    </div>
+
+                    <ProjectResults items={project.results} />
+                </div>
+            </ContentWrapper>
+        </Section>
+    )}
+
+    {project.quote && project.quoteAuthor && (
+        <Section theme="dark" space="large" class="case-quote-section">
+            <ContentWrapper size="wide">
+                <div class="case-split">
+                    <div class="case-split__intro">
+                        <Eyebrow>HUN ERVARING</Eyebrow>
+
+                        <Heading tag="h2" variant="h2">
+                            DE KLANT
+                            <span class="highlight"> AAN HET WOORD.</span>
+                        </Heading>
+                    </div>
+
+                    <ProjectQuote
+                        quote={project.quote}
+                        author={project.quoteAuthor}
+                        role={project.quoteAuthorFunction}
+                    />
+                </div>
+            </ContentWrapper>
+        </Section>
+    )}
+
+    {project.gallery && project.gallery.length > 0 && (
+        <Section theme="light" space="medium" class="case-gallery-section">
+            <ContentWrapper size="wide">
+                <div class="case-gallery-section__intro">
+                    <Eyebrow>PROJECT IN BEELD</Eyebrow>
+
+                    <Heading tag="h2" variant="h2">
+                        OOG VOOR
+                        <span class="highlight"> DETAIL.</span>
+                    </Heading>
+                </div>
+
+                <ProjectGallery
+                    images={project.gallery}
+                    client={project.client}
+                />
+            </ContentWrapper>
+        </Section>
+    )}
+
+    {nextProject && (
+        <Section theme="light" space="medium" class="case-next-section">
+            <ContentWrapper size="wide">
+                <a
+                    class="case-next"
+                    href={`/showcases/${nextProject.id}/`}
+                >
+                    <span class="case-next__label">
+                        VOLGEND PROJECT
+                        <span aria-hidden="true">↗</span>
+                    </span>
+
+                    <Heading tag="h2" variant="h1">
+                        {nextProject.data.title}
+                    </Heading>
+
+                    <span class="case-next__category">
+                        {nextProject.data.category}
+                    </span>
+                </a>
+            </ContentWrapper>
+        </Section>
+    )}
+
+    <CtaSection
+        eyebrow="SAMENWERKEN?"
+        title="JOUW PROJECT"
+        accent="ALS VOLGENDE."
+        description="Een website die niet alleen goed oogt, maar ook past bij jouw ambities."
+        buttonLabel="Bespreek jouw project ↗"
+        buttonHref="/offerte/"
+        theme="brand"
+        showBottom={false}
+    />
+</BaseLayout>
+
+<style lang="scss">
+    // -------------------------------------------------------------------------
+    // Case hero
+    // -------------------------------------------------------------------------
+
+    .case-hero__meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid var(--border-default);
+        color: var(--text-secondary);
+        font-size: .75rem;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+    }
+
+    .case-back {
+        color: inherit;
+        text-decoration: none;
+        transition: color .2s ease;
+
+        &:hover {
+            color: var(--text-primary);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--focus-color);
+            outline-offset: 4px;
+        }
+    }
+
+    .case-hero__intro {
+        display: grid;
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr);
+        align-items: center;
+        gap: clamp(2rem, 6vw, 7rem);
+        padding-block: clamp(3rem, 6vw, 6rem);
+    }
+
+    .case-hero__title {
+        display: grid;
+        gap: 1.5rem;
+        min-width: 0;
+
+        :global(h1) {
+            margin: 0;
+            line-height: .98;
+            letter-spacing: -.06em;
+            overflow-wrap: anywhere;
+            text-wrap: balance;
+        }
+    }
+
+    .case-hero__summary {
+        :global(p) {
+            max-width: 38ch;
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: clamp(1.125rem, 1.7vw, 1.4rem);
+            line-height: 1.65;
+        }
+    }
+
+    .case-hero__visual {
+        min-width: 0;
+    }
+
+    // -------------------------------------------------------------------------
+    // Shared layouts
+    // -------------------------------------------------------------------------
+
+    .case-story-layout,
+    .case-split {
+        display: grid;
+        grid-template-columns: minmax(0, .7fr) minmax(0, 1.3fr);
+        align-items: start;
+        gap: clamp(3rem, 8vw, 9rem);
+    }
+
+    // -------------------------------------------------------------------------
+    // Project facts
+    // -------------------------------------------------------------------------
+
+    .case-sidebar {
+        display: grid;
+        align-content: start;
+        gap: 2rem;
+        min-width: 0;
+    }
+
+    // -------------------------------------------------------------------------
+    // Case story
+    // -------------------------------------------------------------------------
+
+    .case-story {
+        min-width: 0;
+    }
+
+    .case-prose {
+        min-width: 0;
+
+        // Start het artikel direct, zonder extra witruimte.
+
+        :global(> :first-child) {
+            margin-top: 0;
+        }
+
+        // De eerste alinea fungeert als redactionele introductie.
+
+        :global(> p:first-child) {
+            max-width: 58ch;
+            margin-bottom: clamp(2rem, 4vw, 3rem);
+            color: var(--text-primary);
+            font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+            font-weight: 500;
+            line-height: 1.65;
+            letter-spacing: -.015em;
+        }
+
+        // Hoofdstukken binnen het projectverhaal.
+
+        :global(h2) {
+            max-width: 24ch;
+            margin: clamp(2.5rem, 5vw, 4rem) 0 1.25rem;
+            color: var(--text-primary);
+            font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+            line-height: 1.15;
+            letter-spacing: -.045em;
+            text-wrap: balance;
+        }
+
+        :global(h3) {
+            margin: 2rem 0 .875rem;
+            color: var(--text-primary);
+            font-size: clamp(1.125rem, 1.6vw, 1.4rem);
+            line-height: 1.3;
+            letter-spacing: -.025em;
+        }
+
+        // Lopende tekst.
+
+        :global(p),
+        :global(li) {
+            max-width: 68ch;
+            color: var(--text-secondary);
+            line-height: 1.85;
+        }
+
+        :global(p) {
+            margin: 0 0 1.5rem;
+        }
+
+        // Lijsten.
+
+        :global(ul),
+        :global(ol) {
+            margin: 0 0 2rem;
+            padding-inline-start: 1.5rem;
+        }
+
+        :global(li + li) {
+            margin-top: .5rem;
+        }
+
+        :global(li::marker) {
+            color: var(--text-brand);
+        }
+
+        // Tekstaccenten.
+
+        :global(strong) {
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        :global(em) {
+            font-style: italic;
+        }
+
+        :global(a) {
+            color: var(--text-primary);
+            text-decoration-color: var(--text-brand);
+            text-underline-offset: .25em;
+            transition: color .2s ease;
+        }
+
+        :global(a:hover) {
+            color: var(--text-brand);
+        }
+
+        :global(a:focus-visible) {
+            outline: 2px solid var(--focus-color);
+            outline-offset: 4px;
+        }
+
+        // Citaten binnen de Markdown-content.
+
+        :global(blockquote) {
+            margin: clamp(2rem, 4vw, 3rem) 0;
+            padding: .5rem 0 .5rem clamp(1.25rem, 3vw, 2rem);
+            border-left: 3px solid var(--text-brand);
+        }
+
+        :global(blockquote p) {
+            margin-bottom: 0;
+            color: var(--text-primary);
+            font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+            line-height: 1.55;
+            letter-spacing: -.02em;
+        }
+
+        // Afbeeldingen in het verhaal.
+
+        :global(img) {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: 16px;
+        }
+
+        :global(picture) {
+            display: block;
+            margin-block: clamp(2rem, 4vw, 3rem);
+        }
+
+        // Scheidingslijnen.
+
+        :global(hr) {
+            height: 1px;
+            margin-block: clamp(2.5rem, 5vw, 4rem);
+            border: 0;
+            background: var(--border-default);
+        }
+
+        // Codefragmenten, indien aanwezig.
+
+        :global(code) {
+            overflow-wrap: anywhere;
+        }
+
+        :global(pre) {
+            max-width: 100%;
+            margin-block: 2rem;
+            padding: 1.5rem;
+            overflow-x: auto;
+            border-radius: 12px;
+            background: var(--surface-subtle);
+        }
+
+        :global(pre code) {
+            overflow-wrap: normal;
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Results and quote
+    // -------------------------------------------------------------------------
+
+    .case-split__intro {
+        display: grid;
+        justify-items: start;
+        gap: 1.5rem;
+        min-width: 0;
+
+        :global(h2) {
+            max-width: 18ch;
+            margin: 0;
+            line-height: 1.05;
+            letter-spacing: -.05em;
+            text-wrap: balance;
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Gallery
+    // -------------------------------------------------------------------------
+
+    .case-gallery-section__intro {
+        display: grid;
+        justify-items: start;
+        gap: 1.5rem;
+        margin-bottom: clamp(2rem, 5vw, 4rem);
+        padding-block-start: var(--space-3xl);
+        border-top: 1px solid var(--border-default);
+
+        :global(h2) {
+            max-width: 18ch;
+            margin: 0;
+            line-height: 1.05;
+            letter-spacing: -.05em;
+            text-wrap: balance;
+        }
+    }
+
+    // -------------------------------------------------------------------------
+    // Next project
+    // -------------------------------------------------------------------------
+
+    .case-next {
+        display: grid;
+        gap: 1.5rem;
+        padding-block: clamp(2rem, 5vw, 4rem);
+        border-top: 1px solid var(--border-default);
+        border-bottom: 1px solid var(--border-default);
+        color: var(--text-primary);
+        text-decoration: none;
+        transition: border-color .2s ease;
+
+        :global(h2) {
+            margin: 0;
+            letter-spacing: -.055em;
+            overflow-wrap: anywhere;
+            transition: color .2s ease;
+        }
+
+        &:hover {
+            border-color: var(--text-brand);
+
+            :global(h2) {
+                color: var(--text-brand);
+            }
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--focus-color);
+            outline-offset: 4px;
+        }
+    }
+
+    .case-next__label {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        font-size: .75rem;
+        font-weight: 700;
+        letter-spacing: .1em;
+    }
+
+    .case-next__category {
+        color: var(--text-secondary);
+        font-size: .875rem;
+    }
+
+    // -------------------------------------------------------------------------
+    // Responsive
+    // -------------------------------------------------------------------------
+
+    @media (max-width: 900px) {
+        .case-hero__intro,
+        .case-story-layout,
+        .case-split {
+            grid-template-columns: 1fr;
+        }
+
+        .case-hero__summary {
+            :global(p) {
+                max-width: 52ch;
+            }
+        }
+
+        .case-story-layout {
+            gap: clamp(2.5rem, 6vw, 4rem);
+        }
+    }
+
+    @media (max-width: 500px) {
+        .case-hero__meta {
+            align-items: flex-start;
+        }
+
+        .case-hero__meta > span {
+            text-align: right;
+        }
+
+        .case-prose {
+            :global(> p:first-child) {
+                font-size: 1.125rem;
+            }
+
+            :global(h2) {
+                margin-top: 2.5rem;
+            }
+
+            :global(blockquote) {
+                padding-left: 1.25rem;
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .case-back,
+        .case-prose :global(a),
+        .case-next,
+        .case-next :global(h2) {
+            transition: none;
+        }
+    }
+</style>

@@ -1,0 +1,11 @@
+// Semantische feedbacktokens; de kleuren komen uit abstracts/_colors.scss.
+:root {
+  --feedback-success: var(--success-700);
+  --feedback-warning: var(--warning-700);
+  --feedback-danger: var(--danger-700);
+  --feedback-info: var(--info-700);
+  --feedback-success-surface: var(--success-100);
+  --feedback-warning-surface: var(--warning-100);
+  --feedback-danger-surface: var(--danger-100);
+  --feedback-info-surface: var(--info-100);
+}

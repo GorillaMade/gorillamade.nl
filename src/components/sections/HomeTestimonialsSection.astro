@@ -1,0 +1,470 @@
+
+---
+import { getCollection } from 'astro:content';
+
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+
+const testimonials = (await getCollection('showcases'))
+    .filter((item) => {
+        const { quote, quoteAuthor } = item.data;
+
+        return (
+            Boolean(quote?.trim()) &&
+            Boolean(quoteAuthor?.trim()) &&
+            item.id !== 'projectname' &&
+            !/voornaam achternaam/i.test(quoteAuthor ?? '')
+        );
+    })
+    .sort((a, b) => {
+        return (
+            Number(Boolean(b.data.featured)) - Number(Boolean(a.data.featured)) ||
+            Number(b.data.year) - Number(a.data.year)
+        );
+    });
+
+const total = testimonials.length;
+const formattedTotal = String(total).padStart(2, '0');
+---
+
+{total > 0 && (
+    <Section
+        id="ervaringen"
+        class="testimonials"
+        theme="dark"
+        space="large"
+    >
+        <ContentWrapper size="wide">
+            <div class="testimonials__layout">
+                <div class="testimonials__intro">
+                    <Eyebrow>KLANTERVARINGEN</Eyebrow>
+
+                    <Heading tag="h2" variant="h1">
+                        HUN WOORDEN.
+                        <span class="highlight">MIJN WERK.</span>
+                    </Heading>
+
+                    <Paragraph>
+                        Geen verkooppraatjes, maar ervaringen van ondernemers
+                        met wie ik heb samengewerkt.
+                    </Paragraph>
+                </div>
+
+                <div
+                    class="testimonials__slider"
+                    x-data={`{
+                        active: 0,
+                        total: ${total},
+
+                        select(index) {
+                            this.active = (index + this.total) % this.total;
+
+                            this.$nextTick(() => {
+                                const container = this.$refs.tabs;
+                                const tab = container?.querySelector(
+                                    '[aria-current="true"]'
+                                );
+
+                                if (!container || !tab) return;
+
+                                const tabStart = tab.offsetLeft - container.offsetLeft;
+                                const tabEnd = tabStart + tab.offsetWidth;
+
+                                if (tabStart < container.scrollLeft) {
+                                    container.scrollTo({
+                                        left: tabStart,
+                                        behavior: 'smooth'
+                                    });
+                                } else if (
+                                    tabEnd > container.scrollLeft + container.clientWidth
+                                ) {
+                                    container.scrollTo({
+                                        left: tabEnd - container.clientWidth,
+                                        behavior: 'smooth'
+                                    });
+                                }
+                            });
+                        }
+                    }`}
+                    x-on:keydown.arrow-right.prevent="select(active + 1)"
+                    x-on:keydown.arrow-left.prevent="select(active - 1)"
+                    aria-label="Klantervaringen"
+                >
+                    <div class="testimonials__toolbar">
+                        <span class="testimonials__toolbar-label">
+                            WAT KLANTEN ZEGGEN
+                        </span>
+
+                        <div class="testimonials__navigation">
+                            <span class="testimonials__counter">
+                                <span
+                                    x-text="String(active + 1).padStart(2, '0')"
+                                >
+                                    01
+                                </span>
+                                / {formattedTotal}
+                            </span>
+
+                            {total > 1 && (
+                                <div class="testimonials__arrows">
+                                    <button
+                                        type="button"
+                                        aria-label="Vorige ervaring"
+                                        x-on:click="select(active - 1)"
+                                    >
+                                        <span aria-hidden="true">←</span>
+                                    </button>
+
+                                    <button
+                                        type="button"
+                                        aria-label="Volgende ervaring"
+                                        x-on:click="select(active + 1)"
+                                    >
+                                        <span aria-hidden="true">→</span>
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div class="testimonials__stage">
+                        {testimonials.map((item, index) => (
+                            <figure
+                                class="testimonials__review"
+                                x-show={`active === ${index}`}
+                                x-cloak={index !== 0}
+                            >
+                                <blockquote>
+                                    {item.data.quote}
+                                </blockquote>
+
+                                <figcaption class="testimonials__author">
+                                    <div class="testimonials__author-info">
+                                        <strong>
+                                            {item.data.quoteAuthor}
+                                        </strong>
+
+                                        {item.data.quoteAuthorFunction && (
+                                            <span>
+                                                {item.data.quoteAuthorFunction}
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    <a
+                                        href={`/showcases/${item.id}/`}
+                                        class="testimonials__case-link"
+                                    >
+                                        Bekijk de showcase
+                                        <span aria-hidden="true">↗</span>
+                                    </a>
+                                </figcaption>
+                            </figure>
+                        ))}
+                    </div>
+
+                    {total > 1 && (
+                        <div
+                            class="testimonials__tabs"
+                            x-ref="tabs"
+                            aria-label="Selecteer een klantervaring"
+                        >
+                            {testimonials.map((item, index) => (
+                                <button
+                                    type="button"
+                                    class="testimonials__tab"
+                                    x-on:click={`select(${index})`}
+                                    x-bind:aria-current={`active === ${index} ? 'true' : null`}
+                                    x-bind:class={`{ 'is-active': active === ${index} }`}
+                                >
+                                    <span class="testimonials__tab-number">
+                                        {String(index + 1).padStart(2, '0')}
+                                    </span>
+
+                                    <span class="testimonials__tab-name">
+                                        {item.data.client || item.data.quoteAuthor}
+                                    </span>
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+            </div>
+        </ContentWrapper>
+    </Section>
+)}
+
+<style lang="scss">
+.testimonials__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    align-items: start;
+    gap: clamp(3rem, 8vw, 9rem);
+}
+
+.testimonials__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-l);
+
+    :global(p) {
+        max-width: 38ch;
+        color: var(--text-secondary);
+    }
+}
+
+.testimonials__slider {
+    min-width: 0;
+}
+
+.testimonials__toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    padding-bottom: var(--space-m);
+    border-bottom: 1px solid var(--border-default);
+}
+
+.testimonials__toolbar-label {
+    color: var(--text-secondary);
+    font-weight: 700;
+}
+
+.testimonials__navigation {
+    display: flex;
+    align-items: center;
+    gap: var(--space-m);
+    flex-shrink: 0;
+}
+
+.testimonials__counter {
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.testimonials__arrows {
+    display: flex;
+    gap: var(--space-xs);
+
+    button {
+        display: grid;
+        place-items: center;
+        width: 2.75rem;
+        height: 2.75rem;
+        padding: 0;
+        border: 1px solid var(--border-default);
+        border-radius: 50%;
+        background-color: transparent;
+        color: var(--text-primary);
+        font: inherit;
+        cursor: pointer;
+        transition: border-color 0.2s ease, color 0.2s ease;
+
+        &:hover {
+            border-color: var(--text-primary);
+            color: var(--text-brand);
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--focus-color);
+            outline-offset: 4px;
+        }
+    }
+}
+
+.testimonials__stage {
+    display: grid;
+    min-height: clamp(20rem, 35vw, 28rem);
+    align-items: center;
+}
+
+.testimonials__review {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-xl);
+    margin: 0;
+    padding-block: var(--space-xl);
+}
+
+.testimonials__review[x-cloak] {
+    display: none !important;
+}
+
+.testimonials__review blockquote {
+    margin: 0;
+    font-size: clamp(1.5rem, 2.6vw, 2.5rem);
+    line-height: 1.35;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+    text-wrap: pretty;
+}
+
+.testimonials__author {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-l);
+}
+
+.testimonials__author-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3xs);
+
+    strong {
+        color: var(--text-primary);
+    }
+
+    span {
+        color: var(--text-secondary);
+    }
+}
+
+.testimonials__case-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--text-primary);
+    font-weight: 700;
+    text-decoration: none;
+
+    &:hover {
+        color: var(--text-brand);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 4px;
+    }
+}
+
+.testimonials__tabs {
+    display: flex;
+    gap: var(--space-l);
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: none;
+    padding-top: var(--space-m);
+    border-top: 1px solid var(--border-default);
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.testimonials__tab {
+    position: relative;
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: baseline;
+    gap: var(--space-xs);
+    padding: var(--space-xs) 0 var(--space-s);
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    font: inherit;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background: var(--text-brand);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.2s ease;
+    }
+
+    &:hover,
+    &.is-active {
+        color: var(--text-primary);
+    }
+
+    &.is-active::after {
+        transform: scaleX(1);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 4px;
+    }
+}
+
+.testimonials__tab-number {
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    font-variant-numeric: tabular-nums;
+}
+
+.testimonials__tab-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+@media (max-width: 900px) {
+    .testimonials__layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .testimonials__intro {
+        max-width: 42rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .testimonials__toolbar {
+        gap: var(--space-s);
+    }
+
+    .testimonials__toolbar-label {
+        display: none;
+    }
+
+    .testimonials__navigation {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .testimonials__stage {
+        min-height: 22rem;
+    }
+
+    .testimonials__review {
+        gap: var(--space-l);
+    }
+
+    .testimonials__author {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: var(--space-m);
+    }
+
+    .testimonials__tabs {
+        gap: var(--space-m);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .testimonials__arrows button,
+    .testimonials__tab,
+    .testimonials__tab::after {
+        transition: none;
+    }
+}
+</style>

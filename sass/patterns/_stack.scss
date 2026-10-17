@@ -1,0 +1,12 @@
+// -----------------------------------------------------------------------------
+// Stack
+// -----------------------------------------------------------------------------
+// A layout that arranges elements vertically with consistent spacing between
+// each child.
+// -----------------------------------------------------------------------------
+
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--stack-gap, var(--gutter));
+}

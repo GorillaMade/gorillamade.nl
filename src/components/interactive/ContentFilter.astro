@@ -1,0 +1,145 @@
+---
+interface Props {
+    items: string[];
+    label?: string;
+    variable?: string;
+}
+
+const {
+    items = [],
+    label = 'Filter op categorie',
+    variable = 'category'
+} = Astro.props;
+---
+
+<div
+    class="content-filter"
+    role="group"
+    aria-label={label}
+>
+    <span class="content-filter__label">
+        {label}
+    </span>
+
+    <div class="content-filter__options">
+        <button
+            type="button"
+            class="content-filter__option"
+            :class={`{ 'is-active': ${variable} === 'all' }`}
+            @click={`${variable} = 'all'`}
+            :aria-pressed={`${variable} === 'all'`}
+        >
+            Alles
+        </button>
+
+        {items.map((item) => (
+            <button
+                type="button"
+                class="content-filter__option"
+                :class={`{ 'is-active': ${variable} === ${JSON.stringify(item)} }`}
+                @click={`${variable} = ${JSON.stringify(item)}`}
+                :aria-pressed={`${variable} === ${JSON.stringify(item)}`}
+            >
+                {item}
+            </button>
+        ))}
+    </div>
+</div>
+
+<style lang="scss">
+.content-filter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-l);
+    min-width: 0;
+    border-bottom: 1px solid var(--border-default);
+}
+
+.content-filter__label {
+    flex-shrink: 0;
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.content-filter__options {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+.content-filter__option {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 3.5rem;
+    padding: 0.75rem 0;
+    border: 0;
+    background: transparent;
+    color: var(--text-secondary);
+    font: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.2s ease;
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        bottom: -1px;
+        left: 0;
+        height: 2px;
+        background: var(--text-primary);
+        transform: scaleX(0);
+        transform-origin: left center;
+        transition: transform 0.25s ease;
+    }
+
+    &:hover,
+    &.is-active {
+        color: var(--text-primary);
+    }
+
+    &.is-active::after {
+        transform: scaleX(1);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 4px;
+    }
+}
+
+@media (max-width: 700px) {
+    .content-filter {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .content-filter__options {
+        width: 100%;
+        gap: 1.5rem;
+    }
+
+    .content-filter__option {
+        min-height: 3rem;
+        font-size: 0.8125rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .content-filter__option,
+    .content-filter__option::after {
+        transition: none;
+    }
+}
+</style>

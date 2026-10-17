@@ -1,0 +1,123 @@
+
+---
+import Form from '@/components/form/Form.astro';
+import Input from '@/components/form/Input.astro';
+import Select from '@/components/form/Select.astro';
+import Textarea from '@/components/form/Textarea.astro';
+import Choice from '@/components/form/Choice.astro';
+import Button from '@/components/Button.astro';
+import { getServices } from '@/lib/services';
+
+const services = await getServices();
+---
+
+<Form action="/form.php" method="post">
+    <input type="hidden" name="_form" value="contact" />
+
+    <div class="honeypot" aria-hidden="true">
+        <input
+            name="honeypot_field"
+            type="text"
+            tabindex="-1"
+            autocomplete="off"
+        />
+    </div>
+
+    <div class="two">
+        <Input
+            id="contact-name"
+            name="naam"
+            label="Naam"
+            autocomplete="name"
+            required
+        />
+
+        <Input
+            id="contact-email"
+            name="email"
+            type="email"
+            label="E-mailadres"
+            autocomplete="email"
+            required
+        />
+    </div>
+
+    <div class="two">
+        <Input
+            id="contact-phone"
+            name="telefoon"
+            type="tel"
+            label="Telefoonnummer (optioneel)"
+            autocomplete="tel"
+        />
+
+        <Select
+            id="contact-topic"
+            name="onderwerp"
+            label="Waarmee kan ik je helpen?"
+        >
+            <option value="">Maak een keuze</option>
+
+            {services.map((service) => (
+                <option value={service.data.title}>
+                    {service.data.title}
+                </option>
+            ))}
+
+            <option value="Andere vraag">Andere vraag</option>
+        </Select>
+    </div>
+
+    <Textarea
+        id="contact-message"
+        name="bericht"
+        label="Vertel me meer over je vraag"
+        rows={7}
+        required
+    />
+
+    <Choice
+        id="contact-consent"
+        name="toestemming"
+        value="ja"
+        required
+    >
+        Ik heb de
+        <a href="/privacy/" target="_blank" rel="noopener noreferrer">
+            privacyverklaring
+        </a>
+        gelezen. Op de dienstverlening zijn de
+        <a href="/algemene-voorwaarden/" target="_blank" rel="noopener noreferrer">
+            algemene voorwaarden
+        </a>
+        van toepassing.
+    </Choice>
+
+    <div class="send repel">
+        <Button type="submit">
+            Verzenden ↗
+        </Button>
+    </div>
+</Form>
+
+<style lang="scss">
+    .two {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1.5rem;
+    }
+
+    .honeypot {
+        position: absolute;
+        left: -10000px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }
+
+    @media (width < 650px) {
+        .two {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

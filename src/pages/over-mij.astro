@@ -1,0 +1,420 @@
+
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+import Button from '@/components/Button.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+import AboutPortrait from '@/components/media/AboutPortrait.astro';
+---
+
+<BaseLayout
+    title="Over mij | GorillaMade"
+    description="Maak kennis met de maker achter GorillaMade. Persoonlijk webdesign en development, van eerste idee tot onderhoud."
+>
+    <Section theme="light" class="about-hero" space="large">
+        <ContentWrapper size="wide">
+            <div class="about-hero__meta">
+                <Eyebrow>DE MAKER ACHTER GORILLAMADE</Eyebrow>
+                <span>01 / 03</span>
+            </div>
+
+            <div class="about-hero__layout">
+                <div class="about-hero__content">
+                    <Heading tag="h1" variant="display">
+                        KLEIN IN TEAM.
+                        <span class="highlight">GROOT IN AANDACHT.</span>
+                    </Heading>
+
+                    <div class="about-hero__intro">
+                        <p class="about-hero__lead">
+                            Ik ben de persoon achter GorillaMade. Ik ontwerp en
+                            bouw websites voor ondernemers die online een
+                            sterke indruk willen maken.
+                        </p>
+
+                        <Paragraph>
+                            Geen groot bureau of ingewikkelde tussenlagen.
+                            Je werkt rechtstreeks met degene die jouw
+                            website bedenkt, ontwerpt en bouwt.
+                        </Paragraph>
+
+                        <Button href="/contact">
+                            Maak kennis ↗
+                        </Button>
+                    </div>
+                </div>
+
+                <div class="about-hero__visual">
+                    <AboutPortrait
+                        alt="Portret van Timothy de persoon achter GorillaMade"
+                    />
+
+                    <div class="about-hero__visual-caption">
+                        <span>ACHTER DE SCHERMEN</span>
+                        <span>GORILLAMADE®</span>
+                    </div>
+                </div>
+            </div>
+        </ContentWrapper>
+    </Section>
+
+    <Section theme="light" class="about-story" space="large">
+        <ContentWrapper size="wide">
+            <div class="about-story__layout">
+                <div class="about-story__heading">
+                    <Eyebrow>02 / MIJN KIJK OP HET VAK</Eyebrow>
+
+                    <Heading tag="h2" variant="h1">
+                        NIET ALLEEN
+                        <span class="highlight">MOOI GEMAAKT.</span>
+                    </Heading>
+                </div>
+
+                <div class="about-story__content">
+                    <p class="about-story__lead">
+                        Een goede website moet niet alleen indruk maken.
+                        Hij moet vooral iets voor je betekenen.
+                    </p>
+
+                    <Paragraph>
+                        Daarom kijk ik verder dan kleuren, lettertypes en
+                        animaties. Ik wil begrijpen wie je bent, wat je
+                        aanbiedt en waarom klanten juist voor jou kiezen.
+                    </Paragraph>
+
+                    <Paragraph>
+                        Vanuit dat verhaal maak ik keuzes in ontwerp,
+                        structuur en techniek. Het resultaat is een website
+                        die prettig werkt, professioneel aanvoelt en bij
+                        jouw onderneming past.
+                    </Paragraph>
+
+                    <Paragraph>
+                        En na de lancering? Dan ben ik er nog steeds voor
+                        hosting, onderhoud en verdere verbeteringen.
+                    </Paragraph>
+                </div>
+            </div>
+        </ContentWrapper>
+    </Section>
+
+    <Section theme="light" class="about-values" space="large">
+        <ContentWrapper size="wide">
+            <div class="about-values__header">
+                <div>
+                    <Eyebrow>03 / WAAR IK VOOR STA</Eyebrow>
+
+                    <Heading tag="h2" variant="h1">
+                        ZO WERK IK.
+                        <span class="highlight">ZO DENK IK.</span>
+                    </Heading>
+                </div>
+
+                <Paragraph>
+                    Drie principes die je in ieder project terugziet.
+                </Paragraph>
+            </div>
+
+            <div class="about-values__list">
+                <article class="about-values__item">
+                    <span class="about-values__number">01</span>
+
+                    <Heading tag="h3" variant="h3">
+                        DIRECT CONTACT.
+                    </Heading>
+
+                    <Paragraph>
+                        Je spreekt met de maker zelf. Dat houdt de lijnen
+                        kort, de communicatie helder en het proces persoonlijk.
+                    </Paragraph>
+                </article>
+
+                <article class="about-values__item">
+                    <span class="about-values__number">02</span>
+
+                    <Heading tag="h3" variant="h3">
+                        BEWUST ONTWORPEN.
+                    </Heading>
+
+                    <Paragraph>
+                        Geen elementen omdat ze toevallig populair zijn.
+                        Iedere keuze moet bijdragen aan een betere ervaring
+                        en een duidelijker verhaal.
+                    </Paragraph>
+                </article>
+
+                <article class="about-values__item">
+                    <span class="about-values__number">03</span>
+
+                    <Heading tag="h3" variant="h3">
+                        OOK NA LIVEGANG.
+                    </Heading>
+
+                    <Paragraph>
+                        Een website is nooit helemaal af. Daarom denk ik
+                        ook mee over hosting, onderhoud en hoe je website
+                        met je onderneming kan meegroeien.
+                    </Paragraph>
+                </article>
+            </div>
+        </ContentWrapper>
+    </Section>
+
+    <CtaSection
+        eyebrow="SAMENWERKEN?"
+        title="VERTEL ME"
+        accent="JOUW PLANNEN."
+        description="Een nieuwe website, een redesign of een technisch vraagstuk? Ik denk graag met je mee."
+        buttonLabel="Bespreek jouw project ↗"
+        buttonHref="/contact"
+        theme="dark"
+        showBottom={false}
+    />
+</BaseLayout>
+
+<style lang="scss">
+.about-hero__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    padding-bottom: var(--space-l);
+    border-bottom: 1px solid var(--border-default);
+
+    > span {
+        color: var(--text-secondary);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+    }
+}
+
+.about-hero__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    align-items: stretch;
+    gap: clamp(3rem, 6vw, 7rem);
+    padding-top: clamp(3rem, 6vw, 6rem);
+}
+
+.about-hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: clamp(3rem, 6vw, 6rem);
+
+    :global(h1) {
+        max-width: 11ch;
+        margin: 0;
+        line-height: 0.98;
+        letter-spacing: -0.065em;
+        text-wrap: balance;
+    }
+}
+
+.about-hero__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-m);
+    max-width: 33rem;
+
+    :global(p) {
+        margin: 0;
+        color: var(--text-secondary);
+        line-height: 1.7;
+    }
+}
+
+.about-hero__lead {
+    color: var(--text-primary) !important;
+    font-size: clamp(1.25rem, 1.8vw, 1.6rem);
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.about-hero__visual {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    min-width: 0;
+
+    :global(.portrait) {
+        width: 100%;
+    }
+}
+
+.about-hero__visual-caption {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-s);
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.about-story__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(3rem, 8vw, 9rem);
+    padding-top: clamp(3rem, 6vw, 6rem);
+    border-top: 1px solid var(--border-default);
+}
+
+.about-story__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-l);
+
+    :global(h2) {
+        max-width: 12ch;
+        margin: 0;
+        letter-spacing: -0.055em;
+        line-height: 1.05;
+    }
+}
+
+.about-story__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-l);
+    max-width: 36rem;
+
+    :global(p) {
+        margin: 0;
+        color: var(--text-secondary);
+        line-height: 1.75;
+    }
+}
+
+.about-story__lead {
+    color: var(--text-primary) !important;
+    font-size: clamp(1.4rem, 2vw, 1.85rem);
+    font-weight: 500;
+    line-height: 1.45;
+    letter-spacing: -0.025em;
+}
+
+.about-values__header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: var(--space-xl);
+    padding-bottom: var(--space-xl);
+
+    > div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-l);
+    }
+
+    :global(h2) {
+        max-width: 15ch;
+        margin: 0;
+    }
+
+    :global(p) {
+        max-width: 24ch;
+        margin: 0;
+        color: var(--text-secondary);
+    }
+}
+
+.about-values__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--border-default);
+}
+
+.about-values__item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-m);
+    min-width: 0;
+    padding: var(--space-xl);
+    border-right: 1px solid var(--border-default);
+
+    &:first-child {
+        padding-left: 0;
+    }
+
+    &:last-child {
+        padding-right: 0;
+        border-right: 0;
+    }
+
+    :global(h3) {
+        margin: 0;
+        letter-spacing: -0.035em;
+    }
+
+    :global(p) {
+        margin: 0;
+        color: var(--text-secondary);
+        line-height: 1.7;
+    }
+}
+
+.about-values__number {
+    margin-bottom: var(--space-l);
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+@media (max-width: 900px) {
+    .about-hero__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .about-hero__content {
+        gap: var(--space-xl);
+    }
+
+    .about-hero__visual {
+        max-width: 36rem;
+    }
+
+    .about-story__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .about-values__header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: var(--space-l);
+    }
+}
+
+@media (max-width: 700px) {
+    .about-values__list {
+        grid-template-columns: 1fr;
+    }
+
+    .about-values__item,
+    .about-values__item:first-child,
+    .about-values__item:last-child {
+        padding: var(--space-l) 0;
+        border-right: 0;
+        border-bottom: 1px solid var(--border-default);
+    }
+
+    .about-values__number {
+        margin-bottom: var(--space-s);
+    }
+
+    .about-hero__visual-caption {
+        font-size: 0.65rem;
+    }
+}
+</style>

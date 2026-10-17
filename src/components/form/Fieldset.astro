@@ -1,0 +1,28 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+interface Props extends HTMLAttributes<'fieldset'> { legend:string; layout?:'stack'|'columns'|'inline'; }
+const {legend,layout='stack',class:className,...attrs}=Astro.props;
+---
+<fieldset class:list={['fieldset',`fieldset--${layout}`,className]} {...attrs}><legend>{legend}</legend>
+<div class="fieldset__fields"><slot /></div></fieldset>
+<style lang="scss">
+.fieldset{
+    min-width:0;
+    padding:0;
+    border:0}
+
+.fieldset legend{
+    margin-bottom:var(--space-s);
+    font-weight:var(--fw-strong)}
+
+.fieldset__fields{
+    display:grid;
+    gap:var(--space-s)}
+
+.fieldset--columns .fieldset__fields{
+    grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr))}
+
+.fieldset--inline .fieldset__fields{
+    display:flex;
+    flex-wrap:wrap}
+</style>

@@ -1,0 +1,73 @@
+---
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+import Button from '@/components/Button.astro';
+import AboutPortrait from '@/components/media/AboutPortrait.astro';
+import { Image } from 'astro:assets';
+import profielfoto from '@/assets/images/profielfoto.png';
+---
+<Section id="over-mij" theme="light" class="home-about" space="large">
+  <ContentWrapper size="wide">
+    <div class="about-grid">
+      <div class="about-photo">
+          <AboutPortrait alt="De maker achter GorillaMade" caption="DIRECT CONTACT MET TIMOTHY" />
+      </div>
+      <div class="about-content">
+        <Eyebrow>03 / DE MAKER</Eyebrow>
+        <Heading tag="h2" variant="h1">GEEN GROOT BUREAU. <span class="highlight">WEL GROOTSE IDEEËN.</span></Heading>
+        <Paragraph>Bij GorillaMade werk je direct met degene die jouw website ontwerpt en bouwt. Geen onnodige schakels, maar korte lijnen, aandacht voor detail en een helder doel.</Paragraph>
+        <Paragraph>Van eerste idee tot livegang en daarna: ik help je met een website die niet alleen indruk maakt, maar ook voor je bedrijf werkt.</Paragraph>
+        <Button href="/over-mij/">Meer over mij ↗</Button>
+      </div>
+    </div>
+  </ContentWrapper>
+</Section>
+<style lang="scss">
+.home-about {
+    padding-block: clamp(4rem, 9vw, 9rem);
+
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+    gap: clamp(2.5rem, 8vw, 9rem);
+    align-items: center;
+}
+
+.about-photo {
+    max-width: 29rem;
+}
+
+.about-content {
+    display: grid;
+    gap: 1.5rem;
+    justify-items: start;
+}
+
+.about-content :global(h2) {
+    line-height: 1.02;
+    letter-spacing: -.06em;
+    max-width: 15ch;
+}
+
+.about-content :global(p) {
+    color: var(--text-secondary);
+    line-height: 1.75;
+    max-width: 55ch;
+    margin: 0;
+}
+
+@media (max-width: 760px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-photo {
+        max-width: 24rem;
+    }
+}
+</style>

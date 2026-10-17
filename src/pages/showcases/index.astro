@@ -1,0 +1,96 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+
+import ShowcaseEditorialCard from '@/components/cards/ShowcaseEditorialCard.astro';
+import ContentFilter from '@/components/interactive/ContentFilter.astro';
+
+import { getCollection } from 'astro:content';
+
+const items = (await getCollection('showcases', ({ data }) => !data.draft)).sort(
+    (a, b) => Number(b.data.year) - Number(a.data.year)
+);
+
+const services = [
+    ...new Set(
+        items.flatMap((item) => item.data.services ?? [])
+    )
+].sort((a, b) => a.localeCompare(b, 'nl'));
+---
+
+<BaseLayout title="Showcases | GorillaMade">
+    <Section class="listing" space="large">
+        <ContentWrapper size="wide">
+            <header class="listing__intro">
+                <Heading tag="h1" variant="h1">
+                    WERK DAT BRULT.
+                </Heading>
+
+                <Paragraph>
+                    Van wild idee tot een website met impact.
+                    Bekijk de projecten.
+                </Paragraph>
+            </header>
+
+            <div
+                class="listing__content"
+                x-data="{ selectedService: 'all' }"
+            >
+                <ContentFilter
+                    items={services}
+                    label="Diensten"
+                    variable="selectedService"
+                />
+
+                <div class="listing__grid">
+                    {items.map((item, index) => (
+                        <div
+                            class="listing__item"
+                            x-show={`selectedService === 'all' || ${JSON.stringify(item.data.services ?? [])}.includes(selectedService)`}
+                        >
+                            <ShowcaseEditorialCard
+                                title={item.data.title}
+                                client={item.data.client}
+                                category={item.data.category}
+                                year={Number(item.data.year)}
+                                summary={item.data.summary}
+                                image={item.data.cover ?? '/demo.svg'}
+                                href={`/showcases/${item.id}/`}
+                                index={index}
+                            />
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </ContentWrapper>
+    </Section>
+</BaseLayout>
+
+<style lang="scss">
+    .listing__intro {
+        max-width: 60rem;
+        margin-bottom: var(--space-xl);
+    }
+
+    .listing__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--space-m);
+        margin-top: var(--space-l);
+    }
+
+    .listing__item {
+        min-width: 0;
+        min-height: 0;
+    }
+
+    @media (max-width: 720px) {
+        .listing__grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

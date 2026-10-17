@@ -1,0 +1,51 @@
+// -----------------------------------------------------------------------------
+// Wrapper
+// -----------------------------------------------------------------------------
+// Constrains content to a maximum width, centers it horizontally, and provides
+// responsive inline gutters.
+//
+// Public custom properties:
+// --wrapper-max-width
+// --wrapper-gutter
+//
+// Variants:
+// data-width="small"
+// data-width="medium"
+// data-width="large"
+// data-width="xlarge"
+// -----------------------------------------------------------------------------
+
+.wrapper {
+    --_wrapper-max-width: var(
+        --wrapper-max-width,
+        var(--container-large)
+    );
+
+    --_wrapper-gutter: var(
+        --wrapper-gutter,
+        var(--gutter)
+    );
+
+    width: min(
+        calc(100% - (var(--_wrapper-gutter) * 2)),
+        var(--_wrapper-max-width)
+    );
+
+    margin-inline: auto;
+}
+
+.wrapper[data-width="small"] {
+    --wrapper-max-width: var(--container-small);
+}
+
+.wrapper[data-width="medium"] {
+    --wrapper-max-width: var(--container-medium);
+}
+
+.wrapper[data-width="large"] {
+    --wrapper-max-width: var(--container-large);
+}
+
+.wrapper[data-width="xlarge"] {
+    --wrapper-max-width: var(--container-xlarge);
+}

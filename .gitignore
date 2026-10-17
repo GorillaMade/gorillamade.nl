@@ -14,8 +14,4 @@
 .vscode
 
 pkg/
-src/
-public/
 resources/
-
-form-handler.php

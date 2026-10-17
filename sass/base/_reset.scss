@@ -1,0 +1,94 @@
+// -----------------------------------------------------------------------------
+// Reset
+// -----------------------------------------------------------------------------
+// Provides a minimal, predictable baseline without imposing visual styles.
+// -----------------------------------------------------------------------------
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Prevent font size inflation */
+html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+}
+
+/* Remove default margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+    margin: 0;
+}
+
+/* Remove list styles when explicitly used as a list role */
+ul[role="list"],
+ol[role="list"] {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Core body defaults */
+body {
+    min-block-size: 100vh;
+    min-block-size: 100dvh;
+}
+
+/* Sensible defaults for links without classes */
+a:not([class]) {
+    color: currentColor;
+    text-decoration-skip-ink: auto;
+}
+
+/* Make media easier to work with */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-inline-size: 100%;
+}
+
+img,
+picture,
+video {
+    block-size: auto;
+}
+
+/* Inherit typography for form elements */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+/* Avoid tiny textareas */
+textarea:not([rows]) {
+    min-block-size: 10em;
+}
+
+/* Prevent horizontal resizing */
+textarea {
+    resize: vertical;
+}
+
+/* Anchored elements */
+:target {
+    scroll-margin-block: 5ex;
+}

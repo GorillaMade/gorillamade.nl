@@ -1,0 +1,40 @@
+// GorillaMade klantinstellingen: twee merkpaletten en vier functionele statuspaletten.
+// Neutral combineert licht en donker; brand is Banana Yellow.
+$colors: (
+  neutral: (
+    100: oklch(100.00% 0.0000 89.9),
+    200: oklch(94.61% 0.0000 89.9),
+    300: oklch(86.38% 0.0000 89.9),
+    400: oklch(73.80% 0.0000 89.9),
+    500: oklch(61.67% 0.0000 89.9),
+    600: oklch(51.03% 0.0000 89.9),
+    700: oklch(37.91% 0.0000 89.9),
+    800: oklch(25.20% 0.0000 89.9),
+    900: oklch(17.30% 0.0000 89.9)
+  ),
+  brand: (
+    500: oklch(80% .155 82)
+  ),
+  success: (
+    100: oklch(96.25% 0.0198 159.8),
+    500: oklch(53.76% 0.1231 153.7),
+    700: oklch(42.75% 0.0963 154.3)
+  ),
+  warning: (
+    100: oklch(96.59% 0.0412 88.8),
+    500: oklch(58.78% 0.1271 66.7),
+    700: oklch(44.19% 0.0936 66.6)
+  ),
+  danger: (
+    100: oklch(95.57% 0.0219 21.0),
+    500: oklch(55.73% 0.1841 25.5),
+    700: oklch(44.04% 0.1450 25.4)
+  ),
+  info: (
+    100: oklch(96.14% 0.0196 245.6),
+    500: oklch(55.88% 0.1440 251.9),
+    700: oklch(42.62% 0.1068 252.5)
+  )
+);
+// Tekst op de accentkleur: donker voor goed contrast.
+$brand-text: oklch(17.30% 0.0000 89.9);

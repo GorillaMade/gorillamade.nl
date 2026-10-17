@@ -1,0 +1,208 @@
+
+---
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+
+import Button from '@/components/Button.astro';
+
+const advantages = [
+    {
+        number: '01',
+        heading: 'Strategie vóór pixels.',
+        text: 'Eerst begrijpen we wie je wilt bereiken en waarom klanten voor jou kiezen. Daarna krijgt jouw verhaal vorm.'
+    },
+    {
+        number: '02',
+        heading: 'Design dat iets dóét.',
+        text: 'Geen mooie plaatjes zonder doel. Elke pagina maakt je aanbod helder en helpt bezoekers een volgende stap te zetten.'
+    },
+    {
+        number: '03',
+        heading: 'Eén maker. Korte lijnen.',
+        text: 'Je spreekt rechtstreeks met de zelfstandige die jouw website ontwerpt, ontwikkelt en verder helpt.'
+    },
+    {
+        number: '04',
+        heading: 'Klaar voor wat volgt.',
+        text: 'Snelle development, passende hosting en onderhoud zorgen voor een sterke technische basis.'
+    }
+];
+---
+
+<Section
+    id="waarom-gorillamade"
+    class="value-story"
+    theme="dark"
+    space="large"
+>
+    <ContentWrapper size="wide">
+        <div class="value-story__intro">
+            <div class="value-story__heading">
+                <Eyebrow>
+                    OVER MIJN AANPAK
+                </Eyebrow>
+
+                <Heading tag="h2" variant="display">
+                    EEN STERKE WEBSITE.
+                    <span class="highlight">ZONDER GEDOE.</span>
+                </Heading>
+            </div>
+
+            <div class="value-story__description">
+                <Paragraph>
+                    Een goede website is geen digitaal visitekaartje dat stof
+                    verzamelt. Het is je eerste indruk, je beste verhaal en
+                    vaak het begin van een nieuwe klantrelatie.
+                </Paragraph>
+
+                <Paragraph>
+                    Bij GorillaMade combineer ik uitgesproken webdesign met
+                    slimme techniek en een helder conversiedoel. Zonder
+                    ingewikkelde bureaustructuur. Wel met persoonlijk contact,
+                    aandacht en een gezonde dosis lef.
+                </Paragraph>
+
+                <div class="value-story__action">
+                    <Button href="/offerte/">
+                        Vertel me jouw plannen ↗
+                    </Button>
+                </div>
+            </div>
+        </div>
+
+        <div class="value-story__advantages">
+            {advantages.map((advantage) => (
+                <article class="value-story__advantage">
+                    <span class="value-story__number" aria-hidden="true">
+                        {advantage.number}
+                    </span>
+
+                    <div class="value-story__content">
+                        <Heading tag="h3" variant="h3">
+                            {advantage.heading}
+                        </Heading>
+
+                        <Paragraph>
+                            {advantage.text}
+                        </Paragraph>
+                    </div>
+                </article>
+            ))}
+        </div>
+    </ContentWrapper>
+</Section>
+
+<style lang="scss">
+.value-story__intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    align-items: end;
+    gap: clamp(2rem, 6vw, 7rem);
+    margin-bottom: clamp(3rem, 7vw, 7rem);
+}
+
+.value-story__heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-l);
+    min-width: 0;
+}
+
+.value-story__description {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-m);
+
+    :global(p) {
+        max-width: 53ch;
+        color: var(--text-secondary);
+    }
+}
+
+.value-story__action {
+    margin-top: var(--space-s);
+}
+
+.value-story__advantages {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-top: 1px solid var(--border-default);
+}
+
+.value-story__advantage {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-l);
+    padding: clamp(2rem, 4vw, 4rem);
+    border-bottom: 1px solid var(--border-default);
+
+    &:nth-child(odd) {
+        padding-left: 0;
+        border-right: 1px solid var(--border-default);
+    }
+
+    &:nth-child(even) {
+        padding-right: 0;
+    }
+}
+
+.value-story__number {
+    color: var(--text-brand);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.value-story__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-s);
+    min-width: 0;
+
+    :global(p) {
+        max-width: 48ch;
+        color: var(--text-secondary);
+    }
+}
+
+@media (max-width: 900px) {
+    .value-story__intro {
+        grid-template-columns: 1fr;
+        align-items: start;
+        gap: var(--space-xl);
+    }
+
+    .value-story__description {
+        max-width: 42rem;
+    }
+}
+
+@media (max-width: 700px) {
+    .value-story__advantages {
+        grid-template-columns: 1fr;
+    }
+
+    .value-story__advantage {
+        padding: var(--space-xl) 0;
+        border-right: 0;
+
+        &:nth-child(odd) {
+            border-right: 0;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .value-story__advantage {
+        grid-template-columns: 2rem minmax(0, 1fr);
+        gap: var(--space-m);
+    }
+}
+</style>

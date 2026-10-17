@@ -1,0 +1,137 @@
+// -----------------------------------------------------------------------------
+// Global
+// -----------------------------------------------------------------------------
+// Defines global document and element styles using semantic design tokens.
+// -----------------------------------------------------------------------------
+
+html {
+    background-color: var(--surface-page);
+    interpolate-size: allow-keywords;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--fw-body);
+    line-height: var(--lh-body);
+    letter-spacing: var(--ls-body);
+
+    color: var(--text-primary);
+    background-color: var(--surface-page);
+
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+// -----------------------------------------------------------------------------
+// Typography
+// -----------------------------------------------------------------------------
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    font-weight: var(--fw-heading);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: var(--heading-h1);
+}
+
+h2 {
+    font-size: var(--heading-h2);
+}
+
+h3 {
+    font-size: var(--heading-h3);
+}
+
+h4 {
+    font-size: var(--heading-h4);
+}
+
+h5 {
+    font-size: var(--heading-h5);
+}
+
+h6 {
+    font-size: var(--heading-h6);
+}
+
+strong,
+b {
+    font-weight: var(--fw-strong);
+}
+
+
+// -----------------------------------------------------------------------------
+// Links
+// -----------------------------------------------------------------------------
+
+a {
+    color: inherit;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.15em;
+}
+
+a:hover {
+    text-decoration-thickness: 0.12em;
+}
+
+
+// -----------------------------------------------------------------------------
+// Forms
+// -----------------------------------------------------------------------------
+
+button,
+input,
+textarea,
+select {
+    color: inherit;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    cursor: pointer;
+}
+
+
+// -----------------------------------------------------------------------------
+// Selection
+// -----------------------------------------------------------------------------
+
+::selection {
+    color: var(--action-primary-text);
+    background-color: var(--action-primary);
+}
+
+
+// -----------------------------------------------------------------------------
+// Focus
+// -----------------------------------------------------------------------------
+
+:focus-visible {
+    outline: var(--focus-width) solid var(--focus-color);
+    outline-offset: var(--focus-offset);
+}
+
+
+// -----------------------------------------------------------------------------
+// Reduced motion
+// -----------------------------------------------------------------------------
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}

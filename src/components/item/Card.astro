@@ -1,0 +1,324 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import Button from '@/components/Button.astro';
+import ButtonWrapper from '@/components/wrapper/ButtonWrapper.astro';
+import Img from '@/components/media/Img.astro';
+import Overlay from '@/components/media/Overlay.astro';
+
+type ImageSource = ImageMetadata | string;
+
+type CardVariant = 'default' | 'cover' | 'stacked';
+type CardTheme = 'inherit' | 'light' | 'dark' | 'brand';
+type OverlayVariant = 'solid' | 'gradient';
+
+type Base = HTMLAttributes<'div'> & {
+  /** Optional custom CSS class. */
+  class?: string;
+
+  /** Set to false to omit the component. */
+  render?: boolean;
+
+  /** Eyebrow text. Supports inline HTML. */
+  eyebrow?: string;
+
+  /** Card heading. Supports inline HTML. */
+  heading?: string;
+
+  /** Heading tag. Default: h3. */
+  headingTag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+  /** Heading variant. Default: h5. */
+  headingVariant?: 'display' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+
+  /** Body text. Supports inline HTML. */
+  text?: string;
+
+  /** Button label. Omit to hide the button. */
+  buttonLabel?: string;
+
+  /** Button destination. */
+  buttonHref?: string;
+};
+
+type Props = Base & (
+  | {
+      variant?: 'default';
+      theme?: CardTheme;
+      image?: never;
+      imageAlt?: never;
+      overlayVariant?: never;
+      overlayStrength?: never;
+    }
+  | {
+      variant: 'cover';
+      theme?: CardTheme;
+      image?: ImageSource;
+      imageAlt?: string;
+      overlayVariant?: OverlayVariant;
+      overlayStrength?: number;
+    }
+  | {
+      variant: 'stacked';
+      theme?: never;
+      image?: ImageSource;
+      imageAlt?: string;
+      overlayVariant?: never;
+      overlayStrength?: never;
+    }
+);
+
+const {
+  render = true,
+  eyebrow,
+  heading,
+  headingTag = 'h3',
+  headingVariant = 'h3',
+  text,
+  buttonLabel,
+  buttonHref,
+  variant = 'default',
+  theme = 'inherit',
+  image,
+  imageAlt,
+  overlayVariant = 'gradient',
+  overlayStrength = 50,
+  class: className,
+  ...rest
+} = Astro.props as Props;
+
+// --------------------------------------------------
+// Content
+// --------------------------------------------------
+
+const hasImage = variant !== 'default' && Boolean(image);
+const hasButton = Boolean(buttonLabel);
+const hasSlot = Astro.slots.has('default');
+
+const hasContent = Boolean(
+  eyebrow || heading || text || hasButton || hasSlot
+);
+
+// --------------------------------------------------
+// Theme
+// --------------------------------------------------
+
+const activeTheme =
+  variant !== 'stacked' && theme !== 'inherit'
+    ? theme
+    : undefined;
+
+// --------------------------------------------------
+// Overlay
+// --------------------------------------------------
+
+const activeOverlayStrength = Number.isFinite(overlayStrength)
+  ? Math.min(100, Math.max(0, overlayStrength))
+  : 50;
+
+// --------------------------------------------------
+// Automatic button configuration
+// --------------------------------------------------
+
+const buttonKind =
+  variant === 'stacked'
+    ? ({ variant: 'link' } as const)
+    : ({
+        emphasis: variant === 'cover'
+          ? 'primary'
+          : 'secondary'
+      } as const);
+---
+
+{render && (hasContent || hasImage) && (
+  <div
+    {...rest}
+    class={['card', variant, className].filter(Boolean).join(' ')}
+    data-variant={variant}
+    data-theme={activeTheme}
+  >
+    {hasImage && (
+      <div class="card-visual">
+        <Img
+          src={image!}
+          alt={imageAlt ?? ''}
+        />
+
+        {variant === 'cover' && (
+          <Overlay
+            variant={overlayVariant}
+            strength={activeOverlayStrength}
+          />
+        )}
+      </div>
+    )}
+
+    {hasContent && (
+      <div class="card-content">
+        {hasSlot && <slot />}
+
+        {eyebrow && (
+          <Eyebrow>
+            <Fragment set:html={eyebrow} />
+          </Eyebrow>
+        )}
+
+        {heading && (
+          <Heading tag={headingTag} variant={headingVariant}>
+            <Fragment set:html={heading} />
+          </Heading>
+        )}
+
+        {text && (
+          <Paragraph>
+            <Fragment set:html={text} />
+          </Paragraph>
+        )}
+
+        {hasButton && (
+          <div class="card-actions">
+            <ButtonWrapper>
+              {buttonHref ? (
+                <Button
+                  href={buttonHref}
+                  {...buttonKind}
+                >
+                  {buttonLabel}
+                </Button>
+              ) : (
+                <Button {...buttonKind}>
+                  {buttonLabel}
+                </Button>
+              )}
+            </ButtonWrapper>
+          </div>
+        )}
+      </div>
+    )}
+  </div>
+)}
+
+
+<style lang="scss">
+.card {
+    --card-padding: var(--space-l);
+    --card-gap: var(--space-s);
+    --card-image-gap: var(--space-s);
+    --card-min-height: 20rem;
+    --card-image-ratio: 3 / 2;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: var(--radius-l);
+    background-color: var(--surface-subtle);
+    color: var(--text-primary);
+    overflow: clip;
+
+    .card-visual {
+        width: 100%;
+        overflow: hidden;
+
+        > :global(img),
+        > :global(picture),
+        > :global(.image) {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        :global(img) {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    &.cover {
+        min-height: var(--card-min-height);
+        isolation: isolate;
+
+        .card-visual {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            height: 100%;
+            pointer-events: none;
+
+            > :global(img),
+            > :global(picture),
+            > :global(.image) {
+                position: absolute;
+                inset: 0;
+                z-index: 0;
+            }
+
+            > :global(.overlay) {
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+                display: block;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+            }
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+    }
+
+    &.stacked {
+        gap: var(--card-image-gap);
+        border-radius: 0;
+        background-color: transparent;
+        overflow: visible;
+
+        .card-visual {
+            position: relative;
+            flex: none;
+            aspect-ratio: var(--card-image-ratio);
+            border-radius: var(--radius-l);
+        }
+
+        .card-content {
+            padding-inline: 0;
+            padding-top: 0;
+        }
+    }
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    width: 100%;
+    min-width: 0;
+    gap: var(--card-gap);
+    padding: var(--card-padding);
+}
+
+.card-actions {
+    margin-top: auto;
+    padding-top: var(--space-m);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card,
+    .card :global(img) {
+        transition: none;
+    }
+}
+</style>

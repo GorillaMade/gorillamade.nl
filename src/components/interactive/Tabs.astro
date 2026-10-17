@@ -1,0 +1,142 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'div'> & {
+  render?: boolean;
+  label?: string;
+};
+
+const {
+  render = true,
+  label = 'Tabs',
+  class: className,
+  ...rest
+} = Astro.props;
+
+// --------------------------------------------------
+// Alpine.js
+// --------------------------------------------------
+
+const alpineAttrs = {
+  'x-data': `{
+    activeTab: null,
+
+    init() {
+      const tabs = Array.from(
+        this.$el.querySelectorAll('[role="tab"]')
+      );
+
+      const panels = Array.from(
+        this.$el.querySelectorAll('[role="tabpanel"]')
+      );
+
+      const initial = tabs.find(
+        tab => tab.getAttribute('aria-selected') === 'true'
+      ) || tabs[0];
+
+      panels.forEach(panel => {
+        panel.setAttribute(
+          'x-show',
+          'activeTab === ' + JSON.stringify(panel.id)
+        );
+      });
+
+      if (initial) {
+        this.activeTab = initial.dataset.tabTarget;
+      }
+    },
+
+    select(target) {
+      this.activeTab = target;
+    },
+
+    onKeydown(event) {
+      const tabs = Array.from(
+        this.$el.querySelectorAll('[role="tab"]')
+      );
+
+      const current = tabs.indexOf(event.target);
+
+      if (current === -1) return;
+
+      let next = current;
+
+      switch (event.key) {
+        case 'ArrowRight':
+          next = (current + 1) % tabs.length;
+          break;
+
+        case 'ArrowLeft':
+          next = (current - 1 + tabs.length) % tabs.length;
+          break;
+
+        case 'Home':
+          next = 0;
+          break;
+
+        case 'End':
+          next = tabs.length - 1;
+          break;
+
+        default:
+          return;
+      }
+
+      event.preventDefault();
+
+      tabs[next].focus();
+      this.select(tabs[next].dataset.tabTarget);
+    }
+  }`,
+  '@keydown': 'onKeydown($event)',
+};
+---
+
+{render && (
+  <div
+    {...rest}
+    {...alpineAttrs}
+    class:list={['tabs', className]}
+  >
+    <div
+      class="tabs__list"
+      role="tablist"
+      aria-label={label}
+      aria-orientation="horizontal"
+    >
+      <slot name="tabs" />
+    </div>
+
+    <div class="tabs__panels">
+      <slot />
+    </div>
+  </div>
+)}
+
+<style lang="scss">
+.tabs {
+    width: 100%;
+    min-width: 0;
+    // Tab list
+    &__list {
+        display: flex;
+        align-items: stretch;
+        flex-wrap: wrap;
+        gap: var(--space-s);
+        border-block-end: 1px solid var(--border-default);
+    }
+    // Panels
+    &__panels {
+        padding-block: var(--space-m);
+        :global([role='tabpanel'][hidden]) {
+            display: none !important;
+        }
+
+        :global([role='tabpanel']:focus-visible) {
+            outline: 2px solid var(--focus-color);
+            outline-offset: 3px;
+        }
+    }
+}
+</style>

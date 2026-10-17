@@ -1,0 +1,82 @@
+@use "../abstracts" as *;
+@use "sass:map";
+
+// -----------------------------------------------------------------------------
+// Root
+// -----------------------------------------------------------------------------
+// Exposes foundation values as CSS custom properties.
+// -----------------------------------------------------------------------------
+
+:root {
+    // Font Families
+    @each $font, $value in $font-families {
+        --ff-#{$font}: #{$value};
+    }
+
+    // Font Sizes
+    @each $size, $value in $font-sizes {
+        --fs-#{$size}: #{$value};
+    }
+
+    // Font Weights
+    @each $weight, $value in $font-weights {
+        --fw-#{$weight}: #{$value};
+    }
+
+    // Line heights
+    @each $height, $value in $line-heights {
+        --lh-#{$height}: #{$value};
+    }
+
+    // Letter spacing
+    @each $space, $value in $letter-spacings {
+        --ls-#{$space}: #{$value};
+    }
+
+    // Spacings
+    @each $name, $value in $space-sizes {
+        --space-#{$name}: #{$value};
+    }
+
+    // Container sizes
+    @each $size, $value in $container-sizes {
+        --container-#{$size}: #{$value};
+    }
+
+    // Radius
+    @each $name, $value in $radius {
+        --radius-#{$name}: #{$value};
+    }
+
+    // Shadows
+    @each $name, $value in $shadows {
+        --shadow-#{$name}: #{$value};
+    }
+
+    // Blur
+    @each $name, $value in $blurs {
+        --blur-#{$name}: #{$value};
+    }
+
+    // Durations
+    @each $name, $value in $durations {
+        --duration-#{$name}: #{$value};
+    }
+
+    // Easings
+    @each $name, $value in $easings {
+        --ease-#{$name}: #{$value};
+    }
+
+    // Layers
+    @each $name, $value in $layers {
+        --layer-#{$name}: #{$value};
+    }
+
+    @each $palette, $shades in $colors {
+      @each $shade, $value in $shades {
+        --#{$palette}-#{$shade}: #{$value};
+      }
+    }
+    --brand-text: #{$brand-text};
+}

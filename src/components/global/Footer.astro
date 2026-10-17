@@ -1,0 +1,152 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import NavLink from '@/components/global/NavLink.astro';
+import { socials } from '@/data/socials';
+
+type Props = HTMLAttributes<'footer'> & {
+    render?: boolean;
+    theme?: 'light' | 'dark' | 'brand';
+    copyright?: string;
+    year?: number;
+};
+
+const {
+    render = true,
+    theme = 'dark',
+    copyright = 'GorillaMade',
+    year = new Date().getFullYear(),
+    class: className,
+    ...rest
+} = Astro.props;
+
+const validLinks = socials.filter((item) => typeof item.href === 'string' && item.href.trim().length > 0);
+const socialLinks = validLinks.filter((item) => item.category === 'social');
+const chatLinks = validLinks.filter((item) => item.category === 'chat');
+const email = validLinks.find((item) => item.id === 'email');
+---
+
+{render && (
+    <footer {...rest} data-theme={theme} class:list={['site-footer', 'gm-footer', className]}>
+        <div class="site-footer__inner">
+            <div class="site-footer__main">
+                <div class="site-footer__brand flow">
+                    <Heading tag="h4" variant="h4">
+                        <span class="gm-footer-wordmark"><strong>GORILLA</strong><span>MADE</span></span>
+                    </Heading>
+                    <Paragraph>Niet zomaar een website. Een digitale krachtpatser.</Paragraph>
+                    <Paragraph>KvK: <span data-kvk>97132756</span></Paragraph>
+                </div>
+                <div class="site-footer__column footer-links">
+                    <Heading tag="h5" variant="h5">ONTDEK</Heading>
+                    <NavLink href="/diensten">Diensten</NavLink>
+                    <NavLink href="/showcases">Showcases</NavLink>
+                    <NavLink href="/blog">Insights</NavLink>
+                    <NavLink href="/over-mij">Over mij</NavLink>
+                    <NavLink href="/offerte">Offerte aanvragen</NavLink>
+                    <NavLink href="/contact">Contact</NavLink>
+                </div>
+                <div class="site-footer__column footer-links">
+                    <Heading tag="h5" variant="h5">SOCIALS</Heading>
+                    {socialLinks.length > 0 && (
+                        <nav class="footer-social" aria-label="Sociale media">
+                            {socialLinks.map((item) => (
+                                <NavLink href={item.href} target={item.external ? '_blank' : undefined} rel={item.external ? 'noopener noreferrer' : undefined} aria-label={item.label}>{item.label}</NavLink>
+                            ))}
+                        </nav>
+                    )}
+                </div>
+                <div class="site-footer__column footer-links">
+                    <Heading tag="h5" variant="h5">LET'S GO BANANAS</Heading>
+                    {email && <NavLink href={email.href}>{email.href.replace(/^mailto:/, '')}</NavLink>}
+                    {chatLinks.length > 0 && (
+                        <nav class="footer-chat" aria-label="Chatkanalen">
+                            {chatLinks.map((item) => <NavLink href={item.href}>{item.label} ↗</NavLink>)}
+                        </nav>
+                    )}
+                </div>
+            </div>
+            <div class="site-footer__bottom">
+                <div class="site-footer__copyright">
+                    <small>© {year} {copyright}. Alle rechten voorbehouden.</small>
+                </div>
+                <div class="site-footer__legal">
+                    <NavLink href="/privacy">Privacy</NavLink> · <NavLink href="/algemene-voorwaarden">Algemene Voorwaarden</NavLink>
+                </div>
+            </div>
+        </div>
+    </footer>
+)}
+
+<style lang="scss">
+    .site-footer {
+        width: 100%;
+        box-sizing: border-box;
+        background-color: var(--surface-page);
+        color: var(--text-primary);
+        border-block-start: 1px solid var(--border-default);
+
+        &__inner {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(3rem, 7vw, 7rem);
+            width: 100%;
+            max-width: 1280px;
+            box-sizing: border-box;
+            margin-inline: auto;
+            padding-block: clamp(4rem, 9vw, 9rem);
+            padding-inline: var(--gutter);
+        }
+
+        &__main {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: clamp(2rem, 4vw, 5rem);
+        }
+
+        &__brand, &__column {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: var(--space-s);
+            min-width: 0;
+        }
+
+        &__bottom {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-s);
+            padding-block-start: var(--space-m);
+            border-block-start: 1px solid var(--border-default);
+        }
+
+        &__copyright, &__legal { min-width: 0; font-size: var(--fs--1); }
+
+        @media (width >= 640px) {
+            &__main { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            &__bottom { flex-direction: row; align-items: center; justify-content: space-between; }
+        }
+
+        @media (width >= 976px) {
+            &__main { grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); }
+        }
+    }
+
+    .gm-footer-wordmark {
+        display: inline-flex;
+        align-items: baseline;
+        white-space: nowrap;
+        font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+        letter-spacing: -.055em;
+        line-height: 1;
+
+        strong { font-weight: 850; }
+        > span { font-weight: 300; color: var(--text-secondary); }
+    }
+
+    .footer-links { gap: 1rem; }
+    .footer-social, .footer-chat { display: flex; flex-direction: column; flex-wrap: wrap; gap: 1rem; }
+    .gm-footer :global(a:hover) { color: var(--text-brand); }
+    [data-kvk] { color: var(--text-brand); }
+</style>

@@ -1,0 +1,196 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type ModalTheme = 'light' | 'dark' | 'brand';
+
+type Props = Omit<HTMLAttributes<'dialog'>, 'id'> & {
+  /** Unique ID used to open the modal. */
+  id: string;
+
+  /** Accessible title displayed in the header. */
+  title: string;
+
+  /** Modal theme. Default: light. */
+  theme?: ModalTheme;
+
+  /** Set to false to omit the component. */
+  render?: boolean;
+};
+
+const {
+  id,
+  title,
+  theme = 'light',
+  render = true,
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+{render && (
+  <dialog
+    {...rest}
+    id={id}
+    class:list={['modal', className]}
+    data-theme={theme}
+    aria-labelledby={`${id}-title`}
+  >
+    <div class="modal__inner">
+      <div class="modal__header">
+        <h2
+          id={`${id}-title`}
+          class="modal__title"
+        >
+          {title}
+        </h2>
+
+        <form method="dialog">
+          <button
+            class="modal__close"
+            type="submit"
+            aria-label="Sluiten"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </form>
+      </div>
+
+      <div class="modal__content">
+        <slot />
+      </div>
+    </div>
+  </dialog>
+)}
+
+<style lang="scss">
+.modal {
+    // Configuration
+    --modal-width: 40rem;
+    --modal-padding: var(--space-l);
+    --modal-gap: var(--space-xs);
+    // Base
+    position: fixed;
+    inset: 0;
+    width: min(
+    var(--modal-width),
+    calc(100% - var(--space-l) * 2)
+    );
+    max-width: 100%;
+    max-height: calc(100dvh - var(--space-l) * 2);
+    margin: auto;
+    padding: 0;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: var(--radius-l);
+    background-color: var(--surface-page);
+    color: var(--text-primary);
+    box-shadow:
+    0 1.5rem 4rem rgb(0 0 0 / 0.18);
+    overflow: hidden;
+    // Backdrop
+    &::backdrop {
+        background-color: rgb(0 0 0 / 0.65);
+        backdrop-filter: blur(4px);
+    }
+    // Inner
+    &__inner {
+        display: flex;
+        flex-direction: column;
+        max-height: inherit;
+        min-height: 0;
+    }
+    // Header
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--modal-gap);
+        padding: var(--modal-padding);
+        border-bottom: 1px solid var(--border-default);
+    }
+    // Title
+    &__title {
+        margin: 0;
+        color: var(--text-primary);
+        font-size: var(--text-large);
+        font-weight: var(--fw-strong);
+        line-height: 1.2;
+    }
+    // Close
+    &__close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: 2.5rem;
+        height: 2.5rem;
+        padding: 0;
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-m);
+        background-color: transparent;
+        color: var(--text-primary);
+        cursor: pointer;
+        transition:
+        background-color var(--duration-fast),
+        color var(--duration-fast),
+        border-color var(--duration-fast);
+        &:focus-visible {
+            outline: 2px solid var(--focus-color);
+            outline-offset: 3px;
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                background-color: var(--button-hover-background);
+                color: var(--button-hover-text);
+                border-color: var(--button-hover-background);
+            }
+        }
+    }
+    // Content
+    &__content {
+        flex: 1;
+        min-height: 0;
+        padding: var(--modal-padding);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+    }
+    // Open animation
+    &[open] {
+        animation: modal-enter var(--duration-fast) ease-out both;
+    }
+}
+// Animation
+@keyframes modal-enter {
+    from {
+        opacity: 0;
+        transform: translateY(0.75rem) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+    .modal {
+        animation: none;
+        &__close {
+            transition: none;
+        }
+    }
+}
+</style>

@@ -1,0 +1,213 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type InputType =
+  | 'text'
+  | 'email'
+  | 'tel'
+  | 'url'
+  | 'number'
+  | 'search'
+  | 'password'
+  | 'date';
+
+interface Props extends Omit<HTMLAttributes<'input'>, 'type'> {
+  /** Unique input ID. */
+  id: string;
+
+  /** Visible label. */
+  label: string;
+
+  /** Input type. Default: text. */
+  type?: InputType;
+
+  /** Visually hide the label. */
+  labelHidden?: boolean;
+
+  /** Optional helper text. */
+  description?: string;
+
+  /** Set to false to omit the component. */
+  render?: boolean;
+}
+
+const {
+  id,
+  label,
+  type = 'text',
+  labelHidden = false,
+  description,
+  render = true,
+  class: className,
+  name,
+  'aria-describedby': ariaDescribedby,
+  ...rest
+} = Astro.props;
+
+const descriptionId = `${id}-description`;
+
+const describedBy = [
+  ariaDescribedby,
+  description ? descriptionId : undefined
+]
+  .filter(Boolean)
+  .join(' ') || undefined;
+---
+
+{render && (
+  <div
+    class:list={[
+      'field',
+      className
+    ]}
+  >
+    <label
+      for={id}
+      class:list={[
+        'field__label',
+        labelHidden && 'visually-hidden'
+      ]}
+    >
+      {label}
+    </label>
+
+    <input
+      {...rest}
+      id={id}
+      name={name ?? id}
+      type={type}
+      class="field__input"
+      aria-describedby={describedBy}
+    />
+
+    {description && (
+      <span
+        id={descriptionId}
+        class="field__description"
+      >
+        {description}
+      </span>
+    )}
+  </div>
+)}
+
+<style lang="scss">
+.field {
+    // Configuration
+    --field-gap: var(--space-xs);
+    --field-padding-block: var(--space-s);
+    --field-padding-inline: var(--space-m);
+    // Base
+    display: flex;
+    flex-direction: column;
+    gap: var(--field-gap);
+    width: 100%;
+    min-width: 0;
+    color: var(--text-primary);
+    // Label
+    &__label {
+        display: block;
+        font-size: var(--text-small);
+        font-weight: var(--fw-strong);
+        line-height: 1.4;
+        cursor: pointer;
+    }
+    // Input
+    &__input {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+        padding:
+        var(--field-padding-block)
+        var(--field-padding-inline);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-m);
+        background-color: var(--surface-page);
+        color: var(--text-primary);
+        font: inherit;
+        line-height: 1.5;
+        outline: none;
+        transition:
+        border-color var(--duration-fast),
+        box-shadow var(--duration-fast),
+        background-color var(--duration-fast);
+        // Placeholder
+        &::placeholder {
+            color: var(--text-primary);
+            opacity: 0.45;
+        }
+        // Hover
+        @media (hover: hover) {
+            &:hover:not(:disabled) {
+                border-color: var(--text-primary);
+            }
+        }
+        // Focus
+        &:focus-visible {
+            border-color: var(--focus-color);
+            box-shadow:
+            0 0 0 2px var(--focus-color);
+        }
+        // Invalid
+        &[aria-invalid='true'] {
+            border-color: var(--field-error-color, var(--text-brand));
+            &:focus-visible {
+                box-shadow:
+                0 0 0 2px var(--field-error-color, var(--text-brand));
+            }
+        }
+        // Disabled
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background-color: var(--surface-subtle);
+        }
+        // Readonly
+        &:read-only:not(:disabled) {
+            background-color: var(--surface-subtle);
+        }
+        // Date input
+        &[type='date'] {
+            min-height: 2.75rem;
+        }
+        // Search input
+        &[type='search'] {
+            appearance: none;
+        }
+    }
+    // Description
+    &__description {
+        font-size: var(--text-small);
+        line-height: 1.5;
+        color: var(--text-primary);
+        opacity: 0.65;
+    }
+    // Disabled label
+    &:has(.field__input:disabled) {
+        .field__label {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+}
+// Visually hidden
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+    .field__input {
+        transition: none;
+    }
+}
+</style>

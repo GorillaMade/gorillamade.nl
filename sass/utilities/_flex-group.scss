@@ -1,0 +1,17 @@
+// -----------------------------------------------------------------------------
+// Flex Group
+// -----------------------------------------------------------------------------
+// Arranges direct children in a flexible row and allows them to wrap when
+// necessary.
+//
+// Public custom properties:
+// --flex-group-gap
+// --flex-group-align
+// -----------------------------------------------------------------------------
+
+.flex-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: var(--flex-group-align, center);
+    gap: var(--flex-group-gap, var(--space-s));
+}

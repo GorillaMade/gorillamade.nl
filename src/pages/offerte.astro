@@ -1,0 +1,129 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+import InquiryPageHeader from '@/components/inquiry/InquiryPageHeader.astro';
+import InquiryBenefits from '@/components/inquiry/InquiryBenefits.astro';
+import QuoteWizardForm from '@/components/forms/QuoteWizardForm.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import Button from '@/components/Button.astro';
+---
+
+<BaseLayout
+    title="Vraag een offerte aan | GorillaMade"
+    description="Beschrijf jouw project in zes duidelijke stappen en ontvang een voorstel op maat."
+>
+    <Section theme="light" class="quote-page">
+        <ContentWrapper size="wide">
+            <InquiryPageHeader index="02" eyebrow="PROJECTAANVRAAG">
+                <Heading tag="h1" variant="display">
+                    JOUW IDEE. <span class="highlight">MIJN AANPAK.</span>
+                </Heading>
+
+                <Paragraph>
+                    Een goede website begint met een goed plan. Vertel me wat je wilt
+                    bereiken, wat je nodig hebt en wat je mooi vindt. Zo kan ik een
+                    gericht voorstel maken.
+                </Paragraph>
+            </InquiryPageHeader>
+
+            <div class="quote-layout">
+                <div class="quote-main">
+                    <div class="form-label">01 / VERTEL ME OVER JE PROJECT</div>
+                    <QuoteWizardForm />
+                </div>
+
+                <InquiryBenefits
+                    eyebrow="ZO WERKT HET"
+                    title="Van eerste idee naar helder plan."
+                    items={[
+                        {
+                            title: 'Vertel je verhaal',
+                            description: 'Doorloop zes korte stappen over je doelen, doelgroep, design en functionaliteiten.',
+                        },
+                        {
+                            title: 'Ik denk met je mee',
+                            description: 'Je aanvraag vormt de basis voor een inhoudelijk gesprek en een passend voorstel.',
+                        },
+                        {
+                            title: 'Geen verrassingen',
+                            description: 'We stemmen aanpak, planning en budget vooraf met elkaar af.',
+                        },
+                    ]}
+                />
+            </div>
+
+            <div class="secondary-link">
+                <span>LIEVER EERST EVEN OVERLEGGEN?</span>
+                <Button variant="link" href="/contact">Stel me een vraag ↗</Button>
+            </div>
+        </ContentWrapper>
+    </Section>
+
+    <CtaSection
+        eyebrow="ONTDEK DE MOGELIJKHEDEN"
+        title="EERST MIJN"
+        accent="WERK BEKIJKEN?"
+        description="Bekijk de websites die ik eerder ontwierp en ontwikkelde."
+        buttonLabel="Bekijk de showcases ↗"
+        buttonHref="/showcases"
+        theme="dark"
+        showBottom={false}
+    />
+</BaseLayout>
+
+<style lang="scss">
+    .quote-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.8fr);
+        gap: clamp(3rem, 6vw, 7rem);
+    }
+
+    .quote-main {
+        min-width: 0;
+        padding-top: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .form-label,
+    .secondary-link > span {
+        font-size: 0.7rem;
+        letter-spacing: 0.14em;
+        font-weight: 700;
+        color: var(--text-secondary);
+    }
+
+    .form-label {
+        margin-bottom: 2rem;
+    }
+
+    .secondary-link {
+        border-top: 1px solid var(--border-default);
+        padding: 2rem 0 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+    }
+
+    .secondary-link :global(a) {
+        font-size: clamp(1.2rem, 2.5vw, 2rem);
+        font-weight: 700;
+        letter-spacing: -0.04em;
+    }
+
+    @media (max-width: 899px) {
+        .quote-layout {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+    }
+
+    @media (max-width: 580px) {
+        .secondary-link {
+            align-items: flex-start;
+            flex-direction: column;
+        }
+    }
+</style>

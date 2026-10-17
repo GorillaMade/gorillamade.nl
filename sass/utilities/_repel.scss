@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------------
+// Repel
+// -----------------------------------------------------------------------------
+// Pushes direct children apart while allowing them to wrap when necessary.
+//
+// Public custom properties:
+// --repel-gap
+// -----------------------------------------------------------------------------
+
+.repel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--repel-gap, var(--space-s));
+}

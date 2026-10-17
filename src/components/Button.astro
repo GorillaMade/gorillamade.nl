@@ -1,0 +1,202 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type ButtonVariant = 'default' | 'link';
+type ButtonEmphasis = 'primary' | 'secondary';
+type ButtonSize = 'small' | 'medium' | 'large';
+
+type ButtonProps = HTMLAttributes<'button'> & {
+  href?: never;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+};
+
+type LinkProps = Omit<HTMLAttributes<'a'>, 'type'> & {
+  href: string;
+  type?: never;
+  disabled?: never;
+};
+
+type Props = {
+  render?: boolean;
+  variant?: ButtonVariant;
+  emphasis?: ButtonEmphasis;
+  size?: ButtonSize;
+} & (ButtonProps | LinkProps);
+
+const {
+  render = true,
+  variant = 'default',
+  emphasis = 'primary',
+  size = 'medium',
+  class: className,
+  ...rest
+} = Astro.props;
+
+const isLink =
+  'href' in rest && typeof rest.href === 'string';
+
+const classes = [
+  'button',
+  `button--${variant}`,
+  variant === 'default' && `button--${emphasis}`,
+  `button--${size}`,
+  className
+];
+---
+
+{render && (
+  isLink ? (
+    <a
+      {...(rest as LinkProps)}
+      class:list={classes}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type="button"
+      {...(rest as ButtonProps)}
+      class:list={classes}
+    >
+      <slot />
+    </button>
+  )
+)}
+
+<style lang="scss">
+.button {
+    // Base
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    min-height: 2.75rem;
+    padding: 0.7em 1.1em;
+    border: 1px solid transparent;
+    border-radius: var(--radius-m);
+    background-color: transparent;
+    color: inherit;
+    font: inherit;
+    font-weight: var(--fw-strong);
+    line-height: 1.2;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+    background-color var(--duration-fast),
+    color var(--duration-fast),
+    border-color var(--duration-fast);
+    // Focus
+    &:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 3px;
+    }
+    // Disabled
+    &:disabled,
+    &[aria-disabled='true'] {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+    // Primary
+    &--primary {
+        background-color: var(--action-primary);
+        color: var(--action-primary-text);
+    }
+    // Secondary (outlined)
+    &--secondary {
+        background-color: transparent;
+        color: var(--text-primary);
+        border-color: currentColor;
+    }
+    // Link
+    &--link {
+        position: relative;
+        min-height: 0;
+        padding: 0.4em 0;
+        border: 0;
+        border-radius: 0;
+        background-color: transparent;
+        color: var(--text-primary);
+        // Subtle underline
+        &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0.2em;
+            height: 1px;
+            background-color: currentColor;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+        // Animated underline
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0.2em;
+            height: 1px;
+            background-color: currentColor;
+            pointer-events: none;
+            transform: scaleX(0);
+            transform-origin: right center;
+            transition:
+            transform var(--duration-fast) ease;
+        }
+    }
+    // Hover
+    @media (hover: hover) {
+        // Primary
+        &--primary {
+            &:hover:not(:disabled):not([aria-disabled='true']) {
+                background-color: var(--button-hover-background);
+                color: var(--button-hover-text);
+            }
+        }
+        // Secondary
+        &--secondary {
+            &:hover:not(:disabled):not([aria-disabled='true']) {
+                background-color: var(--button-hover-background);
+                color: var(--button-hover-text);
+                border-color: var(--button-hover-background);
+            }
+        }
+        // Link
+        &--link {
+            &:hover:not(:disabled):not([aria-disabled='true'])::after {
+                transform: scaleX(1);
+                transform-origin: left center;
+            }
+        }
+    }
+    // Keyboard focus
+    &--link:focus-visible::after {
+        transform: scaleX(1);
+        transform-origin: left center;
+    }
+    // Sizes
+    &--small {
+        font-size: var(--text-small);
+    }
+
+    &--medium {
+        font-size: inherit;
+    }
+
+    &--large {
+        font-size: var(--text-large);
+    }
+}
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+    .button {
+        transition: none;
+        &--link::after {
+            transition: none;
+        }
+    }
+}
+</style>

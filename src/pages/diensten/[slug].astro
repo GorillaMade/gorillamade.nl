@@ -1,0 +1,331 @@
+
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+
+import { getCollection, render } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+    service: CollectionEntry<'services'>;
+}
+
+export async function getStaticPaths() {
+    const services = await getCollection('services');
+
+    return services.map((service) => ({
+        params: {
+            slug: service.id
+        },
+        props: {
+            service
+        }
+    }));
+}
+
+const { service } = Astro.props;
+const data = service.data;
+
+const { Content } = await render(service);
+---
+
+<BaseLayout
+    title={`${data.title} | GorillaMade`}
+    description={data.summary}
+>
+    <Section theme="light" class="detail">
+        <ContentWrapper size="wide">
+
+            <header class="services__intro">
+                <a href="/diensten/">← Alle diensten</a>
+
+                <span class="eyebrow">
+                    {String(data.order).padStart(2, '0')} / DIENSTEN
+                </span>
+
+                <Heading tag="h1" variant="h1">
+                    {data.title.toUpperCase()}<span class="highlight">.</span>
+                </Heading>
+
+                <Paragraph>{data.intro}</Paragraph>
+            </header>
+
+            <div class="body">
+                <div>
+                    <span class="eyebrow">WAT JE KUNT VERWACHTEN</span>
+
+                    <Heading tag="h2" variant="h2">
+                        Aandacht voor wat telt.
+                    </Heading>
+                </div>
+
+                <div>
+                    <ul>
+                        {data.points.map((point) => (
+                            <li>{point}</li>
+                        ))}
+                    </ul>
+
+                    <div class="result">
+                        <span class="eyebrow">HET RESULTAAT</span>
+                        <Paragraph>{data.deliverable}</Paragraph>
+                    </div>
+                </div>
+            </div>
+
+        </ContentWrapper>
+    </Section>
+
+    <Section theme="light" class="service-content">
+        <ContentWrapper size="wide">
+            <div class="service-content__layout">
+                <aside class="service-content__aside">
+                    <span class="eyebrow">MEER OVER DE DIENST</span>
+
+                    <span class="service-content__index">
+                        {String(data.order).padStart(2, '0')}
+                    </span>
+                </aside>
+
+                <article class="service-content__article">
+                    <Content />
+                </article>
+            </div>
+        </ContentWrapper>
+    </Section>
+
+    <CtaSection
+        eyebrow="SAMENWERKEN"
+        title="JOUW PROJECT."
+        accent="MIJN AANPAK."
+        description="Vertel me over je plannen, dan maken we samen de volgende stap concreet."
+        buttonLabel="Vraag een offerte aan ↗"
+        buttonHref="/offerte"
+        theme="dark"
+        showBottom={false}
+    />
+</BaseLayout>
+
+<style lang="scss">
+.detail {
+    background: var(--surface-page);
+}
+
+.services__intro {
+    padding-block-end: clamp(3rem, 8vw, 8rem);
+    border-bottom: 1px solid var(--border-default);
+
+    > a {
+        display: inline-block;
+        margin-bottom: 4rem;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: color var(--duration-fast);
+
+        &:hover {
+            color: var(--text-primary);
+        }
+    }
+
+    .eyebrow {
+        display: block;
+    }
+
+    :global(h1) {
+        margin: 1.5rem 0;
+        letter-spacing: -0.075em;
+        line-height: 1;
+    }
+
+    :global(p) {
+        max-width: 55ch;
+        line-height: 1.7;
+    }
+}
+
+.eyebrow {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--text-secondary);
+}
+
+.body {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 3rem;
+    padding-block: clamp(4rem, 8vw, 8rem);
+
+    :global(h2) {
+        margin-top: 1.5rem;
+        letter-spacing: -0.06em;
+    }
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    li {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--border-default);
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+}
+
+.result {
+    padding-top: 3rem;
+
+    :global(p) {
+        line-height: 1.7;
+    }
+}
+
+// Markdown content
+.service-content {
+    border-top: 1px solid var(--border-default);
+}
+
+.service-content__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    gap: clamp(3rem, 8vw, 8rem);
+}
+
+.service-content__aside {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.service-content__index {
+    font-size: clamp(4rem, 9vw, 9rem);
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.08em;
+    color: var(--text-secondary);
+    opacity: 0.2;
+}
+
+.service-content__article {
+    min-width: 0;
+    max-width: 48rem;
+
+    // Headings from Markdown
+    :global(h2) {
+        margin: 0 0 1.5rem;
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: -0.05em;
+        color: var(--text-primary);
+    }
+
+    :global(h2:not(:first-child)) {
+        margin-top: clamp(3rem, 6vw, 5rem);
+    }
+
+    :global(h3) {
+        margin: 2.5rem 0 1rem;
+        font-weight: 700;
+        line-height: 1.3;
+        letter-spacing: -0.035em;
+        color: var(--text-primary);
+    }
+
+    :global(p) {
+        margin: 0 0 1.5rem;
+        color: var(--text-secondary);
+        line-height: 1.85;
+    }
+
+    :global(ul),
+    :global(ol) {
+        margin: 1.5rem 0 2rem;
+        padding-left: 1.5rem;
+        color: var(--text-secondary);
+    }
+
+    :global(li) {
+        margin-bottom: 0.75rem;
+        line-height: 1.75;
+    }
+
+    :global(strong) {
+        color: var(--text-primary);
+        font-weight: 700;
+    }
+
+    :global(a) {
+        color: var(--text-primary);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.25em;
+        transition: color var(--duration-fast);
+    }
+
+    :global(a:hover) {
+        color: var(--text-brand);
+    }
+
+    :global(blockquote) {
+        margin: 2.5rem 0;
+        padding-left: 1.5rem;
+        border-left: 2px solid var(--text-primary);
+    }
+
+    :global(blockquote p) {
+        color: var(--text-primary);
+        font-size: 1.125rem;
+        line-height: 1.7;
+    }
+
+    :global(img) {
+        display: block;
+        max-width: 100%;
+        height: auto;
+        margin: 2.5rem 0;
+        border-radius: var(--radius-m);
+    }
+
+    :global(hr) {
+        margin: 3rem 0;
+        border: 0;
+        border-top: 1px solid var(--border-default);
+    }
+}
+
+@media (max-width: 720px) {
+    .body,
+    .service-content__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .service-content__layout {
+        gap: 2rem;
+    }
+
+    .service-content__aside {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .service-content__index {
+        font-size: 4rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .intro > a,
+    .service-content__article :global(a) {
+        transition: none;
+    }
+}
+</style>

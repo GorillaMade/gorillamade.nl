@@ -1,0 +1,64 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type ImageSource = ImageMetadata | string;
+
+type Props = Omit<HTMLAttributes<'img'>, 'src'> & {
+  /** Image source: imported image or URL. */
+  src: ImageSource;
+
+  /** Alternative text for accessibility. */
+  alt: string;
+
+  /** Set to false to omit the component. */
+  render?: boolean;
+};
+
+const {
+  src,
+  alt,
+  width,
+  height,
+  loading = 'lazy',
+  decoding = 'async',
+  render = true,
+  class: className,
+  ...rest
+} = Astro.props;
+
+// --------------------------------------------------
+// Image source
+// --------------------------------------------------
+
+const isImageMetadata = typeof src !== 'string';
+
+const imageSrc = isImageMetadata
+  ? src.src
+  : src;
+
+// --------------------------------------------------
+// Image dimensions
+// --------------------------------------------------
+
+const imageWidth = width ?? (
+  isImageMetadata ? src.width : undefined
+);
+
+const imageHeight = height ?? (
+  isImageMetadata ? src.height : undefined
+);
+---
+
+{render && (
+  <img
+    {...rest}
+    src={imageSrc}
+    alt={alt}
+    width={imageWidth}
+    height={imageHeight}
+    loading={loading}
+    decoding={decoding}
+    class={className}
+  />
+)}

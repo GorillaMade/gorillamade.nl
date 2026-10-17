@@ -1,0 +1,23 @@
+---
+/** Homepage adapter: transform Markdown showcase entries into reusable cards. */
+import { getCollection } from 'astro:content';
+import ShowcaseGallerySection from '@/components/sections/ShowcaseGallerySection.astro';
+
+const showcases = (await getCollection('showcases'))
+  .filter((entry) => entry.data.featured)
+  .slice(0, 3);
+
+const projects = showcases.map((entry) => ({
+  title: entry.data.title,
+  summary: entry.data.summary,
+  category: entry.data.category,
+  client: entry.data.client,
+  image: entry.data.cover || '/demo.svg',
+  imageAlt: `Websiteconcept voor ${entry.data.client}`,
+  href: `/showcases/${entry.id}/`
+}));
+---
+<ShowcaseGallerySection
+  projects={projects}
+  theme="light"
+/>

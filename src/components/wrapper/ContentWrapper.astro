@@ -1,0 +1,18 @@
+---
+interface Props {
+  class?: string;
+  render?: boolean;
+  size?: 'default'|'narrow'|'wide';
+}
+
+const {
+  class:className,
+  render=true,
+  size='default'
+} = Astro.props;
+---
+{render &&
+    <div class:list={['wrapper',className]} data-width={size === 'wide' ? 'xlarge' : size === 'narrow' ? 'small' : 'large'}>
+        <slot />
+    </div>
+}

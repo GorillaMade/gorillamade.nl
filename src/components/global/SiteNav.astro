@@ -1,0 +1,48 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'nav'> & {
+  render?: boolean;
+  label?: string;
+};
+
+const {
+  render = true,
+  label = 'Hoofdnavigatie',
+  class: className,
+  ...rest
+} = Astro.props;
+
+const alpineAttrs = {
+  '@click': "if ($event.target.closest('a[href]')) open = false",
+};
+---
+
+{render && (
+  <nav
+    {...rest}
+    {...alpineAttrs}
+    class:list={['site-nav', className]}
+    aria-label={label}
+  >
+    <slot />
+  </nav>
+)}
+
+<style lang="scss">
+.site-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-s);
+    width: 100%;
+    min-width: 0;
+    @media (width >= 976px) {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-m);
+        width: auto;
+    }
+}
+</style>

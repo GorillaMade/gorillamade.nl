@@ -1,0 +1,16 @@
+// -----------------------------------------------------------------------------
+// Pile
+// -----------------------------------------------------------------------------
+// A layout that piles multiple elements on top of each other in the same grid
+// area and centers them by default.
+// -----------------------------------------------------------------------------
+
+.pile {
+    display: grid;
+    grid-template-areas: "pile";
+    place-items: center;
+
+    & > * {
+        grid-area: pile;
+    }
+}

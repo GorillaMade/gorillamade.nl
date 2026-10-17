@@ -1,0 +1,239 @@
+// -----------------------------------------------------------------------------
+// Prose
+// -----------------------------------------------------------------------------
+// Shared typography for rendered Markdown and rich-text content.
+//
+// Combine with .flow for vertical rhythm:
+//
+// <div class="prose flow">
+//     <Content />
+// </div>
+//
+// Public custom properties:
+// --prose-max-width
+// --prose-flow-space
+// -----------------------------------------------------------------------------
+
+.prose {
+    --_prose-max-width: var(
+        --prose-max-width,
+        var(--container-s)
+    );
+
+    --_prose-flow-space: var(
+        --prose-flow-space,
+        var(--space-m)
+    );
+
+    width: 100%;
+    max-width: var(--_prose-max-width);
+
+    --flow-space: var(--_prose-flow-space);
+}
+
+// -----------------------------------------------------------------------------
+// Body
+// -----------------------------------------------------------------------------
+
+.prose p {
+    color: var(--text-secondary);
+
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    font-weight: var(--fw-body);
+    line-height: var(--lh-body);
+    letter-spacing: var(--ls-body);
+}
+
+// -----------------------------------------------------------------------------
+// Headings
+// -----------------------------------------------------------------------------
+
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+    color: var(--text-primary);
+
+    font-family: var(--font-heading);
+    font-weight: var(--fw-heading);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+
+    text-wrap: balance;
+}
+
+.prose h2 {
+    font-size: var(--heading-h2);
+}
+
+.prose h3 {
+    font-size: var(--heading-h3);
+}
+
+.prose h4 {
+    font-size: var(--heading-h4);
+}
+
+.prose h5 {
+    font-size: var(--heading-h5);
+}
+
+.prose h6 {
+    font-size: var(--heading-h6);
+}
+
+// -----------------------------------------------------------------------------
+// Emphasis
+// -----------------------------------------------------------------------------
+
+.prose strong {
+    color: var(--text-primary);
+    font-weight: var(--fw-strong);
+}
+
+.prose em {
+    color: var(--text-secondary);
+}
+
+// -----------------------------------------------------------------------------
+// Links
+// -----------------------------------------------------------------------------
+
+.prose a {
+    color: var(--text-brand);
+
+    text-decoration-thickness: 1px;
+    text-underline-offset: var(--space-3xs);
+
+    transition: color
+        var(--duration-fast)
+        var(--ease-ease-out);
+}
+
+.prose a:hover {
+    color: var(--text-primary);
+}
+
+.prose a:focus-visible {
+    outline: var(--focus-width) solid var(--focus-color);
+    outline-offset: var(--focus-offset);
+}
+
+// -----------------------------------------------------------------------------
+// Lists
+// -----------------------------------------------------------------------------
+
+.prose ul,
+.prose ol {
+    display: grid;
+    gap: var(--space-xs);
+
+    margin-block: 0;
+    padding-inline-start: var(--space-m);
+
+    color: var(--text-secondary);
+
+    font-family: var(--font-body);
+    font-size: var(--text-base);
+    line-height: var(--lh-body);
+}
+
+.prose li::marker {
+    color: var(--text-brand);
+}
+
+// -----------------------------------------------------------------------------
+// Blockquotes
+// -----------------------------------------------------------------------------
+
+.prose blockquote {
+    margin-inline: 0;
+
+    padding-inline-start: var(--space-m);
+
+    color: var(--text-primary);
+
+    border-inline-start: 2px solid var(--border-brand);
+
+    font-family: var(--font-heading);
+    font-size: var(--text-large);
+    font-weight: var(--fw-heading);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+}
+
+.prose blockquote p {
+    color: inherit;
+
+    font: inherit;
+    letter-spacing: inherit;
+}
+
+// -----------------------------------------------------------------------------
+// Inline code
+// -----------------------------------------------------------------------------
+
+.prose code {
+    font-family: var(--ff-mono);
+}
+
+// -----------------------------------------------------------------------------
+// Code blocks
+// -----------------------------------------------------------------------------
+
+.prose pre {
+    overflow-x: auto;
+
+    padding: var(--space-m);
+
+    background-color: var(--surface-subtle);
+
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-m);
+
+    font-family: var(--ff-mono);
+    font-size: var(--text-small);
+    line-height: var(--lh-relaxed);
+}
+
+.prose pre code {
+    font-size: inherit;
+}
+
+// -----------------------------------------------------------------------------
+// Images
+// -----------------------------------------------------------------------------
+
+.prose img {
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    border-radius: var(--radius-m);
+}
+
+// -----------------------------------------------------------------------------
+// Divider
+// -----------------------------------------------------------------------------
+
+.prose hr {
+    width: 100%;
+    height: 1px;
+
+    background-color: var(--border-default);
+
+    border: 0;
+}
+
+// -----------------------------------------------------------------------------
+// Reduced motion
+// -----------------------------------------------------------------------------
+
+@media (prefers-reduced-motion: reduce) {
+    .prose a {
+        transition: none;
+    }
+}

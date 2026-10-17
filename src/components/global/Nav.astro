@@ -1,0 +1,50 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'nav'> & {
+  render?: boolean;
+  label?: string;
+  direction?: 'horizontal' | 'vertical';
+};
+
+const {
+  render = true,
+  label = 'Navigatie',
+  direction = 'vertical',
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+{render && (
+  <nav
+    {...rest}
+    class:list={[
+      'nav',
+      `nav--${direction}`,
+      className
+    ]}
+    aria-label={label}
+  >
+    <slot />
+  </nav>
+)}
+
+<style lang="scss">
+.nav {
+    display: flex;
+    min-width: 0;
+    gap: var(--space-xs);
+    &--horizontal {
+        flex-direction: row;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    &--vertical {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+</style>

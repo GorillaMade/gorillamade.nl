@@ -1,0 +1,1 @@
+export const site = {name:'GorillaMade',url:'https://gorillamade.nl',title:'GorillaMade — Websites met karakter',description:'Premium webdesign, development, hosting en onderhoud. Rechtstreeks met de maker. Websites die indruk maken én klanten opleveren.',locale:'nl_NL',language:'nl',themeColor:'#101010',author:'GorillaMade',socialImage:'/og-default.svg'} as const;

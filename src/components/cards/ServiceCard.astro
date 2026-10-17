@@ -1,0 +1,192 @@
+---
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+
+interface Props {
+    href: string;
+    title: string;
+    summary: string;
+    tag?: string;
+    icon?: string;
+    index: number;
+    total: number;
+}
+
+const { href, title, summary, tag, icon, index, total } = Astro.props;
+const number = String(index + 1).padStart(2, '0');
+const count = String(total).padStart(2, '0');
+---
+
+<a class="service-card" href={href} aria-label={`Bekijk de dienst ${title}`}>
+    <div class="service-card__top">
+        <span class="service-card__number">{number} <span aria-hidden="true">/</span> {count}</span>
+        {icon && (
+            <span class="service-card__icon" aria-hidden="true">
+                <img src={icon} alt="" width="36" height="36" loading="lazy" />
+            </span>
+        )}
+    </div>
+
+    <div class="service-card__content">
+        {tag && <span class="service-card__tag">{tag}</span>}
+        <Heading tag="h3" variant="h3">{title}</Heading>
+        <Paragraph>{summary}</Paragraph>
+    </div>
+
+    <div class="service-card__bottom">
+        <span class="service-card__cta">Ontdek de dienst</span>
+        <span class="service-card__arrow" aria-hidden="true">↗</span>
+    </div>
+</a>
+
+<style lang="scss">
+    .service-card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        min-height: 330px;
+        padding: clamp(1.5rem, 2.5vw, 2.25rem);
+        overflow: hidden;
+        background: var(--surface-page);
+        color: var(--text-primary);
+        border: 1px solid var(--border-default);
+        border-radius: 20px;
+        text-decoration: none;
+        transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+
+        &::before {
+            content: '';
+            position: absolute;
+            inset: 0 0 auto;
+            height: 3px;
+            background: var(--text-brand);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .25s ease;
+        }
+
+        &:hover {
+            transform: translateY(-4px);
+            border-color: var(--text-brand);
+            box-shadow: 0 16px 40px rgb(0 0 0 / .07);
+
+            &::before { transform: scaleX(1); }
+            .service-card__icon { transform: translateY(-3px); }
+            .service-card__arrow {
+                color: var(--surface-page);
+                background: var(--text-brand);
+                border-color: var(--text-brand);
+                transform: translate(2px, -2px);
+            }
+        }
+
+        &:focus-visible {
+            outline: 3px solid var(--text-brand);
+            outline-offset: 4px;
+        }
+
+        &__top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: clamp(2rem, 3vw, 3rem);
+        }
+
+        &__number {
+            display: inline-flex;
+            gap: .5rem;
+            color: var(--text-secondary);
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+            font-variant-numeric: tabular-nums;
+
+            span { opacity: .45; }
+        }
+
+        &__icon {
+            display: grid;
+            place-items: center;
+            width: 68px;
+            height: 68px;
+            flex: none;
+            background: var(--surface-subtle);
+            border: 1px solid var(--border-default);
+            border-radius: 18px;
+            transition: transform .25s ease;
+
+            img {
+                display: block;
+                width: 36px;
+                height: 36px;
+                object-fit: contain;
+            }
+        }
+
+        &__content { flex: 1; min-width: 0; }
+
+        &__tag {
+            display: block;
+            margin-bottom: .85rem;
+            color: var(--text-brand);
+            font-size: .6875rem;
+            font-weight: 800;
+            line-height: 1.4;
+            letter-spacing: .16em;
+            text-transform: uppercase;
+        }
+
+        &__content :global(h3) {
+            margin: 0 0 1rem;
+            font-size: clamp(1.5rem, 2.3vw, 2rem);
+            line-height: 1.12;
+            letter-spacing: -.055em;
+            overflow-wrap: anywhere;
+        }
+
+        &__content :global(p) {
+            max-width: 48ch;
+            margin: 0;
+            color: var(--text-secondary);
+            font-size: .9375rem;
+            line-height: 1.75;
+        }
+
+        &__bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-top: 2.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-default);
+        }
+
+        &__cta { font-size: .8125rem; font-weight: 700; }
+
+        &__arrow {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            flex: none;
+            color: var(--text-primary);
+            border: 1px solid var(--border-default);
+            border-radius: 50%;
+            font-size: 1.25rem;
+            line-height: 1;
+            transition: transform .25s ease, color .25s ease, background-color .25s ease, border-color .25s ease;
+        }
+    }
+
+    @media (width < 700px) {
+        .service-card { min-height: 290px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .service-card, .service-card::before, .service-card__icon, .service-card__arrow { transition: none; }
+        .service-card:hover, .service-card:hover .service-card__icon, .service-card:hover .service-card__arrow { transform: none; }
+    }
+</style>

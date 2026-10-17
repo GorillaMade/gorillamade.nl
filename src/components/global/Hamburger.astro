@@ -1,0 +1,132 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = Omit<HTMLAttributes<'button'>, 'type'> & {
+    render?: boolean;
+    label?: string;
+    controls?: string;
+    class?: string;
+};
+
+const {
+    render = true,
+    label = 'Navigatie openen',
+    controls = 'site-navigation',
+    class: className,
+    ...rest
+} = Astro.props as Props;
+
+const alpineAttrs = {
+    ':aria-expanded': 'open',
+    ':aria-label': `open ? 'Navigatie sluiten' : ${JSON.stringify(label)}`,
+    ':class': "{ 'open': open }",
+    '@click': 'open = !open'
+};
+---
+
+{render && (
+    <button
+        {...rest}
+        {...alpineAttrs}
+        type="button"
+        class={['hamburger', className].filter(Boolean).join(' ')}
+        aria-label={label}
+        aria-controls={controls}
+    >
+        <span class="hamburger__bar hamburger__bar--1" aria-hidden="true"></span>
+        <span class="hamburger__bar hamburger__bar--2" aria-hidden="true"></span>
+        <span class="hamburger__bar hamburger__bar--3" aria-hidden="true"></span>
+    </button>
+)}
+
+<style lang="scss">
+.hamburger {
+    --_hamburger-background: var(--hamburger-background, transparent);
+    --_hamburger-padding: var(--hamburger-padding, var(--space-xs));
+    --_hamburger-border: var(--hamburger-border, none);
+    --_hamburger-border-radius: var(--hamburger-border-radius, var(--radius-s));
+    --_hamburger-bar-color: var(--hamburger-bar-color, var(--text-primary));
+    --_hamburger-bar-width: var(--hamburger-bar-width, 1.75rem);
+    --_hamburger-bar-height: var(--hamburger-bar-height, 0.1875rem);
+    --_hamburger-bar-gap: var(--hamburger-bar-gap, 0.3125rem);
+    --_hamburger-animation-timing: var(--hamburger-animation-timing, var(--duration-fast) ease);
+
+    --_hamburger-height: calc(
+        var(--_hamburger-bar-height) * 3 + var(--_hamburger-bar-gap) * 2
+    );
+
+    --_hamburger-x-width: calc(var(--_hamburger-height) * 1.41421356237);
+
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--_hamburger-bar-gap);
+    width: max-content;
+    padding: var(--_hamburger-padding);
+    border: var(--_hamburger-border);
+    border-radius: var(--_hamburger-border-radius);
+    background-color: var(--_hamburger-background);
+    color: var(--_hamburger-bar-color);
+    font: inherit;
+    cursor: pointer;
+
+    &__bar {
+        display: block;
+        flex: none;
+        width: var(--_hamburger-bar-width);
+        height: var(--_hamburger-bar-height);
+        border-radius: 9999px;
+        background-color: currentColor;
+        transform-origin: left center;
+
+        transition:
+            opacity var(--_hamburger-animation-timing),
+            width var(--_hamburger-animation-timing),
+            translate var(--_hamburger-animation-timing),
+            rotate var(--_hamburger-animation-timing);
+    }
+
+    &.open,
+    &[aria-expanded='true'] {
+        .hamburger__bar--1 {
+            rotate: 45deg;
+            width: var(--_hamburger-x-width);
+            translate: 0 calc(var(--_hamburger-bar-height) / -2);
+        }
+
+        .hamburger__bar--2 {
+            opacity: 0;
+            width: 0;
+        }
+
+        .hamburger__bar--3 {
+            rotate: -45deg;
+            width: var(--_hamburger-x-width);
+            translate: 0 calc(var(--_hamburger-bar-height) / 2);
+        }
+    }
+
+    @media (hover: hover) {
+        &:hover {
+            opacity: 0.7;
+        }
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 3px;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hamburger__bar {
+        transition: none;
+    }
+}
+</style>

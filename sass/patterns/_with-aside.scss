@@ -1,0 +1,50 @@
+// -----------------------------------------------------------------------------
+// With Aside
+// -----------------------------------------------------------------------------
+// Creates a responsive main-and-aside layout that stacks automatically when
+// there is not enough horizontal space.
+//
+// Public custom properties:
+// --with-aside-main-min-width
+// --with-aside-width
+// --with-aside-gap
+//
+// Variants:
+// data-direction="reverse"
+// -----------------------------------------------------------------------------
+
+.with-aside {
+    --_with-aside-main-min-width: var(
+        --with-aside-main-min-width,
+        50%
+    );
+
+    --_with-aside-width: var(
+        --with-aside-width,
+        23rem
+    );
+
+    --_with-aside-gap: var(
+        --with-aside-gap,
+        var(--space-2xl-3xl)
+    );
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--_with-aside-gap);
+
+    > :not(aside) {
+        flex-basis: 0;
+        flex-grow: 999;
+        min-inline-size: var(--_with-aside-main-min-width);
+    }
+
+    > aside {
+        flex-basis: var(--_with-aside-width);
+        flex-grow: 1;
+    }
+
+    &[data-direction="reverse"] {
+        flex-direction: row-reverse;
+    }
+}

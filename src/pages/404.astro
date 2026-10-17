@@ -1,0 +1,411 @@
+
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+import Button from '@/components/Button.astro';
+---
+
+<BaseLayout
+    title="404 — Pagina niet gevonden | GorillaMade"
+    description="Deze pagina is verdwaald in de jungle. Vind je weg terug naar GorillaMade."
+    noindex
+>
+    <Section theme="light" class="not-found">
+        <ContentWrapper size="wide">
+            <div class="not-found__inner">
+                <div class="not-found__top">
+                    <Eyebrow>ERROR 404 / VERDWAALD</Eyebrow>
+
+                    <span class="not-found__status" aria-hidden="true">
+                        <span class="not-found__status-dot"></span>
+                        PAGE NOT FOUND
+                    </span>
+                </div>
+
+                <div class="not-found__main">
+                    <div class="not-found__visual" aria-hidden="true">
+                        <span class="not-found__orbit not-found__orbit--outer"></span>
+                        <span class="not-found__orbit not-found__orbit--inner"></span>
+
+                        <span class="not-found__coordinate not-found__coordinate--top">
+                            51° / 404
+                        </span>
+
+                        <div class="not-found__logo-wrap">
+                            <img
+                                class="not-found__logo"
+                                src="/gorillamade-logo.svg"
+                                alt=""
+                                width="280"
+                                height="280"
+                                decoding="async"
+                            />
+                        </div>
+
+                        <span class="not-found__coordinate not-found__coordinate--bottom">
+                            LOCATION UNKNOWN
+                        </span>
+
+                        <span class="not-found__cross not-found__cross--one">+</span>
+                        <span class="not-found__cross not-found__cross--two">+</span>
+                        <span class="not-found__cross not-found__cross--three">+</span>
+                    </div>
+
+                    <div class="not-found__content">
+                        <span class="not-found__index" aria-hidden="true">
+                            404 <span>/</span> NIET GEVONDEN
+                        </span>
+
+                        <Heading tag="h1" variant="h1">
+                            OOK EEN GORILLA
+                            RAAKT WELEENS
+                            <span class="highlight">DE WEG KWIJT.</span>
+                        </Heading>
+
+                        <Paragraph>
+                            Het lijkt erop dat je een verkeerde afslag hebt genomen.
+                            De pagina die je zoekt bestaat niet, is verplaatst
+                            of is ergens in de jungle verdwenen.
+                        </Paragraph>
+
+                        <div class="not-found__actions">
+                            <Button href="/">
+                                Terug naar home
+                                <span aria-hidden="true">↗</span>
+                            </Button>
+
+                            <a class="not-found__text-link" href="/diensten/">
+                                Bekijk mijn diensten
+                                <span aria-hidden="true">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="not-found__bottom">
+                    <span>
+                        GORILLAMADE <span class="not-found__separator">/</span> 404
+                    </span>
+
+                    <span>
+                        SOMS LOOPT HET ANDERS DAN GEPLAND.
+                    </span>
+                </div>
+            </div>
+        </ContentWrapper>
+    </Section>
+</BaseLayout>
+
+<style lang="scss">
+    .not-found {
+        &__inner {
+            display: flex;
+            flex-direction: column;
+            min-height: min(780px, 80svh);
+            padding-block: clamp(2rem, 4vw, 3.5rem);
+        }
+
+        &__top,
+        &__bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        &__top {
+            padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+        }
+
+        &__status {
+            display: inline-flex;
+            align-items: center;
+            gap: .65rem;
+            color: var(--text-secondary);
+            font-size: .6875rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            white-space: nowrap;
+        }
+
+        &__status-dot {
+            display: block;
+            width: 7px;
+            height: 7px;
+            flex: 0 0 auto;
+            border-radius: 50%;
+            background: var(--text-brand);
+        }
+
+        &__main {
+            display: grid;
+            grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+            align-items: center;
+            gap: clamp(2rem, 5vw, 6rem);
+            flex: 1;
+            padding-block: clamp(2rem, 4vw, 4rem);
+        }
+
+        &__visual {
+            position: relative;
+            display: grid;
+            place-items: center;
+            width: 100%;
+            max-width: 510px;
+            aspect-ratio: 1;
+            margin-inline: auto;
+            isolation: isolate;
+        }
+
+        &__orbit {
+            position: absolute;
+            z-index: -1;
+            display: block;
+            aspect-ratio: 1;
+            border: 1px solid var(--border-default);
+            border-radius: 50%;
+            pointer-events: none;
+
+            &--outer {
+                width: 100%;
+            }
+
+            &--inner {
+                width: 76%;
+                border-style: dashed;
+            }
+        }
+
+        &__logo-wrap {
+            display: grid;
+            place-items: center;
+            width: 60%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            background: var(--surface-subtle);
+            border: 1px solid var(--border-default);
+        }
+
+        &__logo {
+            display: block;
+            width: 72%;
+            height: 72%;
+            object-fit: contain;
+        }
+
+        &__coordinate {
+            position: absolute;
+            color: var(--text-secondary);
+            font-size: .625rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            white-space: nowrap;
+
+            &--top {
+                top: 8%;
+                right: 2%;
+            }
+
+            &--bottom {
+                bottom: 8%;
+                left: 2%;
+            }
+        }
+
+        &__cross {
+            position: absolute;
+            color: var(--text-brand);
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1;
+
+            &--one {
+                top: 15%;
+                left: 13%;
+            }
+
+            &--two {
+                right: 10%;
+                bottom: 22%;
+            }
+
+            &--three {
+                bottom: 12%;
+                left: 24%;
+                font-size: .875rem;
+            }
+        }
+
+        &__content {
+            min-width: 0;
+        }
+
+        &__index {
+            display: inline-flex;
+            align-items: center;
+            gap: .75rem;
+            margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+            color: var(--text-secondary);
+            font-size: .75rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+
+            span {
+                color: var(--text-brand);
+            }
+        }
+
+        &__content :global(h1) {
+            max-width: 14ch;
+            margin: 0;
+            font-size: clamp(2.5rem, 4.5vw, 5rem);
+            line-height: 1.04;
+            letter-spacing: -.065em;
+            text-wrap: balance;
+        }
+
+        &__content :global(p) {
+            max-width: 48ch;
+            margin: clamp(1.5rem, 3vw, 2rem) 0 0;
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 1.3vw, 1.125rem);
+            line-height: 1.8;
+        }
+
+        &__actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1.5rem 2rem;
+            margin-top: clamp(2rem, 4vw, 3rem);
+        }
+
+        &__text-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .75rem;
+            color: var(--text-primary);
+            font-size: .875rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color .2s ease;
+
+            span {
+                font-size: 1.125rem;
+                transition: transform .2s ease;
+            }
+
+            &:hover {
+                color: var(--text-brand);
+
+                span {
+                    transform: translate(3px, -3px);
+                }
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--text-brand);
+                outline-offset: 5px;
+            }
+        }
+
+        &__bottom {
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-default);
+            color: var(--text-secondary);
+            font-size: .6875rem;
+            font-weight: 700;
+            letter-spacing: .12em;
+        }
+
+        &__separator {
+            margin-inline: .35rem;
+            color: var(--text-brand);
+        }
+    }
+
+    @media (width < 976px) {
+        .not-found {
+            &__inner {
+                min-height: 0;
+            }
+
+            &__main {
+                grid-template-columns: 1fr;
+                gap: clamp(2rem, 5vw, 3rem);
+            }
+
+            &__visual {
+                max-width: 380px;
+            }
+
+            &__content {
+                text-align: center;
+            }
+
+            &__content :global(h1),
+            &__content :global(p) {
+                margin-inline: auto;
+            }
+
+            &__actions {
+                justify-content: center;
+            }
+        }
+    }
+
+    @media (width < 600px) {
+        .not-found {
+            &__inner {
+                padding-block: 1.5rem 2rem;
+            }
+
+            &__top {
+                align-items: flex-start;
+            }
+
+            &__status {
+                font-size: .5625rem;
+            }
+
+            &__main {
+                padding-block: 1.5rem 3rem;
+            }
+
+            &__visual {
+                max-width: 290px;
+            }
+
+            &__content :global(h1) {
+                font-size: clamp(2.25rem, 9vw, 3.5rem);
+            }
+
+            &__content :global(p) {
+                font-size: 1rem;
+            }
+
+            &__actions {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            &__bottom {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: .75rem;
+                font-size: .625rem;
+            }
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .not-found__text-link,
+        .not-found__text-link span {
+            transition: none;
+        }
+    }
+</style>

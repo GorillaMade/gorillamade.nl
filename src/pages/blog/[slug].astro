@@ -1,0 +1,272 @@
+
+---
+import { getCollection, render } from 'astro:content';
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+
+import CtaSection from '@/components/sections/CtaSection.astro';
+
+export async function getStaticPaths() {
+    const posts = await getCollection('blog');
+
+    return posts.map((entry) => ({
+        params: {
+            slug: entry.id
+        },
+        props: {
+            entry
+        }
+    }));
+}
+
+const { entry } = Astro.props;
+
+const { Content } = await render(entry);
+
+const publishedAt = entry.data.date.toLocaleDateString('nl-NL', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+});
+---
+
+<BaseLayout
+    title={`${entry.data.title} | GorillaMade`}
+    description={entry.data.summary}
+>
+    <Section
+        theme="light"
+        space="large"
+        class="article-section"
+    >
+        <ContentWrapper size="wide">
+            <article class="article">
+                <header class="article-header">
+                    <a
+                        href="/blog/"
+                        class="article-back"
+                    >
+                        <span aria-hidden="true">←</span>
+                        Alle artikelen
+                    </a>
+
+                    <div class="article-heading">
+                        <div class="article-meta">
+                            <Eyebrow>
+                                {entry.data.category}
+                            </Eyebrow>
+
+                            <span
+                                class="article-meta-divider"
+                                aria-hidden="true"
+                            ></span>
+
+                            <time datetime={entry.data.date.toISOString()}>
+                                {publishedAt}
+                            </time>
+                        </div>
+
+                        <Heading tag="h1" variant="display">
+                            {entry.data.title}
+                        </Heading>
+
+                        <div class="article-intro">
+                            <Paragraph variant="large">
+                                {entry.data.summary}
+                            </Paragraph>
+                        </div>
+                    </div>
+                </header>
+
+                {entry.data.cover && (
+                    <figure class="article-cover">
+                        <img
+                            src={entry.data.cover}
+                            alt={`Omslag bij ${entry.data.title}`}
+                            loading="eager"
+                            decoding="async"
+                            fetchpriority="high"
+                        />
+                    </figure>
+                )}
+
+                <div class="article-content">
+                    <div class="prose flow article-body">
+                        <Content />
+                    </div>
+                </div>
+
+                <footer class="article-footer">
+                    <div class="article-footer-heading">
+                        <Eyebrow>
+                            EINDE ARTIKEL
+                        </Eyebrow>
+
+                        <Paragraph>
+                            Bedankt voor het lezen.
+                        </Paragraph>
+                    </div>
+
+                    <a
+                        href="/blog/"
+                        class="article-footer-link"
+                    >
+                        Meer artikelen
+
+                        <span aria-hidden="true">↗</span>
+                    </a>
+                </footer>
+            </article>
+        </ContentWrapper>
+    </Section>
+
+    <CtaSection
+        eyebrow="SAMEN AAN DE SLAG"
+        title="KLAAR VOOR"
+        accent="JOUW WEBSITE?"
+        description="Een goed idee verdient een website die werkt."
+        buttonLabel="Bespreek je project ↗"
+        buttonHref="/offerte/"
+        theme="dark"
+        showBottom={false}
+    />
+</BaseLayout>
+
+<style lang="scss">
+.article {
+    width: 100%;
+}
+
+.article-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+}
+
+.article-back {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: var(--space-xs);
+    color: var(--text-secondary);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--text-primary);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 4px;
+    }
+}
+
+.article-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-l);
+    max-width: 70rem;
+}
+
+.article-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    color: var(--text-secondary);
+}
+
+.article-meta-divider {
+    width: 1.5rem;
+    height: 1px;
+    background-color: var(--border-default);
+}
+
+.article-intro {
+    max-width: 48rem;
+    color: var(--text-secondary);
+}
+
+.article-cover {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    margin: 0;
+    overflow: hidden;
+    border-radius: var(--radius-l);
+    background-color: var(--surface-subtle);
+
+    img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.article-content {
+    display: flex;
+    justify-content: center;
+    padding-block: var(--space-xl);
+}
+
+.article-body {
+    width: 100%;
+    max-width: 46rem;
+}
+
+.article-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-l);
+    padding-top: var(--space-l);
+    border-top: 1px solid var(--border-default);
+}
+
+.article-footer-heading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.article-footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    color: var(--text-primary);
+    text-decoration: none;
+
+    &:hover {
+        color: var(--text-brand);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 4px;
+    }
+}
+
+@media (max-width: 48rem) {
+    .article-header {
+        gap: var(--space-l);
+    }
+
+    .article-heading {
+        gap: var(--space-m);
+    }
+
+    .article-content {
+        padding-block: var(--space-l);
+    }
+}
+</style>

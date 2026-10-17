@@ -1,0 +1,18 @@
+---
+interface Props {
+  class?: string;
+  layout?: 'auto'|'halves'|'thirds';
+  render?: boolean;
+}
+
+const {
+  class:className,
+  layout='auto',
+  render=true
+} = Astro.props;
+---
+{render &&
+    <div class:list={['grid',className]} data-layout={layout}>
+        <slot />
+    </div>
+}

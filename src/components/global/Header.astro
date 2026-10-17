@@ -1,0 +1,137 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+import Hamburger from './Hamburger.astro';
+
+type HeaderPosition = 'static' | 'sticky' | 'fixed';
+
+type Props = HTMLAttributes<'header'> & {
+  render?: boolean;
+  position?: HeaderPosition;
+};
+
+const {
+  render = true,
+  position = 'static',
+  class: className,
+  ...rest
+} = Astro.props;
+
+const alpineAttrs = {
+  'x-data': '{ open: false }',
+  '@keydown.escape.window': 'open = false',
+  '@click.outside': 'open = false',
+};
+
+const navigationAttrs = {
+  ':class': "{ 'site-header__navigation--open': open }",
+};
+---
+
+{render && (
+  <header
+    {...rest}
+    {...alpineAttrs}
+    class:list={[
+      'site-header',
+      `site-header--${position}`,
+      className
+    ]}
+  >
+    <div class="site-header__inner">
+
+      <div class="site-header__brand">
+        <slot name="brand" />
+      </div>
+
+      <Hamburger
+        class="site-header__hamburger"
+        controls="site-navigation"
+      />
+
+      <div
+        {...navigationAttrs}
+        class="site-header__navigation"
+      >
+        <slot name="navigation" />
+      </div>
+
+    </div>
+  </header>
+)}
+
+<style lang="scss">
+.site-header {
+    // Base
+    position: relative;
+    width: 100%;
+    box-sizing: border-box;
+    padding-block: var(--space-s);
+    background-color: var(--surface-page);
+    color: var(--text-primary);
+    border-block-end: 1px solid var(--border-default);
+    // Position variants
+    &--static {
+        position: relative;
+    }
+
+    &--sticky {
+        position: sticky;
+        inset-block-start: 0;
+        z-index: var(--layer-sticky);
+    }
+
+    &--fixed {
+        position: fixed;
+        inset-block-start: 0;
+        inset-inline: 0;
+        z-index: var(--layer-sticky);
+    }
+    // Inner
+    &__inner {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: var(--space-m);
+        width: 100%;
+        box-sizing: border-box;
+        padding-inline: var(--gutter);
+    }
+    // Brand
+    &__brand {
+        display: flex;
+        align-items: center;
+        flex: none;
+        min-width: 0;
+    }
+    // Navigation
+    &__navigation {
+        display: none;
+        flex: 0 0 100%;
+        width: 100%;
+        min-width: 0;
+        order: 3;
+        &--open {
+            display: flex;
+        }
+    }
+    // Hamburger
+    :global(.hamburger.site-header__hamburger) {
+        margin-inline-start: auto;
+    }
+    // Desktop
+    @media (width >= 976px) {
+        :global(.hamburger.site-header__hamburger) {
+            display: none;
+        }
+
+        &__navigation {
+            display: flex;
+            flex: 0 1 auto;
+            width: auto;
+            order: initial;
+            margin-inline-start: auto;
+        }
+    }
+}
+</style>

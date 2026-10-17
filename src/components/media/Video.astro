@@ -1,0 +1,44 @@
+---
+interface Props {
+  src: string;
+  poster?: string;
+  class?: string;
+  autoplay?: boolean;
+  loop?: boolean;
+  muted?: boolean;
+  controls?: boolean;
+  render?: boolean;
+}
+
+const {
+  src,
+  poster,
+  class:className,
+  autoplay=false,
+  loop=false,
+  muted=false,
+  controls=true,
+  render=true
+} = Astro.props;
+---
+{render &&
+    <video
+        src={src}
+        poster={poster}
+        class={className}
+        autoplay={autoplay}
+        loop={loop}
+        muted={muted}
+        controls={controls}
+        playsinline
+        preload="metadata"
+    >
+        <slot />
+    </video>
+}
+<style lang="scss">
+video{
+    display:block;
+    width:100%;
+    border-radius:var(--radius-l)}
+</style>

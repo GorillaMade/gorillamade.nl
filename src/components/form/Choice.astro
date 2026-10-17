@@ -1,0 +1,351 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type ChoiceType = 'checkbox' | 'radio';
+type ChoiceVariant = 'default' | 'toggle' | 'chip';
+
+interface Props extends Omit<HTMLAttributes<'input'>, 'type'> {
+    /** Unique input ID. */
+    id: string;
+
+    /** Optional label text. A slot can also be used. */
+    label?: string;
+
+    /** Input type. Default: checkbox. */
+    type?: ChoiceType;
+
+    /** Visual appearance. Default: default. */
+    variant?: ChoiceVariant;
+
+    /** Set to false to omit the component. */
+    render?: boolean;
+}
+
+const {
+    id,
+    label,
+    type = 'checkbox',
+    variant = 'default',
+    render = true,
+    class: className,
+    ...rest
+} = Astro.props;
+
+const classes = [
+    'choice',
+    `choice--${variant}`,
+    className
+].filter(Boolean).join(' ');
+---
+
+{render && (
+    <label class={classes}>
+        <span class="choice__input-wrapper">
+            <input
+                {...rest}
+                id={id}
+                type={type}
+                class="choice__input"
+            />
+
+            {variant === 'toggle' && (
+                <span
+                    class="choice__switch"
+                    aria-hidden="true"
+                >
+                    <span class="choice__switch-thumb" />
+                </span>
+            )}
+
+            {variant === 'default' && (
+                <span
+                    class="choice__control"
+                    aria-hidden="true"
+                >
+                    {type === 'checkbox' && (
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M5 12l4 4L19 6" />
+                        </svg>
+                    )}
+                </span>
+            )}
+        </span>
+
+        <span class="choice__label">
+            <slot>{label}</slot>
+        </span>
+    </label>
+)}
+
+<style lang="scss">
+.choice {
+    // Configuration
+    --choice-gap: var(--space-s);
+    --choice-control-size: 1.25rem;
+    --choice-switch-width: 2.75rem;
+    --choice-switch-height: 1.5rem;
+
+    // Base
+    position: relative;
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--choice-gap);
+    min-width: 0;
+    color: var(--text-primary);
+    cursor: pointer;
+
+    // Input wrapper
+    &__input-wrapper {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        min-width: var(--choice-control-size);
+        min-height: var(--choice-control-size);
+        margin-top: 0.1rem;
+    }
+
+    // Native input
+    &__input {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        opacity: 0;
+        cursor: inherit;
+    }
+
+    // Label
+    &__label {
+        min-width: 0;
+        line-height: 1.4;
+
+        :global(a) {
+            position: relative;
+            color: var(--text-primary);
+            text-decoration: underline;
+            text-underline-offset: 0.2em;
+            text-decoration-thickness: 1px;
+            transition: color var(--duration-fast);
+        }
+
+        :global(a:hover) {
+            color: var(--text-brand);
+        }
+
+        :global(a:focus-visible) {
+            outline: 2px solid var(--focus-color);
+            outline-offset: 3px;
+            border-radius: var(--radius-s);
+        }
+    }
+
+    // Default control
+    &__control {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: none;
+        width: var(--choice-control-size);
+        height: var(--choice-control-size);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-s);
+        background-color: var(--surface-page);
+        color: var(--action-primary-text, white);
+        pointer-events: none;
+        transition:
+            background-color var(--duration-fast),
+            border-color var(--duration-fast);
+
+        svg {
+            width: 0.875rem;
+            height: 0.875rem;
+            opacity: 0;
+            transform: scale(0.6);
+            transition:
+                opacity var(--duration-fast),
+                transform var(--duration-fast);
+        }
+    }
+
+    // Default: radio
+    &:has(.choice__input[type='radio']) {
+        .choice__control {
+            border-radius: 50%;
+
+            &::after {
+                content: '';
+                width: 0.5rem;
+                height: 0.5rem;
+                border-radius: 50%;
+                background-color: currentColor;
+                opacity: 0;
+                transform: scale(0.5);
+                transition:
+                    opacity var(--duration-fast),
+                    transform var(--duration-fast);
+            }
+        }
+    }
+
+    // Default: checked
+    &--default:has(.choice__input:checked) {
+        .choice__control {
+            background-color: var(--action-primary);
+            border-color: var(--action-primary);
+
+            svg {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            &::after {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    }
+
+    // Toggle
+    &__switch {
+        display: inline-flex;
+        align-items: center;
+        flex: none;
+        width: var(--choice-switch-width);
+        height: var(--choice-switch-height);
+        padding: 0.1875rem;
+        box-sizing: border-box;
+        border: 1px solid var(--border-default);
+        border-radius: 999px;
+        background-color: var(--surface-subtle);
+        pointer-events: none;
+        transition:
+            background-color var(--duration-fast),
+            border-color var(--duration-fast);
+    }
+
+    &__switch-thumb {
+        display: block;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: var(--text-primary);
+        transition:
+            transform var(--duration-fast),
+            background-color var(--duration-fast);
+    }
+
+    &--toggle {
+        .choice__input-wrapper {
+            min-width: var(--choice-switch-width);
+            min-height: var(--choice-switch-height);
+        }
+    }
+
+    &--toggle:has(.choice__input:checked) {
+        .choice__switch {
+            background-color: var(--action-primary);
+            border-color: var(--action-primary);
+        }
+
+        .choice__switch-thumb {
+            background-color: var(--action-primary-text, white);
+            transform: translateX(1.25rem);
+        }
+    }
+
+    // Chip
+    &--chip {
+        gap: 0;
+        padding: var(--space-s) var(--space-m);
+        border: 1px solid var(--border-default);
+        border-radius: var(--radius-m);
+        background-color: var(--surface-page);
+        transition:
+            background-color var(--duration-fast),
+            color var(--duration-fast),
+            border-color var(--duration-fast);
+
+        .choice__input-wrapper {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+        }
+
+        .choice__label {
+            font-weight: var(--fw-strong);
+            pointer-events: none;
+        }
+
+        &:has(.choice__input:checked) {
+            background-color: var(--action-primary);
+            border-color: var(--action-primary);
+            color: var(--action-primary-text, white);
+        }
+    }
+
+    // Hover
+    @media (hover: hover) {
+        &--default:hover .choice__control,
+        &--toggle:hover .choice__switch {
+            border-color: var(--action-primary);
+        }
+
+        &--chip:hover:not(:has(.choice__input:checked)) {
+            background-color: var(--button-hover-background);
+            color: var(--button-hover-text);
+            border-color: var(--button-hover-background);
+        }
+    }
+
+    // Focus
+    &:has(.choice__input:focus-visible) {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 3px;
+        border-radius: var(--radius-s);
+    }
+
+    // Invalid required input
+    &:has(.choice__input:required:invalid) {
+        .choice__control,
+        .choice__switch {
+            border-color: var(--border-default);
+        }
+    }
+
+    // Disabled
+    &:has(.choice__input:disabled) {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+    .choice {
+        &__control,
+        &__control svg,
+        &__control::after,
+        &__switch,
+        &__switch-thumb,
+        &--chip {
+            transition: none;
+        }
+    }
+}
+</style>

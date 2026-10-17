@@ -1,0 +1,310 @@
+
+---
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+
+import BrowserFrame from '@/components/showcase/BrowserFrame.astro';
+import Button from '@/components/Button.astro';
+
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+
+export interface StackedProject {
+    title: string;
+    summary: string;
+    category: string;
+    client?: string;
+    image: string;
+    href: string;
+    imageAlt?: string;
+}
+
+interface Props {
+    projects: StackedProject[];
+    eyebrow?: string;
+    title?: string;
+    moreHref?: string;
+    moreLabel?: string;
+    note?: string;
+    id?: string;
+    theme?: 'inverse' | 'inherit' | 'light' | 'dark' | 'brand';
+}
+
+const {
+    projects,
+    eyebrow = 'CASE STUDIES',
+    title = 'WERK DAT SPREEKT.',
+    moreHref = '/showcases/',
+    moreLabel = 'Alle showcases',
+    note,
+    id = 'selected-work',
+    theme = 'light'
+} = Astro.props as Props;
+
+const totalProjects = String(projects.length).padStart(2, '0');
+---
+
+<Section
+    id={id}
+    class="selected-work"
+    theme={theme}
+>
+    <ContentWrapper size="wide">
+        <header class="selected-work__header">
+            <div class="selected-work__intro">
+                <Eyebrow>{eyebrow}</Eyebrow>
+
+                <Heading tag="h2" variant="h1">
+                    {title}
+                </Heading>
+            </div>
+
+            <Button href={moreHref} variant="link">
+                {moreLabel} ↗
+            </Button>
+        </header>
+
+        <div class="selected-work__projects">
+            {projects.map((project, index) => (
+                <article
+                    class="selected-work__item"
+                    style={`--stack-order: ${index}`}
+                >
+                    <div class="selected-work__meta">
+                        <span class="selected-work__counter">
+                            {String(index + 1).padStart(2, '0')}
+                            <span aria-hidden="true"> / </span>
+                            {totalProjects}
+                        </span>
+
+                        <span class="selected-work__category">
+                            {project.category}
+                        </span>
+                    </div>
+
+                    <div class="selected-work__layout">
+                        <div class="selected-work__visual">
+                            <BrowserFrame
+                                image={project.image}
+                                title={project.title}
+                                href={project.href}
+                                label={project.client || 'PROJECT'}
+                                clickable={false}
+                            />
+                        </div>
+
+                        <div class="selected-work__content">
+                            <div class="selected-work__copy">
+                                {project.client && (
+                                    <Eyebrow>{project.client}</Eyebrow>
+                                )}
+
+                                <Heading tag="h3" variant="h2">
+                                    <a href={project.href}>
+                                        {project.title}
+                                    </a>
+                                </Heading>
+
+                                <Paragraph>
+                                    {project.summary}
+                                </Paragraph>
+                            </div>
+
+                            <a
+                                class="selected-work__link"
+                                href={project.href}
+                                aria-label={`Bekijk showcase ${project.title}`}
+                            >
+                                Bekijk de showcase
+                                <span aria-hidden="true">↗</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+            ))}
+        </div>
+
+        {note && (
+            <div class="selected-work__note">
+                <Paragraph>{note}</Paragraph>
+            </div>
+        )}
+    </ContentWrapper>
+</Section>
+
+<style lang="scss">
+.selected-work__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-l);
+    margin-bottom: var(--space-xl);
+}
+
+.selected-work__intro {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-m);
+}
+
+.selected-work__projects {
+    display: grid;
+    gap: var(--space-xl);
+}
+
+.selected-work__item {
+    position: sticky;
+    top: calc(1rem + var(--stack-order) * 0.5rem);
+    z-index: calc(var(--stack-order) + 1);
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+
+    min-width: 0;
+    padding: clamp(1rem, 2.5vw, 2rem);
+
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-l);
+    background-color: var(--surface-subtle);
+
+    box-shadow: 0 1rem 2.5rem color-mix(
+        in srgb,
+        var(--surface-page) 75%,
+        transparent
+    );
+}
+
+.selected-work__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--space-m);
+    color: var(--text-secondary);
+}
+
+.selected-work__counter {
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+}
+
+.selected-work__category {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.selected-work__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.85fr);
+    align-items: center;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    min-width: 0;
+}
+
+.selected-work__visual {
+    min-width: 0;
+}
+
+.selected-work__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: var(--space-l);
+    min-width: 0;
+    padding-block: var(--space-m);
+}
+
+.selected-work__copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-m);
+
+    :global(h3) {
+        margin: 0;
+        line-height: 1.08;
+        letter-spacing: -0.05em;
+        text-wrap: balance;
+    }
+
+    :global(h3 a) {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    :global(h3 a:hover) {
+        color: var(--text-secondary);
+    }
+
+    :global(p) {
+        max-width: 48ch;
+        margin: 0;
+        color: var(--text-secondary);
+        line-height: 1.7;
+    }
+}
+
+.selected-work__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+
+    span {
+        font-size: 1.1rem;
+        transition: transform 0.25s ease;
+    }
+
+    &:hover span {
+        transform: translate(3px, -3px);
+    }
+}
+
+.selected-work__content a:focus-visible {
+    outline: 2px solid var(--focus-color);
+    outline-offset: 5px;
+}
+
+.selected-work__note {
+    margin-top: var(--space-xl);
+    color: var(--text-secondary);
+}
+
+@media (max-width: 900px) {
+    .selected-work__layout {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .selected-work__content {
+        padding-block: 0;
+    }
+}
+
+@media (max-width: 760px), (max-height: 740px) {
+    .selected-work__item {
+        position: relative;
+        top: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .selected-work__item {
+        position: relative;
+        top: auto;
+    }
+
+    .selected-work__link span {
+        transition: none;
+    }
+}
+</style>

@@ -1,0 +1,91 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'div'> & {
+  /** Set to false to omit the component. */
+  render?: boolean;
+
+  /** Optional component theme. */
+  theme?: 'light' | 'dark' | 'brand';
+
+  /** Accessible label for the slider. */
+  label?: string;
+
+  /** Width of each slide. */
+  itemSize?: string;
+};
+
+const {
+  render = true,
+  theme,
+  label = 'Carrousel',
+  itemSize,
+  class: className,
+  style,
+  ...rest
+} = Astro.props;
+
+const sliderStyle = [
+  itemSize
+    ? `--overflow-scroller-item-size: ${itemSize}`
+    : '',
+  typeof style === 'string' ? style : ''
+]
+  .filter(Boolean)
+  .join('; ');
+---
+
+{render && (
+  <div
+    {...rest}
+    data-theme={theme}
+    class:list={[
+      'slider',
+      'overflow-scroller',
+      className
+    ]}
+    style={sliderStyle || undefined}
+    role="region"
+    aria-roledescription="carrousel"
+    aria-label={label}
+    tabindex="0"
+  >
+    <slot />
+  </div>
+)}
+
+<style lang="scss">
+.slider {
+    // Configuration
+    --_scrollbar-thumb: var(--text-primary);
+    --_scrollbar-track: var(--surface-subtle);
+    // Base
+    width: 100%;
+    min-width: 0;
+    // Scrollbar
+    scrollbar-color:
+    var(--_scrollbar-thumb)
+    var(--_scrollbar-track);
+    scrollbar-width: auto;
+    &::-webkit-scrollbar {
+        height: 12px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: var(--_scrollbar-track);
+        border-radius: var(--radius-s);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--_scrollbar-thumb);
+        border-radius: var(--radius-s);
+    }
+    // Focus
+    &:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 3px;
+        border-radius: var(--radius-s);
+    }
+}
+</style>

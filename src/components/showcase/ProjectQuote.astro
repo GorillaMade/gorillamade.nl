@@ -1,0 +1,72 @@
+---
+interface Props {
+    quote?: string;
+    author?: string;
+    role?: string;
+}
+
+const { quote, author, role } = Astro.props;
+---
+
+{quote && (
+    <figure class="project-quote">
+        <blockquote>“{quote}”</blockquote>
+        {(author || role) && (
+            <figcaption>
+                <span class="project-quote__rule" aria-hidden="true"></span>
+                <div>
+                    {author && <strong>{author}</strong>}
+                    {role && <span>{role}</span>}
+                </div>
+            </figcaption>
+        )}
+    </figure>
+)}
+
+<style lang="scss">
+.project-quote {
+    margin: 0;
+    min-width: 0;
+
+    blockquote {
+        margin: 0;
+        max-width: auto;
+        color: var(--text-primary);
+        font-size: var(--fs-2);
+        font-weight: 500;
+        line-height: 1.3;
+        letter-spacing: -0.045em;
+        overflow-wrap: break-word;
+    }
+
+    figcaption {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-top: var(--space-l);
+
+        div {
+            display: grid;
+            gap: var(--space-3xs);
+        }
+
+        strong {
+            color: var(--text-primary);
+            font-size: var(--fs-0);
+        }
+
+        div > span {
+            color: var(--text-secondary);
+            font-size: var(--fs--1);
+        }
+    }
+}
+
+.project-quote__rule {
+    width: 2rem;
+    height: 1px;
+    margin-top: 0.65rem;
+    flex-shrink: 0;
+    background: var(--text-brand);
+}
+</style>

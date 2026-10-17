@@ -1,0 +1,150 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type NavLinkVariant = 'link' | 'dropdown';
+
+type Props = HTMLAttributes<'a'> & {
+  href: string;
+  variant?: NavLinkVariant;
+  active?: boolean;
+  render?: boolean;
+};
+
+const {
+  href,
+  variant = 'link',
+  active,
+  render = true,
+  class: className,
+  ...rest
+} = Astro.props;
+
+// --------------------------------------------------
+// Active state
+// --------------------------------------------------
+
+const normalizePath = (path: string): string => {
+  return path.replace(/\/+$/, '') || '/';
+};
+
+const currentPath = normalizePath(Astro.url.pathname);
+
+const isPathActive = (path: string): boolean => {
+  const url = new URL(path, Astro.url);
+
+  if (url.origin !== Astro.url.origin) {
+    return false;
+  }
+
+  return currentPath === normalizePath(url.pathname);
+};
+
+const isActive = active ?? isPathActive(href);
+---
+
+{render && (
+  <a
+    {...rest}
+    href={href}
+    class:list={[
+      'nav-link',
+      `nav-link--${variant}`,
+      className
+    ]}
+    aria-current={isActive ? 'page' : undefined}
+  >
+    <slot />
+  </a>
+)}
+
+<style lang="scss">
+.nav-link {
+    // Base
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-xs);
+    width: fit-content;
+    max-width: 100%;
+    color: var(--text-primary);
+    font: inherit;
+    line-height: 1.4;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+    background-color var(--duration-fast),
+    color var(--duration-fast);
+    // Focus
+    &:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 3px;
+    }
+    // Link — default
+    &--link {
+        padding: 0.4em 0;
+        &::before {
+            content: '';
+            position: absolute;
+            inset-inline: 0;
+            bottom: 0.2em;
+            height: 1px;
+            background-color: currentColor;
+            opacity: 0.25;
+            pointer-events: none;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            inset-inline: 0;
+            bottom: 0.2em;
+            height: 1px;
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: right center;
+            transition:
+            transform var(--duration-fast) ease;
+            pointer-events: none;
+        }
+
+        @media (hover: hover) {
+            &:hover::after {
+                transform: scaleX(1);
+                transform-origin: left center;
+            }
+        }
+
+        &:focus-visible::after,
+        &[aria-current='page']::after {
+            transform: scaleX(1);
+            transform-origin: left center;
+        }
+    }
+    // Dropdown
+    &--dropdown {
+        display: flex;
+        width: 100%;
+        box-sizing: border-box;
+        padding: var(--space-xs) var(--space-s);
+        border-radius: var(--radius-s);
+        @media (hover: hover) {
+            &:hover {
+                background-color: var(--surface-subtle);
+            }
+        }
+
+        &[aria-current='page'] {
+            background-color: var(--surface-subtle);
+            font-weight: var(--fw-strong);
+        }
+    }
+}
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+    .nav-link,
+    .nav-link::after {
+        transition: none;
+    }
+}
+</style>

@@ -1,0 +1,38 @@
+
+---
+import BrowserFrame from '@/components/showcase/BrowserFrame.astro';
+
+interface Props {
+    title: string;
+    client: string;
+    category?: string;
+    year?: number;
+    summary?: string;
+    image: string;
+    href: string;
+    index?: number;
+}
+
+const {
+    title,
+    client,
+    image,
+    href
+} = Astro.props;
+---
+
+<article class="showcase">
+    <BrowserFrame
+        image={image}
+        title={title}
+        href={href}
+        label={client}
+    />
+</article>
+
+<style lang="scss">
+.showcase {
+    min-width: 0;
+    height: 100%;
+}
+</style>

@@ -1,0 +1,95 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'a'> {
+  /** Link destination. */
+  href: string;
+
+  /** Override automatic active state. */
+  active?: boolean;
+
+  /** Set to false to omit the component. */
+  render?: boolean;
+}
+
+const {
+  href,
+  active = Astro.url.pathname === href,
+  render = true,
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+{render && (
+  <a
+    {...rest}
+    href={href}
+    class:list={[
+      'site-nav-link',
+      className
+    ]}
+    aria-current={active ? 'page' : undefined}
+  >
+    <slot />
+  </a>
+)}
+
+<style lang="scss">
+.site-nav-link {
+    // Configuration
+    --site-nav-link-underline-height: 2px;
+    // Base
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    //width: max-content;
+    max-width: 100%;
+    padding-block: var(--space-2xs);
+    color: var(--text-primary);
+    font: inherit;
+    font-weight: var(--fw-strong);
+    line-height: 1.4;
+    text-decoration: none;
+    transition:
+    color var(--duration-fast);
+    // Underline
+    &::after {
+        content: '';
+        position: absolute;
+        inset-inline: 0;
+        bottom: 0;
+        height: var(--site-nav-link-underline-height);
+        background-color: currentColor;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition:
+        transform var(--duration-fast) ease;
+    }
+    // Hover
+    @media (hover: hover) {
+        &:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    }
+    // Active
+    &[aria-current='page']::after {
+        transform: scaleX(1);
+    }
+    // Focus
+    &:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 3px;
+        border-radius: var(--radius-s);
+    }
+}
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+    .site-nav-link,
+    .site-nav-link::after {
+        transition: none;
+    }
+}
+</style>

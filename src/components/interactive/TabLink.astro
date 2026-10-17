@@ -1,0 +1,104 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = Omit<HTMLAttributes<'button'>, 'type'> & {
+  render?: boolean;
+  target: string;
+  active?: boolean;
+};
+
+const {
+  render = true,
+  target,
+  active = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+// --------------------------------------------------
+// Alpine.js
+// --------------------------------------------------
+
+const targetExpression = JSON.stringify(target);
+
+const alpineAttrs = {
+  '@click': `select(${targetExpression})`,
+  ':aria-selected': `activeTab === ${targetExpression}`,
+  ':tabindex': `activeTab === ${targetExpression} ? 0 : -1`,
+};
+---
+
+{render && (
+  <button
+    {...rest}
+    {...alpineAttrs}
+    type="button"
+    role="tab"
+    id={`tab-control-${target}`}
+    class:list={['tab-link', className]}
+    aria-controls={target}
+    aria-selected={active ? 'true' : 'false'}
+    tabindex={active ? 0 : -1}
+    data-tab-target={target}
+  >
+    <slot />
+  </button>
+)}
+
+<style lang="scss">
+.tab-link {
+    // Base
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    padding: var(--space-xs) var(--space-2xs);
+    border: 0;
+    border-radius: 0;
+    background-color: transparent;
+    color: var(--text-primary);
+    font: inherit;
+    font-weight: var(--fw-strong);
+    line-height: 1.4;
+    white-space: nowrap;
+    cursor: pointer;
+    // Underline
+    &::after {
+        content: '';
+        position: absolute;
+        inset-inline: 0;
+        bottom: -1px;
+        height: 2px;
+        background-color: currentColor;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition:
+        transform var(--duration-fast) ease;
+    }
+    // Active
+    &[aria-selected='true']::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+    // Hover
+    @media (hover: hover) {
+        &:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    }
+    // Focus
+    &:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 3px;
+    }
+}
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+    .tab-link::after {
+        transition: none;
+    }
+}
+</style>

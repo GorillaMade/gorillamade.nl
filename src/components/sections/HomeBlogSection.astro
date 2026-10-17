@@ -1,0 +1,79 @@
+---
+import { getCollection } from 'astro:content';
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+import Card from '@/components/item/Card.astro';
+import Button from '../Button.astro';
+const posts = (await getCollection('blog')).sort((a,b) => b.data.date.getTime() - a.data.date.getTime()).slice(0,3);
+---
+{posts.length > 0 &&
+<Section id="blog" theme="light" class="home-blog" space="large">
+	<ContentWrapper size="wide">
+		<header class="section-heading">
+			<div>
+				<Eyebrow>Blog</Eyebrow>
+				<Heading tag="h2" variant="h2">KENNIS OM <span class="highlight">TE DELEN.</span></Heading>
+			</div>
+			<Button href="/blog/" variant="link">
+                Alle artikelen ↗
+            </Button>
+		</header>
+		<div class="grid" data-layout="thirds">
+		{posts.map(post => post.data.cover ?
+			<Card
+			    class="blog-card"
+				variant="cover"
+				theme="dark"
+				image={post.data.cover}
+				imageAlt={`Omslag bij ${post.data.title}`}
+				overlayVariant="solid"
+				overlayStrength={75}
+				eyebrow={`${post.data.category} / ${post.data.date.toLocaleDateString( 'nl-NL')}`}
+				heading={post.data.title}
+				headingTag="h3"
+				headingVariant='h3'
+				buttonLabel="Lees artikel ↗"
+				buttonHref={`/blog/${post.id}/`}
+			/> :
+			<Card
+			    class="blog-card"
+				variant="default"
+				eyebrow={`${post.data.category} / ${post.data.date.toLocaleDateString( 'nl-NL')}`}
+				heading={post.data.title}
+				headingTag="h3"
+				headingVariant="h3"
+				buttonLabel="Lees artikel ↗"
+				buttonHref={`/blog/${post.id}/`}
+			/>
+		)}
+		</div>
+	</ContentWrapper>
+</Section>
+}
+<style lang="scss">
+.home-blog{
+    padding-block:clamp(4rem,8vw,8rem);
+}
+
+.section-heading{
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+    gap:2rem;
+    margin-bottom:clamp(2rem,4vw,4rem)}
+
+.section-heading :global(h2){
+    letter-spacing:-.06em;
+    line-height:1.04;
+    margin-top:1rem}
+
+@media(max-width:580px){
+
+    .section-heading{
+        align-items:start;
+        flex-direction:column}
+}
+</style>

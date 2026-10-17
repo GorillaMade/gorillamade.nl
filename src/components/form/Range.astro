@@ -1,0 +1,382 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends Omit<
+  HTMLAttributes<'input'>,
+  'type' | 'min' | 'max' | 'value'
+> {
+  /** Unique input ID. */
+  id: string;
+
+  /** Visible label. */
+  label: string;
+
+  /** Minimum value. Default: 0. */
+  min?: number;
+
+  /** Maximum value. Default: 100. */
+  max?: number;
+
+  /** Initial value. Default: 50. */
+  value?: number;
+
+  /** Visually hide the label. */
+  labelHidden?: boolean;
+
+  /** Optional helper text. */
+  description?: string;
+
+  /** Show the current value. */
+  showValue?: boolean;
+
+  /** Optional unit, e.g. %, €, px. */
+  unit?: string;
+
+  /** Set to false to omit the component. */
+  render?: boolean;
+}
+
+const {
+  id,
+  label,
+  min = 0,
+  max = 100,
+  value = 50,
+  labelHidden = false,
+  description,
+  showValue = true,
+  unit = '',
+  render = true,
+  class: className,
+  name,
+  style,
+  'aria-describedby': ariaDescribedby,
+  ...rest
+} = Astro.props;
+
+// --------------------------------------------------
+// Value
+// --------------------------------------------------
+
+const safeMax = max > min ? max : min + 1;
+
+const safeValue = Math.min(
+  safeMax,
+  Math.max(min, value)
+);
+
+const progress = (
+  (safeValue - min) /
+  (safeMax - min)
+) * 100;
+
+// --------------------------------------------------
+// Description
+// --------------------------------------------------
+
+const descriptionId = `${id}-description`;
+
+const describedBy = [
+  ariaDescribedby,
+  description ? descriptionId : undefined
+]
+  .filter(Boolean)
+  .join(' ') || undefined;
+
+// --------------------------------------------------
+// Inline styles
+// --------------------------------------------------
+
+const rangeStyle = [
+  `--range-progress: ${progress}%`,
+  typeof style === 'string' ? style : ''
+]
+  .filter(Boolean)
+  .join('; ');
+---
+
+{render && (
+  <div
+    class:list={[
+      'field',
+      className
+    ]}
+  >
+    <div class="field__header">
+      <label
+        for={id}
+        class:list={[
+          'field__label',
+          labelHidden && 'visually-hidden'
+        ]}
+      >
+        {label}
+      </label>
+
+      {showValue && (
+        <output
+          class="field__value"
+          for={id}
+          data-range-output
+        >
+          {safeValue}{unit}
+        </output>
+      )}
+    </div>
+
+    <input
+      {...rest}
+      id={id}
+      name={name ?? id}
+      type="range"
+      min={min}
+      max={safeMax}
+      value={safeValue}
+      class="field__range"
+      style={rangeStyle}
+      aria-label={labelHidden ? label : undefined}
+      aria-describedby={describedBy}
+      data-range-input
+      data-unit={unit}
+    />
+
+    {description && (
+      <span
+        id={descriptionId}
+        class="field__description"
+      >
+        {description}
+      </span>
+    )}
+  </div>
+)}
+
+<script>
+  // --------------------------------------------------
+  // Range initialization
+  // --------------------------------------------------
+
+  function initRanges() {
+    document
+      .querySelectorAll<HTMLElement>('.field')
+      .forEach((field) => {
+        const input = field.querySelector<HTMLInputElement>(
+          '[data-range-input]'
+        );
+
+        if (!input || input.dataset.rangeInitialized === 'true') {
+          return;
+        }
+
+        input.dataset.rangeInitialized = 'true';
+
+        const output = field.querySelector<HTMLOutputElement>(
+          '[data-range-output]'
+        );
+
+        const update = () => {
+          const min = Number(input.min);
+          const max = Number(input.max);
+          const value = Number(input.value);
+
+          const progress = max > min
+            ? ((value - min) / (max - min)) * 100
+            : 0;
+
+          input.style.setProperty(
+            '--range-progress',
+            `${progress}%`
+          );
+
+          if (output) {
+            output.textContent = `${input.value}${input.dataset.unit ?? ''}`;
+          }
+        };
+
+        input.addEventListener('input', update);
+        update();
+      });
+  }
+
+  document.addEventListener('astro:page-load', initRanges);
+  initRanges();
+</script>
+
+<style lang="scss">
+.field {
+    // Configuration
+    --field-gap: var(--space-xs);
+    --range-height: 0.375rem;
+    --range-thumb-size: 1.25rem;
+    --range-progress: 50%;
+    --range-track-color: var(--border-default);
+    --range-fill-color: var(--action-primary);
+    --range-thumb-color: var(--action-primary);
+    // Base
+    display: flex;
+    flex-direction: column;
+    gap: var(--field-gap);
+    width: 100%;
+    min-width: 0;
+    color: var(--text-primary);
+    // Header
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-s);
+    }
+    // Label
+    &__label {
+        display: block;
+        font-size: var(--text-small);
+        font-weight: var(--fw-strong);
+        line-height: 1.4;
+        cursor: pointer;
+    }
+    // Value
+    &__value {
+        flex: none;
+        font-size: var(--text-small);
+        font-weight: var(--fw-strong);
+        font-variant-numeric: tabular-nums;
+        color: var(--text-primary);
+    }
+    // Range
+    &__range {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        height: var(--range-thumb-size);
+        margin: 0;
+        padding: 0;
+        appearance: none;
+        -webkit-appearance: none;
+        background: transparent;
+        cursor: pointer;
+        outline: none;
+        // WebKit track
+        &::-webkit-slider-runnable-track {
+            height: var(--range-height);
+            border: 0;
+            border-radius: 999px;
+            background: linear-gradient(
+            to right,
+            var(--range-fill-color) 0%,
+            var(--range-fill-color) var(--range-progress),
+            var(--range-track-color) var(--range-progress),
+            var(--range-track-color) 100%
+            );
+        }
+        // Firefox track
+        &::-moz-range-track {
+            height: var(--range-height);
+            border: 0;
+            border-radius: 999px;
+            background: var(--range-track-color);
+        }
+        // Firefox progress
+        &::-moz-range-progress {
+            height: var(--range-height);
+            border-radius: 999px;
+            background: var(--range-fill-color);
+        }
+        // WebKit thumb
+        &::-webkit-slider-thumb {
+            width: var(--range-thumb-size);
+            height: var(--range-thumb-size);
+            margin-top: calc(
+            (var(--range-height) - var(--range-thumb-size)) / 2
+            );
+            appearance: none;
+            -webkit-appearance: none;
+            border: 2px solid var(--surface-page);
+            border-radius: 50%;
+            background-color: var(--range-thumb-color);
+            box-shadow: 0 1px 4px rgb(0 0 0 / 0.15);
+            transition:
+            box-shadow var(--duration-fast),
+            transform var(--duration-fast);
+        }
+        // Firefox thumb
+        &::-moz-range-thumb {
+            width: calc(var(--range-thumb-size) - 4px);
+            height: calc(var(--range-thumb-size) - 4px);
+            border: 2px solid var(--surface-page);
+            border-radius: 50%;
+            background-color: var(--range-thumb-color);
+            box-shadow: 0 1px 4px rgb(0 0 0 / 0.15);
+            transition:
+            box-shadow var(--duration-fast),
+            transform var(--duration-fast);
+        }
+        // Hover
+        @media (hover: hover) {
+            &:hover:not(:disabled) {
+                &::-webkit-slider-thumb {
+                    transform: scale(1.1);
+                }
+
+                &::-moz-range-thumb {
+                    transform: scale(1.1);
+                }
+            }
+        }
+        // Focus
+        &:focus-visible {
+            &::-webkit-slider-thumb {
+                box-shadow: 0 0 0 3px var(--focus-color);
+            }
+
+            &::-moz-range-thumb {
+                box-shadow: 0 0 0 3px var(--focus-color);
+            }
+        }
+        // Disabled
+        &:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    }
+    // Description
+    &__description {
+        font-size: var(--text-small);
+        line-height: 1.5;
+        color: var(--text-primary);
+        opacity: 0.65;
+    }
+    // Disabled
+    &:has(.field__range:disabled) {
+        .field__label,
+        .field__value {
+            opacity: 0.5;
+        }
+
+        .field__label {
+            cursor: not-allowed;
+        }
+    }
+}
+// Visually hidden
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+    .field__range {
+        &::-webkit-slider-thumb,
+        &::-moz-range-thumb {
+            transition: none;
+        }
+    }
+}
+</style>

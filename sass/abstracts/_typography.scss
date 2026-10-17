@@ -1,0 +1,86 @@
+// -----------------------------------------------------------------------------
+// Typography
+// -----------------------------------------------------------------------------
+// Foundation typography values.
+// Contains raw typography data without semantic meaning.
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// Font Family
+// -----------------------------------------------------------------------------
+
+$-ff-sans:
+    ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+$-ff-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+$-ff-mono:
+    ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+
+$font-families: (
+    "sans": $-ff-sans,
+    "serif": $-ff-serif,
+    "mono": $-ff-mono,
+);
+
+
+// -----------------------------------------------------------------------------
+// Font Sizes
+// -----------------------------------------------------------------------------
+/* @link https://utopia.fyi/type/calculator?c=320,16,1.2,1280,19,1.333,5,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
+$font-sizes: (
+    "-2": clamp(0.6683rem, 0.7032rem + -0.0436vw, 0.6944rem),
+    "-1": clamp(0.8333rem, 0.8142rem + 0.0959vw, 0.8908rem),
+    "0": clamp(1rem, 0.9375rem + 0.3125vw, 1.1875rem),
+    "1": clamp(1.2rem, 1.0724rem + 0.6382vw, 1.5829rem),
+    "2": clamp(1.44rem, 1.2166rem + 1.1168vw, 2.1101rem),
+    "3": clamp(1.728rem, 1.3664rem + 1.8078vw, 2.8127rem),
+    "4": clamp(2.0736rem, 1.515rem + 2.7929vw, 3.7493rem),
+    "5": clamp(2.4883rem, 1.6518rem + 4.1826vw, 4.9979rem),
+);
+
+
+// -----------------------------------------------------------------------------
+// Font Weight
+// -----------------------------------------------------------------------------
+
+$font-weights: (
+    "thin": 100,
+    "extralight": 200,
+    "light": 300,
+    "regular": 400,
+    "medium": 500,
+    "semibold": 600,
+    "bold": 700,
+    "extrabold": 800,
+    "black": 900,
+);
+
+
+// -----------------------------------------------------------------------------
+// Line Height
+// -----------------------------------------------------------------------------
+
+$line-heights: (
+    "none": 1,
+    "tight": 1.1,
+    "snug": 1.25,
+    "moderate": 1.5,
+    "relaxed": 1.625,
+    "loose": 1.75,
+);
+
+
+// -----------------------------------------------------------------------------
+// Letter Spacing
+// -----------------------------------------------------------------------------
+
+$letter-spacings: (
+    "tighter": -0.04em,
+    "tight": -0.02em,
+    "normal": 0,
+    "wide": 0.025em,
+    "wider": 0.05em,
+    "widest": 0.1em,
+);

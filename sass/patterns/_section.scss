@@ -1,0 +1,21 @@
+// -----------------------------------------------------------------------------
+// Section
+// -----------------------------------------------------------------------------
+// A full-width content section that provides consistent vertical spacing and
+// inherits its background and text colors from the active theme.
+// -----------------------------------------------------------------------------
+
+.section {
+    padding-block: var(--section-space, var(--section-medium));
+
+    background-color: var(--surface-page);
+    color: var(--text-primary);
+}
+
+.section[data-space="small"] {
+    --section-space: var(--section-small);
+}
+
+.section[data-space="large"] {
+    --section-space: var(--section-large);
+}

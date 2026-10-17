@@ -1,0 +1,117 @@
+---
+import '../../sass/global.scss';
+import { site } from '@/config/site';
+import BaseHead from '@/components/utility/BaseHead.astro';
+import JsonLd from '@/components/utility/JsonLd.astro';
+import SkipLink from '@/components/global/SkipLink.astro';
+import Footer from '@/components/global/Footer.astro';
+import Header from '@/components/global/Header.astro';
+import SiteNav from '@/components/global/SiteNav.astro';
+import SiteNavLink from '@/components/global/SiteNavLink.astro';
+import Button from '@/components/Button.astro';
+
+interface Props {
+    title?: string;
+    description?: string;
+    noindex?: boolean;
+}
+
+const { title, description, noindex } = Astro.props;
+---
+<!doctype html>
+<html lang="nl" data-theme="light">
+    <head>
+        <BaseHead title={title} description={description} noindex={noindex} />
+        <JsonLd data={{ '@context': 'https://schema.org', '@type': 'ProfessionalService', name: site.name, url: site.url, description: site.description }} />
+        <slot name="head" />
+    </head>
+    <body>
+        <SkipLink href="#main">Ga naar inhoud</SkipLink>
+        <Header position="sticky" class="gm-header">
+            <a slot="brand" class="gm-brand" href="/" aria-label="GorillaMade — naar de homepage">
+                <img src="/gorillamade-logo.svg" width="48" height="48" alt="" />
+                <span class="gm-wordmark"><strong>GORILLA</strong><span>MADE</span></span>
+            </a>
+            <div slot="navigation" class="gm-navigation-content">
+                <SiteNav aria-label="Hoofdnavigatie">
+                    <SiteNavLink href="/diensten">Diensten</SiteNavLink>
+                    <SiteNavLink href="/showcases">Showcases</SiteNavLink>
+                    <SiteNavLink href="/contact">Contact</SiteNavLink>
+                </SiteNav>
+                <Button size="small" href="/offerte">Plan jouw project <span aria-hidden="true">↗</span></Button>
+            </div>
+        </Header>
+        <main id="main"><slot /></main>
+        <Footer theme="dark" />
+    </body>
+</html>
+
+<style lang="scss">
+    :global(body) {
+        background: var(--surface-page);
+        color: var(--text-primary);
+    }
+    :global(.gm-header) {
+        background: var(--surface-page);
+        color: var(--text-primary);
+    }
+    .gm-brand {
+        display: inline-flex;
+        align-items: center;
+        gap: clamp(.65rem, 1.4vw, 1rem);
+        min-width: 0;
+        color: var(--text-primary);
+        text-decoration: none;
+    }
+    .gm-brand img {
+        display: block;
+        width: clamp(42px, 4vw, 54px);
+        height: clamp(42px, 4vw, 54px);
+        flex: none;
+        object-fit: contain;
+    }
+    .gm-wordmark {
+        display: inline-flex;
+        align-items: baseline;
+        white-space: nowrap;
+        font-size: clamp(1.15rem, 1.6vw, 1.5rem);
+        letter-spacing: -.055em;
+        line-height: 1;
+    }
+    .gm-wordmark strong { font-weight: 850; }
+    .gm-wordmark > span { font-weight: 300; color: var(--text-secondary); }
+    :global(.gm-header.site-header) { padding-block: 0; }
+    :global(.gm-header .site-header__inner) {
+        min-height: 76px;
+        padding-inline: var(--gutter);
+    }
+    @media (max-width: 975px) {
+        .gm-wordmark { display: none; }
+        :global(.gm-header .site-header__inner) { min-height: 68px; }
+    }
+    :global(.highlight), :global(.accent) {
+        color: var(--text-brand);
+        background: none;
+    }
+    .gm-navigation-content {
+        display: flex;
+        align-items: center;
+        gap: clamp(1rem, 2vw, 2rem);
+        min-width: 0;
+    }
+    @media (max-width: 975px) {
+        .gm-navigation-content {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1.5rem;
+            width: 100%;
+            padding-block: 1.25rem 1.75rem;
+        }
+        .gm-navigation-content :global(.site-nav) { width: 100%; }
+        .gm-navigation-content :global(.button) {
+            align-self: stretch;
+            justify-content: center;
+            text-align: center;
+        }
+    }
+</style>

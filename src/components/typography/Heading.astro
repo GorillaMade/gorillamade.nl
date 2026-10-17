@@ -1,0 +1,68 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
+type HeadingVariant = "display" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+
+interface Props extends HTMLAttributes<"h2"> {
+    tag?: HeadingTag;
+    variant?: HeadingVariant;
+}
+
+const { tag: Tag = "h2", variant, class: className, ...rest } = Astro.props;
+
+const resolvedVariant = variant ?? Tag;
+---
+
+<Tag
+    class:list={["heading", className]}
+    data-variant={resolvedVariant}
+    {...rest}
+>
+    <slot />
+</Tag>
+
+<style lang="scss">
+.heading {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-family: var(--font-heading);
+    font-size: var(--_heading-size);
+    font-weight: var(--fw-heading);
+    line-height: var(--lh-heading);
+    letter-spacing: var(--ls-heading);
+
+    text-wrap: balance;
+}
+
+.heading[data-variant="display"] {
+    --_heading-size: var(--heading-display);
+}
+
+.heading[data-variant="h1"] {
+    --_heading-size: var(--heading-h1);
+}
+
+.heading[data-variant="h2"] {
+    --_heading-size: var(--heading-h2);
+}
+
+.heading[data-variant="h3"] {
+    --_heading-size: var(--heading-h3);
+}
+
+.heading[data-variant="h4"] {
+    --_heading-size: var(--heading-h4);
+}
+
+.heading[data-variant="h5"] {
+    --_heading-size: var(--heading-h5);
+}
+
+.heading[data-variant="h6"] {
+    --_heading-size: var(--heading-h6);
+}
+</style>

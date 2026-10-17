@@ -1,0 +1,79 @@
+---
+interface Props {
+    client: string;
+    services: string[];
+    year: number;
+    url?: string;
+}
+
+const { client, services, year, url } = Astro.props;
+---
+
+<dl class="project-facts" aria-label="Projectgegevens">
+    <div class="project-facts__item">
+        <dt>Klant / concept</dt>
+        <dd>{client}</dd>
+    </div>
+    <div class="project-facts__item">
+        <dt>Diensten</dt>
+        <dd>{services.join(' · ')}</dd>
+    </div>
+    <div class="project-facts__item">
+        <dt>Jaar</dt>
+        <dd>{year}</dd>
+    </div>
+    {url && (
+        <div class="project-facts__item">
+            <dt>Website</dt>
+            <dd><a href={url} target="_blank" rel="noopener noreferrer">Bekijk website ↗</a></dd>
+        </div>
+    )}
+</dl>
+
+<style lang="scss">
+.project-facts {
+    display: grid;
+    gap: 0;
+    margin: 0;
+    border-top: 1px solid var(--border-default);
+}
+
+.project-facts__item {
+    display: grid;
+    gap: 0.55rem;
+    padding-block: 1.25rem;
+    border-bottom: 1px solid var(--border-default);
+
+    dt {
+        color: var(--text-secondary);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+
+    dd {
+        margin: 0;
+        color: var(--text-primary);
+        font-size: 0.95rem;
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-color: var(--border-default);
+        text-underline-offset: 0.3em;
+
+        &:hover {
+            text-decoration-color: currentColor;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--focus-color);
+            outline-offset: 4px;
+        }
+    }
+}
+</style>

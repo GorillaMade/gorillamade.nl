@@ -1,0 +1,23 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import HomeHeroSection from '@/components/sections/HomeHeroSection.astro';
+import HomeValueStorySection from '@/components/sections/HomeValueStorySection.astro';
+import HomeServicesSection from '@/components/sections/HomeServicesSection.astro';
+import FeaturedShowcases from '@/components/showcase/FeaturedShowcases.astro';
+import HomeProcessSection from '@/components/sections/HomeProcessSection.astro';
+import HomeAboutSection from '@/components/sections/HomeAboutSection.astro';
+import HomeBlogSection from '@/components/sections/HomeBlogSection.astro';
+import HomeTestimonialsSection from '@/components/sections/HomeTestimonialsSection.astro';
+import CtaSection from '@/components/sections/CtaSection.astro';
+---
+<BaseLayout title="GorillaMade — Webdesign dat opvalt en klanten overtuigt" description="GorillaMade ontwerpt en ontwikkelt opvallende, snelle websites die jouw verhaal vertellen en bezoekers overtuigen. Persoonlijk webdesign, development, hosting en onderhoud.">
+    <HomeHeroSection/>
+    <FeaturedShowcases />
+    <HomeValueStorySection/>
+    <HomeServicesSection/>
+    <HomeProcessSection/>
+    <HomeAboutSection/>
+    <HomeTestimonialsSection/>
+    <HomeBlogSection/>
+    <CtaSection/>
+</BaseLayout>

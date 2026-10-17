@@ -1,0 +1,283 @@
+---
+import Form from '@/components/form/Form.astro';
+import Input from '@/components/form/Input.astro';
+import Textarea from '@/components/form/Textarea.astro';
+import Select from '@/components/form/Select.astro';
+import Choice from '@/components/form/Choice.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import Button from '../Button.astro';
+import { getServices } from '@/lib/services';
+
+const servicesList = await getServices();
+---
+
+<div class="quote-wizard" x-data="quoteWizard()">
+	<Form action="/form.php" method="post" @submit="submit($event)">
+        <input type="hidden" name="_form" value="offerte" />
+        <div class="honeypot" aria-hidden="true"><input name="honeypot_field" type="text" tabindex="-1" autocomplete="off" /></div>
+		<div class="progress"><span>STAP <b x-text="step">1</b> / 6</span>
+			<div class="track">
+				<div :style="`width:${step/6*100}%`"></div>
+			</div><span x-text="Math.round(step/6*100)+'%'">17%</span></div>
+		<div x-show="step===1"><span class="overline">01 / PROJECT</span>
+			<Heading tag="h2" variant="h2">Waar kan ik je mee helpen?</Heading>
+			<Paragraph>Selecteer één of meerdere diensten.</Paragraph>
+			<div class="choices">
+                {servicesList.map((service) => (
+                    <Choice
+                        id={`quote-${service.id}`}
+                        name="services[]"
+                        label={service.data.title}
+                        value={service.data.title}
+                        x-model="services"
+                        variant="chip"
+                    />
+                ))}
+			</div>
+		</div>
+		<div x-show="step===2" x-cloak><span class="overline">02 / DOELEN</span>
+			<Heading tag="h2" variant="h2">Wat moet de website bereiken?</Heading>
+			<Select id="quote-project" name="project" label="Soort project" x-model="project">
+				<option value="">Maak een keuze</option>
+				<option>Nieuwe website</option>
+				<option>Redesign</option>
+				<option>Webshop</option>
+				<option>Maatwerk</option>
+				<option>Uitbreiding</option>
+			</Select>
+			<Textarea id="quote-goal" name="goal" label="Wat wil je bereiken en welk probleem moet dit oplossen?" rows={4} x-model="goal" />
+			<Textarea id="quote-audience" name="audience" label="Wie is jouw doelgroep?" rows={3} x-model="audience" />
+			<Input id="quote-current" name="currentSite" label="Huidige website (optioneel)" type="url" x-model="currentSite" />
+		</div>
+		<div x-show="step===3" x-cloak><span class="overline">03 / INHOUD & FUNCTIES</span>
+			<Heading tag="h2" variant="h2">Wat moet de website kunnen?</Heading>
+			<Select id="quote-pages" name="pages" label="Verwacht aantal pagina's" x-model="pages">
+				<option value="">Nog niet bekend</option>
+				<option>1–3</option>
+				<option>4–8</option>
+				<option>9–20</option>
+				<option>Meer dan 20</option>
+			</Select>
+			<Textarea id="quote-features" name="features" label="Welke functies en koppelingen zijn nodig?" rows={5} x-model="features" description="Denk aan reserveringen, meertaligheid, CMS, betalingen, CRM of specifieke wensen." />
+			<Textarea id="quote-content" name="content" label="Welke teksten, foto's, logo's en andere content zijn beschikbaar?" rows={4} x-model="content" />
+		</div>
+		<div x-show="step===4" x-cloak><span class="overline">04 / DESIGN</span>
+			<Heading tag="h2" variant="h2">Hoe moet het eruitzien?</Heading>
+			<Textarea id="quote-examples" name="examples" label="Inspirerende websites of voorbeelden (links + waarom)" rows={4} x-model="examples" />
+			<Textarea id="quote-design" name="design" label="Huisstijl, uitstraling, kleuren en specifieke designwensen" rows={4} x-model="design" />
+			<Textarea id="quote-avoid" name="avoid" label="Wat wil je absoluut niet? (optioneel)" rows={3} x-model="avoid" />
+		</div>
+		<div x-show="step===5" x-cloak><span class="overline">05 / PLANNING</span>
+			<Heading tag="h2" variant="h2">Wat is de ruimte voor je project?</Heading>
+			<Select id="quote-budget" name="budget" label="Indicatief budget" x-model="budget">
+				<option value="">Selecteer een indicatie</option>
+				<option>Onder €1.500</option>
+				<option>€1.500 – €3.000</option>
+				<option>€3.000 – €5.000</option>
+				<option>€5.000 – €10.000</option>
+				<option>€10.000+</option>
+				<option>Graag advies</option>
+			</Select>
+			<Select id="quote-timing" name="timing" label="Gewenste livegang" x-model="timing">
+				<option value="">Maak een keuze</option>
+				<option>Zo snel mogelijk</option>
+				<option>1–3 maanden</option>
+				<option>3–6 maanden</option>
+				<option>Flexibel</option>
+			</Select>
+			<Select id="quote-hosting" name="hosting" label="Hosting en onderhoud" x-model="hosting">
+				<option value="">Nog niet bekend</option>
+				<option>Graag via GorillaMade</option>
+				<option>Al geregeld</option>
+				<option>Advies gewenst</option>
+			</Select>
+		</div>
+		<div x-show="step===6" x-cloak><span class="overline">06 / CONTACT & VERZENDEN</span>
+			<Heading tag="h2" variant="h2">Met wie mag ik contact opnemen?</Heading>
+			<div class="two">
+				<Input id="quote-name" name="name" required label="Naam" x-model="name" autocomplete="name" />
+				<Input id="quote-email" name="email" required label="E-mailadres" type="email" x-model="email" autocomplete="email" />
+			</div>
+			<div class="two">
+				<Input id="quote-phone" name="phone" label="Telefoon (optioneel)" type="tel" x-model="phone" />
+				<Input id="quote-company" name="company" label="Bedrijf (optioneel)" x-model="company" />
+			</div>
+			<Textarea id="quote-notes" name="notes" label="Overige informatie of vragen" rows={4} x-model="notes" />
+			<Choice
+                id="quote-consent"
+                name="consent"
+                value="ja"
+                x-model="consent"
+                required
+            >
+                Ik heb de
+                <a href="/privacy/" target="_blank" rel="noopener noreferrer">
+                    privacyverklaring
+                </a>
+                gelezen. Op de dienstverlening zijn de
+                <a href="/algemene-voorwaarden/" target="_blank" rel="noopener noreferrer">
+                    algemene voorwaarden
+                </a>
+                van toepassing.
+			</Choice>
+		</div>
+		<p class="error" x-show="error" x-text="error" role="alert" aria-live="polite"></p>
+		<div class="wizard-actions">
+			<Button type="button" variant="link" x-show="step>1" @click="step=Math.max(1,step-1);error=''">← Vorige</Button>
+			<Button type="button" emphasis="primary" class="next" x-show="step<6" @click="next()">Volgende stap →</Button>
+			<Button type="submit" emphasis="primary" x-show="step===6">Verstuur aanvraag ↗</Button>
+		</div>
+	</Form>
+</div>
+
+<script is:inline>
+    function quoteWizard() {
+        return {
+            step: 1,
+            services: [],
+            project: '',
+            audience: '',
+            goal: '',
+            currentSite: '',
+            pages: '',
+            features: '',
+            content: '',
+            examples: '',
+            design: '',
+            avoid: '',
+            budget: '',
+            timing: '',
+            hosting: '',
+            name: '',
+            email: '',
+            phone: '',
+            company: '',
+            notes: '',
+            consent: false,
+            error: '',
+            next() {
+                this.error = '';
+                if (this.step === 1 && !this.services.length) {
+                    this.error = 'Kies minimaal één dienst.';
+                    return;
+                }
+                if (this.step === 2 && (!this.project || !this.goal.trim() || !this.audience.trim())) {
+                    this.error = 'Vul het projecttype, doel en doelgroep in.';
+                    return;
+                }
+                if (this.step === 3 && (!this.features.trim() || !this.content.trim())) {
+                    this.error = 'Beschrijf de functionaliteiten en beschikbare inhoud.';
+                    return;
+                }
+                if (this.step === 5 && (!this.budget || !this.timing)) {
+                    this.error = 'Selecteer budget en planning.';
+                    return;
+                }
+                this.step = Math.min(6, this.step + 1);
+            },
+            submit(event) {
+                this.error = '';
+                if (this.step !== 6) {
+                    event.preventDefault();
+                    this.next();
+                    return;
+                }
+                if (!this.name.trim() || !this.email.trim() || !this.consent) {
+                    event.preventDefault();
+                    this.error = 'Vul je naam, e-mailadres en toestemming in.';
+                    return;
+                }
+                // Geen preventDefault: de browser verstuurt de POST naar form.php.
+            }
+        };
+    }
+</script>
+
+<style lang="scss">
+.honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+[x-cloak]{
+    display:none!important}
+
+.quote-wizard{
+    max-width:900px;
+    border-top:1px solid var(--border-default);
+    padding-top:2rem}
+
+.quote-wizard :global(form){
+    display:grid;
+    gap:1.3rem}
+
+.quote-wizard :global(h2){
+    letter-spacing:-.04em;
+    margin:.7rem 0 1.5rem}
+
+.quote-wizard :global(label){
+    margin-block:.8rem}
+
+.overline{
+    font-size:.7rem;
+    letter-spacing:.12em;
+    color:var(--text-secondary);
+    font-weight:700}
+
+.progress{
+    display:flex;
+    align-items:center;
+    gap:1rem;
+    font-size:.7rem;
+    letter-spacing:.1em;
+    font-weight:700;
+    margin-bottom:2rem}
+
+.track{
+    height:3px;
+    flex:1;
+    background:var(--border-default)}
+
+.track>div{
+    height:100%;
+    background:var(--text-brand);
+    transition:width .2s}
+
+.choices,.two{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:1rem}
+
+.choices{
+    margin-block:2rem}
+
+.quote-wizard :global(input:not([type=checkbox])), .quote-wizard :global(select), .quote-wizard :global(textarea){
+    max-width:100%;
+    width:100%}
+
+.wizard-actions{
+    display:flex;
+    justify-content:space-between;
+    gap:1rem;
+    padding-block:2rem;
+}
+
+.wizard-actions :global(.button--default) {
+    margin-left:auto;
+}
+
+.wizard-actions :global(.previous){
+    background:transparent;
+    color:var(--text-primary)}
+
+.error{
+    color:var(--text-primary);
+    font-weight:700}
+
+.notice{
+    color:var(--text-secondary);
+    font-size:.85rem;
+    line-height:1.6}
+
+@media(max-width:650px){
+    .choices,.two{
+        grid-template-columns:1fr}
+}
+</style>

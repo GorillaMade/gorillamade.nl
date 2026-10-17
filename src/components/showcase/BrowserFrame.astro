@@ -1,0 +1,182 @@
+---
+import Img from '@/components/media/Img.astro';
+
+interface Props {
+    image?: string;
+    title: string;
+    href?: string;
+    label?: string;
+    clickable?: boolean;
+}
+
+const {
+    image,
+    title,
+    href,
+    label = 'PROJECT',
+    clickable = true
+} = Astro.props;
+
+const isLink = clickable && Boolean(href);
+const Tag = isLink ? 'a' : 'div';
+---
+
+<Tag
+    class={`browser-frame${isLink ? ' browser-frame--clickable' : ''}`}
+    href={isLink ? href : undefined}
+    aria-label={isLink ? `Bekijk showcase ${title}` : undefined}
+>
+    <div class="browser-frame__bar">
+        <span class="browser-frame__dots" aria-hidden="true">
+            <i></i>
+            <i></i>
+            <i></i>
+        </span>
+
+        <span class="browser-frame__label">
+            {label}
+        </span>
+
+        {isLink && (
+            <span class="browser-frame__arrow" aria-hidden="true">
+                ↗
+            </span>
+        )}
+    </div>
+
+    <div class="browser-frame__screen">
+        <Img
+            src={image}
+            alt={`Websitepreview ${title}`}
+        />
+    </div>
+
+    <div class="browser-frame__caption">
+        <strong>{title}</strong>
+        {isLink && <span>Bekijk project ↗</span>}
+    </div>
+</Tag>
+
+<style lang="scss">
+.browser-frame {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-l);
+    background: var(--surface-page);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.browser-frame--clickable {
+    transition: transform 0.25s ease, border-color 0.25s ease;
+
+    &:hover {
+        transform: translateY(-4px);
+        border-color: var(--text-secondary);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--focus-color);
+        outline-offset: 4px;
+    }
+}
+
+.browser-frame__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+}
+
+.browser-frame__dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+
+    i {
+        display: block;
+        width: 0.45rem;
+        height: 0.45rem;
+        border-radius: 50%;
+        background: var(--text-secondary);
+        opacity: 0.55;
+    }
+}
+
+.browser-frame__label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.browser-frame__arrow {
+    flex-shrink: 0;
+    font-size: 0.85rem;
+}
+
+.browser-frame__screen {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: var(--surface-subtle);
+
+    :global(img) {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center top;
+    }
+}
+
+.browser-frame__caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-m);
+    padding: 1rem;
+    font-size: 0.8rem;
+
+    strong {
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    span {
+        flex-shrink: 0;
+        color: var(--text-secondary);
+    }
+}
+
+@media (max-width: 500px) {
+    .browser-frame__bar {
+        padding: 0.7rem 0.8rem;
+    }
+
+    .browser-frame__caption {
+        padding: 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .browser-frame--clickable {
+        transition: none;
+
+        &:hover {
+            transform: none;
+        }
+    }
+}
+</style>

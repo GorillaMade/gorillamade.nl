@@ -1,0 +1,85 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type EyebrowVariant = 'default' | 'tag';
+type EyebrowTag = 'p' | 'span' | 'div';
+
+type Props = HTMLAttributes<'p'> & {
+  render?: boolean;
+  tag?: EyebrowTag;
+  variant?: EyebrowVariant;
+};
+
+const {
+  render = true,
+  tag: Tag = 'p',
+  variant = 'default',
+  class: className,
+  ...rest
+} = Astro.props;
+---
+
+{render && (
+  <div
+    class:list={[
+      'eyebrow',
+      `eyebrow--${variant}`,
+      className
+    ]}
+  >
+    {variant === 'default' && (
+      <span class="eyebrow-marker" aria-hidden="true" />
+    )}
+
+    <Tag
+      {...rest}
+      class="eyebrow-text"
+    >
+      <slot />
+    </Tag>
+  </div>
+)}
+
+<style lang="scss">
+.eyebrow {
+    // Configuration
+    --eyebrow-gap: 0.6em;
+    --eyebrow-marker-width: 2px;
+    --eyebrow-marker-height: 0.7em;
+    // Base
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    justify-content: flex-start;
+    gap: var(--eyebrow-gap);
+    max-width: 100%;
+    color: var(--text-primary);
+    // Text
+    .eyebrow-text {
+        margin: 0;
+        font-size: var(--eyebrow-font-size, 0.6875rem);
+        font-weight: var(--fw-strong);
+        line-height: 1.4;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+    }
+    // Default
+    &--default {
+        .eyebrow-marker {
+            display: block;
+            flex: none;
+            width: var(--eyebrow-marker-width);
+            height: var(--eyebrow-marker-height);
+            background-color: currentColor;
+        }
+    }
+    // Tag
+    &--tag {
+        padding: 0.35em 0.7em;
+        border-radius: var(--radius-m);
+        background-color: var(--surface-strong);
+        color: var(--text-inverse);
+    }
+}
+</style>

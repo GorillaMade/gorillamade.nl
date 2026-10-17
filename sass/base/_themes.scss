@@ -1,0 +1,153 @@
+// Eén semantische theme-API.
+// Kleurwaarden komen uit abstracts/_colors.scss.
+
+// --------------------------------------------------
+// Light
+// --------------------------------------------------
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  // Theme
+  --theme--background: var(--neutral-100);
+  --theme--background-2: var(--neutral-200);
+  --theme--text: var(--neutral-900);
+  --theme--text-muted: var(--neutral-700);
+  --theme--border: var(--neutral-300);
+  --theme--focus: var(--neutral-900);
+
+  // Surfaces
+  --surface-page: var(--theme--background);
+  --surface-subtle: var(--theme--background-2);
+  --surface-emphasis: var(--neutral-300);
+  --surface-strong: var(--neutral-900);
+  --surface-brand: var(--brand-500);
+
+  // Text
+  --text-primary: var(--theme--text);
+  --text-secondary: var(--neutral-700);
+  --text-muted: var(--theme--text-muted);
+  --text-inverse: var(--neutral-100);
+  --text-brand: var(--brand-500);
+
+  // Borders
+  --border-default: var(--theme--border);
+  --border-strong: var(--neutral-500);
+  --border-inverse: var(--neutral-700);
+  --border-brand: var(--brand-500);
+
+  // Actions
+  --action-primary: var(--brand-500);
+  --action-primary-text: var(--brand-text);
+
+  --action-secondary: var(--neutral-900);
+  --action-secondary-text: var(--neutral-100);
+
+  // Shared button hover
+  --button-hover-background: var(--neutral-900);
+  --button-hover-text: var(--neutral-100);
+
+  // Focus
+  --focus-color: var(--theme--focus);
+}
+
+// --------------------------------------------------
+// Dark
+// --------------------------------------------------
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  // Theme
+  --theme--background: var(--neutral-900);
+  --theme--background-2: var(--neutral-800);
+  --theme--text: var(--neutral-100);
+  --theme--text-muted: var(--neutral-300);
+  --theme--border: var(--neutral-700);
+  --theme--focus: var(--brand-500);
+
+  // Surfaces
+  --surface-page: var(--theme--background);
+  --surface-subtle: var(--theme--background-2);
+  --surface-emphasis: var(--neutral-700);
+  --surface-strong: var(--neutral-100);
+  --surface-brand: var(--brand-500);
+
+  // Text
+  --text-primary: var(--theme--text);
+  --text-secondary: var(--neutral-300);
+  --text-muted: var(--theme--text-muted);
+  --text-inverse: var(--neutral-900);
+  --text-brand: var(--brand-500);
+
+  // Borders
+  --border-default: var(--theme--border);
+  --border-strong: var(--neutral-500);
+  --border-inverse: var(--neutral-300);
+  --border-brand: var(--brand-500);
+
+  // Actions
+  --action-primary: var(--brand-500);
+  --action-primary-text: var(--brand-text);
+
+  --action-secondary: var(--neutral-100);
+  --action-secondary-text: var(--neutral-900);
+
+  // Shared button hover
+  --button-hover-background: var(--neutral-100);
+  --button-hover-text: var(--neutral-900);
+
+  // Focus
+  --focus-color: var(--theme--focus);
+}
+
+// --------------------------------------------------
+// Brand
+// --------------------------------------------------
+
+[data-theme="brand"] {
+  color-scheme: light;
+
+  // Theme
+  --theme--background: var(--brand-500);
+  --theme--background-2: var(--brand-500);
+  --theme--text: var(--brand-text);
+  --theme--text-muted: var(--neutral-800);
+  --theme--border: var(--brand-500);
+  --theme--focus: var(--neutral-900);
+
+  // Surfaces
+  --surface-page: var(--theme--background);
+  --surface-subtle: var(--theme--background-2);
+  --surface-emphasis: var(--brand-500);
+  --surface-strong: var(--neutral-900);
+  --surface-brand: var(--brand-500);
+
+  // Text
+  --text-primary: var(--theme--text);
+  --text-secondary: var(--neutral-800);
+  --text-muted: var(--theme--text-muted);
+  --text-inverse: var(--neutral-100);
+  --text-brand: var(--neutral-900);
+
+  // Borders
+  --border-default: var(--theme--border);
+  --border-strong: var(--brand-500);
+  --border-inverse: var(--neutral-700);
+  --border-brand: var(--neutral-900);
+
+  // Actions
+  --action-primary: var(--neutral-800);
+  --action-primary-text: var(--neutral-100);
+
+  --action-secondary: var(--brand-500);
+  --action-secondary-text: var(--neutral-900);
+
+  // Shared button hover
+  --button-hover-background: var(--neutral-900);
+  --button-hover-text: var(--neutral-100);
+
+  // Focus
+  --focus-color: var(--theme--focus);
+}

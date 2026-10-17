@@ -1,0 +1,159 @@
+
+---
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+
+const steps = [
+    {
+        number: '01',
+        title: 'De eerste brul',
+        description: 'We bespreken je ambities, doelgroep en wat je website écht moet opleveren.'
+    },
+    {
+        number: '02',
+        title: 'Het jungleplan',
+        description: 'Ik vertaal je verhaal naar een slimme structuur en een sterk visueel concept.'
+    },
+    {
+        number: '03',
+        title: 'Bouwen met spierballen',
+        description: 'Ik ontwikkel een snelle, responsive website die klaar is voor groei.'
+    },
+    {
+        number: '04',
+        title: 'Los in het wild',
+        description: 'Na testen en lancering blijf ik bereikbaar voor hosting, onderhoud en verbetering.'
+    }
+];
+---
+
+<Section
+    id="werkwijze"
+    class="process"
+    theme="dark"
+>
+    <ContentWrapper size="wide">
+        <div class="process-layout">
+            <div class="process-intro">
+                <Eyebrow>
+                    THE PROCESS
+                </Eyebrow>
+
+                <Heading tag="h2" variant="h1">
+                    VAN IDEE NAAR
+                    <span class="highlight">ONLINE.</span>
+                </Heading>
+
+                <Paragraph>
+                    Geen ingewikkelde bureauprocessen of eindeloze overdrachten.
+                    Je spreekt direct met de gorilla die jouw website maakt.
+                </Paragraph>
+            </div>
+
+            <ol class="process-steps">
+                {steps.map((step) => (
+                    <li class="process-step">
+                        <span class="step-number" aria-hidden="true">
+                            {step.number}
+                        </span>
+
+                        <div class="step-content">
+                            <Heading tag="h3" variant="h3">
+                                {step.title}
+                            </Heading>
+
+                            <Paragraph>
+                                {step.description}
+                            </Paragraph>
+                        </div>
+                    </li>
+                ))}
+            </ol>
+        </div>
+    </ContentWrapper>
+</Section>
+
+<style lang="scss">
+.process-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    align-items: start;
+    gap: clamp(3rem, 8vw, 9rem);
+}
+
+.process-intro {
+    position: sticky;
+    top: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-l);
+
+    :global(p) {
+        max-width: 38ch;
+        color: var(--text-secondary);
+    }
+}
+
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--border-default);
+}
+
+.process-step {
+    display: grid;
+    grid-template-columns: 3rem minmax(0, 1fr);
+    align-items: start;
+    gap: var(--space-l);
+    padding-block: var(--space-xl);
+    border-bottom: 1px solid var(--border-default);
+}
+
+.step-number {
+    color: var(--text-brand);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+}
+
+.step-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-s);
+
+    :global(p) {
+        max-width: 48ch;
+        color: var(--text-secondary);
+    }
+}
+
+@media (max-width: 800px) {
+    .process-layout {
+        grid-template-columns: 1fr;
+        gap: var(--space-xl);
+    }
+
+    .process-intro {
+        position: static;
+    }
+
+    .process-step {
+        padding-block: var(--space-l);
+    }
+}
+
+@media (max-width: 480px) {
+    .process-step {
+        grid-template-columns: 2rem minmax(0, 1fr);
+        gap: var(--space-m);
+    }
+}
+</style>

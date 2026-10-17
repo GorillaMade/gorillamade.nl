@@ -1,0 +1,73 @@
+---
+interface Props {
+    images?: string[];
+    client: string;
+}
+
+const { images = [], client } = Astro.props;
+---
+
+{images.length > 0 && (
+    <div class="project-gallery" aria-label={`Projectbeelden van ${client}`}>
+        {images.map((src, index) => (
+            <figure class="project-gallery__item">
+                <img
+                    src={src}
+                    alt={`Projectbeeld ${index + 1} van ${client}`}
+                    loading="lazy"
+                    decoding="async"
+                />
+                <figcaption>
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                    <span>{client}</span>
+                </figcaption>
+            </figure>
+        ))}
+    </div>
+)}
+
+<style lang="scss">
+.project-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.project-gallery__item {
+    min-width: 0;
+    margin: 0;
+
+    &:first-child:nth-last-child(odd) {
+        grid-column: 1 / -1;
+    }
+
+    img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border: 1px solid var(--border-default);
+        background: var(--surface-subtle);
+    }
+
+    figcaption {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 0.75rem;
+        color: var(--text-secondary);
+        font-size: 0.7rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+    }
+}
+
+@media (max-width: 700px) {
+    .project-gallery {
+        grid-template-columns: 1fr;
+    }
+
+    .project-gallery__item:first-child:nth-last-child(odd) {
+        grid-column: auto;
+    }
+}
+</style>

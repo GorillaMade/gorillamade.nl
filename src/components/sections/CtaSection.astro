@@ -1,0 +1,92 @@
+---
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import Button from '@/components/Button.astro';
+import Eyebrow from '@/components/typography/Eyebrow.astro';
+
+type Props = {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  accent?: string;
+  description?: string;
+  buttonLabel?: string;
+  buttonHref?: string;
+  theme?: 'light' | 'dark' | 'brand' | 'inherit' | 'inverse';
+  showBottom?: boolean;
+};
+
+const {
+  id,
+  eyebrow = 'READY TO GO WILD?',
+  title = 'LATEN WE IETS',
+  accent = 'GOEDS MAKEN.',
+  description = 'Een sterk idee verdient een sterke website. Vertel me wat je in gedachten hebt en ontdek wat we samen kunnen bouwen.',
+  buttonLabel = 'Vraag jouw offerte aan ↗',
+  buttonHref = '/offerte',
+  theme = 'brand',
+  showBottom = true,
+} = Astro.props;
+---
+<Section id={id} class="cta" theme={theme}>
+  <ContentWrapper size="wide" class="flow">
+    <Eyebrow>{eyebrow}</Eyebrow>
+    <Heading tag="h2" variant="display">
+      <slot name="heading">{title}<span class="cta__accent">{accent}</span></slot>
+    </Heading>
+    <Paragraph><slot>{description}</slot></Paragraph>
+    <Button href={buttonHref}>{buttonLabel}</Button>
+    {showBottom && <div class="bottom"><span>GORILLAMADE®</span><span>DESIGN & DEVELOPMENT</span></div>}
+  </ContentWrapper>
+</Section>
+<style lang="scss">
+.cta {
+    background: var(--surface-page);
+    color: var(--text-primary);
+    padding-block: clamp(4rem, 8vw, 7rem);
+    text-align: center;
+}
+
+.cta :global(h2) {
+    letter-spacing: -.075em;
+    line-height: .99;
+    margin: 30px 0;
+}
+
+.cta__accent {
+    display: block;
+    color: var(--text-brand);
+}
+
+.cta :global(p) {
+    max-width: 500px;
+    margin: 0 auto 30px;
+    line-height: 1.7;
+}
+
+.cta :global(.button) {
+    background: var(--action-primary);
+    color: var(--action-primary-text);
+}
+
+.bottom {
+    border-top: 1px solid var(--border-default);
+    margin-top: 100px;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-s);
+    font-size: 10px;
+    letter-spacing: .18em;
+    font-weight: 900;
+}
+
+@media (max-width: 600px) {
+    .bottom {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+</style>

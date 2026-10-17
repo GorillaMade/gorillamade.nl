@@ -1,0 +1,28 @@
+---
+interface Props {
+  id?: string;
+  class?: string;
+  space?: 'small'|'medium'|'large';
+  theme?: "light" | "dark" | "brand" | "inherit" | "inverse";
+  render?: boolean;
+}
+
+const {
+  id,
+  class: className,
+  space='medium',
+  theme = "inherit",
+  render=true
+} = Astro.props;
+---
+{render &&
+    <section
+        id={id}
+        class:list={['section',theme,className]}
+        data-space={space}
+        data-theme={theme === "inverse" || theme === "inherit" ? undefined : theme}
+        data-theme-mode={theme === "inverse" ? "inverse" : undefined}
+    >
+        <slot />
+    </section>
+}

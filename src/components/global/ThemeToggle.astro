@@ -1,0 +1,36 @@
+---
+// Accessible, reusable theme switcher. Theme preference is stored locally.
+---
+<div class="theme-toggle" x-data="{ dark: false, init() { this.dark = document.documentElement.dataset.theme === 'dark'; window.addEventListener('gorillamade-theme-change', (event) => { this.dark = event.detail === 'dark'; }); }, toggle() { this.dark = !this.dark; const theme = this.dark ? 'dark' : 'light'; document.documentElement.dataset.theme = theme; try { localStorage.setItem('gorillamade-theme', theme); } catch (_) {} window.dispatchEvent(new CustomEvent('gorillamade-theme-change', { detail: theme })); } }">
+  <button type="button" class="theme-toggle__button" @click="toggle()" :aria-pressed="dark.toString()" :aria-label="dark ? 'Schakel licht thema in' : 'Schakel donker thema in'" title="Wissel tussen licht en donker thema">
+    <svg x-show="!dark" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.985 12.486A9 9 0 0 1 11.514 3.015 9 9 0 1 0 20.985 12.486Z"/></svg>
+    <svg x-show="dark" x-cloak xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+    <span x-text="dark ? 'Light' : 'Dark'">Dark</span>
+  </button>
+</div>
+<style lang="scss">
+.theme-toggle__button {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:.55rem;
+    padding:.65rem .85rem;
+    background:var(--surface-subtle);
+    border:1px solid var(--border-default);
+    border-radius:4px;
+    color:var(--text-primary);
+    cursor:pointer;
+    font:inherit;
+    font-size:.8rem;
+    font-weight:700;
+}
+
+.theme-toggle__button:hover {
+    border-color:var(--border-strong);
+}
+
+.theme-toggle__button:focus-visible {
+    outline:2px solid var(--focus-color);
+    outline-offset:3px;
+}
+</style>

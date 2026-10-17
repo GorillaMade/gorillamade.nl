@@ -1,0 +1,16 @@
+---
+interface Props {
+  class?: string;
+  render?: boolean;
+}
+
+const {
+  class:className,
+  render=true
+} = Astro.props;
+---
+{render &&
+    <div class:list={['flex-group',className]}>
+        <slot />
+    </div>
+}

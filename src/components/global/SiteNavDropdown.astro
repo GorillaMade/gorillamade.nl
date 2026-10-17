@@ -1,0 +1,259 @@
+
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = Omit<HTMLAttributes<'details'>, 'open'> & {
+  render?: boolean;
+  label: string;
+  active?: boolean;
+  activePath?: string;
+  preview?: boolean;
+};
+
+const {
+  render = true,
+  label,
+  active,
+  activePath,
+  preview = false,
+  class: className,
+  ...rest
+} = Astro.props;
+
+// --------------------------------------------------
+// Active state
+// --------------------------------------------------
+
+const normalizePath = (path: string): string => {
+  return path.replace(/\/+$/, '') || '/';
+};
+
+const currentPath = normalizePath(Astro.url.pathname);
+
+const isPathActive = (path: string): boolean => {
+  const url = new URL(path, Astro.url);
+
+  if (url.origin !== Astro.url.origin) {
+    return false;
+  }
+
+  const itemPath = normalizePath(url.pathname);
+
+  return (
+    currentPath === itemPath ||
+    (
+      itemPath !== '/' &&
+      currentPath.startsWith(`${itemPath}/`)
+    )
+  );
+};
+
+const isActive = active ?? (
+  activePath ? isPathActive(activePath) : false
+);
+
+// --------------------------------------------------
+// Alpine.js
+// --------------------------------------------------
+
+const alpineAttrs = {
+  'x-data': '{}',
+  '@click.outside': '$el.open = false',
+  '@keydown.escape': '$el.open = false',
+};
+---
+
+{render && (
+  <details
+    {...rest}
+    {...alpineAttrs}
+    class:list={[
+      'site-nav-dropdown',
+      isActive && 'site-nav-dropdown--active',
+      preview && 'site-nav-dropdown--preview',
+      className
+    ]}
+    open={preview || undefined}
+  >
+    <summary
+      class="site-nav-dropdown__toggle"
+      aria-current={isActive ? 'page' : undefined}
+    >
+      <span class="site-nav-dropdown__label">
+        {label}
+      </span>
+
+      <svg
+        class="site-nav-dropdown__icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </summary>
+
+    <div class="site-nav-dropdown__panel">
+      <slot />
+    </div>
+  </details>
+)}
+
+<style lang="scss">
+.site-nav-dropdown {
+    // Configuration
+    --_underline-height: var(
+    --site-nav-underline-height,
+    2px
+    );
+    // Base
+    position: relative;
+    min-width: 0;
+    // Toggle
+    &__toggle {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--space-xs);
+        padding: var(--space-2xs) 0;
+        color: var(--text-primary);
+        font: inherit;
+        font-weight: var(--fw-strong);
+        line-height: 1.4;
+        cursor: pointer;
+        list-style: none;
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::marker {
+            content: '';
+        }
+        // Underline — same as SiteNavLink
+        &::after {
+            content: '';
+            position: absolute;
+            inset-inline: 0;
+            bottom: 0;
+            height: var(--_underline-height);
+            background-color: currentColor;
+            transform: scaleX(0);
+            transform-origin: right;
+            transition:
+            transform var(--duration-fast) ease;
+        }
+
+        &:focus-visible {
+            outline: 2px solid var(--focus-color);
+            outline-offset: 3px;
+        }
+    }
+    // Icon
+    &__icon {
+        flex: none;
+        width: 1rem;
+        height: 1rem;
+        transition:
+        rotate var(--duration-fast) ease;
+    }
+    // Panel
+    &__panel {
+        padding-block: var(--space-xs);
+        padding-inline: var(--space-3xs);
+        // Navigation layout
+        :global(.nav) {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            width: 100%;
+            min-width: 0;
+            gap: var(--space-xs);
+        }
+        // Dropdown item layout
+        :global(.nav-link) {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+            padding: var(--space-xs) var(--space-s);
+            border-radius: var(--radius-s);
+            text-decoration: none;
+        }
+        // Remove default link underline
+        :global(.nav-link::before),
+        :global(.nav-link::after) {
+            display: none;
+        }
+        // Hover
+        @media (hover: hover) {
+            :global(.nav-link:hover) {
+                background-color: var(--surface-subtle);
+            }
+        }
+        // Active link
+        :global(.nav-link[aria-current='page']) {
+            background-color: var(--surface-subtle);
+            font-weight: var(--fw-strong);
+        }
+    }
+    // Open state
+    &[open] {
+        > .site-nav-dropdown__toggle {
+            .site-nav-dropdown__icon {
+                rotate: 180deg;
+            }
+        }
+    }
+    // Active state
+    &--active {
+        > .site-nav-dropdown__toggle::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    }
+    // Hover — same as SiteNavLink
+    @media (hover: hover) {
+        &__toggle:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+    }
+    // Desktop
+    @media (width >= 976px) {
+        &__panel {
+            position: absolute;
+            z-index: 20;
+            top: calc(100% + var(--space-xs));
+            inset-inline-start: 0;
+            width: max-content;
+            min-width: 14rem;
+            max-width: 22rem;
+            padding: var(--space-xs);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-m);
+            background-color: var(--surface-page);
+            color: var(--text-primary);
+            box-shadow:
+            0 0.5rem 1.5rem rgb(0 0 0 / 0.12);
+        }
+    }
+}
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+    .site-nav-dropdown {
+        &__toggle::after,
+        &__icon {
+            transition: none;
+        }
+    }
+}
+</style>

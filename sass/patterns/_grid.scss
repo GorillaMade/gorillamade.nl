@@ -1,0 +1,33 @@
+// -----------------------------------------------------------------------------
+// Grid
+// -----------------------------------------------------------------------------
+// A responsive grid layout that automatically distributes items across the
+// available space based on a configurable minimum item size and gap.
+// -----------------------------------------------------------------------------
+
+.grid {
+    --_grid-placement: var(--grid-placement, auto-fill);
+    --_grid-min-item-size: var(--grid-min-item-size, 16rem);
+    --_grid-gap: var(--grid-gap, var(--gutter));
+
+    display: grid;
+    grid-template-columns: repeat(var(--_grid-placement), minmax(min(var(--_grid-min-item-size), 100%), 1fr));
+    gap: var(--_grid-gap);
+}
+
+
+// -----------------------------------------------------------------------------
+// Exceptions
+// -----------------------------------------------------------------------------
+
+.grid {
+    &[data-layout="halves"] {
+        --grid-placement: auto-fit;
+        --grid-min-item-size: clamp(16em, 50dvw, 32rem);
+    }
+
+    &[data-layout="thirds"] {
+        --grid-placement: auto-fit;
+        --grid-min-item-size: clamp(16em, 33%, 25rem);
+    }
+}

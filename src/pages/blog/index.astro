@@ -1,0 +1,90 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Section from '@/components/wrapper/Section.astro';
+import ContentWrapper from '@/components/wrapper/ContentWrapper.astro';
+import Heading from '@/components/typography/Heading.astro';
+import Paragraph from '@/components/typography/Paragraph.astro';
+import Card from '@/components/item/Card.astro';
+import ContentFilter from '@/components/interactive/ContentFilter.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const categories = [...new Set(posts.map((post) => post.data.category))];
+---
+<BaseLayout title="Insights | GorillaMade">
+  <Section class="listing" space="large">
+    <ContentWrapper size="wide">
+      <header class="listing__intro">
+        <Heading tag="h1" variant="display">VERSE JUNGLEKENNIS.</Heading>
+        <Paragraph>Praktische inzichten over design, development en websites die klanten opleveren.</Paragraph>
+      </header>
+      <div x-data="{ category: 'all' }">
+        <ContentFilter
+            items={categories}
+            label="Categorieën"
+            variable="category"
+        />
+        <div class="listing__grid">
+          {posts.map((post) => (
+            <div x-show={`category === 'all' || category === ${JSON.stringify(post.data.category)}`}>
+              {post.data.cover ? (
+                <Card
+                    variant="cover"
+                    theme="dark"
+                    overlayVariant="solid"
+                    overlayStrength={75}
+                    image={post.data.cover}
+                    imageAlt={`Omslag bij ${post.data.title}`}
+                    eyebrow={`${post.data.category} / ${post.data.date.toLocaleDateString('nl-NL')}`}
+                    heading={post.data.title}
+                    headingTag="h2"
+                    buttonLabel="Lees artikel"
+                    buttonHref={`/blog/${post.id}/`}
+                />
+              ) : (
+                <Card
+                    variant="default"
+                    eyebrow={`${post.data.category} / ${post.data.date.toLocaleDateString('nl-NL')}`}
+                    heading={post.data.title}
+                    headingTag="h2"
+                    buttonLabel="Lees artikel"
+                    buttonHref={`/blog/${post.id}/`}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </ContentWrapper>
+  </Section>
+</BaseLayout>
+<style lang="scss">
+.listing__intro {
+    max-width: 60rem;
+    margin-bottom: var(--space-xl);
+}
+
+.listing__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-m);
+    margin-top: var(--space-l);
+}
+
+.listing__grid > div {
+    min-width: 0;
+    min-height: 21rem;
+}
+
+@media (max-width: 900px) {
+    .listing__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 620px) {
+    .listing__grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
