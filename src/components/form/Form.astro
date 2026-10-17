@@ -1,11 +1,18 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
-interface Props extends HTMLAttributes<'form'> { }
-const {class:className,...attrs}=Astro.props;
+
+interface Props extends HTMLAttributes<'form'> {}
+
+const { class: className, ...attrs } = Astro.props;
 ---
-<form class:list={['form',className]} {...attrs}><slot /></form>
+
+<form class:list={['form', className]} {...attrs}>
+    <slot />
+</form>
+
 <style lang="scss">
-.form{
-    display:grid;
-    gap:var(--space-m)}
+.form {
+    display: grid;
+    gap: var(--space-m);
+}
 </style>

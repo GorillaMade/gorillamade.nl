@@ -12,9 +12,25 @@ import { getServices } from '@/lib/services';
 const servicesList = await getServices();
 ---
 
-<div class="quote-wizard" x-data="quoteWizard()">
-	<Form action="/form.php" method="post" @submit="submit($event)">
+<div
+    id="offerte-form-container"
+    class="quote-wizard"
+    x-data="quoteWizard()"
+>
+    <Form
+        action="/form.php"
+        method="post"
+        novalidate
+        hx-post="/form.php"
+        hx-target="#offerte-form-container"
+        hx-swap="innerHTML"
+        hx-trigger="quote-valid-submit"
+        hx-disabled-elt="find button[type=submit]"
+        @submit="submit($event)"
+    >
         <input type="hidden" name="_form" value="offerte" />
+
+        <div id="offerte-feedback" role="alert" aria-live="polite"></div>
         <div class="honeypot" aria-hidden="true"><input name="honeypot_field" type="text" tabindex="-1" autocomplete="off" /></div>
 		<div class="progress"><span>STAP <b x-text="step">1</b> / 6</span>
 			<div class="track">
@@ -128,7 +144,7 @@ const servicesList = await getServices();
 			<Button type="button" emphasis="primary" class="next" x-show="step<6" @click="next()">Volgende stap →</Button>
 			<Button type="submit" emphasis="primary" x-show="step===6">Verstuur aanvraag ↗</Button>
 		</div>
-	</Form>
+    </Form>
 </div>
 
 <script is:inline>
@@ -188,7 +204,18 @@ const servicesList = await getServices();
                     this.error = 'Vul je naam, e-mailadres en toestemming in.';
                     return;
                 }
-                // Geen preventDefault: de browser verstuurt de POST naar form.php.
+                const emailInput = event.currentTarget.querySelector('input[name="email"]');
+                if (emailInput && !emailInput.checkValidity()) {
+                    event.preventDefault();
+                    this.error = 'Vul een geldig e-mailadres in.';
+                    return;
+                }
+                // HTMX luistert alleen naar ons eigen event na succesvolle validatie.
+                // Zonder HTMX blijft de gewone POST naar form.php werken.
+                if (window.htmx) {
+                    event.preventDefault();
+                    window.htmx.trigger(event.currentTarget, 'quote-valid-submit');
+                }
             }
         };
     }

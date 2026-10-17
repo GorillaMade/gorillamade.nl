@@ -11,8 +11,18 @@ import { getServices } from '@/lib/services';
 const services = await getServices();
 ---
 
-<Form action="/form.php" method="post">
+<div id="contact-form-container">
+    <Form
+        action="/form.php"
+        method="post"
+        hx-post="/form.php"
+        hx-target="#contact-form-container"
+        hx-swap="innerHTML"
+        hx-disabled-elt="find button[type=submit]"
+    >
     <input type="hidden" name="_form" value="contact" />
+
+    <div id="contact-feedback" role="alert" aria-live="polite"></div>
 
     <div class="honeypot" aria-hidden="true">
         <input
@@ -98,7 +108,8 @@ const services = await getServices();
             Verzenden ↗
         </Button>
     </div>
-</Form>
+    </Form>
+</div>
 
 <style lang="scss">
     .two {
