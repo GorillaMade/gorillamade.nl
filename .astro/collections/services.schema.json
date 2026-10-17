@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "minimum": -9007199254740991,
+      "maximum": 9007199254740991
+    },
+    "tag": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "intro": {
+      "type": "string"
+    },
+    "points": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "deliverable": {
+      "type": "string"
+    },
+    "featured": {
+      "default": true,
+      "type": "boolean"
+    },
+    "icon": {
+      "type": "string"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "order",
+    "tag",
+    "summary",
+    "intro",
+    "points",
+    "deliverable"
+  ]
+}

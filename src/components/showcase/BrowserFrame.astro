@@ -1,3 +1,4 @@
+
 ---
 import Img from '@/components/media/Img.astro';
 
@@ -45,10 +46,12 @@ const Tag = isLink ? 'a' : 'div';
     </div>
 
     <div class="browser-frame__screen">
-        <Img
-            src={image}
-            alt={`Websitepreview ${title}`}
-        />
+        {image && (
+            <Img
+                src={image}
+                alt={`Websitepreview ${title}`}
+            />
+        )}
     </div>
 
     <div class="browser-frame__caption">
