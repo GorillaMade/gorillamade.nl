@@ -1,0 +1,79 @@
+
+name: Deploy Astro site to cPanel
+
+on:
+    push:
+        branches:
+            - v2
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+concurrency:
+    group: gorillamade-production
+    cancel-in-progress: false
+
+defaults:
+    run:
+        shell: bash
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout Astro project
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: '22'
+                  cache: npm
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build Astro site
+              run: npm run build
+
+            - name: Verify build output
+              run: |
+                  test -f dist/index.html
+                  test -f dist/form.php
+                  echo "Astro build en PHP-formulier aanwezig."
+
+            - name: Configure SSH
+              env:
+                  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+                  CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
+              run: |
+                  mkdir -p ~/.ssh
+                  chmod 700 ~/.ssh
+
+                  printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+                  chmod 600 ~/.ssh/id_rsa
+
+                  ssh-keyscan -p 4000 -H "$CPANEL_HOST" >> ~/.ssh/known_hosts
+
+            - name: Deploy to cPanel
+              env:
+                  CPANEL_USER: ${{ secrets.CPANEL_USER }}
+                  CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
+              run: |
+                  DEPLOY_PATH="/home/${CPANEL_USER}/public_html/"
+
+                  ssh -p 4000 \
+                      "${CPANEL_USER}@${CPANEL_HOST}" \
+                      "test -d '${DEPLOY_PATH}'"
+
+                  rsync -avz --delete \
+                      --exclude='.well-known/' \
+                      --exclude='cgi-bin/' \
+                      --exclude='.htaccess' \
+                      -e "ssh -p 4000" \
+                      dist/ \
+                      "${CPANEL_USER}@${CPANEL_HOST}:${DEPLOY_PATH}"
+
+                  echo "Astro deployment voltooid."
