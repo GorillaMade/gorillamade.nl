@@ -1,9 +1,6 @@
 name: Deploy Hugo site to cPanel
 
 on:
-  push:
-    branches: ["main"]
-
   workflow_dispatch:
 
 # Default shell is bash
