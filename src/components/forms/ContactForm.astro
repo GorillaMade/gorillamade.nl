@@ -15,9 +15,6 @@ const services = await getServices();
     <Form
         action="/form.php"
         method="post"
-        hx-post="/form.php"
-        hx-target="#contact-form-container"
-        hx-swap="innerHTML"
     >
     <input type="hidden" name="_form" value="contact" />
 
