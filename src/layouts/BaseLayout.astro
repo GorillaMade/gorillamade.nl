@@ -44,27 +44,28 @@ const { title, description, noindex } = Astro.props;
         <main id="main"><slot /></main>
         <Footer theme="dark" />
         <script src="/js/htmx.min.js" is:inline defer></script>
-        <script src="/js/form-validation.js" is:inline defer></script>
     </body>
 </html>
 
 <style is:global>
-    .form-field-error {
-        display: block;
-        margin-top: 0.25rem;
+    form .field :is(input, select, textarea):user-invalid {
+        border-color: #c62828 !important;
+        box-shadow: 0 0 0 1px #c62828;
+    }
+    form .choice:has(input:user-invalid) .choice__control,
+    form .choice:has(input:user-invalid) .choice__switch {
+        border-color: #c62828 !important;
+    }
+    form .field__error, form .choice__error {
+        display: none;
         color: #c62828;
         font-size: 0.875rem;
         line-height: 1.45;
         font-weight: 600;
     }
-    form [aria-invalid="true"]:is(input:not([type="checkbox"]), textarea, select) {
-        border-color: #c62828 !important;
-        box-shadow: 0 0 0 1px #c62828;
-    }
-    form .choice:has(input[aria-invalid="true"]) .choice__control,
-    form .choice:has(input[aria-invalid="true"]) .choice__switch,
-    form .choice--chip:has(input[aria-invalid="true"]) {
-        border-color: #c62828 !important;
+    form .field:has(:user-invalid) > .field__error,
+    form .choice:has(:user-invalid) + .choice__error {
+        display: block;
     }
     .form-success {
         padding-block: 2rem;
