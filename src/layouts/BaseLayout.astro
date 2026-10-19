@@ -44,8 +44,39 @@ const { title, description, noindex } = Astro.props;
         <main id="main"><slot /></main>
         <Footer theme="dark" />
         <script src="/js/htmx.min.js" is:inline defer></script>
+        <script src="/js/form-validation.js" is:inline defer></script>
     </body>
 </html>
+
+<style is:global>
+    .form-field-error {
+        display: block;
+        margin-top: 0.25rem;
+        color: #c62828;
+        font-size: 0.875rem;
+        line-height: 1.45;
+        font-weight: 600;
+    }
+    form [aria-invalid="true"]:is(input:not([type="checkbox"]), textarea, select) {
+        border-color: #c62828 !important;
+        box-shadow: 0 0 0 1px #c62828;
+    }
+    form .choice:has(input[aria-invalid="true"]) .choice__control,
+    form .choice:has(input[aria-invalid="true"]) .choice__switch,
+    form .choice--chip:has(input[aria-invalid="true"]) {
+        border-color: #c62828 !important;
+    }
+    .form-success {
+        padding-block: 2rem;
+    }
+    .form-success h2 {
+        margin-bottom: 1rem;
+    }
+    .form-error {
+        color: #c62828;
+        font-weight: 600;
+    }
+</style>
 
 <style lang="scss">
     :global(body) {
