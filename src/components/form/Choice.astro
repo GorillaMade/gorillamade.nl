@@ -29,6 +29,7 @@ const {
     variant = 'default',
     render = true,
     class: className,
+    required,
     ...rest
 } = Astro.props;
 
@@ -44,6 +45,7 @@ const classes = [
         <span class="choice__input-wrapper">
             <input
                 {...rest}
+                required={required}
                 id={id}
                 type={type}
                 class="choice__input"
@@ -83,6 +85,7 @@ const classes = [
             <slot>{label}</slot>
         </span>
     </label>
+    {required && <span class="choice__error">Bevestig je toestemming.</span>}
 )}
 
 <style lang="scss">
