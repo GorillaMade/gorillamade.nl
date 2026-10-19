@@ -10,6 +10,7 @@
     };
     const control = (field) => field.closest('.field, .choice') || field.parentElement;
     const messageFor = (field) => {
+        if (field.type === 'checkbox' && !field.checked) return 'Bevestig je toestemming.';
         if (field.validity.valueMissing || (field.required && !field.value.trim())) return errorText.valueMissing;
         if (field.validity.typeMismatch) return errorText.typeMismatch;
         if (field.validity.tooShort) return errorText.tooShort;
