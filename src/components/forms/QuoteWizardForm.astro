@@ -21,9 +21,6 @@ const servicesList = await getServices();
         action="/form.php"
         method="post"
         novalidate
-        hx-post="/form.php"
-        hx-target="#offerte-form-container"
-        hx-swap="innerHTML"
         @submit="validateSubmit($event)"
     >
         <input type="hidden" name="_form" value="offerte" />
