@@ -15,11 +15,9 @@ const services = await getServices();
     <Form
         action="/form.php"
         method="post"
-        novalidate
         hx-post="/form.php"
         hx-target="#contact-form-container"
         hx-swap="innerHTML"
-        hx-disabled-elt="find button[type=submit]"
     >
     <input type="hidden" name="_form" value="contact" />
 
