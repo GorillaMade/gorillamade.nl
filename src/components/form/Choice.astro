@@ -41,6 +41,7 @@ const classes = [
 ---
 
 {render && (
+    <>
     <label class={classes}>
         <span class="choice__input-wrapper">
             <input
@@ -86,6 +87,7 @@ const classes = [
         </span>
     </label>
     {required && <span class="choice__error">Bevestig je toestemming.</span>}
+    </>
 )}
 
 <style lang="scss">
