@@ -24,6 +24,7 @@ const {
   label,
   labelHidden = false,
   description,
+  required,
   render = true,
   class: className,
   name,
@@ -65,6 +66,7 @@ const describedBy = [
     <div class="field__select-wrapper">
       <select
         {...rest}
+        required={required}
         id={id}
         name={name ?? id}
         class="field__select"
@@ -88,6 +90,8 @@ const describedBy = [
         <path d="m6 9 6 6 6-6" />
       </svg>
     </div>
+
+    {required && <span class="field__error">Maak een geldige keuze.</span>}
 
     {description && (
       <span
