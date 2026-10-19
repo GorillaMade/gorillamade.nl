@@ -12,6 +12,7 @@ const {
     id,
     label,
     description,
+    required,
     class: className,
     ...attrs
 } = Astro.props;
@@ -27,7 +28,10 @@ const descriptionId = `${id}-description`;
         name={attrs.name ?? id}
         aria-describedby={description ? descriptionId : undefined}
         {...attrs}
+        required={required}
     ></textarea>
+
+    {required && <span class="field__error">Vul dit veld in.</span>}
 
     {description && (
         <span
