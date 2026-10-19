@@ -15,7 +15,7 @@ $recipient = 'hallo@gorillamade.nl';
 
 $forms = [
     'contact' => [
-        'from' => 'contact@' . $domain,
+        'from' => $recipient,
         'subject' => 'Nieuw contactbericht | GorillaMade',
         'redirect' => '/contact/',
         'target' => '#contact-feedback',
@@ -31,7 +31,7 @@ $forms = [
         'cooldown' => 120,
     ],
     'offerte' => [
-        'from' => 'offerte@' . $domain,
+        'from' => $recipient,
         'subject' => 'Nieuwe offerteaanvraag | GorillaMade',
         'redirect' => '/offerte/',
         'target' => '#offerte-feedback',
@@ -210,13 +210,16 @@ $headers = [
 ];
 
 try {
-    $sent = mail($recipient, $config['subject'], $body, $headers);
+    // Use an envelope sender belonging to the configured domain/mailbox.
+    // cPanel/Exim may reject messages whose envelope sender is not authorized.
+    $sent = mail($recipient, $config['subject'], $body, $headers, '-f' . $recipient);
 } catch (Throwable $exception) {
     error_log('GorillaMade form mail failure: ' . $exception->getMessage());
     $sent = false;
 }
 
 if (!$sent) {
+    error_log('GorillaMade form mail() returned false for form=' . $type . '; sendmail_path=' . (string) ini_get('sendmail_path'));
     feedback(500, 'Verzenden is momenteel niet mogelijk. Probeer het later opnieuw.', $isHtmx, $redirect, $errorTarget);
 }
 
