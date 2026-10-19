@@ -79,8 +79,8 @@ function feedback(
     $safeMessage = escapeHtml($message);
 
     if ($isHtmx) {
-        // HTMX swaps 2xx responses by default; redirect errors to an inline feedback element.
-        http_response_code(200);
+        // Preserve the real HTTP status for client-side error handling.
+        http_response_code($status);
 
         if ($success) {
             echo '<section class="form-success" role="status" aria-live="polite">';
