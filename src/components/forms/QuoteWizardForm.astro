@@ -24,9 +24,7 @@ const servicesList = await getServices();
         hx-post="/form.php"
         hx-target="#offerte-form-container"
         hx-swap="innerHTML"
-        hx-trigger="quote-valid-submit"
         hx-disabled-elt="find button[type=submit]"
-        @submit="submit($event)"
     >
         <input type="hidden" name="_form" value="offerte" />
 
@@ -36,7 +34,7 @@ const servicesList = await getServices();
 			<div class="track">
 				<div :style="`width:${step/6*100}%`"></div>
 			</div><span x-text="Math.round(step/6*100)+'%'">17%</span></div>
-		<div x-show="step===1"><span class="overline">01 / PROJECT</span>
+		<div data-wizard-step="1" x-show="step===1"><span class="overline">01 / PROJECT</span>
 			<Heading tag="h2" variant="h2">Waar kan ik je mee helpen?</Heading>
 			<Paragraph>Selecteer één of meerdere diensten.</Paragraph>
 			<div class="choices">
@@ -52,7 +50,7 @@ const servicesList = await getServices();
                 ))}
 			</div>
 		</div>
-		<div x-show="step===2" x-cloak><span class="overline">02 / DOELEN</span>
+		<div data-wizard-step="2" x-show="step===2" x-cloak><span class="overline">02 / DOELEN</span>
 			<Heading tag="h2" variant="h2">Wat moet de website bereiken?</Heading>
 			<Select id="quote-project" name="project" label="Soort project" x-model="project">
 				<option value="">Maak een keuze</option>
@@ -66,7 +64,7 @@ const servicesList = await getServices();
 			<Textarea id="quote-audience" name="audience" label="Wie is jouw doelgroep?" rows={3} x-model="audience" />
 			<Input id="quote-current" name="currentSite" label="Huidige website (optioneel)" type="url" x-model="currentSite" />
 		</div>
-		<div x-show="step===3" x-cloak><span class="overline">03 / INHOUD & FUNCTIES</span>
+		<div data-wizard-step="3" x-show="step===3" x-cloak><span class="overline">03 / INHOUD & FUNCTIES</span>
 			<Heading tag="h2" variant="h2">Wat moet de website kunnen?</Heading>
 			<Select id="quote-pages" name="pages" label="Verwacht aantal pagina's" x-model="pages">
 				<option value="">Nog niet bekend</option>
@@ -78,13 +76,13 @@ const servicesList = await getServices();
 			<Textarea id="quote-features" name="features" label="Welke functies en koppelingen zijn nodig?" rows={5} x-model="features" description="Denk aan reserveringen, meertaligheid, CMS, betalingen, CRM of specifieke wensen." />
 			<Textarea id="quote-content" name="content" label="Welke teksten, foto's, logo's en andere content zijn beschikbaar?" rows={4} x-model="content" />
 		</div>
-		<div x-show="step===4" x-cloak><span class="overline">04 / DESIGN</span>
+		<div data-wizard-step="4" x-show="step===4" x-cloak><span class="overline">04 / DESIGN</span>
 			<Heading tag="h2" variant="h2">Hoe moet het eruitzien?</Heading>
 			<Textarea id="quote-examples" name="examples" label="Inspirerende websites of voorbeelden (links + waarom)" rows={4} x-model="examples" />
 			<Textarea id="quote-design" name="design" label="Huisstijl, uitstraling, kleuren en specifieke designwensen" rows={4} x-model="design" />
 			<Textarea id="quote-avoid" name="avoid" label="Wat wil je absoluut niet? (optioneel)" rows={3} x-model="avoid" />
 		</div>
-		<div x-show="step===5" x-cloak><span class="overline">05 / PLANNING</span>
+		<div data-wizard-step="5" x-show="step===5" x-cloak><span class="overline">05 / PLANNING</span>
 			<Heading tag="h2" variant="h2">Wat is de ruimte voor je project?</Heading>
 			<Select id="quote-budget" name="budget" label="Indicatief budget" x-model="budget">
 				<option value="">Selecteer een indicatie</option>
@@ -109,7 +107,7 @@ const servicesList = await getServices();
 				<option>Advies gewenst</option>
 			</Select>
 		</div>
-		<div x-show="step===6" x-cloak><span class="overline">06 / CONTACT & VERZENDEN</span>
+		<div data-wizard-step="6" x-show="step===6" x-cloak><span class="overline">06 / CONTACT & VERZENDEN</span>
 			<Heading tag="h2" variant="h2">Met wie mag ik contact opnemen?</Heading>
 			<div class="two">
 				<Input id="quote-name" name="name" required label="Naam" x-model="name" autocomplete="name" />
@@ -192,31 +190,6 @@ const servicesList = await getServices();
                 }
                 this.step = Math.min(6, this.step + 1);
             },
-            submit(event) {
-                this.error = '';
-                if (this.step !== 6) {
-                    event.preventDefault();
-                    this.next();
-                    return;
-                }
-                if (!this.name.trim() || !this.email.trim() || !this.consent) {
-                    event.preventDefault();
-                    this.error = 'Vul je naam, e-mailadres en toestemming in.';
-                    return;
-                }
-                const emailInput = event.currentTarget.querySelector('input[name="email"]');
-                if (emailInput && !emailInput.checkValidity()) {
-                    event.preventDefault();
-                    this.error = 'Vul een geldig e-mailadres in.';
-                    return;
-                }
-                // HTMX luistert alleen naar ons eigen event na succesvolle validatie.
-                // Zonder HTMX blijft de gewone POST naar form.php werken.
-                if (window.htmx) {
-                    event.preventDefault();
-                    window.htmx.trigger(event.currentTarget, 'quote-valid-submit');
-                }
-            }
         };
     }
 </script>
