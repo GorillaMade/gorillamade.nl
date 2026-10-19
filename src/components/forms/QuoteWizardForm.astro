@@ -24,7 +24,7 @@ const servicesList = await getServices();
         hx-post="/form.php"
         hx-target="#offerte-form-container"
         hx-swap="innerHTML"
-        hx-disabled-elt="find button[type=submit]"
+        @submit="validateSubmit($event)"
     >
         <input type="hidden" name="_form" value="offerte" />
 
@@ -170,6 +170,30 @@ const servicesList = await getServices();
             notes: '',
             consent: false,
             error: '',
+            validateSubmit(event) {
+                this.error = '';
+                const form = event.target;
+                const fields = ['project', 'goal', 'audience', 'features', 'content', 'budget', 'timing', 'name', 'email'];
+                const missingServices = !this.services.length;
+                const invalid = fields.find((name) => {
+                    const field = form.elements.namedItem(name);
+                    return !field || !String(field.value || '').trim() || !field.checkValidity();
+                });
+                const consent = form.elements.namedItem('consent');
+                const currentSite = form.elements.namedItem('currentSite');
+                const invalidSite = currentSite && currentSite.value && !currentSite.checkValidity();
+                if (missingServices || invalid || !consent?.checked || invalidSite) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    const badField = missingServices ? form.querySelector('[name="services[]"]') :
+                        invalid ? form.elements.namedItem(invalid) :
+                        invalidSite ? currentSite : consent;
+                    const panel = badField?.closest('[data-wizard-step]');
+                    if (panel) this.step = Number(panel.dataset.wizardStep);
+                    this.error = 'Controleer de verplichte velden en je toestemming.';
+                    this.$nextTick(() => badField?.focus());
+                }
+            },
             next() {
                 this.error = '';
                 if (this.step === 1 && !this.services.length) {
