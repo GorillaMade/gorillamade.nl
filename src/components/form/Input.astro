@@ -38,6 +38,7 @@ const {
   type = 'text',
   labelHidden = false,
   description,
+  required,
   render = true,
   class: className,
   name,
@@ -74,12 +75,15 @@ const describedBy = [
 
     <input
       {...rest}
+      required={required}
       id={id}
       name={name ?? id}
       type={type}
       class="field__input"
       aria-describedby={describedBy}
     />
+
+    {required && <span class="field__error">Vul dit veld correct in.</span>}
 
     {description && (
       <span
