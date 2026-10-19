@@ -56,8 +56,8 @@ const classes = [
     </a>
   ) : (
     <button
-      type="button"
       {...(rest as ButtonProps)}
+      type={(rest as ButtonProps).type ?? "button"}
       class:list={classes}
     >
       <slot />
