@@ -15,7 +15,7 @@ if (session_status() !== PHP_SESSION_ACTIVE) {
 $domain = 'gorillamade.nl';
 $forms = [
     'contact' => [
-        'from' => 'contact@' . $domain,
+        'from' => 'hallo@' . $domain,
         'to' => 'hallo@' . $domain,
         'subject' => 'Nieuw contactbericht | GorillaMade',
         'redirect' => '/contact/',
@@ -31,7 +31,7 @@ $forms = [
         'cooldown' => 120,
     ],
     'offerte' => [
-        'from' => 'offerte@' . $domain,
+        'from' => 'hallo@' . $domain,
         'to' => 'hallo@' . $domain,
         'subject' => 'Nieuwe offerteaanvraag | GorillaMade',
         'redirect' => '/offerte/',
@@ -61,7 +61,7 @@ $forms = [
     ],
 ];
 
-// Het bestaande form-submit.js stuurt HX-Request: true en verwacht
+// Het frontend-script /js/form-submit.js stuurt HX-Request: true en verwacht
 // .form-success of .form-error in de HTML-respons.
 $isAjax = strtolower((string) ($_SERVER['HTTP_HX_REQUEST'] ?? '')) === 'true';
 

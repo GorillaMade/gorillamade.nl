@@ -24,6 +24,7 @@ const { title, description, noindex } = Astro.props;
         <BaseHead title={title} description={description} noindex={noindex} />
         <JsonLd data={{ '@context': 'https://schema.org', '@type': 'ProfessionalService', name: site.name, url: site.url, description: site.description }} />
         <slot name="head" />
+        <script is:inline src="/js/form-submit.js" defer></script>
     </head>
     <body>
         <SkipLink href="#main">Ga naar inhoud</SkipLink>

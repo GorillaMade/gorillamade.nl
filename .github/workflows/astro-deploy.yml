@@ -2,6 +2,9 @@
 name: Deploy Astro site to cPanel
 
 on:
+    push:
+        branches:
+            - main
     workflow_dispatch:
 
 permissions:
@@ -35,11 +38,30 @@ jobs:
             - name: Build Astro site
               run: npm run build
 
-            - name: Verify build output
+            - name: Verify build output and PHP form handler
               run: |
+                  set -euo pipefail
                   test -f dist/index.html
                   test -f dist/form.php
-                  echo "Astro build en PHP-formulier aanwezig."
+                  test -f dist/js/form-submit.js
+                  php -l dist/form.php
+
+                  # Test the handler without sending email: GET must be rejected,
+                  # and invalid contact/quote posts must be validated.
+                  php -S 127.0.0.1:18765 -t dist > /tmp/gorillamade-php-test.log 2>&1 &
+                  PHP_PID=$!
+                  trap 'kill "$PHP_PID" 2>/dev/null || true' EXIT
+                  sleep 2
+
+                  test "$(curl -sS -o /dev/null -w '%{http_code}' http://127.0.0.1:18765/form.php)" = "405"
+                  test "$(curl -sS -o /dev/null -w '%{http_code}' \
+                      -d '_form=contact&naam=Test&email=ongeldig&bericht=Test&toestemming=ja' \
+                      http://127.0.0.1:18765/form.php)" = "422"
+                  test "$(curl -sS -o /dev/null -w '%{http_code}' \
+                      -d '_form=offerte&name=Test&email=ongeldig' \
+                      http://127.0.0.1:18765/form.php)" = "422"
+
+                  echo "Build, PHP-syntax en formulier-validatie gecontroleerd."
 
             - name: Configure SSH
               env:
@@ -73,4 +95,8 @@ jobs:
                       dist/ \
                       "${CPANEL_USER}@${CPANEL_HOST}:${DEPLOY_PATH}"
 
-                  echo "Astro deployment voltooid."
+                  ssh -p 4000 \
+                      "${CPANEL_USER}@${CPANEL_HOST}" \
+                      "test -f '${DEPLOY_PATH}form.php' && test -f '${DEPLOY_PATH}js/form-submit.js'"
+
+                  echo "Astro en formulierhandler succesvol gedeployed."
