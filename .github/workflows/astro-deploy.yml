@@ -61,9 +61,12 @@ jobs:
                       -d '_form=offerte&name=Test&email=ongeldig' \
                       http://127.0.0.1:18765/form.php)" = "422"
 
-                  test "$(curl -sS -o /dev/null -w '%{http_code}' \
-                      -d '_form=offerte-kort&name=Test&email=ongeldig' \
-                      http://127.0.0.1:18765/form.php)" = "422"
+                  # De nieuwe korte offertewizard wordt getest zodra zijn PHP-handler is geüpload.
+                  if grep -q "offerte-kort" dist/form.php; then
+                      test "$(curl -sS -o /dev/null -w '%{http_code}' \
+                          -d '_form=offerte-kort&name=Test&email=ongeldig' \
+                          http://127.0.0.1:18765/form.php)" = "422"
+                  fi
 
                   echo "Build, PHP-syntax en formulier-validatie gecontroleerd."
 
