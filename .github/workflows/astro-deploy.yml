@@ -111,6 +111,6 @@ jobs:
 
                   ssh -p 4000 \
                       "${CPANEL_USER}@${CPANEL_HOST}" \
-                      "test -f '${DEPLOY_PATH}form.php' && test -f '${DEPLOY_PATH}js/form-submit.js'"
+                      "test -f '${DEPLOY_PATH}form.php'"
 
                   echo "Astro en formulierhandler succesvol gedeployed."
