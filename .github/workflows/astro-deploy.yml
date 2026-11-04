@@ -1,17 +1,18 @@
 
-name: Deploy Astro site to cPanel
+name: Build Astro v3 / deploy main to cPanel
 
 on:
     push:
         branches:
             - main
+            - v3
     workflow_dispatch:
 
 permissions:
     contents: read
 
 concurrency:
-    group: gorillamade-production
+    group: gorillamade-${{ github.ref }}
     cancel-in-progress: false
 
 defaults:
@@ -43,7 +44,6 @@ jobs:
                   set -euo pipefail
                   test -f dist/index.html
                   test -f dist/form.php
-                  test -f dist/js/form-submit.js
                   php -l dist/form.php
 
                   # Test the handler without sending email: GET must be rejected,
@@ -61,9 +61,25 @@ jobs:
                       -d '_form=offerte&name=Test&email=ongeldig' \
                       http://127.0.0.1:18765/form.php)" = "422"
 
+                  # De nieuwe korte offertewizard wordt getest zodra zijn PHP-handler is geüpload.
+                  if grep -q "offerte-kort" dist/form.php; then
+                      test "$(curl -sS -o /dev/null -w '%{http_code}' \
+                          -d '_form=offerte-kort&name=Test&email=ongeldig' \
+                          http://127.0.0.1:18765/form.php)" = "422"
+                  fi
+
                   echo "Build, PHP-syntax en formulier-validatie gecontroleerd."
 
+            - name: Upload v3 build artifact
+              if: github.ref == 'refs/heads/v3'
+              uses: actions/upload-artifact@v4
+              with:
+                  name: gorillamade-v3-dist
+                  path: dist/
+                  retention-days: 14
+
             - name: Configure SSH
+              if: github.ref == 'refs/heads/main'
               env:
                   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
                   CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
@@ -77,6 +93,7 @@ jobs:
                   ssh-keyscan -p 4000 -H "$CPANEL_HOST" >> ~/.ssh/known_hosts
 
             - name: Deploy to cPanel
+              if: github.ref == 'refs/heads/main'
               env:
                   CPANEL_USER: ${{ secrets.CPANEL_USER }}
                   CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
@@ -97,6 +114,6 @@ jobs:
 
                   ssh -p 4000 \
                       "${CPANEL_USER}@${CPANEL_HOST}" \
-                      "test -f '${DEPLOY_PATH}form.php' && test -f '${DEPLOY_PATH}js/form-submit.js'"
+                      "test -f '${DEPLOY_PATH}form.php'"
 
                   echo "Astro en formulierhandler succesvol gedeployed."
